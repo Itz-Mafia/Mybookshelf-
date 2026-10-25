@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mybookshelf | Class 10-12 Educational Platform</title>
-    <!-- Chart.js for Graphing & PDF.js for Book Viewing -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Mybookshelf | Educational Platform</title>
+    <!-- PDF.js for Document Viewing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     
@@ -36,20 +35,8 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
         }
 
-        /* Hardware Accelerated Smooth Animations */
-        .animated-card {
-            will-change: transform, opacity;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-        }
-
-        .animated-card:hover {
-            transform: translateY(-4px) scale(1.01);
-        }
-
-        /* Header Navigation */
         header {
             position: sticky;
             top: 0;
@@ -57,7 +44,7 @@
             background: rgba(11, 15, 25, 0.9);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-line);
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -65,183 +52,113 @@
 
         .logo {
             font-family: 'Syncopate', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--text-main);
-            letter-spacing: 1px;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .logo span { color: var(--accent-blue); }
-
-        nav {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-        }
-
-        nav a:hover, nav a.active { color: var(--accent-blue); }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
             color: #fff;
             border: none;
-            padding: 0.6rem 1.4rem;
+            padding: 0.6rem 1.2rem;
             border-radius: var(--radius);
             font-weight: 600;
             cursor: pointer;
             min-height: 44px;
-            transition: opacity 0.2s ease, transform 0.1s ease;
+            transition: transform 0.1s ease;
         }
 
         .btn-primary:active { transform: scale(0.97); }
 
-        /* Hero Section */
-        .hero {
-            padding: 4rem 2rem 2rem;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
+        .btn-back {
+            background: var(--surface-card);
+            border: 1px solid var(--border-line);
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 800;
-            line-height: 1.2;
+            margin-bottom: 0.5rem;
             background: linear-gradient(to right, #fff, var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
         }
 
-        .hero p {
+        .section-subtitle {
+            text-align: center;
             color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
         }
 
-        /* Class Tabs */
-        .tabs-container {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-            padding: 0 1rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: var(--surface-card);
-            border: 1px solid var(--border-line);
-            color: var(--text-muted);
-            padding: 0.75rem 1.75rem;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            min-height: 48px;
-            transition: all 0.25s ease;
-        }
-
-        .tab-btn.active {
-            background: var(--accent-blue);
-            color: var(--bg-dark);
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-        }
-
-        /* Main Content Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem 4rem;
+        /* Grid Layouts */
+        .choice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
             width: 100%;
         }
 
-        /* Bookshelf Grid */
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .book-card {
+        .choice-card {
             background: var(--surface-card);
             border: 1px solid var(--border-line);
             border-radius: var(--radius);
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
         }
 
-        .book-tag {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-blue);
+        .choice-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+        }
+
+        .choice-card h3 {
+            font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
-        .book-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .book-desc {
+        .choice-card p {
             color: var(--text-muted);
             font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
         }
 
-        /* Interactive Graph Section */
-        .graph-section {
-            background: var(--surface-card);
-            border: 1px solid var(--border-line);
-            border-radius: var(--radius);
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-
-        .graph-controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .control-group label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .control-group input[type="range"] {
-            width: 100%;
-            accent-color: var(--accent-blue);
-        }
-
-        .chart-wrapper {
-            position: relative;
-            height: 350px;
-            width: 100%;
-        }
-
-        /* PDF Viewer Drawer / Modal */
+        /* PDF Viewer Modal */
         .viewer-modal {
             display: none;
             position: fixed;
@@ -252,7 +169,7 @@
         }
 
         .viewer-header {
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
             border-bottom: 1px solid var(--border-line);
             display: flex;
             justify-content: space-between;
@@ -265,7 +182,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         canvas#pdf-render-canvas {
@@ -273,230 +190,149 @@
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
-        /* Auth Login Modal */
-        .auth-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .auth-box {
-            background: var(--surface-card);
-            border: 1px solid var(--border-line);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            width: 90%;
-            max-width: 400px;
-        }
-
-        .auth-box h2 { margin-bottom: 1.5rem; text-align: center; }
-
-        .form-input {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            background: var(--bg-dark);
-            border: 1px solid var(--border-line);
-            border-radius: 8px;
-            color: #fff;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-        }
-
-        /* Responsive Mobile Touches */
-        @media (max-width: 768px) {
-            header { padding: 1rem; }
-            .hero { padding: 2rem 1rem 1rem; }
-            .graph-section { padding: 1rem; }
-            .chart-wrapper { height: 260px; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
     <header>
-        <a href="#" class="logo">MY<span>BOOKSHELF</span></a>
-        <nav>
-            <a href="#books" class="active">Library</a>
-            <a href="#graphing">Graph Lab</a>
-            <button class="btn-primary" id="authBtn" onclick="toggleAuthModal()">Login</button>
-        </nav>
+        <a href="#" class="logo" onclick="goHome()">MY<span>BOOKSHELF</span></a>
+        <button class="btn-primary" id="authBtn">Menu</button>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Class 10th – 12th Interactive Learning Hub</h1>
-        <p>Access curated NCERT textbooks, digital reference materials, and dynamic mathematical graph models instantly.</p>
-        
-        <!-- Class Selector Tabs -->
-        <div class="tabs-container">
-            <button class="tab-btn active" onclick="switchClass('12', this)">Class 12th</button>
-            <button class="tab-btn" onclick="switchClass('11', this)">Class 11th</button>
-            <button class="tab-btn" onclick="switchClass('10', this)">Class 10th</button>
-        </div>
-    </section>
-
-    <!-- Main Content Container -->
-    <main class="container">
-        
-        <!-- Textbook Cards Grid -->
-        <section id="books" class="books-grid">
-            <!-- Cards rendered dynamically via JS -->
-        </section>
-
-        <!-- Interactive Math & Physics Graph Plotter -->
-        <section id="graphing" class="graph-section">
-            <h2 style="margin-bottom: 0.5rem;">Interactive Function Grapher</h2>
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Visualize quadratic equations $f(x) = ax^2 + bx + c$ in real-time.</p>
-            
-            <div class="graph-controls">
-                <div class="control-group">
-                    <label>Parameter A: <span id="valA">1</span></label>
-                    <input type="range" id="paramA" min="-5" max="5" step="0.5" value="1" oninput="updateGraph()">
-                </div>
-                <div class="control-group">
-                    <label>Parameter B: <span id="valB">0</span></label>
-                    <input type="range" id="paramB" min="-10" max="10" step="1" value="0" oninput="updateGraph()">
-                </div>
-                <div class="control-group">
-                    <label>Parameter C: <span id="valC">0</span></label>
-                    <input type="range" id="paramC" min="-10" max="10" step="1" value="0" oninput="updateGraph()">
-                </div>
-            </div>
-
-            <div class="chart-wrapper">
-                <canvas id="mathChart"></canvas>
-            </div>
-        </section>
-
+    <main class="container" id="appContainer">
+        <!-- Dynamically rendered views load here -->
     </main>
 
-    <!-- PDF Reader Viewport Drawer -->
+    <!-- PDF Reader Modal -->
     <div class="viewer-modal" id="viewerModal">
         <div class="viewer-header">
-            <h3 id="viewerTitle">Document Reader</h3>
-            <button class="btn-primary" onclick="closeViewer()">Close Reader</button>
+            <h3 id="viewerTitle" style="font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70%;">Document Reader</h3>
+            <button class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="closeViewer()">Close</button>
         </div>
         <div class="viewer-body">
             <canvas id="pdf-render-canvas"></canvas>
         </div>
     </div>
 
-    <!-- Login Auth Modal -->
-    <div class="auth-modal" id="authModal">
-        <div class="auth-box">
-            <h2 id="authTitle">Student Login</h2>
-            <form onsubmit="handleAuth(event)">
-                <input type="email" class="form-input" placeholder="Email Address" required id="authEmail">
-                <input type="password" class="form-input" placeholder="Password" required>
-                <button type="submit" class="btn-primary" style="width: 100%;">Sign In</button>
-            </form>
-            <button style="background: none; border: none; color: var(--text-muted); width: 100%; margin-top: 1rem; cursor: pointer;" onclick="toggleAuthModal()">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Application Script Engine -->
     <script>
-        // Textbook Dataset Schema for Classes 10-12
-        const bookDatabase = {
-            '12': [
-                { title: 'Class 12 Physics Vol 1', subject: 'Physics', desc: 'Electrostatics, Magnetism, and Electromagnetic Induction.', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' },
-                { title: 'Class 12 Mathematics Part I', subject: 'Mathematics', desc: 'Relations & Functions, Matrices, and Calculus derivatives.', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' },
-                { title: 'Class 12 Chemistry Part I', subject: 'Chemistry', desc: 'Solid State, Electrochemistry, and Chemical Kinetics.', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' }
-            ],
-            '11': [
-                { title: 'Class 11 Physics Mechanics', subject: 'Physics', desc: 'Laws of Motion, Work Energy Power, and Kinematics.', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' },
-                { title: 'Class 11 Mathematics', subject: 'Mathematics', desc: 'Sets, Trigonometric Functions, and Algebra.', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' }
-            ],
-            '10': [
-                { title: 'Class 10 Science & Lab', subject: 'Science', desc: 'Chemical Reactions, Light Reflection, and Electricity.', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' },
-                { title: 'Class 10 Standard Mathematics', subject: 'Mathematics', desc: 'Polynomials, Quadratic Equations, and Geometry.', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' }
-            ]
+        // Configured Database with exact user links
+        const db = {
+            '10': {
+                name: 'Class 10th',
+                tb: [
+                    { title: 'Class 10 Science Textbook', desc: 'NCERT Curriculum', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' },
+                    { title: 'Class 10 Mathematics Textbook', desc: 'NCERT Standard Math', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' }
+                ],
+                imp: [
+                    { title: 'Class 10 Science Important Questions', desc: 'Practice Question Bank', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' }
+                ]
+            },
+            '11': {
+                name: 'Class 11th',
+                tb: [
+                    { title: 'Class 11 Physics Textbook', desc: 'State Board Curriculum', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' }
+                ],
+                imp: [
+                    { title: 'Class 11 Physics Important Questions', desc: 'Question Bank & Solutions', pdf: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf' }
+                ]
+            },
+            '12': {
+                name: 'Class 12th',
+                tb: [
+                    { title: '1. Physics Textbook', desc: 'Balbharati e-Library', url: 'https://books.ebalbharati.in', isExternal: true },
+                    { title: '2. Maths Textbook', desc: 'Balbharati e-Library', url: 'https://books.ebalbharati.in', isExternal: true },
+                    { title: '3. Biology Textbook', desc: 'Balbharati e-Library', url: 'https://books.ebalbharati.in', isExternal: true },
+                    { title: '4. I.T. Textbook', desc: 'Balbharati e-Library', url: 'https://books.ebalbharati.in', isExternal: true }
+                ],
+                imp: [
+                    { title: '1. Physics Important Questions', desc: 'Maharashtra Board Solutions', url: 'https://maharashtraboardsolutions.guru/maharashtra-state-board-class-12-physics-solutions/', isExternal: true },
+                    { title: '2. Maths Important Questions', desc: 'Maharashtra Board Solutions', url: 'https://maharashtraboardsolutions.guru/', isExternal: true },
+                    { title: '3. Biology Important Questions', desc: 'Maharashtra Board Solutions', url: 'https://maharashtraboardsolutions.guru/', isExternal: true },
+                    { title: '4. I.T. Important Questions', desc: 'Maharashtra Board Solutions', url: 'https://maharashtraboardsolutions.guru/', isExternal: true }
+                ]
+            }
         };
 
-        let currentClass = '12';
-        let chartInstance = null;
+        const container = document.getElementById('appContainer');
 
-        // Render Bookshelf UI dynamically
-        function renderBooks(selectedClass) {
-            const grid = document.getElementById('books');
-            grid.innerHTML = '';
-            
-            bookDatabase[selectedClass].forEach((book) => {
-                const card = document.createElement('div');
-                card.className = 'book-card animated-card';
-                card.innerHTML = `
-                    <div>
-                        <div class="book-tag">${book.subject}</div>
-                        <div class="book-title">${book.title}</div>
-                        <div class="book-desc">${book.desc}</div>
+        // View 1: Homepage (Only 3 Options: 10, 11, 12th)
+        function goHome() {
+            container.innerHTML = `
+                <h1 class="section-title">Mybookshelf</h1>
+                <p class="section-subtitle">Select your academic class to get started</p>
+                <div class="choice-grid">
+                    <div class="choice-card" onclick="openClassMenu('10')">
+                        <h3>Class 10th</h3>
+                        <p>Science & Mathematics</p>
                     </div>
-                    <button class="btn-primary" onclick="openBook('${book.title}', '${book.pdf}')">Read Online</button>
-                `;
-                grid.appendChild(card);
-            });
+                    <div class="choice-card" onclick="openClassMenu('11')">
+                        <h3>Class 11th</h3>
+                        <p>Science & Core Math</p>
+                    </div>
+                    <div class="choice-card" onclick="openClassMenu('12')">
+                        <h3>Class 12th</h3>
+                        <p>Advanced Board Curriculum</p>
+                    </div>
+                </div>
+            `;
         }
 
-        function switchClass(classNum, btn) {
-            currentClass = classNum;
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderBooks(classNum);
+        // View 2: Class Menu (Leads to Textbooks & Important Questions)
+        function openClassMenu(classKey) {
+            const cls = db[classKey];
+            container.innerHTML = `
+                <button class="btn-back" onclick="goHome()">← Back to Classes</button>
+                <h1 class="section-title">${cls.name}</h1>
+                <p class="section-subtitle">Choose your preferred resource category</p>
+                <div class="choice-grid">
+                    <div class="choice-card" onclick="openResourceList('${classKey}', 'tb')">
+                        <h3>📚 Textbooks (T.B)</h3>
+                        <p>Balbharati & Reference Books</p>
+                    </div>
+                    <div class="choice-card" onclick="openResourceList('${classKey}', 'imp')">
+                        <h3>📝 Important Questions</h3>
+                        <p>Board Solutions & Practice</p>
+                    </div>
+                </div>
+            `;
         }
 
-        // Real-Time Math Function Graphing Engine
-        function initGraph() {
-            const ctx = document.getElementById('mathChart').getContext('2d');
-            chartInstance = new Chart(ctx, {
-                type: 'line',
-                data: { labels: [], datasets: [{ label: 'f(x)', data: [], borderColor: '#38bdf8', borderWidth: 2, pointRadius: 0, fill: false }] },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
-                        y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }
-                    }
+        // View 3: Resource List
+        function openResourceList(classKey, type) {
+            const cls = db[classKey];
+            const items = cls[type];
+            const typeTitle = type === 'tb' ? 'Textbooks' : 'Important Questions';
+
+            let itemsHTML = '';
+            items.forEach(item => {
+                let actionBtn = '';
+                if (item.isExternal) {
+                    actionBtn = `<a href="${item.url}" target="_blank" class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem; width: 100%; text-align: center; text-decoration: none; display: inline-block;">Open Link ↗</a>`;
+                } else {
+                    actionBtn = `<button class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem; width: 100%;" onclick="openBook('${item.title}', '${item.pdf}')">Read PDF</button>`;
                 }
+
+                itemsHTML += `
+                    <div class="choice-card" style="align-items: flex-start; text-align: left;">
+                        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent-blue); font-weight: 700; margin-bottom: 0.3rem;">${type === 'tb' ? 'Textbook' : 'Important Qs'}</span>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem;">${item.title}</h3>
+                        <p style="margin-bottom: 1rem; font-size: 0.85rem;">${item.desc}</p>
+                        ${actionBtn}
+                    </div>
+                `;
             });
-            updateGraph();
+
+            container.innerHTML = `
+                <button class="btn-back" onclick="openClassMenu('${classKey}')">← Back to ${cls.name}</button>
+                <h1 class="section-title" style="font-size: 1.8rem; text-align: left;">${cls.name} - ${typeTitle}</h1>
+                <p class="section-subtitle" style="text-align: left; margin-bottom: 1.5rem;">Select an option below</p>
+                <div class="choice-grid">
+                    ${itemsHTML}
+                </div>
+            `;
         }
 
-        function updateGraph() {
-            const a = parseFloat(document.getElementById('paramA').value);
-            const b = parseFloat(document.getElementById('paramB').value);
-            const c = parseFloat(document.getElementById('paramC').value);
-
-            document.getElementById('valA').innerText = a;
-            document.getElementById('valB').innerText = b;
-            document.getElementById('valC').innerText = c;
-
-            const xValues = [];
-            const yValues = [];
-
-            for (let x = -10; x <= 10; x += 0.5) {
-                xValues.push(x);
-                yValues.push((a * x * x) + (b * x) + c);
-            }
-
-            chartInstance.data.labels = xValues;
-            chartInstance.data.datasets[0].data = yValues;
-            chartInstance.data.datasets[0].label = `f(x) = ${a}x² + ${b}x + ${c}`;
-            chartInstance.update();
-        }
-
-        // Mozilla PDF.js Canvas Renderer
+        // PDF.js Reader Launcher
         async function openBook(title, pdfUrl) {
             document.getElementById('viewerTitle').innerText = title;
             document.getElementById('viewerModal').style.display = 'flex';
@@ -519,37 +355,9 @@
             document.getElementById('viewerModal').style.display = 'none';
         }
 
-        // Client Authentication Flow
-        function toggleAuthModal() {
-            const modal = document.getElementById('authModal');
-            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        function handleAuth(event) {
-            event.preventDefault();
-            const email = document.getElementById('authEmail').value;
-            localStorage.setItem('mybookshelf_user', email);
-            checkAuthState();
-            toggleAuthModal();
-        }
-
-        function checkAuthState() {
-            const user = localStorage.getItem('mybookshelf_user');
-            const btn = document.getElementById('authBtn');
-            if (user) {
-                btn.innerText = 'Sign Out';
-                btn.onclick = () => { localStorage.removeItem('mybookshelf_user'); checkAuthState(); };
-            } else {
-                btn.innerText = 'Login';
-                btn.onclick = toggleAuthModal;
-            }
-        }
-
-        // Initial Setup
+        // Initialize Home on Load
         window.onload = () => {
-            renderBooks('12');
-            initGraph();
-            checkAuthState();
+            goHome();
         };
     </script>
 </body>
