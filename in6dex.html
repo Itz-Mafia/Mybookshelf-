@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mybookshelf — Maharashtra State Board HSC & SSC Study Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Firebase SDKs (Compat Version for standard script tags) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyD5mHMMBeuBFHPwpkKVB1MtX5Zcsbd-pns",
+      authDomain: "mybookshelf-7da85.firebaseapp.com",
+      projectId: "mybookshelf-7da85",
+      storageBucket: "mybookshelf-7da85.firebasestorage.app",
+      messagingSenderId: "1009549531448",
+      appId: "1:1009549531448:web:206c914a2e26c1962d49cd",
+      measurementId: "G-4ZWJ1G4VZN"
+    };
+    firebase.initializeApp(firebaseConfig);
+    var auth = firebase.auth();
+  </script>
+
+  <style>
+    :root {
+      --bg-page: #f6f5f0;
+      --bg-card: #ffffff;
+      --bg-subtle: #eceae2;
+      --text-primary: #1c1e21;
+      --text-secondary: #5c6066;
+      --accent-main: #1d4ed8;
+      --accent-hover: #1e40af;
+      --accent-secondary: #0f766e;
+      --border-color: #dcd9ce;
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.07);
+      --radius: 10px;
+    }
+
+    body.dark-mode {
+      --bg-page: #121417;
+      --bg-card: #1b1e23;
+      --bg-subtle: #252930;
+      --text-primary: #f1f3f5;
+      --text-secondary: #9ba1a8;
+      --accent-main: #3b82f6;
+      --accent-hover: #2563eb;
+      --accent-secondary: #14b8a6;
+      --border-color: #2e333d;
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .logo {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-badge {
+      background: var(--accent-main);
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.68rem;
+      padding: 3px 7px;
+      border-radius: 5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      background-color: var(--accent-main);
+      color: #ffffff;
+      border: 1px solid transparent;
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      min-height: 40px;
+    }
+
+    .btn:hover { background-color: var(--accent-hover); }
+    .btn:active { transform: scale(0.98); }
+
+    .btn-secondary {
+      background-color: var(--bg-subtle);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-teal {
+      background-color: var(--accent-secondary);
+      color: #ffffff;
+    }
+
+    .btn-back {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-bottom: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.75rem 1rem 3rem;
+      width: 100%;
+      flex: 1;
+    }
+
+    .page-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: clamp(1.45rem, 3.5vw, 2rem);
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+
+    .search-wrapper { margin-bottom: 1rem; }
+
+    .search-input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      box-shadow: var(--shadow-sm);
+      outline: none;
+    }
+
+    .search-input:focus { border-color: var(--accent-main); }
+
+    .filters-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .filter-chip.active {
+      background: var(--accent-main);
+      color: #fff;
+      border-color: var(--accent-main);
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .study-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+      position: relative;
+    }
+
+    .study-card.clickable { cursor: pointer; }
+    .study-card.clickable:hover {
+      border-color: var(--accent-main);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--accent-main);
+      background-color: var(--bg-subtle);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 0.65rem;
+      width: fit-content;
+    }
+
+    .study-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+      line-height: 1.35;
+    }
+
+    .study-card p {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      line-height: 1.45;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+
+    .bookmark-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .bookmark-btn.active {
+      color: #eab308;
+      border-color: #eab308;
+    }
+
+    .dashboard-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 10px;
+      background: var(--bg-subtle);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent-secondary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .drawer-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 2000;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0; right: -360px;
+      width: 100%; max-width: 340px; height: 100%;
+      background-color: var(--bg-card);
+      border-left: 1px solid var(--border-color);
+      z-index: 2001;
+      display: flex; flex-direction: column;
+      transition: right 0.25s ease;
+      overflow-y: auto;
+      padding: 1.25rem;
+    }
+    .drawer.open { right: 0; }
+
+    .drawer-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); margin-bottom: 1.25rem;
+    }
+
+    .drawer-section { margin-bottom: 1.5rem; }
+    .drawer-section-title {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.7px; color: var(--text-secondary); margin-bottom: 0.65rem;
+    }
+
+    .drawer-nav-list { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .drawer-link {
+      text-align: left; background: var(--bg-subtle); border: 1px solid var(--border-color);
+      color: var(--text-primary); padding: 0.6rem 0.85rem; border-radius: 8px;
+      font-size: 0.875rem; font-weight: 600; cursor: pointer; text-decoration: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .owner-box {
+      background-color: var(--bg-subtle); border: 1px solid var(--border-color);
+      border-radius: var(--radius); padding: 1rem;
+    }
+
+    .empty-note { font-size: 0.82rem; color: var(--text-secondary); font-style: italic; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Academic Navigation Bar -->
+  <header>
+    <a class="logo" onclick="goHome()">
+      Mybookshelf <span class="logo-badge">HSC & SSC</span>
+    </a>
+    <div class="header-actions">
+      <button class="btn btn-secondary" id="themeToggleBtn" onclick="toggleTheme()">🌙 Night</button>
+      <button class="btn btn-secondary" id="authBtn" onclick="handleGoogleLogin()">G Login</button>
+      <button class="btn" onclick="openDrawer()">☰ Menu</button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="container" id="appContainer">
+    <div class="page-header">
+      <h1 class="section-title">Maharashtra State Board Study Portal</h1>
+      <p class="section-subtitle">Comprehensive textbooks, chapter-wise direct solutions & important questions for Classes 10, 11 & 12</p>
+    </div>
+
+    <div class="dashboard-panel">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <strong>📊 Overall Study Progress</strong>
+        <span id="progressStats" style="font-size:0.85rem; color:var(--text-secondary);">0 / 68 chapters completed</span>
+      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBarFill"></div></div>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <button class="btn btn-secondary" style="font-size:0.8rem; padding:0.4rem 0.8rem;" onclick="openDashboard()">View Study Dashboard →</button>
+        <button class="btn btn-secondary" style="font-size:0.8rem; padding:0.4rem 0.8rem;" onclick="exportData()">📥 Export Data (JSON)</button>
+      </div>
+    </div>
+
+    <div class="search-wrapper">
+      <input type="text" class="search-input" oninput="handleSearch(this.value)" placeholder="🔍 Search any chapter across Physics, Chemistry, Maths, Biology, I.T. (e.g., Solutions, Matrices)...">
+    </div>
+
+    <div class="filters-bar">
+      <button class="filter-chip active" onclick="setFilter('all', this)">All Classes</button>
+      <button class="filter-chip" onclick="setFilter('12', this)">Class 12th (HSC)</button>
+      <button class="filter-chip" onclick="setFilter('11', this)">Class 11th (FYJC)</button>
+      <button class="filter-chip" onclick="setFilter('10', this)">Class 10th (SSC)</button>
+    </div>
+
+    <div class="choice-grid">
+      <div class="study-card clickable" onclick="openClassMenu('10')">
+        <div>
+          <span class="card-tag">SSC Board</span>
+          <h3>Class 10th</h3>
+          <p>Science & Technology (Part 1 & 2) and Mathematics textbooks & practice sets.</p>
+        </div>
+        <span class="btn btn-secondary" style="width:100%;">Open Class 10th →</span>
+      </div>
+
+      <div class="study-card clickable" onclick="openClassMenu('11')">
+        <div>
+          <span class="card-tag">FYJC Science</span>
+          <h3>Class 11th</h3>
+          <p>Core Physics, Chemistry, Biology, and Mathematics textbooks & chapter solutions.</p>
+        </div>
+        <span class="btn btn-secondary" style="width:100%;">Open Class 11th →</span>
+      </div>
+
+      <div class="study-card clickable" onclick="openClassMenu('12')">
+        <div>
+          <span class="card-tag">HSC Board</span>
+          <h3>Class 12th</h3>
+          <p>Complete chapter-wise direct solutions & important questions for Physics, Chemistry, Maths, Biology & I.T.</p>
+        </div>
+        <span class="btn" style="width:100%;">Open Class 12th →</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Slide-out Command Menu Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  <aside class="drawer" id="menuDrawer">
+    <div class="drawer-header">
+      <h3 style="font-family: 'Merriweather', Georgia, serif; font-size: 1.1rem;">Study Menu</h3>
+      <button class="btn btn-secondary" onclick="closeDrawer()" style="padding: 0.3rem 0.7rem; min-height: 32px;">✕ Close</button>
+    </div>
+
+    <div class="drawer-section">
+      <div class="drawer-section-title">Quick Class Switcher</div>
+      <div class="drawer-nav-list">
+        <button class="drawer-link" onclick="navigateFromDrawer('home')"><span>🏠 Home & Dashboard</span> <span>→</span></button>
+        <button class="drawer-link" onclick="navigateFromDrawer('10')"><span>📘 Class 10th (SSC)</span> <span>→</span></button>
+        <button class="drawer-link" onclick="navigateFromDrawer('11')"><span>📗 Class 11th (FYJC)</span> <span>→</span></button>
+        <button class="drawer-link" onclick="navigateFromDrawer('12')"><span>🎓 Class 12th (HSC)</span> <span>→</span></button>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <div class="drawer-section-title">★ Saved Bookmarks</div>
+      <div class="drawer-nav-list" id="bookmarksList"></div>
+    </div>
+
+    <div class="drawer-section">
+      <div class="drawer-section-title">🕒 Recently Opened</div>
+      <div class="drawer-nav-list" id="historyList"></div>
+    </div>
+
+    <div class="drawer-section" style="margin-top: auto;">
+      <div class="drawer-section-title">Platform Owner & Support</div>
+      <div class="owner-box">
+        <div style="font-weight: 700; font-size: 1rem; margin-bottom: 2px;">ItzMafia</div>
+        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem;">riteshmaurya810804@gmail.com</div>
+        <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+          <a href="mailto:riteshmaurya810804@gmail.com?subject=Mybookshelf%20Support%20or%20Book%20Request" class="btn" style="font-size: 0.8rem; padding: 0.45rem;">✉️ Contact / Request Book</a>
+          <button class="btn btn-secondary" onclick="shareApp()" style="font-size: 0.8rem; padding: 0.45rem;">📤 Share Mybookshelf</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    // Safe Storage Wrapper
+    var memoryStore = {};
+    function safeGet(key) {
+      try { return localStorage.getItem(key) || memoryStore[key] || null; }
+      catch (e) { return memoryStore[key] || null; }
+    }
+    function safeSet(key, val) {
+      memoryStore[key] = val;
+      try { localStorage.setItem(key, val); } catch (e) {}
+    }
+
+    // Google Authentication Handler with Firebase
+    function handleGoogleLogin() {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider).then(function(result) {
+        var user = result.user;
+        alert("Successfully logged in as " + user.displayName + " (" + user.email + ")");
+        updateAuthButton(user);
+      }).catch(function(error) {
+        alert("Login Error: " + error.message);
+      });
+    }
+
+    function handleLogout() {
+      auth.signOut().then(function() {
+        alert("Logged out successfully.");
+        updateAuthButton(null);
+      });
+    }
+
+    function updateAuthButton(user) {
+      var authBtn = document.getElementById('authBtn');
+      if (!authBtn) return;
+      if (user) {
+        authBtn.innerText = user.displayName ? user.displayName.split(' ')[0] : 'Account';
+        authBtn.onclick = handleLogout;
+        authBtn.title = "Click to Log Out";
+      } else {
+        authBtn.innerText = 'G Login';
+        authBtn.onclick = handleGoogleLogin;
+        authBtn.title = "Sign in with Google";
+      }
+    }
+
+    auth.onAuthStateChanged(function(user) {
+      updateAuthButton(user);
+    });
+
+    // CHAPTER DATA GENERATION FOR CLASS 12
+    var physicsNames = [
+      "Rotational Dynamics", "Mechanical Properties of Fluids", "Kinetic Theory of Gases and Radiation",
+      "Thermodynamics", "Oscillations", "Superposition of Waves", "Wave Optics", "Electrostatics",
+      "Current Electricity", "Magnetic Fields Due to Electric Current", "Magnetic Materials",
+      "Electromagnetic Induction", "AC Circuits", "Dual Nature of Radiation and Matter",
+      "Structure of Atoms and Nuclei", "Semiconductor Devices"
+    ];
+    var physicsChapters = physicsNames.map(function(name, idx) {
+      var n = idx + 1;
+      return {
+        id: "phy-12-" + n, classNum: "12", subject: "Class 12 Physics", title: "Chapter " + n + ": " + name,
+        solutionsUrl: "https://maharashtraboardsolutions.guru/maharashtra-board-class-12-physics-solutions-chapter-" + n + "/",
+        impUrl: "https://maharashtraboardsolutions.guru/maharashtra-board-class-12-physics-important-questions-chapter-" + n + "/"
+      };
+    });
+
+    var chemistryNames = [
+      "Solid State", "Solutions", "Ionic Equilibria", "Chemical Thermodynamics",
+      "Electrochemistry", "Chemical Kinetics", "Elements of Groups 16, 17 and 18",
+      "Transition and Inner Transition Elements", "Coordination Compounds",
+      "Halogen Derivatives", "Alcohols, Phenols and Ethers",
+      "Aldehydes, Ketones and Carboxylic Acids", "Amines", "Biomolecules",
+      "Introduction to Polymer Chemistry", "Green Chemistry and Nanochemistry"
+    ];
+    var chemistryChapters = chemistryNames.map(function(name, idx) {
+      var n = idx + 1;
+      return {
+        id: "chem-12-" + n, classNum: "12", subject: "Class 12 Chemistry", title: "Chapter " + n + ": " + name,
+        solutionsUrl: "https://maharashtraboardsolutions.guru/maharashtra-board-class-12-chemistry-solutions-chapter-" + n + "/",
+        impUrl: "https://maharashtraboardsolutions.guru/maharashtra-board-class-12-chemistry-important-questions-chapter-" + n + "/"
+      };
+    });
+
+    var biologyNames = [
+      "Reproduction in Lower and Higher Plants", "Reproduction in Lower and Higher Animals",
+      "Inheritance and Variation", "Molecular Basis of Inheritance", "Origin and Evolution of Life",
+      "Plant Water Relation", "Plant Growth and Mineral Nutrition", "Respiration and 
