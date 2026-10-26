@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mybookshelf — Maharashtra Board Study Portal</title>
-  <meta name="description" content="Direct Balbharati Textbook PDFs, Chapter-wise Solutions, and Progress Tracker for Maharashtra State Board." />
-  <meta name="theme-color" content="#ffffff" />
+  <title>Mybookshelf — Maharashtra State Board Advanced Portal</title>
+  <meta name="description" content="Official Balbharati Textbooks, Chapter Solutions, Important Questions, and Student Study Portal for Class 10, 11, and 12." />
+  <meta name="theme-color" content="#0f172a" />
 
-  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,6 +24,8 @@
       --accent-soft: rgba(79, 70, 229, 0.08);
       --border: #e2e8f0;
       --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
       --radius: 12px;
     }
@@ -39,6 +41,8 @@
       --accent-soft: rgba(99, 102, 241, 0.15);
       --border: #374151;
       --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
       --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
     }
 
@@ -53,17 +57,18 @@
       background-color: var(--bg-primary);
       color: var(--text-primary);
       line-height: 1.6;
-      transition: background-color 0.2s ease, color 0.2s ease;
-      padding-bottom: 4rem;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      padding-bottom: 5rem;
     }
 
+    /* Sticky Header */
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       background: var(--bg-card);
       border-bottom: 1px solid var(--border);
-      padding: 0.85rem 1.25rem;
+      padding: 0.9rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -78,7 +83,7 @@
     }
 
     .brand h1 {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 800;
       color: var(--accent);
       letter-spacing: -0.025em;
@@ -94,7 +99,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.5rem 0.85rem;
+      padding: 0.5rem 0.9rem;
       border-radius: 8px;
       font-size: 0.85rem;
       font-weight: 600;
@@ -123,33 +128,41 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 1.25rem;
+      padding: 1.5rem;
     }
 
+    /* Dashboard Grid */
     .dashboard-banner {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.25rem;
-      margin-bottom: 1.25rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
       align-items: center;
       box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-banner {
+        grid-template-columns: 1fr;
+      }
     }
 
     .progress-box {
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      gap: 0.4rem;
+      min-width: 240px;
     }
 
     .progress-track {
       width: 100%;
-      height: 8px;
+      height: 9px;
       background: var(--border);
       border-radius: 999px;
       overflow: hidden;
@@ -162,29 +175,30 @@
       transition: width 0.3s ease;
     }
 
+    /* Controls Bar */
     .controls-bar {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       align-items: center;
       justify-content: space-between;
     }
 
     .class-tabs {
       display: flex;
-      gap: 0.4rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
     }
 
     .tab-btn {
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1.1rem;
       border-radius: 8px;
       border: 1px solid var(--border);
       background: var(--bg-card);
       color: var(--text-secondary);
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       cursor: pointer;
       transition: all 0.15s;
     }
@@ -195,34 +209,39 @@
       border-color: var(--accent);
     }
 
-    .search-input {
+    .search-wrapper {
       flex: 1;
-      min-width: 220px;
-      padding: 0.6rem 1rem;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.65rem 1rem;
       border-radius: 8px;
       border: 1px solid var(--border);
       background: var(--bg-card);
       color: var(--text-primary);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
 
     .subject-bar {
       display: flex;
-      gap: 0.4rem;
+      gap: 0.5rem;
       overflow-x: auto;
       padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
 
     .subject-pill {
       white-space: nowrap;
-      padding: 0.4rem 0.85rem;
-      border-radius: 6px;
+      padding: 0.45rem 0.95rem;
+      border-radius: 8px;
       background: var(--bg-card);
       color: var(--text-secondary);
       border: 1px solid var(--border);
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       cursor: pointer;
     }
 
@@ -232,13 +251,14 @@
       background: var(--accent-soft);
     }
 
+    /* Textbook Callout */
     .textbook-callout {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-left: 4px solid var(--accent);
       border-radius: var(--radius);
-      padding: 1rem;
-      margin-bottom: 1.25rem;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -247,31 +267,34 @@
       box-shadow: var(--shadow);
     }
 
+    /* Chapters Grid */
     .chapter-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
     }
 
     .chapter-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1rem;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 0.8rem;
+      gap: 1rem;
       box-shadow: var(--shadow);
-      transition: transform 0.15s ease;
+      transition: transform 0.15s ease, border-color 0.15s ease;
     }
 
     .chapter-card:hover {
       transform: translateY(-2px);
+      border-color: var(--accent);
     }
 
     .chapter-card.completed {
       border-color: var(--success);
+      background: linear-gradient(to bottom, var(--bg-card), var(--bg-secondary));
     }
 
     .chapter-header {
@@ -288,22 +311,22 @@
       letter-spacing: 0.05em;
       color: var(--accent);
       background: var(--accent-soft);
-      padding: 0.15rem 0.5rem;
+      padding: 0.2rem 0.55rem;
       border-radius: 4px;
     }
 
     .chapter-title {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      margin-top: 0.3rem;
+      margin-top: 0.35rem;
       color: var(--text-primary);
     }
 
     .chapter-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      padding-top: 0.5rem;
+      gap: 0.5rem;
+      padding-top: 0.75rem;
       border-top: 1px solid var(--border);
     }
 
@@ -311,63 +334,131 @@
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: var(--text-secondary);
-      padding: 0.1rem;
+      padding: 0.2rem;
     }
 
     .icon-btn.bookmarked {
-      color: #f59e0b;
+      color: var(--warning);
     }
 
+    /* Personal Notes Box inside Card */
+    .notes-box {
+      margin-top: 0.5rem;
+    }
+
+    .notes-input {
+      width: 100%;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      resize: none;
+    }
+
+    /* Ad Banner Container with Anti-Adblocker Fallback & Smartlink */
     .ad-section {
-      margin: 2rem 0;
-      padding: 1rem;
+      margin: 2.5rem 0 1.5rem 0;
+      padding: 1.25rem;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       text-align: center;
-      min-height: 90px;
+      box-shadow: var(--shadow);
     }
 
     .ad-label {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       color: var(--text-secondary);
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .smartlink-banner {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, #4f46e5, #3b82f6);
+      color: white;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+      transition: transform 0.15s;
+    }
+
+    .smartlink-banner:hover {
+      transform: scale(1.02);
+      color: white;
+    }
+
+    /* Toast Notifications */
+    #toastContainer {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toast {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      animation: slideIn 0.2s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Toast Container -->
+  <div id="toastContainer"></div>
+
+  <!-- Header -->
   <header>
     <div class="brand">
-      <span style="font-size: 1.35rem;">📘</span>
+      <span style="font-size: 1.4rem;">📚</span>
       <div>
         <h1>Mybookshelf</h1>
-        <small style="color: var(--text-secondary); font-size: 0.7rem;">Maharashtra State Board</small>
+        <small style="color: var(--text-secondary); font-size: 0.75rem;">Maharashtra State Board Portal</small>
       </div>
     </div>
 
     <div class="header-actions">
       <button class="btn" id="bookmarkFilterBtn" onclick="toggleBookmarkView()">⭐ Bookmarks</button>
-      <button class="btn" onclick="exportProgress()">💾 Backup</button>
       <button class="btn" id="themeToggleBtn" onclick="toggleTheme()">🌙</button>
-      <button class="btn btn-primary" id="authBtn" onclick="handleAuthClick()">Sign In</button>
+      <button class="btn btn-primary" id="authBtn" onclick="handleAuthClick()">Sign In with Google</button>
     </div>
   </header>
 
   <main class="container">
+    <!-- Dashboard Banner -->
     <section class="dashboard-banner">
       <div>
-        <h3 id="welcomeText" style="font-size: 1.1rem; font-weight: 700;">Welcome, Scholar</h3>
-        <p style="font-size: 0.8rem; color: var(--text-secondary);" id="recentActivityText">
-          Select any chapter below to access verified solutions & textbooks.
+        <h3 id="welcomeText" style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem;">Welcome, Scholar</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);" id="recentActivityText">
+          Select any chapter below to access verified Balbharati solutions, important questions, and textbooks.
         </p>
       </div>
       <div class="progress-box">
-        <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600;">
+        <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:700;">
           <span>Subject Progress</span>
           <span id="progressPercent">0% (0/0)</span>
         </div>
@@ -377,38 +468,51 @@
       </div>
     </section>
 
+    <!-- Controls & Search -->
     <section class="controls-bar">
       <div class="class-tabs" id="classTabs">
-        <button class="tab-btn active" onclick="selectClass('12')">Class 12th</button>
-        <button class="tab-btn" onclick="selectClass('11')">Class 11th</button>
-        <button class="tab-btn" onclick="selectClass('10')">Class 10th</button>
+        <button class="tab-btn active" onclick="selectClass('12')">Class 12th (HSC)</button>
+        <button class="tab-btn" onclick="selectClass('11')">Class 11th (FYJC)</button>
+        <button class="tab-btn" onclick="selectClass('10')">Class 10th (SSC)</button>
       </div>
 
-      <input
-        type="search"
-        id="searchInput"
-        class="search-input"
-        placeholder="Search chapters (e.g. Thermodynamics, Matrices)..."
-        oninput="renderChapters()"
-      />
+      <div class="search-wrapper">
+        <input
+          type="search"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search chapters across subjects (Ctrl + K)..."
+          oninput="renderChapters()"
+        />
+      </div>
     </section>
 
+    <!-- Subject Selector Bar -->
     <nav class="subject-bar" id="subjectBar"></nav>
+
+    <!-- Textbook Direct Banner -->
     <section class="textbook-callout" id="textbookBanner"></section>
+
+    <!-- Chapters Grid -->
     <section class="chapter-grid" id="chapterGrid"></section>
 
-    <!-- Fixed Adsterra Native Banner Container -->
+    <!-- Adsterra Anti-Adblocker / Smartlink Sponsored Section -->
     <section class="ad-section">
-      <div class="ad-label">Sponsored Resource</div>
+      <div class="ad-label">Sponsored Educational Partner</div>
       <div id="container-4a67b7095bdc2bc8b4f80f1f71031da2"></div>
       <script async="async" data-cfasync="false" src="https://bauval.org/21/4a67b7095bdc2bc8b4f80f1f71031da2"></script>
+      <div style="margin-top: 0.75rem;">
+        <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer" class="smartlink-banner">
+          🚀 Explore High-Yield Study Notes & Practice Papers
+        </a>
+      </div>
     </section>
   </main>
 
-  <!-- Firebase Auth Module with Safe Popup Handling -->
+  <!-- Firebase Auth Module (Bulletproof Login Fix) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "YOUR_FIREBASE_API_KEY", // Replace with your Firebase API key
@@ -425,6 +529,7 @@
     try {
       const app = initializeApp(firebaseConfig);
       auth = getAuth(app);
+      setPersistence(auth, browserLocalPersistence);
       const provider = new GoogleAuthProvider();
       provider.setCustomParameters({ prompt: 'select_account' });
 
@@ -434,35 +539,38 @@
         const welcomeText = document.getElementById("welcomeText");
         if (user) {
           authBtn.textContent = "Sign Out";
-          welcomeText.textContent = `Welcome, ${user.displayName ? user.displayName.split(' ')[0] : 'Scholar'}`;
+          welcomeText.textContent = `Welcome back, ${user.displayName ? user.displayName.split(' ')[0] : 'Scholar'}`;
+          showToast(`Signed in as ${user.email}`);
         } else {
-          authBtn.textContent = "Sign In";
+          authBtn.textContent = "Sign In with Google";
           welcomeText.textContent = "Welcome, Scholar";
         }
       });
 
       window.handleAuthClick = async () => {
         if (!auth) {
-          alert("Firebase authentication is initializing or missing API key.");
+          showToast("Firebase Auth error: Check API configuration.");
           return;
         }
         try {
           if (currentUser) {
             await signOut(auth);
+            showToast("Successfully signed out.");
           } else {
             await signInWithPopup(auth, provider);
           }
         } catch (err) {
-          console.error("Auth error:", err);
-          alert("Sign-in failed. Please ensure your Firebase authorized domains include localhost and GitHub Pages.");
+          console.error("Auth popup error:", err);
+          showToast("Sign-in popup blocked or domain not authorized in Firebase.");
         }
       };
     } catch (e) {
-      console.warn("Firebase initialization notice:", e);
+      console.warn("Firebase initialization skipped:", e);
     }
   </script>
 
   <script>
+    // Complete Curriculum Database with Class 12 Important Questions & Direct PDFs
     const CURRICULUM = {
       "12": {
         label: "Class 12th (HSC)",
@@ -470,6 +578,7 @@
           "Physics": {
             pdf: "https://books.ebalbharati.in/pdfs/1203020415.pdf",
             solutionSlug: "maharashtra-board-class-12-physics-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-physics-important-questions-chapter-",
             chapters: [
               "Rotational Dynamics", "Mechanical Properties of Fluids", "Kinetic Theory of Gases and Radiation",
               "Thermodynamics", "Oscillations", "Superposition of Waves", "Wave Optics", "Electrostatics",
@@ -481,6 +590,7 @@
           "Chemistry": {
             pdf: "https://books.ebalbharati.in/pdfs/1203030414.pdf",
             solutionSlug: "maharashtra-board-class-12-chemistry-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-chemistry-important-questions-chapter-",
             chapters: [
               "Solid State", "Solutions", "Ionic Equilibria", "Chemical Thermodynamics", "Electrochemistry",
               "Chemical Kinetics", "Elements of Groups 16, 17 and 18", "Transition and Inner Transition Elements",
@@ -492,6 +602,7 @@
           "Biology": {
             pdf: "https://books.ebalbharati.in/pdfs/1203030421.pdf",
             solutionSlug: "maharashtra-board-class-12-biology-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-biology-important-questions-chapter-",
             chapters: [
               "Reproduction in Lower and Higher Plants", "Reproduction in Lower and Higher Animals",
               "Inheritance and Variation", "Molecular Basis of Inheritance", "Origin and Evolution of Life",
@@ -504,6 +615,7 @@
           "Maths Part 1": {
             pdf: "https://books.ebalbharati.in/pdfs/1203020423.pdf",
             solutionSlug: "maharashtra-board-class-12-maths-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-maths-important-questions-chapter-",
             chapters: [
               "Mathematical Logic", "Matrices", "Trigonometric Functions", "Pair of Straight Lines",
               "Vectors", "Line and Plane", "Linear Programming"
@@ -512,6 +624,7 @@
           "Maths Part 2": {
             pdf: "https://books.ebalbharati.in/pdfs/1203020424.pdf",
             solutionSlug: "maharashtra-board-class-12-maths-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-maths-important-questions-chapter-",
             chapters: [
               "Differentiation", "Applications of Derivatives", "Indefinite Integration", "Definite Integration",
               "Application of Definite Integration", "Differential Equations", "Probability Distributions", "Binomial Distribution"
@@ -525,6 +638,7 @@
           "Physics": {
             pdf: "https://books.ebalbharati.in/pdfs/1103020415.pdf",
             solutionSlug: "maharashtra-board-class-11-physics-solutions-chapter-",
+            impSlug: null,
             chapters: [
               "Units and Measurements", "Mathematical Methods", "Motion in a Plane", "Laws of Motion",
               "Gravitation", "Mechanical Properties of Solids", "Thermal Properties of Matter", "Sound",
@@ -535,6 +649,7 @@
           "Chemistry": {
             pdf: "https://books.ebalbharati.in/pdfs/1103030414.pdf",
             solutionSlug: "maharashtra-board-class-11-chemistry-solutions-chapter-",
+            impSlug: null,
             chapters: [
               "Some Basic Concepts of Chemistry", "Introduction to Analytical Chemistry", "Basic Analytical Techniques",
               "Structure of Atom", "Chemical Bonding", "Redox Reactions", "Modern Periodic Table",
@@ -546,6 +661,7 @@
           "Biology": {
             pdf: "https://books.ebalbharati.in/pdfs/1103030421.pdf",
             solutionSlug: "maharashtra-board-class-11-biology-solutions-chapter-",
+            impSlug: null,
             chapters: [
               "Living World", "Systematics of Living Organisms", "Kingdom Plantae", "Kingdom Animalia",
               "Cell Structure and Organization", "Biomolecules", "Cell Division", "Plant Tissues and Anatomy",
@@ -561,6 +677,7 @@
           "Science & Tech Part 1": {
             pdf: "https://books.ebalbharati.in/pdfs/1003010039.pdf",
             solutionSlug: "maharashtra-board-class-10-science-solutions-part-1-chapter-",
+            impSlug: null,
             chapters: [
               "Gravitation", "Periodic Classification of Elements", "Chemical Reactions and Equations",
               "Effects of Electric Current", "Heat", "Refraction of Light", "Lenses", "Metallurgy", "Carbon Compounds", "Space Missions"
@@ -569,6 +686,7 @@
           "Science & Tech Part 2": {
             pdf: "https://books.ebalbharati.in/pdfs/1003010040.pdf",
             solutionSlug: "maharashtra-board-class-10-science-solutions-part-2-chapter-",
+            impSlug: null,
             chapters: [
               "Heredity and Evolution", "Life Processes in Living Organisms Part 1", "Life Processes in Living Organisms Part 2",
               "Environmental Management", "Towards Green Energy", "Animal Classification", "Introduction to Microbiology",
@@ -578,25 +696,41 @@
           "Maths Part 1 (Algebra)": {
             pdf: "https://books.ebalbharati.in/pdfs/1003010023.pdf",
             solutionSlug: "maharashtra-board-class-10-maths-solutions-chapter-",
+            impSlug: null,
             chapters: ["Linear Equations in Two Variables", "Quadratic Equations", "Arithmetic Progression (AP)", "Financial Planning", "Probability", "Statistics"]
           },
           "Maths Part 2 (Geometry)": {
             pdf: "https://books.ebalbharati.in/pdfs/1003010024.pdf",
             solutionSlug: "maharashtra-board-class-10-geometry-solutions-chapter-",
+            impSlug: null,
             chapters: ["Similarity", "Pythagoras Theorem", "Circle", "Geometric Constructions", "Co-ordinate Geometry", "Trigonometry", "Mensuration"]
           }
         }
       }
     };
 
+    // State Management
     let activeClass = localStorage.getItem("mbs_activeClass") || "12";
     let activeSubject = localStorage.getItem("mbs_activeSubject") || "Physics";
     let completedChapters = JSON.parse(localStorage.getItem("mbs_completed") || "{}");
     let bookmarkedChapters = JSON.parse(localStorage.getItem("mbs_bookmarks") || "{}");
+    let chapterNotes = JSON.parse(localStorage.getItem("mbs_notes") || "{}");
     let showBookmarksOnly = false;
 
     function getChapterKey(cls, subj, index) {
       return `${cls}_${subj}_${index + 1}`;
+    }
+
+    function showToast(message) {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 200);
+      }, 3000);
     }
 
     function selectClass(cls) {
@@ -642,15 +776,15 @@
       const subjData = CURRICULUM[activeClass].subjects[activeSubject];
       banner.innerHTML = `
         <div>
-          <span style="font-size:0.7rem; font-weight:700; text-transform:uppercase; color:var(--accent);">
+          <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--accent);">
             Official eBalbharati PDF
           </span>
-          <h3 style="font-size: 1rem; font-weight: 700; margin-top:0.1rem;">
-            Class ${activeClass} ${activeSubject} Full Textbook
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-top:0.2rem;">
+            Class ${activeClass}th ${activeSubject} Full Textbook
           </h3>
         </div>
         <a href="${subjData.pdf}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="logActivity('Opened Textbook: Class ${activeClass} ${activeSubject}')">
-          📄 Download PDF
+          📄 Download / Read Full PDF
         </a>
       `;
     }
@@ -676,49 +810,62 @@
         const key = getChapterKey(activeClass, activeSubject, idx);
         const isDone = !!completedChapters[key];
         const isBookmarked = !!bookmarkedChapters[key];
+        const currentNote = chapterNotes[key] || "";
 
         if (query && !title.toLowerCase().includes(query) && !`chapter ${chNum}`.includes(query)) return "";
         if (showBookmarksOnly && !isBookmarked) return "";
 
         const solutionUrl = `${baseDomain}${subjData.solutionSlug}${chNum}/`;
+        const impUrl = subjData.impSlug ? `${baseDomain}${subjData.impSlug}${chNum}/` : null;
 
         return `
           <article class="chapter-card ${isDone ? 'completed' : ''}">
             <div>
               <div class="chapter-header">
                 <span class="chapter-num">Chapter ${chNum}</span>
-                <div style="display:flex; gap:0.3rem; align-items:center;">
+                <div style="display:flex; gap:0.4rem; align-items:center;">
                   <button class="icon-btn ${isBookmarked ? 'bookmarked' : ''}" title="Bookmark" onclick="toggleBookmark('${key}')">
                     ${isBookmarked ? '★' : '☆'}
                   </button>
-                  <label style="display:flex; align-items:center; gap:0.2rem; font-size:0.75rem; cursor:pointer;">
+                  <label style="display:flex; align-items:center; gap:0.25rem; font-size:0.8rem; cursor:pointer; font-weight:600;">
                     <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleComplete('${key}', '${title.replace(/'/g, "\\'")}')" />
                     Done
                   </label>
                 </div>
               </div>
               <h4 class="chapter-title">${title}</h4>
+              <div class="notes-box">
+                <input type="text" class="notes-input" placeholder="Add quick study note..." value="${currentNote.replace(/"/g, '&quot;')}" oninput="saveNote('${key}', this.value)" />
+              </div>
             </div>
 
             <div class="chapter-actions">
               <a href="${solutionUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="logActivity('Studied Ch ${chNum}: ${title.replace(/'/g, "\\'")}')">
                 📖 Solutions
               </a>
+              ${impUrl ? `
+                <a href="${impUrl}" target="_blank" rel="noopener noreferrer" class="btn" onclick="logActivity('Imp Qs Ch ${chNum}: ${title.replace(/'/g, "\\'")}')">
+                  ⚡ Imp Questions
+                </a>
+              ` : ''}
               <a href="${subjData.pdf}" target="_blank" rel="noopener noreferrer" class="btn">
-                📥 PDF
+                📄 PDF
               </a>
             </div>
           </article>
         `;
       }).join("");
 
-      grid.innerHTML = cardsHtml || `<p style="color:var(--text-secondary); font-size: 0.9rem;">No matching chapters found.</p>`;
+      grid.innerHTML = cardsHtml || `<p style="color:var(--text-secondary); font-size: 0.95rem;">No matching chapters found.</p>`;
     }
 
     function toggleComplete(key, title) {
       completedChapters[key] = !completedChapters[key];
       localStorage.setItem("mbs_completed", JSON.stringify(completedChapters));
-      if (completedChapters[key]) logActivity(`Completed: ${title}`);
+      if (completedChapters[key]) {
+        logActivity(`Completed: ${title}`);
+        showToast(`Marked completed: ${title}`);
+      }
       renderChapters();
     }
 
@@ -726,6 +873,12 @@
       bookmarkedChapters[key] = !bookmarkedChapters[key];
       localStorage.setItem("mbs_bookmarks", JSON.stringify(bookmarkedChapters));
       renderChapters();
+      showToast(bookmarkedChapters[key] ? "Bookmark added" : "Bookmark removed");
+    }
+
+    function saveNote(key, val) {
+      chapterNotes[key] = val;
+      localStorage.setItem("mbs_notes", JSON.stringify(chapterNotes));
     }
 
     function toggleBookmarkView() {
@@ -742,17 +895,6 @@
       document.getElementById("recentActivityText").textContent = msg;
     }
 
-    function exportProgress() {
-      const payload = { exportedAt: new Date().toISOString(), completedChapters, bookmarkedChapters };
-      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "mybookshelf-progress.json";
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
     function toggleTheme() {
       const html = document.documentElement;
       const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
@@ -760,6 +902,14 @@
       localStorage.setItem("mbs_theme", next);
       document.getElementById("themeToggleBtn").textContent = next === "dark" ? "☀️" : "🌙";
     }
+
+    // Global Keyboard Shortcut Ctrl+K for Search
+    window.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        document.getElementById("searchInput").focus();
+      }
+    });
 
     (function init() {
       const savedTheme = localStorage.getItem("mbs_theme") || "light";
