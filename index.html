@@ -1,248 +1,654 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mybookshelf — Maharashtra State Board Advanced Portal</title>
-  <meta name="description" content="Official Balbharati Textbooks, Chapter Solutions, Important Questions, and Student Study Portal for Class 10, 11, and 12." />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Mybookshelf — Maharashtra State Board Academic Portal (Class 10, 11 & 12)</title>
+  <meta name="description" content="Direct eBalbharati Textbook PDFs, Chapter-wise Solutions, Important Questions, Study Timer, and Progress Tracker for Maharashtra State Board SSC, FYJC, and HSC." />
+  <meta name="theme-color" content="#090d16" />
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & THEME VARIABLES (DEEP SLATE & ELECTRIC INDIGO)
+       ========================================================================== */
     :root {
       --bg-primary: #f8fafc;
       --bg-secondary: #f1f5f9;
+      --bg-tertiary: #e2e8f0;
       --bg-card: #ffffff;
+      --bg-glass: rgba(255, 255, 255, 0.85);
       --text-primary: #0f172a;
       --text-secondary: #475569;
+      --text-muted: #64748b;
       --accent: #4f46e5;
       --accent-hover: #4338ca;
-      --accent-soft: rgba(79, 70, 229, 0.08);
+      --accent-light: #6366f1;
+      --accent-soft: rgba(79, 70, 229, 0.1);
+      --accent-glow: rgba(79, 70, 229, 0.25);
       --border: #e2e8f0;
+      --border-strong: #cbd5e1;
       --success: #10b981;
+      --success-soft: rgba(16, 185, 129, 0.12);
       --warning: #f59e0b;
+      --warning-soft: rgba(245, 158, 11, 0.12);
       --danger: #ef4444;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-      --radius: 12px;
+      --danger-soft: rgba(239, 68, 68, 0.12);
+      --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+      --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     [data-theme="dark"] {
       --bg-primary: #090d16;
       --bg-secondary: #111827;
-      --bg-card: #1f2937;
+      --bg-tertiary: #1e293b;
+      --bg-card: #151e2e;
+      --bg-glass: rgba(21, 30, 46, 0.85);
       --text-primary: #f8fafc;
       --text-secondary: #94a3b8;
+      --text-muted: #64748b;
       --accent: #6366f1;
       --accent-hover: #818cf8;
+      --accent-light: #a5b4fc;
       --accent-soft: rgba(99, 102, 241, 0.15);
-      --border: #374151;
+      --accent-glow: rgba(99, 102, 241, 0.35);
+      --border: #1e293b;
+      --border-strong: #334155;
       --success: #34d399;
+      --success-soft: rgba(52, 211, 153, 0.15);
       --warning: #fbbf24;
+      --warning-soft: rgba(251, 191, 36, 0.15);
       --danger: #f87171;
-      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      --danger-soft: rgba(248, 113, 113, 0.15);
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 12px -1px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.65);
     }
 
-    * {
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
       line-height: 1.6;
-      transition: background-color 0.25s ease, color 0.25s ease;
-      padding-bottom: 5rem;
+      transition: background-color var(--transition), color var(--transition);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
     }
 
-    /* Sticky Header */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-strong);
+      border-radius: var(--radius-full);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    /* ==========================================================================
+       3. TOP ANNOUNCEMENT & SMARTLINK TICKER
+       ========================================================================== */
+    .top-ticker {
+      background: linear-gradient(90deg, #4f46e5, #2563eb, #4f46e5);
+      background-size: 200% 100%;
+      animation: gradientMove 8s infinite linear;
+      color: #ffffff;
+      padding: 0.45rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      text-align: center;
+      z-index: 1001;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .top-ticker a {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.15rem 0.6rem;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      font-weight: 700;
+      transition: background var(--transition);
+    }
+
+    .top-ticker a:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    /* ==========================================================================
+       4. STICKY HEADER & NAVIGATION
+       ========================================================================== */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: var(--bg-card);
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      padding: 0.9rem 1.5rem;
+      padding: 0.85rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .drawer-toggle {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all var(--transition);
+    }
+
+    .drawer-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
+      text-decoration: none;
     }
 
-    .brand h1 {
-      font-size: 1.3rem;
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
       font-weight: 800;
-      color: var(--accent);
-      letter-spacing: -0.025em;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px var(--accent-glow);
+    }
+
+    .brand-text h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.55rem;
+      flex-wrap: wrap;
     }
 
+    /* ==========================================================================
+       5. BUTTONS & INTERACTIVE CONTROLS
+       ========================================================================== */
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.5rem 0.9rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.95rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
       font-weight: 600;
       cursor: pointer;
       border: 1px solid var(--border);
       background: var(--bg-card);
       color: var(--text-primary);
       text-decoration: none;
-      transition: all 0.15s ease;
+      transition: all var(--transition);
+      white-space: nowrap;
+      user-select: none;
     }
 
     .btn:hover {
       border-color: var(--accent);
       color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
     }
 
     .btn-primary {
       background: var(--accent);
-      color: #fff;
+      color: #ffffff;
       border-color: var(--accent);
+      box-shadow: 0 2px 8px var(--accent-glow);
     }
 
     .btn-primary:hover {
       background: var(--accent-hover);
-      color: #fff;
+      border-color: var(--accent-hover);
+      color: #ffffff;
     }
 
+    .btn-success {
+      background: var(--success-soft);
+      color: var(--success);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-warning {
+      background: var(--warning-soft);
+      color: var(--warning);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .user-chip {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.7rem 0.3rem 0.35rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .user-chip img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* ==========================================================================
+       6. SLIDE-OUT SIDEBAR DRAWER
+       ========================================================================== */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 13, 22, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sidebar-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 310px;
+      max-width: 85vw;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border);
+      z-index: 2001;
+      transform: translateX(-100%);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem;
+      overflow-y: auto;
+    }
+
+    .sidebar-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .drawer-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .drawer-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.85rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: transparent;
+      text-align: left;
+      transition: all var(--transition);
+    }
+
+    .drawer-link:hover, .drawer-link.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: rgba(99, 102, 241, 0.2);
+    }
+
+    /* ==========================================================================
+       7. MAIN LAYOUT & DASHBOARD ANALYTICS
+       ========================================================================== */
     .container {
-      max-width: 1200px;
+      width: 100%;
+      max-width: 1260px;
       margin: 0 auto;
       padding: 1.5rem;
+      flex: 1;
     }
 
-    /* Dashboard Grid */
-    .dashboard-banner {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
+    .dashboard-grid {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1.5rem;
-      align-items: center;
-      box-shadow: var(--shadow);
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 1.15rem;
+      margin-bottom: 1.5rem;
     }
 
-    @media (max-width: 768px) {
-      .dashboard-banner {
+    @media (max-width: 980px) {
+      .dashboard-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    .progress-box {
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-md);
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
-      min-width: 240px;
+      justify-content: space-between;
+      gap: 0.85rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #3b82f6);
+    }
+
+    .stat-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .stat-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .stat-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 0.2rem;
+    }
+
+    .badge-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      background: var(--accent-soft);
+      color: var(--accent);
+      white-space: nowrap;
     }
 
     .progress-track {
       width: 100%;
-      height: 9px;
-      background: var(--border);
-      border-radius: 999px;
+      height: 10px;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-full);
       overflow: hidden;
     }
 
     .progress-fill {
       height: 100%;
-      background: var(--success);
+      background: linear-gradient(90deg, var(--accent), var(--success));
       width: 0%;
-      transition: width 0.3s ease;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Controls Bar */
+    /* Pomodoro Study Timer Widget */
+    .timer-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .timer-controls {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       8. CONTROLS BAR, CLASS TABS & UNIVERSAL SEARCH
+       ========================================================================== */
     .controls-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-bottom: 1.15rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
+      gap: 0.85rem;
       align-items: center;
       justify-content: space-between;
+      box-shadow: var(--shadow-sm);
     }
 
     .class-tabs {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.45rem;
       flex-wrap: wrap;
     }
 
     .tab-btn {
-      padding: 0.55rem 1.1rem;
-      border-radius: 8px;
+      padding: 0.55rem 1.05rem;
+      border-radius: var(--radius-sm);
       border: 1px solid var(--border);
-      background: var(--bg-card);
+      background: var(--bg-secondary);
       color: var(--text-secondary);
-      font-weight: 600;
-      font-size: 0.9rem;
+      font-weight: 700;
+      font-size: 0.85rem;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all var(--transition);
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
     }
 
     .tab-btn.active {
       background: var(--accent);
-      color: #fff;
+      color: #ffffff;
       border-color: var(--accent);
+      box-shadow: 0 3px 10px var(--accent-glow);
+    }
+
+    .search-group {
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
     }
 
     .search-wrapper {
       flex: 1;
-      min-width: 260px;
       position: relative;
     }
 
     .search-input {
       width: 100%;
-      padding: 0.65rem 1rem;
-      border-radius: 8px;
+      padding: 0.62rem 1rem 0.62rem 2.35rem;
+      border-radius: var(--radius-sm);
       border: 1px solid var(--border);
-      background: var(--bg-card);
+      background: var(--bg-secondary);
       color: var(--text-primary);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: border-color var(--transition), box-shadow var(--transition);
     }
 
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .filter-select {
+      padding: 0.6rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 0.84rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       9. SUBJECT SELECTOR PILLS & DIRECT TEXTBOOK CALLOUT
+       ========================================================================== */
     .subject-bar {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.55rem;
       overflow-x: auto;
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.45rem;
       margin-bottom: 1.25rem;
+      scrollbar-width: thin;
     }
 
     .subject-pill {
       white-space: nowrap;
-      padding: 0.45rem 0.95rem;
-      border-radius: 8px;
+      padding: 0.55rem 1.05rem;
+      border-radius: var(--radius-sm);
       background: var(--bg-card);
       color: var(--text-secondary);
       border: 1px solid var(--border);
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.85rem;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .subject-pill:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
     }
 
     .subject-pill.active {
@@ -251,224 +657,558 @@
       background: var(--accent-soft);
     }
 
-    /* Textbook Callout */
+    .pill-count {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+    }
+
     .textbook-callout {
-      background: var(--bg-card);
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
       border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      border-radius: var(--radius);
-      padding: 1.2rem;
+      border-left: 5px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
       margin-bottom: 1.5rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-md);
     }
 
-    /* Chapters Grid */
+    .textbook-meta span {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .textbook-meta h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-top: 0.15rem;
+    }
+
+    .textbook-meta p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 0.15rem;
+    }
+
+    .textbook-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       10. CHAPTER CARDS GRID & STUDY TOOLS
+       ========================================================================== */
     .chapter-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 640px) {
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+      header {
+        padding: 0.75rem 1rem;
+      }
+      .container {
+        padding: 1rem;
+      }
     }
 
     .chapter-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--radius-md);
       padding: 1.25rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 1rem;
-      box-shadow: var(--shadow);
-      transition: transform 0.15s ease, border-color 0.15s ease;
+      gap: 0.95rem;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      position: relative;
     }
 
     .chapter-card:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
     }
 
     .chapter-card.completed {
       border-color: var(--success);
-      background: linear-gradient(to bottom, var(--bg-card), var(--bg-secondary));
+    }
+
+    .chapter-card.completed::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--success);
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
     }
 
     .chapter-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       gap: 0.5rem;
     }
 
+    .chapter-badges {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
     .chapter-num {
-      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
       color: var(--accent);
       background: var(--accent-soft);
       padding: 0.2rem 0.55rem;
-      border-radius: 4px;
+      border-radius: 6px;
+    }
+
+    .priority-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      background: var(--warning-soft);
+      color: var(--warning);
+    }
+
+    .chapter-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .icon-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .icon-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .icon-btn.bookmarked {
+      color: var(--warning);
+      border-color: var(--warning);
+      background: var(--warning-soft);
+    }
+
+    .done-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .done-label input {
+      accent-color: var(--success);
+      cursor: pointer;
     }
 
     .chapter-title {
       font-size: 1.05rem;
       font-weight: 700;
-      margin-top: 0.35rem;
       color: var(--text-primary);
+      line-height: 1.4;
+      margin-top: 0.2rem;
+    }
+
+    .notes-box {
+      margin-top: 0.25rem;
+    }
+
+    .notes-input {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      font-family: inherit;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      transition: border-color var(--transition);
+    }
+
+    .notes-input:focus {
+      outline: none;
+      border-color: var(--accent);
     }
 
     .chapter-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.45rem;
       padding-top: 0.75rem;
       border-top: 1px solid var(--border);
     }
 
-    .icon-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      padding: 0.2rem;
-    }
-
-    .icon-btn.bookmarked {
-      color: var(--warning);
-    }
-
-    /* Personal Notes Box inside Card */
-    .notes-box {
-      margin-top: 0.5rem;
-    }
-
-    .notes-input {
-      width: 100%;
-      padding: 0.45rem 0.75rem;
+    .chapter-actions .btn {
+      flex: 1;
+      min-width: 95px;
       font-size: 0.8rem;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      resize: none;
+      padding: 0.48rem 0.65rem;
     }
 
-    /* Ad Banner Container with Anti-Adblocker Fallback & Smartlink */
+    /* ==========================================================================
+       11. ADSTERRA ANTI-ADBLOCKER & SMARTLINK SPONSOR SECTION
+       ========================================================================== */
     .ad-section {
-      margin: 2.5rem 0 1.5rem 0;
-      padding: 1.25rem;
+      margin: 2.25rem 0 1rem 0;
+      padding: 1.35rem;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--radius-md);
       text-align: center;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
     }
 
     .ad-label {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--text-secondary);
-      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
     }
 
-    .smartlink-banner {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      background: linear-gradient(135deg, #4f46e5, #3b82f6);
-      color: white;
-      font-weight: 700;
-      font-size: 0.85rem;
-      border-radius: 8px;
+    .smartlink-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.85rem;
+    }
+
+    .smartlink-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.15rem;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.14), rgba(37, 99, 235, 0.14));
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-      transition: transform 0.15s;
+      font-weight: 700;
+      font-size: 0.86rem;
+      transition: all var(--transition);
     }
 
-    .smartlink-banner:hover {
-      transform: scale(1.02);
-      color: white;
+    .smartlink-card:hover {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px var(--accent-glow);
     }
 
-    /* Toast Notifications */
+    /* ==========================================================================
+       12. MODAL & TOAST NOTIFICATION SYSTEM
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 13, 22, 0.72);
+      backdrop-filter: blur(5px);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      max-width: 560px;
+      width: 100%;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
     #toastContainer {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 22px;
+      right: 22px;
       z-index: 9999;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.55rem;
+      max-width: 340px;
     }
 
     .toast {
       background: var(--bg-card);
       color: var(--text-primary);
       border: 1px solid var(--border);
-      padding: 0.75rem 1.25rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
+      border-left: 4px solid var(--accent);
+      padding: 0.8rem 1.15rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
       font-weight: 600;
-      box-shadow: var(--shadow);
-      animation: slideIn 0.2s ease forwards;
+      box-shadow: var(--shadow-lg);
+      animation: toastSlideIn 0.22s ease forwards;
     }
 
-    @keyframes slideIn {
-      from { transform: translateY(100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    @keyframes toastSlideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-card);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Toast Container -->
+  <!-- Top Smartlink Study Bar -->
+  <div class="top-ticker">
+    <span>⚡ Maharashtra Board 2026-27 Exam Prep Resources & Model Question Papers</span>
+    <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer">
+      Access Now →
+    </a>
+  </div>
+
+  <!-- Toast Notification Container -->
   <div id="toastContainer"></div>
 
-  <!-- Header -->
-  <header>
-    <div class="brand">
-      <span style="font-size: 1.4rem;">📚</span>
-      <div>
-        <h1>Mybookshelf</h1>
-        <small style="color: var(--text-secondary); font-size: 0.75rem;">Maharashtra State Board Portal</small>
+  <!-- Sidebar Navigation Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleDrawer(false)"></div>
+  <aside class="sidebar-drawer" id="sidebarDrawer">
+    <div class="drawer-header">
+      <div class="brand">
+        <div class="brand-logo">M</div>
+        <div class="brand-text">
+          <h1>Mybookshelf</h1>
+          <span>Quick Navigator</span>
+        </div>
       </div>
+      <button class="icon-btn" onclick="toggleDrawer(false)">✕</button>
+    </div>
+
+    <div class="drawer-section-title">Select Standard</div>
+    <div class="drawer-nav">
+      <button class="drawer-link" onclick="selectClass('12'); toggleDrawer(false);">
+        <span>🎓 Class 12th (HSC Science)</span>
+        <span>→</span>
+      </button>
+      <button class="drawer-link" onclick="selectClass('11'); toggleDrawer(false);">
+        <span>📘 Class 11th (FYJC Science)</span>
+        <span>→</span>
+      </button>
+      <button class="drawer-link" onclick="selectClass('10'); toggleDrawer(false);">
+        <span>📗 Class 10th (SSC Board)</span>
+        <span>→</span>
+      </button>
+    </div>
+
+    <div class="drawer-section-title">Study Utilities</div>
+    <div class="drawer-nav">
+      <button class="drawer-link" onclick="toggleBookmarkView(); toggleDrawer(false);">
+        <span>⭐ Saved Bookmarks</span>
+        <span id="drawerBookmarkCount">0</span>
+      </button>
+      <button class="drawer-link" onclick="openModal('formulaModal'); toggleDrawer(false);">
+        <span>🧪 Quick Board Exam Checklist</span>
+        <span>Open</span>
+      </button>
+      <button class="drawer-link" onclick="resetCurrentSubjectProgress(); toggleDrawer(false);">
+        <span>🔄 Reset Current Subject Progress</span>
+        <span>Clear</span>
+      </button>
+    </div>
+
+    <div class="drawer-section-title">Official Board Links</div>
+    <div class="drawer-nav">
+      <a class="drawer-link" href="https://books.ebalbharati.in/" target="_blank" rel="noopener noreferrer">
+        <span>🏛️ eBalbharati Archive</span>
+        <span>↗</span>
+      </a>
+      <a class="drawer-link" href="https://mahahsscboard.in/" target="_blank" rel="noopener noreferrer">
+        <span>📋 MSBSHSE Official Portal</span>
+        <span>↗</span>
+      </a>
+      <a class="drawer-link" href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer">
+        <span>🚀 Extra Practice Papers</span>
+        <span>↗</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Quick Exam Checklist Modal -->
+  <div class="modal-overlay" id="formulaModal" onclick="if(event.target===this) closeModal('formulaModal')">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h3 style="font-size:1.15rem; font-weight:800;">⚡ High-Scoring Board Study Checklist</h3>
+        <button class="icon-btn" onclick="closeModal('formulaModal')">✕</button>
+      </div>
+      <div style="font-size:0.88rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:0.75rem;">
+        <p><strong>1. Direct Balbharati Reading:</strong> Always read the official textbook definitions and solved examples first—85%+ of HSC/SSC board papers come straight from Balbharati exercises.</p>
+        <p><strong>2. Chapter-Wise Important Questions:</strong> Use the <em>⚡ Imp Questions</em> button on Class 12 cards to practice repeated numericals, derivations, and IUPAC nomenclature questions.</p>
+        <p><strong>3. Active Recall Notes:</strong> Type formulas, reaction mechanisms, or page numbers directly into each chapter's quick note box. They save automatically to your browser.</p>
+        <p><strong>4. 25-Minute Pomodoro Sprints:</strong> Start the built-in Focus Timer on the dashboard while solving chapter exercises to prevent burnout.</p>
+      </div>
+      <div style="margin-top:1.25rem; text-align:right;">
+        <button class="btn btn-primary" onclick="closeModal('formulaModal')">Got It, Let's Study</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Header -->
+  <header>
+    <div class="brand-group">
+      <button class="drawer-toggle" onclick="toggleDrawer(true)" title="Open Menu">☰</button>
+      <a href="#" class="brand">
+        <div class="brand-logo">M</div>
+        <div class="brand-text">
+          <h1>Mybookshelf</h1>
+          <span>Maharashtra State Board Portal</span>
+        </div>
+      </a>
     </div>
 
     <div class="header-actions">
-      <button class="btn" id="bookmarkFilterBtn" onclick="toggleBookmarkView()">⭐ Bookmarks</button>
-      <button class="btn" id="themeToggleBtn" onclick="toggleTheme()">🌙</button>
+      <div class="user-chip" id="userChip">
+        <img id="userAvatar" src="" alt="User" />
+        <span id="userNameChip">Scholar</span>
+      </div>
+      <button class="btn" id="bookmarkFilterBtn" onclick="toggleBookmarkView()">
+        ⭐ Bookmarks (<span id="bookmarkBadge">0</span>)
+      </button>
+      <button class="btn" onclick="openModal('formulaModal')">⚡ Tips</button>
+      <button class="btn" id="themeToggleBtn" onclick="toggleTheme()" title="Switch Theme">☀️</button>
       <button class="btn btn-primary" id="authBtn" onclick="handleAuthClick()">Sign In with Google</button>
     </div>
   </header>
 
+  <!-- Main Content Container -->
   <main class="container">
-    <!-- Dashboard Banner -->
-    <section class="dashboard-banner">
-      <div>
-        <h3 id="welcomeText" style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem;">Welcome, Scholar</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary);" id="recentActivityText">
-          Select any chapter below to access verified Balbharati solutions, important questions, and textbooks.
-        </p>
-      </div>
-      <div class="progress-box">
-        <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:700;">
-          <span>Subject Progress</span>
-          <span id="progressPercent">0% (0/0)</span>
+
+    <!-- 3-Column Analytics & Study Timer Dashboard -->
+    <section class="dashboard-grid">
+      <!-- Card 1: User Greeting & Recent Activity -->
+      <div class="stat-card">
+        <div class="stat-header">
+          <div>
+            <h2 class="stat-title" id="welcomeText">Welcome, Scholar 👋</h2>
+            <p class="stat-subtitle" id="recentActivityText">
+              Select any chapter below for direct Balbharati PDFs, solutions & Class 12 Imp Questions.
+            </p>
+          </div>
+          <span class="badge-pill" id="overallStatsPill">0 Total Done</span>
         </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progressBar"></div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.25rem;">
+          <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer" class="btn btn-warning">
+            🔥 Board Exam Smart Resources
+          </a>
+          <button class="btn" onclick="pickRandomChapter()">🎲 Random Chapter Revision</button>
+        </div>
+      </div>
+
+      <!-- Card 2: Active Subject Progress Tracker -->
+      <div class="stat-card">
+        <div class="stat-header">
+          <div>
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--text-muted);">
+              Active Subject Mastery
+            </div>
+            <div class="stat-title" id="activeSubjectStatTitle" style="margin-top:0.15rem;">
+              Class 12 Physics
+            </div>
+          </div>
+          <span class="badge-pill" id="progressPercent">0% (0/0)</span>
+        </div>
+        <div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressBar"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-secondary); margin-top:0.4rem;">
+            <span id="remainingCountText">0 chapters remaining</span>
+            <span id="bookmarkedSubjCount">0 bookmarked</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Built-in Pomodoro Focus Timer -->
+      <div class="stat-card">
+        <div class="stat-header">
+          <div>
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--text-muted);">
+              Pomodoro Study Timer
+            </div>
+            <div class="timer-display" id="timerDisplay">25:00</div>
+          </div>
+          <span class="badge-pill" id="timerStateBadge">Ready</span>
+        </div>
+        <div class="timer-controls">
+          <button class="btn btn-primary" id="timerStartBtn" onclick="toggleTimer()" style="padding:0.4rem 0.8rem; font-size:0.78rem;">
+            ▶ Start
+          </button>
+          <button class="btn" onclick="resetTimer(25)" style="padding:0.4rem 0.7rem; font-size:0.78rem;">25m</button>
+          <button class="btn" onclick="resetTimer(50)" style="padding:0.4rem 0.7rem; font-size:0.78rem;">50m</button>
+          <button class="btn" onclick="resetTimer(5)" style="padding:0.4rem 0.7rem; font-size:0.78rem;">5m Break</button>
         </div>
       </div>
     </section>
 
-    <!-- Controls & Search -->
+    <!-- Class Switcher, Filter & Universal Search -->
     <section class="controls-bar">
       <div class="class-tabs" id="classTabs">
         <button class="tab-btn active" onclick="selectClass('12')">Class 12th (HSC)</button>
@@ -476,51 +1216,89 @@
         <button class="tab-btn" onclick="selectClass('10')">Class 10th (SSC)</button>
       </div>
 
-      <div class="search-wrapper">
-        <input
-          type="search"
-          id="searchInput"
-          class="search-input"
-          placeholder="Search chapters across subjects (Ctrl + K)..."
-          oninput="renderChapters()"
-        />
+      <div class="search-group">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input
+            type="search"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search chapters (e.g. Thermodynamics, Matrices, Plant Water)... [Ctrl + K]"
+            oninput="renderChapters()"
+          />
+        </div>
+        <select id="statusFilter" class="filter-select" onchange="renderChapters()">
+          <option value="all">All Chapters</option>
+          <option value="pending">Pending Only</option>
+          <option value="completed">Completed Only</option>
+          <option value="high">High Priority</option>
+        </select>
       </div>
     </section>
 
-    <!-- Subject Selector Bar -->
+    <!-- Subject Selector Pills -->
     <nav class="subject-bar" id="subjectBar"></nav>
 
-    <!-- Textbook Direct Banner -->
+    <!-- Direct Official Balbharati Textbook Callout Banner -->
     <section class="textbook-callout" id="textbookBanner"></section>
 
-    <!-- Chapters Grid -->
+    <!-- Dynamic Chapter Cards Grid -->
     <section class="chapter-grid" id="chapterGrid"></section>
 
-    <!-- Adsterra Anti-Adblocker / Smartlink Sponsored Section -->
+    <!-- Adsterra Anti-Adblocker Native Banner + Smartlink Fallback Section -->
     <section class="ad-section">
-      <div class="ad-label">Sponsored Educational Partner</div>
+      <div class="ad-label">Sponsored Academic Partner & Anti-Adblock Smart Resources</div>
+      <!-- Adsterra Native Banner Container -->
       <div id="container-4a67b7095bdc2bc8b4f80f1f71031da2"></div>
       <script async="async" data-cfasync="false" src="https://bauval.org/21/4a67b7095bdc2bc8b4f80f1f71031da2"></script>
-      <div style="margin-top: 0.75rem;">
-        <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer" class="smartlink-banner">
-          🚀 Explore High-Yield Study Notes & Practice Papers
+
+      <!-- Direct Adsterra Smartlinks (Works even when Adblockers/Brave Shields block scripts) -->
+      <div class="smartlink-grid">
+        <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer" class="smartlink-card">
+          <span>📘 Download HSC & SSC Previous Year Question Banks</span>
+          <span>Open ↗</span>
+        </a>
+        <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer" class="smartlink-card">
+          <span>⚡ Chapter-Wise Formula Sheets & Quick Revision Notes</span>
+          <span>View ↗</span>
         </a>
       </div>
     </section>
+
   </main>
 
-  <!-- Bulletproof Firebase Auth Module (Using Redirect to bypass popup blocks) -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  <footer>
+    <p><strong>Mybookshelf</strong> — Built for Maharashtra State Board (MSBSHSE) Class 10, 11 & 12 Students.</p>
+    <p style="margin-top:0.3rem; font-size:0.75rem;">Official textbooks are property of Maharashtra State Bureau of Textbook Production and Curriculum Research (Balbharati).</p>
+  </footer>
 
+  <!-- ==========================================================================
+       FIREBASE SDK v13.1.0 (WITH YOUR REAL API KEY, ANALYTICS & AUTH FALLBACK)
+       ========================================================================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-analytics.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signInWithRedirect,
+      getRedirectResult,
+      signOut,
+      onAuthStateChanged,
+      setPersistence,
+      browserLocalPersistence
+    } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+
+    // Your exact Firebase configuration with real API key & Measurement ID
     const firebaseConfig = {
-      apiKey: "YOUR_FIREBASE_API_KEY", // Replace with your actual Firebase API key
+      apiKey: "AIzaSyD5mHMMBeuBFHPwpkKVB1MtX5Zcsbd-pns",
       authDomain: "mybookshelf-7da85.firebaseapp.com",
       projectId: "mybookshelf-7da85",
       storageBucket: "mybookshelf-7da85.firebasestorage.app",
       messagingSenderId: "1009549531448",
-      appId: "1:1009549531448:web:206c914a2e26c1962d49cd"
+      appId: "1:1009549531448:web:206c914a2e26c1962d49cd",
+      measurementId: "G-4ZWJ1G4VZN"
     };
 
     let auth = null;
@@ -528,215 +1306,448 @@
 
     try {
       const app = initializeApp(firebaseConfig);
+      // Initialize Analytics safely (won't crash if Brave blocks Google Analytics)
+      try {
+        getAnalytics(app);
+      } catch (analyticsErr) {
+        console.info("Analytics skipped by browser shield:", analyticsErr);
+      }
+
       auth = getAuth(app);
-      setPersistence(auth, browserLocalPersistence);
+      setPersistence(auth, browserLocalPersistence).catch(() => {});
+
       const provider = new GoogleAuthProvider();
-      provider.setCustomParameters({ prompt: 'select_account' });
+      provider.setCustomParameters({ prompt: "select_account" });
 
-      // Handle return redirect from Google login
-      getRedirectResult(auth).catch((error) => {
-        console.error("Redirect login error:", error);
-        showToast("Login failed: " + error.message);
-      });
+      // Catch redirect login results if redirected back from Google
+      getRedirectResult(auth)
+        .then((result) => {
+          if (result && result.user) {
+            window.showToast(`Signed in as ${result.user.displayName || result.user.email}`);
+          }
+        })
+        .catch((err) => {
+          console.warn("Redirect check notice:", err);
+        });
 
+      // Listen for user sign-in / sign-out state changes
       onAuthStateChanged(auth, (user) => {
         currentUser = user;
         const authBtn = document.getElementById("authBtn");
         const welcomeText = document.getElementById("welcomeText");
+        const userChip = document.getElementById("userChip");
+        const userAvatar = document.getElementById("userAvatar");
+        const userNameChip = document.getElementById("userNameChip");
+
         if (user) {
+          const firstName = user.displayName ? user.displayName.split(" ")[0] : "Scholar";
           authBtn.textContent = "Sign Out";
-          welcomeText.textContent = `Welcome back, ${user.displayName ? user.displayName.split(' ')[0] : 'Scholar'}`;
+          welcomeText.textContent = `Welcome back, ${firstName} 👋`;
+          userChip.style.display = "inline-flex";
+          userNameChip.textContent = firstName;
+          userAvatar.src = user.photoURL || "https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png";
         } else {
           authBtn.textContent = "Sign In with Google";
-          welcomeText.textContent = "Welcome, Scholar";
+          welcomeText.textContent = "Welcome, Scholar 👋";
+          userChip.style.display = "none";
         }
       });
 
+      // Hybrid Popup + Automatic Redirect Fallback Handler
       window.handleAuthClick = async () => {
         if (!auth) {
-          showToast("Firebase Auth error: Check API configuration.");
+          window.showToast("Authentication service is still loading.");
           return;
         }
-        try {
-          if (currentUser) {
+
+        if (currentUser) {
+          try {
             await signOut(auth);
-            showToast("Successfully signed out.");
-          } else {
-            // Uses redirect instead of popup to completely eliminate popup blocking
-            await signInWithRedirect(auth, provider);
+            window.showToast("Signed out successfully.");
+          } catch (signOutErr) {
+            window.showToast("Error signing out.");
           }
+          return;
+        }
+
+        try {
+          window.showToast("Opening Google Sign-In...");
+          await signInWithPopup(auth, provider);
+          window.showToast("Signed in successfully!");
         } catch (err) {
-          console.error("Auth redirect error:", err);
-          showToast("Sign-in failed. Check Firebase authorized domains.");
+          console.warn("Popup sign-in error, evaluating fallback:", err.code, err.message);
+
+          // If mobile browser or popup blocker intercepts popup, seamlessly redirect
+          if (
+            err.code === "auth/popup-blocked" ||
+            err.code === "auth/cancelled-popup-request" ||
+            err.code === "auth/operation-not-supported-in-this-environment"
+          ) {
+            window.showToast("Redirecting to Google Sign-In...");
+            await signInWithRedirect(auth, provider);
+          } else if (err.code === "auth/popup-closed-by-user") {
+            window.showToast("Sign-in window closed.");
+          } else if (err.code === "auth/unauthorized-domain") {
+            window.showToast("Domain not authorized in Firebase Console.");
+          } else {
+            // Brave Shield third-party cookie block fallback
+            window.showToast("If using Brave, tap the Lion icon and turn Shields Down for Google login.");
+          }
         }
       };
-    } catch (e) {
-      console.warn("Firebase initialization skipped:", e);
+    } catch (initErr) {
+      console.error("Firebase init error:", initErr);
     }
   </script>
 
+  <!-- ==========================================================================
+       COMPLETE CURRICULUM DATABASE & PORTAL CONTROLLER
+       ========================================================================== -->
   <script>
-    // Complete Curriculum Database with Class 12 Important Questions & Direct PDFs
     const CURRICULUM = {
       "12": {
         label: "Class 12th (HSC)",
         subjects: {
           "Physics": {
+            icon: "⚛️",
             pdf: "https://books.ebalbharati.in/pdfs/1203020415.pdf",
             solutionSlug: "maharashtra-board-class-12-physics-solutions-chapter-",
             impSlug: "maharashtra-board-class-12-physics-important-questions-chapter-",
+            highYield: [1, 2, 4, 7, 9, 12, 16],
             chapters: [
-              "Rotational Dynamics", "Mechanical Properties of Fluids", "Kinetic Theory of Gases and Radiation",
-              "Thermodynamics", "Oscillations", "Superposition of Waves", "Wave Optics", "Electrostatics",
-              "Current Electricity", "Magnetic Fields due to Electric Current", "Magnetic Materials",
-              "Electromagnetic Induction", "AC Circuits", "Dual Nature of Radiation and Matter",
-              "Structure of Atoms and Nuclei", "Semiconductor Devices"
+              "Rotational Dynamics",
+              "Mechanical Properties of Fluids",
+              "Kinetic Theory of Gases and Radiation",
+              "Thermodynamics",
+              "Oscillations",
+              "Superposition of Waves",
+              "Wave Optics",
+              "Electrostatics",
+              "Current Electricity",
+              "Magnetic Fields due to Electric Current",
+              "Magnetic Materials",
+              "Electromagnetic Induction",
+              "AC Circuits",
+              "Dual Nature of Radiation and Matter",
+              "Structure of Atoms and Nuclei",
+              "Semiconductor Devices"
             ]
           },
           "Chemistry": {
+            icon: "🧪",
             pdf: "https://books.ebalbharati.in/pdfs/1203030414.pdf",
             solutionSlug: "maharashtra-board-class-12-chemistry-solutions-chapter-",
             impSlug: "maharashtra-board-class-12-chemistry-important-questions-chapter-",
+            highYield: [1, 2, 4, 5, 6, 9, 10, 11, 12],
             chapters: [
-              "Solid State", "Solutions", "Ionic Equilibria", "Chemical Thermodynamics", "Electrochemistry",
-              "Chemical Kinetics", "Elements of Groups 16, 17 and 18", "Transition and Inner Transition Elements",
-              "Coordination Compounds", "Halogen Derivatives", "Alcohols, Phenols and Ethers",
-              "Aldehydes, Ketones and Carboxylic Acids", "Amines", "Biomolecules",
-              "Introduction to Polymer Chemistry", "Green Chemistry and Nanochemistry"
+              "Solid State",
+              "Solutions",
+              "Ionic Equilibria",
+              "Chemical Thermodynamics",
+              "Electrochemistry",
+              "Chemical Kinetics",
+              "Elements of Groups 16, 17 and 18",
+              "Transition and Inner Transition Elements",
+              "Coordination Compounds",
+              "Halogen Derivatives",
+              "Alcohols, Phenols and Ethers",
+              "Aldehydes, Ketones and Carboxylic Acids",
+              "Amines",
+              "Biomolecules",
+              "Introduction to Polymer Chemistry",
+              "Green Chemistry and Nanochemistry"
             ]
           },
           "Biology": {
+            icon: "🧬",
+            // Direct Official eBalbharati Class 12 Biology PDF (Fixed)
             pdf: "https://books.ebalbharati.in/pdfs/1203030421.pdf",
             solutionSlug: "maharashtra-board-class-12-biology-solutions-chapter-",
             impSlug: "maharashtra-board-class-12-biology-important-questions-chapter-",
+            highYield: [1, 2, 3, 4, 6, 8, 9, 12],
             chapters: [
-              "Reproduction in Lower and Higher Plants", "Reproduction in Lower and Higher Animals",
-              "Inheritance and Variation", "Molecular Basis of Inheritance", "Origin and Evolution of Life",
-              "Plant Water Relation", "Plant Growth and Mineral Nutrition", "Respiration and Circulation",
-              "Control and Co-ordination", "Human Health and Diseases", "Enhancement of Food Production",
-              "Biotechnology", "Organisms and Populations", "Ecosystems and Energy Flow",
+              "Reproduction in Lower and Higher Plants",
+              "Reproduction in Lower and Higher Animals",
+              "Inheritance and Variation",
+              "Molecular Basis of Inheritance",
+              "Origin and Evolution of Life",
+              "Plant Water Relation",
+              "Plant Growth and Mineral Nutrition",
+              "Respiration and Circulation",
+              "Control and Co-ordination",
+              "Human Health and Diseases",
+              "Enhancement of Food Production",
+              "Biotechnology",
+              "Organisms and Populations",
+              "Ecosystems and Energy Flow",
               "Biodiversity, Conservation and Environmental Issues"
             ]
           },
           "Maths Part 1": {
+            icon: "📐",
             pdf: "https://books.ebalbharati.in/pdfs/1203020423.pdf",
             solutionSlug: "maharashtra-board-class-12-maths-solutions-chapter-",
             impSlug: "maharashtra-board-class-12-maths-important-questions-chapter-",
+            highYield: [1, 2, 3, 5, 6],
             chapters: [
-              "Mathematical Logic", "Matrices", "Trigonometric Functions", "Pair of Straight Lines",
-              "Vectors", "Line and Plane", "Linear Programming"
+              "Mathematical Logic",
+              "Matrices",
+              "Trigonometric Functions",
+              "Pair of Straight Lines",
+              "Vectors",
+              "Line and Plane",
+              "Linear Programming"
             ]
           },
           "Maths Part 2": {
+            icon: "∫",
             pdf: "https://books.ebalbharati.in/pdfs/1203020424.pdf",
-            solutionSlug: "maharashtra-board-class-12-maths-solutions-chapter-",
-            impSlug: "maharashtra-board-class-12-maths-important-questions-chapter-",
+            solutionSlug: "maharashtra-board-class-12-maths-solutions-part-2-chapter-",
+            impSlug: "maharashtra-board-class-12-maths-important-questions-part-2-chapter-",
+            highYield: [1, 2, 3, 4, 6, 7],
             chapters: [
-              "Differentiation", "Applications of Derivatives", "Indefinite Integration", "Definite Integration",
-              "Application of Definite Integration", "Differential Equations", "Probability Distributions", "Binomial Distribution"
+              "Differentiation",
+              "Applications of Derivatives",
+              "Indefinite Integration",
+              "Definite Integration",
+              "Application of Definite Integration",
+              "Differential Equations",
+              "Probability Distributions",
+              "Binomial Distribution"
+            ]
+          },
+          "English Yuvakbharati": {
+            icon: "📖",
+            pdf: "https://books.ebalbharati.in/pdfs/1203040026.pdf",
+            solutionSlug: "maharashtra-board-class-12-english-yuvakbharati-solutions-chapter-",
+            impSlug: null,
+            highYield: [1, 2, 4, 9, 10],
+            chapters: [
+              "An Astrologer's Day",
+              "On Saying 'Please'",
+              "The Cop and the Anthem",
+              "Big Data - Big Insights",
+              "The New Dress",
+              "Into the Wild",
+              "Why We Travel",
+              "Voyaging Towards Excellence",
+              "Song of the Open Road (Poetry)",
+              "Indian Weavers (Poetry)",
+              "The Inchcape Rock (Poetry)",
+              "Have you Earned your Tomorrow (Poetry)",
+              "Father Returning Home (Poetry)",
+              "Money (Poetry)",
+              "She Walks in Beauty (Poetry)",
+              "Small Towns and Rivers (Poetry)"
             ]
           }
         }
       },
+
       "11": {
         label: "Class 11th (FYJC)",
         subjects: {
           "Physics": {
+            icon: "⚛️",
             pdf: "https://books.ebalbharati.in/pdfs/1103020415.pdf",
             solutionSlug: "maharashtra-board-class-11-physics-solutions-chapter-",
             impSlug: null,
+            highYield: [1, 2, 4, 5, 9, 14],
             chapters: [
-              "Units and Measurements", "Mathematical Methods", "Motion in a Plane", "Laws of Motion",
-              "Gravitation", "Mechanical Properties of Solids", "Thermal Properties of Matter", "Sound",
-              "Optics", "Electrostatics", "Electric Current Through Conductors", "Magnetism",
-              "Electromagnetic Waves and Communication System", "Semiconductors"
+              "Units and Measurements",
+              "Mathematical Methods",
+              "Motion in a Plane",
+              "Laws of Motion",
+              "Gravitation",
+              "Mechanical Properties of Solids",
+              "Thermal Properties of Matter",
+              "Sound",
+              "Optics",
+              "Electrostatics",
+              "Electric Current Through Conductors",
+              "Magnetism",
+              "Electromagnetic Waves and Communication System",
+              "Semiconductors"
             ]
           },
           "Chemistry": {
+            icon: "🧪",
             pdf: "https://books.ebalbharati.in/pdfs/1103030414.pdf",
             solutionSlug: "maharashtra-board-class-11-chemistry-solutions-chapter-",
             impSlug: null,
+            highYield: [1, 4, 5, 6, 12, 14, 15],
             chapters: [
-              "Some Basic Concepts of Chemistry", "Introduction to Analytical Chemistry", "Basic Analytical Techniques",
-              "Structure of Atom", "Chemical Bonding", "Redox Reactions", "Modern Periodic Table",
-              "Elements of Group 1 and 2", "Elements of Group 13, 14 and 15", "States of Matter",
-              "Adsorption and Colloids", "Chemical Equilibrium", "Nuclear Chemistry and Radioactivity",
-              "Basic Principles of Organic Chemistry", "Hydrocarbons", "Chemistry in Everyday Life"
+              "Some Basic Concepts of Chemistry",
+              "Introduction to Analytical Chemistry",
+              "Basic Analytical Techniques",
+              "Structure of Atom",
+              "Chemical Bonding",
+              "Redox Reactions",
+              "Modern Periodic Table",
+              "Elements of Group 1 and 2",
+              "Elements of Group 13, 14 and 15",
+              "States of Matter",
+              "Adsorption and Colloids",
+              "Chemical Equilibrium",
+              "Nuclear Chemistry and Radioactivity",
+              "Basic Principles of Organic Chemistry",
+              "Hydrocarbons",
+              "Chemistry in Everyday Life"
             ]
           },
           "Biology": {
+            icon: "🧬",
             pdf: "https://books.ebalbharati.in/pdfs/1103030421.pdf",
             solutionSlug: "maharashtra-board-class-11-biology-solutions-chapter-",
             impSlug: null,
+            highYield: [5, 6, 7, 12, 13, 14],
             chapters: [
-              "Living World", "Systematics of Living Organisms", "Kingdom Plantae", "Kingdom Animalia",
-              "Cell Structure and Organization", "Biomolecules", "Cell Division", "Plant Tissues and Anatomy",
-              "Morphology of Flowering Plants", "Animal Tissue", "Study of Animal Types (Cockroach)",
-              "Photosynthesis", "Respiration and Energy Transfer", "Human Nutrition", "Excretion and Osmoregulation", "Skeleton and Movement"
+              "Living World",
+              "Systematics of Living Organisms",
+              "Kingdom Plantae",
+              "Kingdom Animalia",
+              "Cell Structure and Organization",
+              "Biomolecules",
+              "Cell Division",
+              "Plant Tissues and Anatomy",
+              "Morphology of Flowering Plants",
+              "Animal Tissue",
+              "Study of Animal Types (Cockroach)",
+              "Photosynthesis",
+              "Respiration and Energy Transfer",
+              "Human Nutrition",
+              "Excretion and Osmoregulation",
+              "Skeleton and Movement"
             ]
           }
         }
       },
+
       "10": {
         label: "Class 10th (SSC)",
         subjects: {
           "Science & Tech Part 1": {
+            icon: "🔬",
             pdf: "https://books.ebalbharati.in/pdfs/1003010039.pdf",
             solutionSlug: "maharashtra-board-class-10-science-solutions-part-1-chapter-",
             impSlug: null,
+            highYield: [1, 2, 4, 6, 9],
             chapters: [
-              "Gravitation", "Periodic Classification of Elements", "Chemical Reactions and Equations",
-              "Effects of Electric Current", "Heat", "Refraction of Light", "Lenses", "Metallurgy", "Carbon Compounds", "Space Missions"
+              "Gravitation",
+              "Periodic Classification of Elements",
+              "Chemical Reactions and Equations",
+              "Effects of Electric Current",
+              "Heat",
+              "Refraction of Light",
+              "Lenses",
+              "Metallurgy",
+              "Carbon Compounds",
+              "Space Missions"
             ]
           },
           "Science & Tech Part 2": {
+            icon: "🌿",
             pdf: "https://books.ebalbharati.in/pdfs/1003010040.pdf",
             solutionSlug: "maharashtra-board-class-10-science-solutions-part-2-chapter-",
             impSlug: null,
+            highYield: [1, 2, 3, 4, 8],
             chapters: [
-              "Heredity and Evolution", "Life Processes in Living Organisms Part 1", "Life Processes in Living Organisms Part 2",
-              "Environmental Management", "Towards Green Energy", "Animal Classification", "Introduction to Microbiology",
-              "Cell Biology and Biotechnology", "Social Health", "Disaster Management"
+              "Heredity and Evolution",
+              "Life Processes in Living Organisms Part 1",
+              "Life Processes in Living Organisms Part 2",
+              "Environmental Management",
+              "Towards Green Energy",
+              "Animal Classification",
+              "Introduction to Microbiology",
+              "Cell Biology and Biotechnology",
+              "Social Health",
+              "Disaster Management"
             ]
           },
           "Maths Part 1 (Algebra)": {
+            icon: "📊",
             pdf: "https://books.ebalbharati.in/pdfs/1003010023.pdf",
             solutionSlug: "maharashtra-board-class-10-maths-solutions-chapter-",
             impSlug: null,
-            chapters: ["Linear Equations in Two Variables", "Quadratic Equations", "Arithmetic Progression (AP)", "Financial Planning", "Probability", "Statistics"]
+            highYield: [1, 2, 3, 5, 6],
+            chapters: [
+              "Linear Equations in Two Variables",
+              "Quadratic Equations",
+              "Arithmetic Progression (AP)",
+              "Financial Planning",
+              "Probability",
+              "Statistics"
+            ]
           },
           "Maths Part 2 (Geometry)": {
+            icon: "📐",
             pdf: "https://books.ebalbharati.in/pdfs/1003010024.pdf",
             solutionSlug: "maharashtra-board-class-10-geometry-solutions-chapter-",
             impSlug: null,
-            chapters: ["Similarity", "Pythagoras Theorem", "Circle", "Geometric Constructions", "Co-ordinate Geometry", "Trigonometry", "Mensuration"]
+            highYield: [1, 2, 3, 6, 7],
+            chapters: [
+              "Similarity",
+              "Pythagoras Theorem",
+              "Circle",
+              "Geometric Constructions",
+              "Co-ordinate Geometry",
+              "Trigonometry",
+              "Mensuration"
+            ]
           }
         }
       }
     };
 
-    // State Management
+    /* ==========================================================================
+       STATE MANAGEMENT & PERSISTENCE
+       ========================================================================== */
     let activeClass = localStorage.getItem("mbs_activeClass") || "12";
-    let activeSubject = localStorage.getItem("mbs_activeSubject") || "Physics";
+    let activeSubject = localStorage.getItem("mbs_activeSubject") || "Biology";
     let completedChapters = JSON.parse(localStorage.getItem("mbs_completed") || "{}");
     let bookmarkedChapters = JSON.parse(localStorage.getItem("mbs_bookmarks") || "{}");
     let chapterNotes = JSON.parse(localStorage.getItem("mbs_notes") || "{}");
     let showBookmarksOnly = false;
 
+    // Timer State
+    let timerSeconds = 25 * 60;
+    let timerInterval = null;
+    let isTimerRunning = false;
+
     function getChapterKey(cls, subj, index) {
       return `${cls}_${subj}_${index + 1}`;
     }
 
-    function showToast(message) {
+    window.showToast = function(message) {
       const container = document.getElementById("toastContainer");
+      if (!container) return;
       const toast = document.createElement("div");
       toast.className = "toast";
       toast.textContent = message;
       container.appendChild(toast);
       setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => toast.remove(), 200);
-      }, 3000);
+        toast.style.opacity = "0";
+        toast.style.transition = "opacity 0.2s ease";
+        setTimeout(() => toast.remove(), 220);
+      }, 3200);
+    };
+
+    /* ==========================================================================
+       NAVIGATION & UI RENDERERS
+       ========================================================================== */
+    function toggleDrawer(open) {
+      const drawer = document.getElementById("sidebarDrawer");
+      const backdrop = document.getElementById("drawerBackdrop");
+      drawer.classList.toggle("open", open);
+      backdrop.classList.toggle("open", open);
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add("open");
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("open");
     }
 
     function selectClass(cls) {
@@ -770,107 +1781,159 @@
     function renderSubjectPills() {
       const bar = document.getElementById("subjectBar");
       const subjects = Object.keys(CURRICULUM[activeClass].subjects);
-      bar.innerHTML = subjects.map(subj => `
-        <button class="subject-pill ${subj === activeSubject ? 'active' : ''}" onclick="selectSubject('${subj}')">
-          ${subj}
-        </button>
-      `).join("");
+      bar.innerHTML = subjects.map(subj => {
+        const sData = CURRICULUM[activeClass].subjects[subj];
+        return `
+          <button class="subject-pill ${subj === activeSubject ? 'active' : ''}" onclick="selectSubject('${subj}')">
+            <span>${sData.icon || '📘'} ${subj}</span>
+            <span class="pill-count">${sData.chapters.length}</span>
+          </button>
+        `;
+      }).join("");
     }
 
     function renderTextbookBanner() {
       const banner = document.getElementById("textbookBanner");
       const subjData = CURRICULUM[activeClass].subjects[activeSubject];
+      const hasImp = !!subjData.impSlug;
+
       banner.innerHTML = `
-        <div>
-          <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--accent);">
-            Official eBalbharati PDF
-          </span>
-          <h3 style="font-size: 1.05rem; font-weight: 700; margin-top:0.2rem;">
-            Class ${activeClass}th ${activeSubject} Full Textbook
-          </h3>
+        <div class="textbook-meta">
+          <span>Official Direct eBalbharati PDF (${CURRICULUM[activeClass].label})</span>
+          <h2>${subjData.icon || '📘'} Class ${activeClass}th ${activeSubject} Full Textbook</h2>
+          <p>Verified direct PDF link (${subjData.chapters.length} Chapters) ${hasImp ? '• Includes Chapter-Wise Important Questions' : ''}</p>
         </div>
-        <a href="${subjData.pdf}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="logActivity('Opened Textbook: Class ${activeClass} ${activeSubject}')">
-          📄 Download / Read Full PDF
-        </a>
+        <div class="textbook-actions">
+          <a href="${subjData.pdf}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="logActivity('Opened Class ${activeClass} ${activeSubject} Textbook PDF')">
+            📥 Download / Read Full Textbook PDF
+          </a>
+        </div>
       `;
+    }
+
+    function updateGlobalBadges() {
+      const totalDone = Object.values(completedChapters).filter(Boolean).length;
+      const totalBookmarked = Object.values(bookmarkedChapters).filter(Boolean).length;
+      document.getElementById("overallStatsPill").textContent = `${totalDone} Total Done`;
+      document.getElementById("bookmarkBadge").textContent = totalBookmarked;
+      document.getElementById("drawerBookmarkCount").textContent = totalBookmarked;
     }
 
     function renderChapters() {
       renderTextbookBanner();
+      updateGlobalBadges();
+
       const grid = document.getElementById("chapterGrid");
       const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      const statusFilter = document.getElementById("statusFilter").value;
       const subjData = CURRICULUM[activeClass].subjects[activeSubject];
       const baseDomain = "https://maharashtraboardsolutions.guru/";
 
+      // Calculate active subject progress
       const totalCh = subjData.chapters.length;
       let doneCount = 0;
+      let subjBookmarks = 0;
+
       subjData.chapters.forEach((_, idx) => {
-        if (completedChapters[getChapterKey(activeClass, activeSubject, idx)]) doneCount++;
+        const key = getChapterKey(activeClass, activeSubject, idx);
+        if (completedChapters[key]) doneCount++;
+        if (bookmarkedChapters[key]) subjBookmarks++;
       });
+
       const pct = totalCh > 0 ? Math.round((doneCount / totalCh) * 100) : 0;
+      document.getElementById("activeSubjectStatTitle").textContent = `Class ${activeClass} ${activeSubject}`;
       document.getElementById("progressPercent").textContent = `${pct}% (${doneCount}/${totalCh})`;
       document.getElementById("progressBar").style.width = `${pct}%`;
+      document.getElementById("remainingCountText").textContent = `${totalCh - doneCount} chapters remaining`;
+      document.getElementById("bookmarkedSubjCount").textContent = `${subjBookmarks} bookmarked`;
 
       const cardsHtml = subjData.chapters.map((title, idx) => {
         const chNum = idx + 1;
         const key = getChapterKey(activeClass, activeSubject, idx);
         const isDone = !!completedChapters[key];
         const isBookmarked = !!bookmarkedChapters[key];
+        const isHighYield = subjData.highYield && subjData.highYield.includes(chNum);
         const currentNote = chapterNotes[key] || "";
 
-        if (query && !title.toLowerCase().includes(query) && !`chapter ${chNum}`.includes(query)) return "";
+        // Search & Filter checks
+        if (query && !title.toLowerCase().includes(query) && !`chapter ${chNum}`.includes(query) && !currentNote.toLowerCase().includes(query)) {
+          return "";
+        }
         if (showBookmarksOnly && !isBookmarked) return "";
+        if (statusFilter === "pending" && isDone) return "";
+        if (statusFilter === "completed" && !isDone) return "";
+        if (statusFilter === "high" && !isHighYield) return "";
 
         const solutionUrl = `${baseDomain}${subjData.solutionSlug}${chNum}/`;
         const impUrl = subjData.impSlug ? `${baseDomain}${subjData.impSlug}${chNum}/` : null;
+        const safeTitle = title.replace(/'/g, "\\'");
 
         return `
-          <article class="chapter-card ${isDone ? 'completed' : ''}">
+          <article class="chapter-card ${isDone ? 'completed' : ''}" id="ch-card-${chNum}">
             <div>
               <div class="chapter-header">
-                <span class="chapter-num">Chapter ${chNum}</span>
-                <div style="display:flex; gap:0.4rem; align-items:center;">
-                  <button class="icon-btn ${isBookmarked ? 'bookmarked' : ''}" title="Bookmark" onclick="toggleBookmark('${key}')">
+                <div class="chapter-badges">
+                  <span class="chapter-num">CH ${chNum < 10 ? '0' + chNum : chNum}</span>
+                  ${isHighYield ? `<span class="priority-tag" title="High Weightage Board Chapter">🔥 High Yield</span>` : ''}
+                </div>
+                <div class="chapter-controls">
+                  <button class="icon-btn ${isBookmarked ? 'bookmarked' : ''}" title="Bookmark Chapter" onclick="toggleBookmark('${key}')">
                     ${isBookmarked ? '★' : '☆'}
                   </button>
-                  <label style="display:flex; align-items:center; gap:0.25rem; font-size:0.8rem; cursor:pointer; font-weight:600;">
-                    <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleComplete('${key}', '${title.replace(/'/g, "\\'")}')" />
-                    Done
+                  <label class="done-label">
+                    <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleComplete('${key}', '${safeTitle}')" />
+                    <span>${isDone ? 'Completed' : 'Mark Done'}</span>
                   </label>
                 </div>
               </div>
-              <h4 class="chapter-title">${title}</h4>
+
+              <h3 class="chapter-title">${title}</h3>
+
               <div class="notes-box">
-                <input type="text" class="notes-input" placeholder="Add quick study note..." value="${currentNote.replace(/"/g, '&quot;')}" oninput="saveNote('${key}', this.value)" />
+                <input
+                  type="text"
+                  class="notes-input"
+                  placeholder="✏️ Add quick note, page no, or formula reminder..."
+                  value="${currentNote.replace(/"/g, '&quot;')}"
+                  oninput="saveNote('${key}', this.value)"
+                />
               </div>
             </div>
 
             <div class="chapter-actions">
-              <a href="${solutionUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="logActivity('Studied Ch ${chNum}: ${title.replace(/'/g, "\\'")}')">
+              <a href="${solutionUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="logActivity('Studied Ch ${chNum}: ${safeTitle}')">
                 📖 Solutions
               </a>
               ${impUrl ? `
-                <a href="${impUrl}" target="_blank" rel="noopener noreferrer" class="btn" onclick="logActivity('Imp Qs Ch ${chNum}: ${title.replace(/'/g, "\\'")}')">
+                <a href="${impUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-warning" onclick="logActivity('Practiced Imp Qs Ch ${chNum}: ${safeTitle}')">
                   ⚡ Imp Questions
                 </a>
               ` : ''}
-              <a href="${subjData.pdf}" target="_blank" rel="noopener noreferrer" class="btn">
-                📄 PDF
+              <a href="${subjData.pdf}" target="_blank" rel="noopener noreferrer" class="btn" onclick="logActivity('Opened PDF for Ch ${chNum}: ${safeTitle}')">
+                📄 Textbook
               </a>
             </div>
           </article>
         `;
       }).join("");
 
-      grid.innerHTML = cardsHtml || `<p style="color:var(--text-secondary); font-size: 0.95rem;">No matching chapters found.</p>`;
+      grid.innerHTML = cardsHtml || `
+        <div style="grid-column: 1 / -1; text-align:center; padding:2.5rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md);">
+          <p style="font-size:1rem; font-weight:700;">No matching chapters found</p>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.25rem;">Try clearing your search filter or switching subjects.</p>
+        </div>
+      `;
     }
 
+    /* ==========================================================================
+       INTERACTIVE ACTIONS & POMODORO TIMER
+       ========================================================================== */
     function toggleComplete(key, title) {
       completedChapters[key] = !completedChapters[key];
       localStorage.setItem("mbs_completed", JSON.stringify(completedChapters));
       if (completedChapters[key]) {
         logActivity(`Completed: ${title}`);
-        showToast(`Marked completed: ${title}`);
+        window.showToast(`✅ Completed: ${title}`);
       }
       renderChapters();
     }
@@ -879,7 +1942,7 @@
       bookmarkedChapters[key] = !bookmarkedChapters[key];
       localStorage.setItem("mbs_bookmarks", JSON.stringify(bookmarkedChapters));
       renderChapters();
-      showToast(bookmarkedChapters[key] ? "Bookmark added" : "Bookmark removed");
+      window.showToast(bookmarkedChapters[key] ? "⭐ Added to Bookmarks" : "Removed from Bookmarks");
     }
 
     function saveNote(key, val) {
@@ -894,11 +1957,78 @@
       renderChapters();
     }
 
+    function resetCurrentSubjectProgress() {
+      const subjData = CURRICULUM[activeClass].subjects[activeSubject];
+      subjData.chapters.forEach((_, idx) => {
+        delete completedChapters[getChapterKey(activeClass, activeSubject, idx)];
+      });
+      localStorage.setItem("mbs_completed", JSON.stringify(completedChapters));
+      renderChapters();
+      window.showToast(`Reset progress for Class ${activeClass} ${activeSubject}`);
+    }
+
+    function pickRandomChapter() {
+      const subjData = CURRICULUM[activeClass].subjects[activeSubject];
+      const randomIdx = Math.floor(Math.random() * subjData.chapters.length);
+      const chNum = randomIdx + 1;
+      const title = subjData.chapters[randomIdx];
+      window.showToast(`🎲 Revise Ch ${chNum}: ${title}`);
+      const card = document.getElementById(`ch-card-${chNum}`);
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+        card.style.borderColor = "var(--warning)";
+        setTimeout(() => renderChapters(), 2200);
+      }
+    }
+
     function logActivity(text) {
-      const stamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const stamp = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
       const msg = `Last activity (${stamp}): ${text}`;
       localStorage.setItem("mbs_recent", msg);
       document.getElementById("recentActivityText").textContent = msg;
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(timerSeconds / 60);
+      const secs = timerSeconds % 60;
+      document.getElementById("timerDisplay").textContent =
+        `${mins < 10 ? "0" + mins : mins}:${secs < 10 ? "0" + secs : secs}`;
+    }
+
+    function toggleTimer() {
+      const btn = document.getElementById("timerStartBtn");
+      const badge = document.getElementById("timerStateBadge");
+      if (isTimerRunning) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        btn.textContent = "▶ Resume";
+        badge.textContent = "Paused";
+      } else {
+        isTimerRunning = true;
+        btn.textContent = "⏸ Pause";
+        badge.textContent = "Focusing 🔥";
+        timerInterval = setInterval(() => {
+          if (timerSeconds > 0) {
+            timerSeconds--;
+            updateTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            btn.textContent = "▶ Start";
+            badge.textContent = "Done!";
+            window.showToast("🎉 Focus session complete! Take a 5-minute break.");
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer(minutes) {
+      clearInterval(timerInterval);
+      isTimerRunning = false;
+      timerSeconds = minutes * 60;
+      updateTimerDisplay();
+      document.getElementById("timerStartBtn").textContent = "▶ Start";
+      document.getElementById("timerStateBadge").textContent = `${minutes}m Set`;
     }
 
     function toggleTheme() {
@@ -909,22 +2039,30 @@
       document.getElementById("themeToggleBtn").textContent = next === "dark" ? "☀️" : "🌙";
     }
 
-    // Global Keyboard Shortcut Ctrl+K for Search
+    // Keyboard shortcut Ctrl + K to focus search bar
     window.addEventListener("keydown", (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         document.getElementById("searchInput").focus();
       }
+      if (e.key === "Escape") {
+        closeModal("formulaModal");
+        toggleDrawer(false);
+      }
     });
 
+    // Boot Portal
     (function init() {
-      const savedTheme = localStorage.getItem("mbs_theme") || "light";
+      const savedTheme = localStorage.getItem("mbs_theme") || "dark";
       document.documentElement.setAttribute("data-theme", savedTheme);
       document.getElementById("themeToggleBtn").textContent = savedTheme === "dark" ? "☀️" : "🌙";
 
       const savedRecent = localStorage.getItem("mbs_recent");
-      if (savedRecent) document.getElementById("recentActivityText").textContent = savedRecent;
+      if (savedRecent) {
+        document.getElementById("recentActivityText").textContent = savedRecent;
+      }
 
+      updateTimerDisplay();
       selectClass(activeClass);
     })();
   </script>
