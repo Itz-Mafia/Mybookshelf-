@@ -21,7 +21,7 @@
       --bg-secondary: #f1f5f9;
       --bg-tertiary: #e2e8f0;
       --bg-card: #ffffff;
-      --bg-glass: rgba(255, 255, 255, 0.85);
+      --bg-glass: rgba(255, 255, 255, 0.88);
       --text-primary: #0f172a;
       --text-secondary: #475569;
       --text-muted: #64748b;
@@ -53,7 +53,7 @@
       --bg-secondary: #111827;
       --bg-tertiary: #1e293b;
       --bg-card: #151e2e;
-      --bg-glass: rgba(21, 30, 46, 0.85);
+      --bg-glass: rgba(21, 30, 46, 0.88);
       --text-primary: #f8fafc;
       --text-secondary: #94a3b8;
       --text-muted: #64748b;
@@ -423,7 +423,7 @@
 
     .dashboard-grid {
       display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr;
+      grid-template-columns: 1.5fr 1fr 1fr;
       gap: 1.15rem;
       margin-bottom: 1.5rem;
     }
@@ -502,7 +502,6 @@
       transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Pomodoro Study Timer Widget */
     .timer-display {
       font-family: 'JetBrains Mono', monospace;
       font-size: 1.75rem;
@@ -892,7 +891,100 @@
     }
 
     /* ==========================================================================
-       11. ADSTERRA ANTI-ADBLOCKER & SMARTLINK SPONSOR SECTION
+       11. HELP / CONTACT ITZMAFIA & SINGLE-ACTIVE INTERVAL VIDEO PLAYER
+       ========================================================================== */
+    .floating-help-btn {
+      position: fixed;
+      bottom: 22px;
+      left: 22px;
+      z-index: 2500;
+      background: linear-gradient(135deg, var(--accent), #3b82f6);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-full);
+      padding: 0.65rem 1.15rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 8px 20px var(--accent-glow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .floating-help-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 26px var(--accent-glow);
+    }
+
+    .appreciation-stage {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      height: 320px;
+      margin: 0.65rem auto;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #000;
+      border: 2px solid var(--accent);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-full);
+      background: var(--accent-soft);
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       12. ADSTERRA ANTI-ADBLOCKER & SMARTLINK SPONSOR SECTION
        ========================================================================== */
     .ad-section {
       margin: 2.25rem 0 1rem 0;
@@ -946,13 +1038,13 @@
     }
 
     /* ==========================================================================
-       12. MODAL & TOAST NOTIFICATION SYSTEM
+       13. MODAL & TOAST NOTIFICATION SYSTEM
        ========================================================================== */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(9, 13, 22, 0.72);
-      backdrop-filter: blur(5px);
+      background: rgba(9, 13, 22, 0.75);
+      backdrop-filter: blur(6px);
       z-index: 3000;
       display: none;
       align-items: center;
@@ -968,11 +1060,11 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      max-width: 560px;
+      max-width: 540px;
       width: 100%;
-      padding: 1.5rem;
+      padding: 1.4rem;
       box-shadow: var(--shadow-lg);
-      max-height: 85vh;
+      max-height: 90vh;
       overflow-y: auto;
     }
 
@@ -1029,6 +1121,11 @@
   <!-- Toast Notification Container -->
   <div id="toastContainer"></div>
 
+  <!-- Floating Help & Appreciation Button (Bottom-Left) -->
+  <button class="floating-help-btn" onclick="openHelpModal()">
+    <span>💬 Help & Contact ItzMafia</span>
+  </button>
+
   <!-- Sidebar Navigation Drawer -->
   <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleDrawer(false)"></div>
   <aside class="sidebar-drawer" id="sidebarDrawer">
@@ -1037,7 +1134,7 @@
         <div class="brand-logo">M</div>
         <div class="brand-text">
           <h1>Mybookshelf</h1>
-          <span>Quick Navigator</span>
+          <span>By ItzMafia</span>
         </div>
       </div>
       <button class="icon-btn" onclick="toggleDrawer(false)">✕</button>
@@ -1059,8 +1156,12 @@
       </button>
     </div>
 
-    <div class="drawer-section-title">Study Utilities</div>
+    <div class="drawer-section-title">Study Utilities & Support</div>
     <div class="drawer-nav">
+      <button class="drawer-link" onclick="openHelpModal(); toggleDrawer(false);">
+        <span>💌 Help / Contact ItzMafia</span>
+        <span>Open</span>
+      </button>
       <button class="drawer-link" onclick="toggleBookmarkView(); toggleDrawer(false);">
         <span>⭐ Saved Bookmarks</span>
         <span id="drawerBookmarkCount">0</span>
@@ -1077,12 +1178,12 @@
 
     <div class="drawer-section-title">Official Board Links</div>
     <div class="drawer-nav">
-      <a class="drawer-link" href="https://books.ebalbharati.in/" target="_blank" rel="noopener noreferrer">
-        <span>🏛️ eBalbharati Archive</span>
+      <a class="drawer-link" href="mailto:riteshmaurya810804@gmail.com">
+        <span>📧 Email Ritesh (ItzMafia)</span>
         <span>↗</span>
       </a>
-      <a class="drawer-link" href="https://mahahsscboard.in/" target="_blank" rel="noopener noreferrer">
-        <span>📋 MSBSHSE Official Portal</span>
+      <a class="drawer-link" href="https://books.ebalbharati.in/" target="_blank" rel="noopener noreferrer">
+        <span>🏛️ eBalbharati Archive</span>
         <span>↗</span>
       </a>
       <a class="drawer-link" href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer">
@@ -1091,6 +1192,67 @@
       </a>
     </div>
   </aside>
+
+  <!-- ==========================================================================
+       HELP / CONTACT ITZMAFIA & SINGLE-ACTIVE INTERVAL APPRECIATION VIDEO MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="helpModal" onclick="if(event.target===this) closeHelpModal()">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+        <div>
+          <span style="font-size:0.7rem; font-weight:800; text-transform:uppercase; color:var(--accent);">Developer Support & Appreciation</span>
+          <h3 style="font-size:1.2rem; font-weight:800;">Contact ItzMafia 😜</h3>
+        </div>
+        <button class="icon-btn" onclick="closeHelpModal()">✕</button>
+      </div>
+
+      <!-- Single-Active Video Appreciation Stage (Switches automatically on interval) -->
+      <div class="appreciation-stage">
+        <div class="video-status-pill" id="vidStatusIndicator">
+          <span>🎬 Playing Appreciation Clip #1 (Auto-rotates every 10s)</span>
+        </div>
+
+        <div class="video-frame">
+          <!-- Strictly ONE video element in DOM so two videos can NEVER play at once -->
+          <video id="appreciationVideo" autoplay loop muted playsinline preload="auto"></video>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="switchNextAppreciationVideo(true)">
+            ⏭️ Switch Next Clip Now
+          </button>
+          <button class="btn" id="muteToggleBtn" onclick="toggleVideoMute()">
+            🔇 Unmute Sound
+          </button>
+        </div>
+        <p style="font-size:0.74rem; color:var(--text-muted); margin-top:0.45rem;">
+          Only one clip runs at a time and automatically swaps every 10 seconds!
+        </p>
+      </div>
+
+      <!-- Contact Developer Details -->
+      <div class="contact-box">
+        <div class="contact-row">
+          <div>
+            <div style="font-weight:800; color:var(--text-primary);">👤 Creator: ItzMafia (Ritesh Maurya)</div>
+            <div style="font-size:0.8rem; color:var(--text-secondary);">Found a broken link, missing PDF, or bug? Reach out directly:</div>
+          </div>
+        </div>
+
+        <div class="contact-row" style="padding-top:0.4rem; border-top:1px solid var(--border);">
+          <span style="font-family:'JetBrains Mono', monospace; font-size:0.82rem; font-weight:700; color:var(--accent);">
+            riteshmaurya810804@gmail.com
+          </span>
+          <div style="display:flex; gap:0.4rem;">
+            <button class="btn" onclick="copyCreatorEmail()">📋 Copy</button>
+            <a href="mailto:riteshmaurya810804@gmail.com?subject=Mybookshelf%20Portal%20Feedback" class="btn btn-primary">
+              ✉️ Send Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Quick Exam Checklist Modal -->
   <div class="modal-overlay" id="formulaModal" onclick="if(event.target===this) closeModal('formulaModal')">
@@ -1103,7 +1265,7 @@
         <p><strong>1. Direct Balbharati Reading:</strong> Always read the official textbook definitions and solved examples first—85%+ of HSC/SSC board papers come straight from Balbharati exercises.</p>
         <p><strong>2. Chapter-Wise Important Questions:</strong> Use the <em>⚡ Imp Questions</em> button on Class 12 cards to practice repeated numericals, derivations, and IUPAC nomenclature questions.</p>
         <p><strong>3. Active Recall Notes:</strong> Type formulas, reaction mechanisms, or page numbers directly into each chapter's quick note box. They save automatically to your browser.</p>
-        <p><strong>4. 25-Minute Pomodoro Sprints:</strong> Start the built-in Focus Timer on the dashboard while solving chapter exercises to prevent burnout.</p>
+        <p><strong>4. Need Help?</strong> Click the <strong>Help / Contact ItzMafia</strong> button anytime to email Ritesh (`riteshmaurya810804@gmail.com`).</p>
       </div>
       <div style="margin-top:1.25rem; text-align:right;">
         <button class="btn btn-primary" onclick="closeModal('formulaModal')">Got It, Let's Study</button>
@@ -1132,7 +1294,9 @@
       <button class="btn" id="bookmarkFilterBtn" onclick="toggleBookmarkView()">
         ⭐ Bookmarks (<span id="bookmarkBadge">0</span>)
       </button>
-      <button class="btn" onclick="openModal('formulaModal')">⚡ Tips</button>
+      <button class="btn btn-warning" onclick="openHelpModal()">
+        💬 Help / ItzMafia
+      </button>
       <button class="btn" id="themeToggleBtn" onclick="toggleTheme()" title="Switch Theme">☀️</button>
       <button class="btn btn-primary" id="authBtn" onclick="handleAuthClick()">Sign In with Google</button>
     </div>
@@ -1155,10 +1319,10 @@
           <span class="badge-pill" id="overallStatsPill">0 Total Done</span>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.25rem;">
-          <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer" class="btn btn-warning">
-            🔥 Board Exam Smart Resources
-          </a>
-          <button class="btn" onclick="pickRandomChapter()">🎲 Random Chapter Revision</button>
+          <button class="btn btn-primary" onclick="openHelpModal()">
+            😻 Appreciation & Contact ItzMafia
+          </button>
+          <button class="btn" onclick="pickRandomChapter()">🎲 Random Chapter</button>
         </div>
       </div>
 
@@ -1170,7 +1334,7 @@
               Active Subject Mastery
             </div>
             <div class="stat-title" id="activeSubjectStatTitle" style="margin-top:0.15rem;">
-              Class 12 Physics
+              Class 12 Biology
             </div>
           </div>
           <span class="badge-pill" id="progressPercent">0% (0/0)</span>
@@ -1252,7 +1416,7 @@
       <div id="container-4a67b7095bdc2bc8b4f80f1f71031da2"></div>
       <script async="async" data-cfasync="false" src="https://bauval.org/21/4a67b7095bdc2bc8b4f80f1f71031da2"></script>
 
-      <!-- Direct Adsterra Smartlinks (Works even when Adblockers/Brave Shields block scripts) -->
+      <!-- Direct Adsterra Smartlinks -->
       <div class="smartlink-grid">
         <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer" class="smartlink-card">
           <span>📘 Download HSC & SSC Previous Year Question Banks</span>
@@ -1268,7 +1432,7 @@
   </main>
 
   <footer>
-    <p><strong>Mybookshelf</strong> — Built for Maharashtra State Board (MSBSHSE) Class 10, 11 & 12 Students.</p>
+    <p><strong>Mybookshelf</strong> — Crafted by <strong>ItzMafia</strong> (<a href="mailto:riteshmaurya810804@gmail.com" style="color:var(--accent); text-decoration:none;">riteshmaurya810804@gmail.com</a>) for Maharashtra State Board Students.</p>
     <p style="margin-top:0.3rem; font-size:0.75rem;">Official textbooks are property of Maharashtra State Bureau of Textbook Production and Curriculum Research (Balbharati).</p>
   </footer>
 
@@ -1290,7 +1454,6 @@
       browserLocalPersistence
     } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
 
-    // Your exact Firebase configuration with real API key & Measurement ID
     const firebaseConfig = {
       apiKey: "AIzaSyD5mHMMBeuBFHPwpkKVB1MtX5Zcsbd-pns",
       authDomain: "mybookshelf-7da85.firebaseapp.com",
@@ -1306,11 +1469,10 @@
 
     try {
       const app = initializeApp(firebaseConfig);
-      // Initialize Analytics safely (won't crash if Brave blocks Google Analytics)
       try {
         getAnalytics(app);
       } catch (analyticsErr) {
-        console.info("Analytics skipped by browser shield:", analyticsErr);
+        console.info("Analytics blocked by browser shield:", analyticsErr);
       }
 
       auth = getAuth(app);
@@ -1319,7 +1481,6 @@
       const provider = new GoogleAuthProvider();
       provider.setCustomParameters({ prompt: "select_account" });
 
-      // Catch redirect login results if redirected back from Google
       getRedirectResult(auth)
         .then((result) => {
           if (result && result.user) {
@@ -1327,10 +1488,9 @@
           }
         })
         .catch((err) => {
-          console.warn("Redirect check notice:", err);
+          console.warn("Redirect login check:", err);
         });
 
-      // Listen for user sign-in / sign-out state changes
       onAuthStateChanged(auth, (user) => {
         currentUser = user;
         const authBtn = document.getElementById("authBtn");
@@ -1353,10 +1513,9 @@
         }
       });
 
-      // Hybrid Popup + Automatic Redirect Fallback Handler
       window.handleAuthClick = async () => {
         if (!auth) {
-          window.showToast("Authentication service is still loading.");
+          window.showToast("Authentication service is initializing.");
           return;
         }
 
@@ -1376,8 +1535,6 @@
           window.showToast("Signed in successfully!");
         } catch (err) {
           console.warn("Popup sign-in error, evaluating fallback:", err.code, err.message);
-
-          // If mobile browser or popup blocker intercepts popup, seamlessly redirect
           if (
             err.code === "auth/popup-blocked" ||
             err.code === "auth/cancelled-popup-request" ||
@@ -1387,11 +1544,8 @@
             await signInWithRedirect(auth, provider);
           } else if (err.code === "auth/popup-closed-by-user") {
             window.showToast("Sign-in window closed.");
-          } else if (err.code === "auth/unauthorized-domain") {
-            window.showToast("Domain not authorized in Firebase Console.");
           } else {
-            // Brave Shield third-party cookie block fallback
-            window.showToast("If using Brave, tap the Lion icon and turn Shields Down for Google login.");
+            window.showToast("If using Brave, tap the Lion icon and toggle Shields Down to allow Google login.");
           }
         }
       };
@@ -1401,9 +1555,119 @@
   </script>
 
   <!-- ==========================================================================
-       COMPLETE CURRICULUM DATABASE & PORTAL CONTROLLER
+       COMPLETE CURRICULUM DATABASE, SINGLE-VIDEO INTERVAL CONTROLLER & LOGIC
        ========================================================================== -->
   <script>
+    /* ==========================================================================
+       SINGLE-ACTIVE APPRECIATION VIDEO ROTATOR (1 AT A TIME ON 10s INTERVAL)
+       ==========================================================================
+       Put your two cat videos in your GitHub repo root as:
+       1) "cat1.mp4" (Kitten dancing on Spider-Man blanket)
+       2) "cat2.mp4" (Black cat clapping / thumbs up)
+       If local files aren't uploaded yet, it safely falls back to online cat clips.
+    */
+    const APPRECIATION_VIDEOS = [
+      {
+        title: "Dancing Kitten Appreciation Vibe #1 🐾",
+        localSrc: "cat1.mp4",
+        fallbackSrc: "https://assets.mixkit.co/videos/preview/mixkit-kitten-playing-with-a-toy-mouse-45490-large.mp4"
+      },
+      {
+        title: "Black Cat Clapping & Thumbs-Up Vibe #2 😸👏",
+        localSrc: "cat2.mp4",
+        fallbackSrc: "https://assets.mixkit.co/videos/preview/mixkit-black-cat-looking-at-the-camera-45486-large.mp4"
+      }
+    ];
+
+    let currentVideoIdx = 0;
+    let videoRotationInterval = null;
+    const VIDEO_ROTATE_MS = 10000; // Swaps active video every 10 seconds
+
+    function loadSingleAppreciationVideo(index) {
+      const videoEl = document.getElementById("appreciationVideo");
+      const statusEl = document.getElementById("vidStatusIndicator");
+      if (!videoEl) return;
+
+      // Strictly stop & clear any playing stream before loading the next one
+      videoEl.pause();
+      videoEl.removeAttribute("src");
+      videoEl.load();
+
+      currentVideoIdx = index % APPRECIATION_VIDEOS.length;
+      const clip = APPRECIATION_VIDEOS[currentVideoIdx];
+
+      statusEl.innerHTML = `<span>🎬 Playing Clip #${currentVideoIdx + 1}: ${clip.title}</span>`;
+
+      // Try loading your repo file (cat1.mp4 / cat2.mp4) first, fallback if not uploaded yet
+      videoEl.src = clip.localSrc;
+      videoEl.onerror = () => {
+        videoEl.onerror = null;
+        videoEl.src = clip.fallbackSrc;
+        videoEl.play().catch(() => {});
+      };
+
+      videoEl.play().catch(() => {});
+    }
+
+    function switchNextAppreciationVideo(manualTrigger = false) {
+      const nextIdx = (currentVideoIdx + 1) % APPRECIATION_VIDEOS.length;
+      loadSingleAppreciationVideo(nextIdx);
+
+      // Reset the 10-second interval timer if clicked manually
+      if (manualTrigger && videoRotationInterval) {
+        clearInterval(videoRotationInterval);
+        videoRotationInterval = setInterval(() => {
+          switchNextAppreciationVideo(false);
+        }, VIDEO_ROTATE_MS);
+      }
+    }
+
+    function openHelpModal() {
+      const modal = document.getElementById("helpModal");
+      modal.classList.add("open");
+
+      // Start playing current clip and begin interval switcher (only 1 active at a time)
+      loadSingleAppreciationVideo(currentVideoIdx);
+      if (videoRotationInterval) clearInterval(videoRotationInterval);
+      videoRotationInterval = setInterval(() => {
+        switchNextAppreciationVideo(false);
+      }, VIDEO_ROTATE_MS);
+    }
+
+    function closeHelpModal() {
+      const modal = document.getElementById("helpModal");
+      modal.classList.remove("open");
+
+      // Stop interval & pause video when modal closes so nothing plays in background
+      if (videoRotationInterval) {
+        clearInterval(videoRotationInterval);
+        videoRotationInterval = null;
+      }
+      const videoEl = document.getElementById("appreciationVideo");
+      if (videoEl) {
+        videoEl.pause();
+      }
+    }
+
+    function toggleVideoMute() {
+      const videoEl = document.getElementById("appreciationVideo");
+      const btn = document.getElementById("muteToggleBtn");
+      if (!videoEl) return;
+      videoEl.muted = !videoEl.muted;
+      btn.textContent = videoEl.muted ? "🔇 Unmute Sound" : "🔊 Mute Sound";
+    }
+
+    function copyCreatorEmail() {
+      navigator.clipboard.writeText("riteshmaurya810804@gmail.com").then(() => {
+        window.showToast("📋 Copied riteshmaurya810804@gmail.com!");
+      }).catch(() => {
+        window.showToast("Email: riteshmaurya810804@gmail.com");
+      });
+    }
+
+    /* ==========================================================================
+       COMPLETE CURRICULUM DATABASE (CLASSES 12, 11 & 10)
+       ========================================================================== */
     const CURRICULUM = {
       "12": {
         label: "Class 12th (HSC)",
@@ -1460,7 +1724,7 @@
           },
           "Biology": {
             icon: "🧬",
-            // Direct Official eBalbharati Class 12 Biology PDF (Fixed)
+            // Fixed Direct Balbharati Class 12 Biology PDF
             pdf: "https://books.ebalbharati.in/pdfs/1203030421.pdf",
             solutionSlug: "maharashtra-board-class-12-biology-solutions-chapter-",
             impSlug: "maharashtra-board-class-12-biology-important-questions-chapter-",
@@ -1709,7 +1973,6 @@
     let chapterNotes = JSON.parse(localStorage.getItem("mbs_notes") || "{}");
     let showBookmarksOnly = false;
 
-    // Timer State
     let timerSeconds = 25 * 60;
     let timerInterval = null;
     let isTimerRunning = false;
@@ -1732,9 +1995,6 @@
       }, 3200);
     };
 
-    /* ==========================================================================
-       NAVIGATION & UI RENDERERS
-       ========================================================================== */
     function toggleDrawer(open) {
       const drawer = document.getElementById("sidebarDrawer");
       const backdrop = document.getElementById("drawerBackdrop");
@@ -1829,7 +2089,6 @@
       const subjData = CURRICULUM[activeClass].subjects[activeSubject];
       const baseDomain = "https://maharashtraboardsolutions.guru/";
 
-      // Calculate active subject progress
       const totalCh = subjData.chapters.length;
       let doneCount = 0;
       let subjBookmarks = 0;
@@ -1855,7 +2114,6 @@
         const isHighYield = subjData.highYield && subjData.highYield.includes(chNum);
         const currentNote = chapterNotes[key] || "";
 
-        // Search & Filter checks
         if (query && !title.toLowerCase().includes(query) && !`chapter ${chNum}`.includes(query) && !currentNote.toLowerCase().includes(query)) {
           return "";
         }
@@ -1925,9 +2183,6 @@
       `;
     }
 
-    /* ==========================================================================
-       INTERACTIVE ACTIONS & POMODORO TIMER
-       ========================================================================== */
     function toggleComplete(key, title) {
       completedChapters[key] = !completedChapters[key];
       localStorage.setItem("mbs_completed", JSON.stringify(completedChapters));
@@ -2016,7 +2271,7 @@
             isTimerRunning = false;
             btn.textContent = "▶ Start";
             badge.textContent = "Done!";
-            window.showToast("🎉 Focus session complete! Take a 5-minute break.");
+            window.showToast("🎉 Focus session complete! Open the Appreciation clip for a break.");
           }
         }, 1000);
       }
@@ -2039,7 +2294,6 @@
       document.getElementById("themeToggleBtn").textContent = next === "dark" ? "☀️" : "🌙";
     }
 
-    // Keyboard shortcut Ctrl + K to focus search bar
     window.addEventListener("keydown", (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
@@ -2047,11 +2301,11 @@
       }
       if (e.key === "Escape") {
         closeModal("formulaModal");
+        closeHelpModal();
         toggleDrawer(false);
       }
     });
 
-    // Boot Portal
     (function init() {
       const savedTheme = localStorage.getItem("mbs_theme") || "dark";
       document.documentElement.setAttribute("data-theme", savedTheme);
