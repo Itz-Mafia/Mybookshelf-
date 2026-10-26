@@ -509,13 +509,13 @@
     </section>
   </main>
 
-  <!-- Firebase Auth Module (Bulletproof Login Fix) -->
+  <!-- Bulletproof Firebase Auth Module (Using Redirect to bypass popup blocks) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     const firebaseConfig = {
-      apiKey: "YOUR_FIREBASE_API_KEY", // Replace with your Firebase API key
+      apiKey: "YOUR_FIREBASE_API_KEY", // Replace with your actual Firebase API key
       authDomain: "mybookshelf-7da85.firebaseapp.com",
       projectId: "mybookshelf-7da85",
       storageBucket: "mybookshelf-7da85.firebasestorage.app",
@@ -533,6 +533,12 @@
       const provider = new GoogleAuthProvider();
       provider.setCustomParameters({ prompt: 'select_account' });
 
+      // Handle return redirect from Google login
+      getRedirectResult(auth).catch((error) => {
+        console.error("Redirect login error:", error);
+        showToast("Login failed: " + error.message);
+      });
+
       onAuthStateChanged(auth, (user) => {
         currentUser = user;
         const authBtn = document.getElementById("authBtn");
@@ -540,7 +546,6 @@
         if (user) {
           authBtn.textContent = "Sign Out";
           welcomeText.textContent = `Welcome back, ${user.displayName ? user.displayName.split(' ')[0] : 'Scholar'}`;
-          showToast(`Signed in as ${user.email}`);
         } else {
           authBtn.textContent = "Sign In with Google";
           welcomeText.textContent = "Welcome, Scholar";
@@ -557,11 +562,12 @@
             await signOut(auth);
             showToast("Successfully signed out.");
           } else {
-            await signInWithPopup(auth, provider);
+            // Uses redirect instead of popup to completely eliminate popup blocking
+            await signInWithRedirect(auth, provider);
           }
         } catch (err) {
-          console.error("Auth popup error:", err);
-          showToast("Sign-in popup blocked or domain not authorized in Firebase.");
+          console.error("Auth redirect error:", err);
+          showToast("Sign-in failed. Check Firebase authorized domains.");
         }
       };
     } catch (e) {
