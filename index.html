@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mybookshelf — Maharashtra Board Study Portal (Class 10, 11 & 12)</title>
+  <meta name="description" content="Direct Balbharati Textbook PDFs, Chapter-wise Solutions, Important Questions, and Progress Tracker for Maharashtra State Board Class 10, 11, and 12." />
+  <meta name="theme-color" content="#fdfbf7" />
+
+  <!-- Google Fonts: Merriweather (Serif) & Plus Jakarta Sans (Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #fdfbf7;
+      --bg-secondary: #f4efe6;
+      --bg-card: #ffffff;
+      --text-primary: #1e1b18;
+      --text-secondary: #5c5549;
+      --accent: #8c3b2b;
+      --accent-hover: #6e2c1f;
+      --accent-soft: rgba(140, 59, 43, 0.1);
+      --border: #e4decb;
+      --success: #2b6e46;
+      --shadow: 0 4px 14px rgba(30, 27, 24, 0.06);
+      --radius: 12px;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #141413;
+      --bg-secondary: #1f1e1b;
+      --bg-card: #252420;
+      --text-primary: #f0ede6;
+      --text-secondary: #a8a296;
+      --accent: #e07a5f;
+      --accent-hover: #f2957b;
+      --accent-soft: rgba(224, 122, 95, 0.15);
+      --border: #383630;
+      --success: #52b788;
+      --shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      padding-bottom: 4rem;
+    }
+
+    h1, h2, h3, .serif-title {
+      font-family: 'Merriweather', serif;
+    }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand h1 {
+      font-size: 1.35rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      color: #fff;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem;
+    }
+
+    /* Dashboard & Progress Bar */
+    .dashboard-banner {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .progress-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--success);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Search & Class Switcher */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .class-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    /* Subject Filter Pills */
+    .subject-bar {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .subject-pill {
+      white-space: nowrap;
+      padding: 0.45rem 0.95rem;
+      border-radius: 8px;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .subject-pill.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* Direct Textbook Card */
+    .textbook-callout {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    /* Chapters Grid */
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1rem;
+    }
+
+    .chapter-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.9rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .chapter-card.completed {
+      border-color: var(--success);
+    }
+
+    .chapter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .chapter-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .chapter-title {
+      font-size: 1.05rem;
+      margin-top: 0.35rem;
+      color: var(--text-primary);
+    }
+
+    .chapter-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      padding: 0.2rem;
+    }
+
+    .icon-btn.bookmarked {
+      color: #e6a100;
+    }
+
+    /* Adsterra Native Banner Container */
+    .ad-section {
+      margin: 2rem 0;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .ad-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-wrap: wrap;
+      }
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation Header -->
+  <header>
+    <div class="brand">
+      <span style="font-size: 1.5rem;">📚</span>
+      <div>
+        <h1>Mybookshelf</h1>
+        <small style="color: var(--text-secondary); font-size: 0.75rem;">Maharashtra State Board Portal</small>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn" id="bookmarkFilterBtn" onclick="toggleBookmarkView()">⭐ Bookmarks</button>
+      <button class="btn" onclick="exportProgress()">💾 Backup JSON</button>
+      <button class="btn" id="themeToggleBtn" onclick="toggleTheme()">🌙 Dark</button>
+      <button class="btn btn-primary" id="authBtn" onclick="handleAuthClick()">Sign in with Google</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Personal Study Dashboard -->
+    <section class="dashboard-banner">
+      <div>
+        <h3 class="serif-title" id="welcomeText">Welcome, Scholar</h3>
+        <p style="font-size: 0.875rem; color: var(--text-secondary);" id="recentActivityText">
+          Select any chapter below to open direct Balbharati PDFs or solutions.
+        </p>
+      </div>
+      <div class="progress-box">
+        <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:600;">
+          <span>Subject Completion</span>
+          <span id="progressPercent">0% (0/0)</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Class Tabs & Universal Search -->
+    <section class="controls-bar">
+      <div class="class-tabs" id="classTabs">
+        <button class="tab-btn active" onclick="selectClass('12')">Class 12th (HSC)</button>
+        <button class="tab-btn" onclick="selectClass('11')">Class 11th (FYJC)</button>
+        <button class="tab-btn" onclick="selectClass('10')">Class 10th (SSC)</button>
+      </div>
+
+      <input
+        type="search"
+        id="searchInput"
+        class="search-input"
+        placeholder="Search chapters across subjects (e.g., Thermodynamics, Logic, Gravitation)..."
+        oninput="renderChapters()"
+      />
+    </section>
+
+    <!-- Subject Selector Pills -->
+    <nav class="subject-bar" id="subjectBar"></nav>
+
+    <!-- Direct Official Balbharati Textbook Download Banner -->
+    <section class="textbook-callout" id="textbookBanner"></section>
+
+    <!-- Dynamic Chapter Cards Grid -->
+    <section class="chapter-grid" id="chapterGrid"></section>
+
+    <!-- Adsterra Native Banner Integration -->
+    <section class="ad-section">
+      <div class="ad-label">Sponsored Study Resource</div>
+      <script async="async" data-cfasync="false" src="https://bauval.org/21/4a67b7095bdc2bc8b4f80f1f71031da2"></script>
+      <div id="container-4a67b7095bdc2bc8b4f80f1f71031da2"></div>
+    </section>
+  </main>
+
+  <!-- Curriculum Database & Application Logic -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    // Firebase Configuration (mybookshelf-7da85)
+    const firebaseConfig = {
+      apiKey: "YOUR_FIREBASE_API_KEY", // Replace with your mybookshelf-7da85 apiKey
+      authDomain: "mybookshelf-7da85.firebaseapp.com",
+      projectId: "mybookshelf-7da85",
+      storageBucket: "mybookshelf-7da85.firebasestorage.app",
+      messagingSenderId: "1009549531448",
+      appId: "1:1009549531448:web:206c914a2e26c1962d49cd"
+    };
+
+    let auth = null;
+    let currentUser = null;
+
+    try {
+      const app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      const provider = new GoogleAuthProvider();
+
+      onAuthStateChanged(auth, (user) => {
+        currentUser = user;
+        const authBtn = document.getElementById("authBtn");
+        const welcomeText = document.getElementById("welcomeText");
+        if (user) {
+          authBtn.textContent = "Sign Out";
+          welcomeText.textContent = `Welcome back, ${user.displayName || "Scholar"}`;
+        } else {
+          authBtn.textContent = "Sign in with Google";
+          welcomeText.textContent = "Welcome, Scholar";
+        }
+      });
+
+      window.handleAuthClick = async () => {
+        if (!auth) return;
+        try {
+          if (currentUser) {
+            await signOut(auth);
+          } else {
+            await signInWithPopup(auth, provider);
+          }
+        } catch (err) {
+          alert("Firebase Auth Notice: Make sure your domain is authorized in Firebase Console and your apiKey is set.");
+        }
+      };
+    } catch (e) {
+      console.warn("Firebase initialization skipped:", e);
+    }
+  </script>
+
+  <script>
+    // Complete Curriculum Data: Classes 12, 11, and 10 with Fixed Direct Balbharati PDFs
+    const CURRICULUM = {
+      "12": {
+        label: "Class 12th (HSC)",
+        subjects: {
+          "Physics": {
+            pdf: "https://books.ebalbharati.in/pdfs/1203020415.pdf",
+            solutionSlug: "maharashtra-board-class-12-physics-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-physics-important-questions-chapter-",
+            chapters: [
+              "Rotational Dynamics",
+              "Mechanical Properties of Fluids",
+              "Kinetic Theory of Gases and Radiation",
+              "Thermodynamics",
+              "Oscillations",
+              "Superposition of Waves",
+              "Wave Optics",
+              "Electrostatics",
+              "Current Electricity",
+              "Magnetic Fields due to Electric Current",
+              "Magnetic Materials",
+              "Electromagnetic Induction",
+              "AC Circuits",
+              "Dual Nature of Radiation and Matter",
+              "Structure of Atoms and Nuclei",
+              "Semiconductor Devices"
+            ]
+          },
+          "Chemistry": {
+            pdf: "https://books.ebalbharati.in/pdfs/1203030414.pdf",
+            solutionSlug: "maharashtra-board-class-12-chemistry-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-chemistry-important-questions-chapter-",
+            chapters: [
+              "Solid State",
+              "Solutions",
+              "Ionic Equilibria",
+              "Chemical Thermodynamics",
+              "Electrochemistry",
+              "Chemical Kinetics",
+              "Elements of Groups 16, 17 and 18",
+              "Transition and Inner Transition Elements",
+              "Coordination Compounds",
+              "Halogen Derivatives",
+              "Alcohols, Phenols and Ethers",
+              "Aldehydes, Ketones and Carboxylic Acids",
+              "Amines",
+              "Biomolecules",
+              "Introduction to Polymer Chemistry",
+              "Green Chemistry and Nanochemistry"
+            ]
+          },
+          "Biology": {
+            // Fixed: Direct Balbharati Biology Textbook PDF instead of main website redirect
+            pdf: "https://books.ebalbharati.in/pdfs/1203030421.pdf",
+            solutionSlug: "maharashtra-board-class-12-biology-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-biology-important-questions-chapter-",
+            chapters: [
+              "Reproduction in Lower and Higher Plants",
+              "Reproduction in Lower and Higher Animals",
+              "Inheritance and Variation",
+              "Molecular Basis of Inheritance",
+              "Origin and Evolution of Life",
+              "Plant Water Relation",
+              "Plant Growth and Mineral Nutrition",
+              "Respiration and Circulation",
+              "Control and Co-ordination",
+              "Human Health and Diseases",
+              "Enhancement of Food Production",
+              "Biotechnology",
+              "Organisms and Populations",
+              "Ecosystems and Energy Flow",
+              "Biodiversity, Conservation and Environmental Issues"
+            ]
+          },
+          "Maths Part 1": {
+            pdf: "https://books.ebalbharati.in/pdfs/1203020423.pdf",
+            solutionSlug: "maharashtra-board-class-12-maths-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-maths-important-questions-chapter-",
+            chapters: [
+              "Mathematical Logic",
+              "Matrices",
+              "Trigonometric Functions",
+              "Pair of Straight Lines",
+              "Vectors",
+              "Line and Plane",
+              "Linear Programming"
+            ]
+          },
+          "Maths Part 2": {
+            pdf: "https://books.ebalbharati.in/pdfs/1203020424.pdf",
+            solutionSlug: "maharashtra-board-class-12-maths-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-maths-important-questions-chapter-",
+            chapters: [
+              "Differentiation",
+              "Applications of Derivatives",
+              "Indefinite Integration",
+              "Definite Integration",
+              "Application of Definite Integration",
+              "Differential Equations",
+              "Probability Distributions",
+              "Binomial Distribution"
+            ]
+          },
+          "English Yuvakbharati": {
+            pdf: "https://books.ebalbharati.in/pdfs/1203040026.pdf",
+            solutionSlug: "maharashtra-board-class-12-english-yuvakbharati-solutions-chapter-",
+            impSlug: null,
+            chapters: [
+              "An Astrologer's Day",
+              "On Saying 'Please'",
+              "The Cop and the Anthem",
+              "Big Data - Big Insights",
+              "The New Dress",
+              "Into the Wild",
+              "Why We Travel",
+              "Voyaging Towards Excellence",
+              "Song of the Open Road (Poetry)",
+              "Indian Weavers (Poetry)",
+              "The Inchcape Rock (Poetry)",
+              "Have you Earned your Tomorrow (Poetry)",
+              "Father Returning Home (Poetry)",
+              "Money (Poetry)",
+              "She Walks in Beauty (Poetry)",
+              "Small Towns and Rivers (Poetry)"
+            ]
+          }
+        }
+      },
+
+      "11": {
+        label: "Class 11th (FYJC)",
+        subjects: {
+          "Physics": {
+            pdf: "https://books.ebalbharati.in/pdfs/1103020415.pdf",
+            solutionSlug: "maharashtra-board-class-11-physics-solutions-chapter-",
+            impSlug: "maharashtra-board-class-11-physics-important-questions-chapter-",
+            chapters: [
+              "Units and Measurements",
+              "Mathematical Methods",
+              "Motion in a Plane",
+              "Laws of Motion",
+              "Gravitation",
+              "Mechanical Properties of Solids",
+              "Thermal Properties of Matter",
+              "Sound",
+              "Optics",
+              "Electrostatics",
+              "Electric Current Through Conductors",
+              "Magnetism",
+              "Electromagnetic Waves and Communication System",
+              "Semiconductors"
+            ]
+          },
+          "Chemistry": {
+            pdf: "https://books.ebalbharati.in/pdfs/1103030414.pdf",
+            solutionSlug: "maharashtra-board-class-11-chemistry-solutions-chapter-",
+            impSlug: "maharashtra-board-class-11-chemistry-important-questions-chapter-",
+            chapters: [
+              "Some Basic Concepts of Chemistry",
+              "Introduction to Analytical Chemistry",
+              "Basic Analytical Techniques",
+              "Structure of Atom",
+              "Chemical Bonding",
+              "Redox Reactions",
+              "Modern Periodic Table",
+              "Elements of Group 1 and 2",
+              "Elements of Group 13, 14 and 15",
+              "States of Matter",
+              "Adsorption and Colloids",
+              "Chemical Equilibrium",
+              "Nuclear Chemistry and Radioactivity",
+              "Basic Principles of Organic Chemistry",
+              "Hydrocarbons",
+              "Chemistry in Everyday Life"
+            ]
+          },
+          "Biology": {
+            pdf: "https://books.ebalbharati.in/pdfs/1103030421.pdf",
+            solutionSlug: "maharashtra-board-class-11-biology-solutions-chapter-",
+            impSlug: "maharashtra-board-class-11-biology-important-questions-chapter-",
+            chapters: [
+              "Living World",
+              "Systematics of Living Organisms",
+              "Kingdom Plantae",
+              "Kingdom Animalia",
+              "Cell Structure and Organization",
+              "Biomolecules",
+              "Cell Division",
+              "Plant Tissues and Anatomy",
+              "Morphology of Flowering Plants",
+              "Animal Tissue",
+              "Study of Animal Types (Cockroach)",
+              "Photosynthesis",
+              "Respiration and Energy Transfer",
+              "Human Nutrition",
+              "Excretion and Osmoregulation",
+              "Skeleton and Movement"
+            ]
+          }
+        }
+      },
+
+      "10": {
+        label: "Class 10th (SSC)",
+        subjects: {
+          "Science & Tech Part 1": {
+            pdf: "https://books.ebalbharati.in/pdfs/1003010039.pdf",
+            solutionSlug: "maharashtra-board-class-10-science-solutions-part-1-chapter-",
+            impSlug: "maharashtra-board-class-10-science-important-questions-part-1-chapter-",
+            chapters: [
+              "Gravitation",
+              "Periodic Classification of Elements",
+              "Chemical Reactions and Equations",
+              "Effects of Electric Current",
+              "Heat",
+              "Refraction of Light",
+              "Lenses",
+              "Metallurgy",
+              "Carbon Compounds",
+              "Space Missions"
+            ]
+          },
+          "Science & Tech Part 2": {
+            pdf: "https://books.ebalbharati.in/pdfs/1003010040.pdf",
+            solutionSlug: "maharashtra-board-class-10-science-solutions-part-2-chapter-",
+            impSlug: "maharashtra-board-class-10-science-important-questions-part-2-chapter-",
+            chapters: [
+              "Heredity and Evolution",
+              "Life Processes in Living Organisms Part 1",
+              "Life Processes in Living Organisms Part 2",
+              "Environmental Management",
+              "Towards Green Energy",
+              "Animal Classification",
+              "Introduction to Microbiology",
+              "Cell Biology and Biotechnology",
+              "Social Health",
+              "Disaster Management"
+            ]
+          },
+          "Maths Part 1 (Algebra)": {
+            pdf: "https://books.ebalbharati.in/pdfs/1003010023.pdf",
+            solutionSlug: "maharashtra-board-class-10-maths-solutions-chapter-",
+            impSlug: null,
+            chapters: [
+              "Linear Equations in Two Variables",
+              "Quadratic Equations",
+              "Arithmetic Progression (AP)",
+              "Financial Planning",
+              "Probability",
+              "Statistics"
+            ]
+          },
+          "Maths Part 2 (Geometry)": {
+            pdf: "https://books.ebalbharati.in/pdfs/1003010024.pdf",
+            solutionSlug: "maharashtra-board-class-10-geometry-solutions-chapter-",
+            impSlug: null,
+            chapters: [
+              "Similarity",
+              "Pythagoras Theorem",
+              "Circle",
+              "Geometric Constructions",
+              "Co-ordinate Geometry",
+              "Trigonometry",
+              "Mensuration"
+            ]
+          }
+        }
+      }
+    };
+
+    // Application State & LocalStorage Persistence
+    let activeClass = localStorage.getItem("mbs_activeClass") || "12";
+    let activeSubject = localStorage.getItem("mbs_activeSubject") || "Biology";
+    let completedChapters = JSON.parse(localStorage.getItem("mbs_completed") || "{}");
+    let bookmarkedChapters = JSON.parse(localStorage.getItem("mbs_bookmarks") || "{}");
+    let showBookmarksOnly = false;
+
+    function getChapterKey(cls, subj, index) {
+      return `${cls}_${subj}_${index + 1}`;
+    }
+
+    function selectClass(cls) {
+      activeClass = cls;
+      localStorage.setItem("mbs_activeClass", cls);
+      const subjects = Object.keys(CURRICULUM[cls].subjects);
+      if (!subjects.includes(activeSubject)) {
+        activeSubject = subjects[0];
+        localStorage.setItem("mbs_activeSubject", activeSubject);
+      }
+      renderClassTabs();
+      renderSubjectPills();
+      renderChapters();
+    }
+
+    function selectSubject(subj) {
+      activeSubject = subj;
+      localStorage.setItem("mbs_activeSubject", subj);
+      renderSubjectPills();
+      renderChapters();
+    }
+
+    function renderClassTabs() {
+      const buttons = document.querySelectorAll("#classTabs .tab-btn");
+      const map = ["12", "11", "10"];
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle("active", map[idx] === activeClass);
+      });
+    }
+
+    function renderSubjectPills() {
+      const bar = document.getElementById("subjectBar");
+      const subjects = Object.keys(CURRICULUM[activeClass].subjects);
+      bar.innerHTML = subjects.map(subj => `
+        <button class="subject-pill ${subj === activeSubject ? 'active' : ''}" onclick="selectSubject('${subj}')">
+          ${subj}
+        </button>
+      `).join("");
+    }
+
+    function renderTextbookBanner() {
+      const banner = document.getElementById("textbookBanner");
+      const subjData = CURRICULUM[activeClass].subjects[activeSubject];
+      banner.innerHTML = `
+        <div>
+          <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--accent);">
+            Official eBalbharati Direct PDF
+          </span>
+          <h3 class="serif-title" style="margin-top:0.2rem;">
+            Class ${activeClass}th ${activeSubject} Full Textbook
+          </h3>
+        </div>
+        <a href="${subjData.pdf}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="logActivity('Opened Class ${activeClass} ${activeSubject} Textbook PDF')">
+          📥 Download / Read Full Textbook PDF
+        </a>
+      `;
+    }
+
+    function renderChapters() {
+      renderTextbookBanner();
+      const grid = document.getElementById("chapterGrid");
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      const subjData = CURRICULUM[activeClass].subjects[activeSubject];
+      const baseDomain = "https://maharashtraboardsolutions.guru/";
+
+      // Calculate subject progress
+      const totalCh = subjData.chapters.length;
+      let doneCount = 0;
+      subjData.chapters.forEach((_, idx) => {
+        if (completedChapters[getChapterKey(activeClass, activeSubject, idx)]) doneCount++;
+      });
+      const pct = totalCh > 0 ? Math.round((doneCount / totalCh) * 100) : 0;
+      document.getElementById("progressPercent").textContent = `${pct}% (${doneCount}/${totalCh})`;
+      document.getElementById("progressBar").style.width = `${pct}%`;
+
+      const cardsHtml = subjData.chapters.map((title, idx) => {
+        const chNum = idx + 1;
+        const key = getChapterKey(activeClass, activeSubject, idx);
+        const isDone = !!completedChapters[key];
+        const isBookmarked = !!bookmarkedChapters[key];
+
+        if (query && !title.toLowerCase().includes(query) && !`chapter ${chNum}`.includes(query)) {
+          return "";
+        }
+        if (showBookmarksOnly && !isBookmarked) {
+          return "";
+        }
+
+        const solutionUrl = `${baseDomain}${subjData.solutionSlug}${chNum}/`;
+        const impUrl = subjData.impSlug ? `${baseDomain}${subjData.impSlug}${chNum}/` : null;
+
+        return `
+          <article class="chapter-card ${isDone ? 'completed' : ''}">
+            <div>
+              <div class="chapter-header">
+                <span class="chapter-num">Chapter ${chNum}</span>
+                <div style="display:flex; gap:0.35rem; align-items:center;">
+                  <button class="icon-btn ${isBookmarked ? 'bookmarked' : ''}" title="Bookmark Chapter" onclick="toggleBookmark('${key}')">
+                    ${isBookmarked ? '★' : '☆'}
+                  </button>
+                  <label style="display:flex; align-items:center; gap:0.25rem; font-size:0.8rem; cursor:pointer;">
+                    <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleComplete('${key}', '${title.replace(/'/g, "\\'")}')" />
+                    Done
+                  </label>
+                </div>
+              </div>
+              <h4 class="chapter-title serif-title">${title}</h4>
+            </div>
+
+            <div class="chapter-actions">
+              <a href="${solutionUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="logActivity('Studied Ch ${chNum}: ${title.replace(/'/g, "\\'")}')">
+                📖 Solutions
+              </a>
+              ${impUrl ? `
+                <a href="${impUrl}" target="_blank" rel="noopener noreferrer" class="btn" onclick="logActivity('Practiced Imp Qs: ${title.replace(/'/g, "\\'")}')">
+                  ⚡ Imp Questions
+                </a>
+              ` : ''}
+              <a href="${subjData.pdf}" target="_blank" rel="noopener noreferrer" class="btn">
+                📄 Textbook PDF
+              </a>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      grid.innerHTML = cardsHtml || `<p style="color:var(--text-secondary);">No matching chapters found.</p>`;
+    }
+
+    function toggleComplete(key, title) {
+      completedChapters[key] = !completedChapters[key];
+      localStorage.setItem("mbs_completed", JSON.stringify(completedChapters));
+      if (completedChapters[key]) {
+        logActivity(`Completed: ${title}`);
+      }
+      renderChapters();
+    }
+
+    function toggleBookmark(key) {
+      bookmarkedChapters[key] = !bookmarkedChapters[key];
+      localStorage.setItem("mbs_bookmarks", JSON.stringify(bookmarkedChapters));
+      renderChapters();
+    }
+
+    function toggleBookmarkView() {
+      showBookmarksOnly = !showBookmarksOnly;
+      const btn = document.getElementById("bookmarkFilterBtn");
+      btn.classList.toggle("btn-primary", showBookmarksOnly);
+      renderChapters();
+    }
+
+    function logActivity(text) {
+      const stamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const msg = `Last activity (${stamp}): ${text}`;
+      localStorage.setItem("mbs_recent", msg);
+      document.getElementById("recentActivityText").textContent = msg;
+    }
+
+    function exportProgress() {
+      const payload = {
+        exportedAt: new Date().toISOString(),
+        completedChapters,
+        bookmarkedChapters
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "mybookshelf-progress-backup.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      html.setAttribute("data-theme", next);
+      localStorage.setItem("mbs_theme", next);
+      document.getElementById("themeToggleBtn").textContent = next === "dark" ? "☀️ Light" : "🌙 Dark";
+    }
+
+    // Initialize Portal on Load
+    (function init() {
+      const savedTheme = localStorage.getItem("mbs_theme") || "light";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+      document.getElementById("themeToggleBtn").textContent = savedTheme === "dark" ? "☀️ Light" : "🌙 Dark";
+
+      const savedRecent = localStorage.getItem("mbs_recent");
+      if (savedRecent) {
+        document.getElementById("recentActivityText").textContent = savedRecent;
+      }
+
+      selectClass(activeClass);
+    })();
+  </script>
+</body>
+</html>
