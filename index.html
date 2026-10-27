@@ -1206,7 +1206,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
         <div>
           <span style="font-size:0.7rem; font-weight:800; text-transform:uppercase; color:var(--accent);">Developer Support & Appreciation</span>
-          <h3 style="font-size:1.2rem; font-weight:800;">Contact ItzMafia 😜</h3>
+          <h3 style="font-size:1.2rem; font-weight:800;">Contact ItzMafia </h3>
         </div>
         <button class="icon-btn" onclick="closeHelpModal()">✕</button>
       </div>
@@ -1757,6 +1757,15 @@
             pdf: "https://books.ebalbharati.in/pdfs/1203020423.pdf",
             solutionSlug: "maharashtra-board-class-12-maths-solutions-chapter-",
             impSlug: "maharashtra-board-class-12-maths-important-questions-chapter-",
+            impUrls: [
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9101",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9102",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9103",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9104",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9105",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9106",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9107"
+            ],
             highYield: [1, 2, 3, 5, 6],
             chapters: [
               "Mathematical Logic",
@@ -1773,6 +1782,16 @@
             pdf: "https://books.ebalbharati.in/pdfs/1203020424.pdf",
             solutionSlug: "maharashtra-board-class-12-maths-solutions-part-2-chapter-",
             impSlug: "maharashtra-board-class-12-maths-important-questions-part-2-chapter-",
+            impUrls: [
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9118",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9119",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9120",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9121",
+              null,
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9123",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9124",
+              "https://www.shaalaa.com/search-important-solutions/maharashtra-board-12th-standard-board-exam-hsc-science-general_573?subjects=mathematics-statistics-arts-science_756&topics=9125"
+            ],
             highYield: [1, 2, 3, 4, 6, 7],
             chapters: [
               "Differentiation",
@@ -2128,7 +2147,7 @@
         if (statusFilter === "high" && !isHighYield) return "";
 
         const solutionUrl = `${baseDomain}${subjData.solutionSlug}${chNum}/`;
-        const impUrl = subjData.impSlug ? `${baseDomain}${subjData.impSlug}${chNum}/` : null;
+        const impUrl = subjData.impUrls ? subjData.impUrls[idx] : (subjData.impSlug ? `${baseDomain}${subjData.impSlug}${chNum}/` : null);
         const safeTitle = title.replace(/'/g, "\\'");
 
         return `
@@ -2327,3 +2346,4 @@
   </script>
 </body>
 </html>
+
