@@ -10,7 +10,9 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://itz-mafia.github.io/Mybookshelf-/">
   <meta name="description" content="Direct eBalbharati Textbook PDFs, Chapter-wise Solutions, Important Questions, Study Timer, and Progress Tracker for Maharashtra State Board SSC, FYJC, and HSC." />
-  <meta name="theme-color" content="#090d16" />
+    <meta name="theme-color" content="#090d16" />
+  <link rel="manifest" href="manifest.json">
+
 
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2033,6 +2035,15 @@
       selectClass(activeClass);
     })();
   </script>
+  <!-- Register PWA Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('pwabuilder-sw.js')
+          .then((reg) => console.log('Service Worker registered!', reg.scope))
+          .catch((err) => console.warn('Service Worker failed:', err));
+      });
+    }
+  </script>
 </body>
 </html>
-
