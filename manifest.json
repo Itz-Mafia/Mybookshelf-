@@ -1,0 +1,17 @@
+{
+  "name": "Mybookshelf - Board Portal",
+  "short_name": "Mybookshelf",
+  "description": "Maharashtra State Board Study Portal (SSC & HSC)",
+  "start_url": "/Mybookshelf-/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
