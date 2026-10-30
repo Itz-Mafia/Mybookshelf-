@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark-green">
 <head>
-  <meta name="google-site-verification" content="2r6hJWGbmGSKE4OPkLVN1Jhm4asR3C19xzPkzzDL5S4" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>Mybookshelf — Maharashtra State Board Academic Portal (Class 10, 11 & 12)</title>
-  <meta name="description" content="Free Maharashtra State Board (SSC & HSC) Study Portal. Direct Balbharati Textbook PDF downloads, chapter-wise exercise solutions, and important board questions for Class 10, 11, and 12.">
-<meta name="keywords" content="Maharashtra State Board solutions, Balbharati textbook PDF, HSC Class 12 Physics Chemistry Maths Biology solutions, SSC Class 10 Science solutions, FYJC Class 11, Mybookshelf">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://itz-mafia.github.io/Mybookshelf-/">
-  <meta name="description" content="Direct eBalbharati Textbook PDFs, Chapter-wise Solutions, Important Questions, Study Timer, and Progress Tracker for Maharashtra State Board SSC, FYJC, and HSC." />
-    <meta name="theme-color" content="#090d16" />
+  <title>Mybookshelf — Maharashtra State Board Academic Portal (Class 11 & 12)</title>
+  <meta name="description" content="Free Maharashtra State Board HSC & FYJC Study Portal. Direct Balbharati Textbook PDF downloads and chapter-wise exercise solutions.">
+  <link rel="canonical" href="https://itz-mafia.github.io/Mybookshelf-/">
   <link rel="manifest" href="manifest.json">
-
+  <meta name="theme-color" content="#090d0b" />
 
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,65 +16,55 @@
 
   <style>
     /* ==========================================================================
-       1. DESIGN TOKENS & THEME VARIABLES (DEEP SLATE & ELECTRIC INDIGO)
+       1. THEME TOKENS (3 COMBO SYSTEM: BLACK/GREEN, MONOCHROME, CLASSIC PAPER)
        ========================================================================== */
     :root {
-      --bg-primary: #f8fafc;
-      --bg-secondary: #f1f5f9;
-      --bg-tertiary: #e2e8f0;
-      --bg-card: #ffffff;
-      --bg-glass: rgba(255, 255, 255, 0.88);
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #64748b;
-      --accent: #4f46e5;
-      --accent-hover: #4338ca;
-      --accent-light: #6366f1;
-      --accent-soft: rgba(79, 70, 229, 0.1);
-      --accent-glow: rgba(79, 70, 229, 0.25);
-      --border: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --success: #10b981;
-      --success-soft: rgba(16, 185, 129, 0.12);
-      --warning: #f59e0b;
-      --warning-soft: rgba(245, 158, 11, 0.12);
-      --danger: #ef4444;
-      --danger-soft: rgba(239, 68, 68, 0.12);
-      --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
-      --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --radius-full: 9999px;
-      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      /* Default: Forest Terminal (Black & Emerald Green) */
+      --bg-primary: #090d0b;
+      --bg-secondary: #111814;
+      --bg-card: #151e18;
+      --text-primary: #f1f5f3;
+      --text-secondary: #94a39b;
+      --text-muted: #64746b;
+      --accent: #10b981;
+      --accent-hover: #059669;
+      --accent-soft: rgba(16, 185, 129, 0.12);
+      --border: #1e2e24;
+      --border-strong: #2d4436;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      --radius: 8px;
     }
 
-    [data-theme="dark"] {
-      --bg-primary: #090d16;
-      --bg-secondary: #111827;
-      --bg-tertiary: #1e293b;
-      --bg-card: #151e2e;
-      --bg-glass: rgba(21, 30, 46, 0.88);
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --accent: #6366f1;
-      --accent-hover: #818cf8;
-      --accent-light: #a5b4fc;
-      --accent-soft: rgba(99, 102, 241, 0.15);
-      --accent-glow: rgba(99, 102, 241, 0.35);
-      --border: #1e293b;
-      --border-strong: #334155;
-      --success: #34d399;
-      --success-soft: rgba(52, 211, 153, 0.15);
-      --warning: #fbbf24;
-      --warning-soft: rgba(251, 191, 36, 0.15);
-      --danger: #f87171;
-      --danger-soft: rgba(248, 113, 113, 0.15);
-      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
-      --shadow-md: 0 4px 12px -1px rgba(0, 0, 0, 0.5);
-      --shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.65);
+    [data-theme="monochrome"] {
+      /* Monochrome Dark (Black & White) */
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #141414;
+      --bg-card: #1a1a1a;
+      --text-primary: #ffffff;
+      --text-secondary: #a3a3a3;
+      --text-muted: #737373;
+      --accent: #ffffff;
+      --accent-hover: #e5e5e5;
+      --accent-soft: rgba(255, 255, 255, 0.1);
+      --border: #262626;
+      --border-strong: #404040;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    [data-theme="paper"] {
+      /* Classic Paper (White & Black) */
+      --bg-primary: #f8f9fa;
+      --bg-secondary: #f1f3f5;
+      --bg-card: #ffffff;
+      --text-primary: #111111;
+      --text-secondary: #495057;
+      --text-muted: #868e96;
+      --accent: #111111;
+      --accent-hover: #343a40;
+      --accent-soft: rgba(17, 17, 17, 0.08);
+      --border: #dee2e6;
+      --border-strong: #ced4da;
+      --shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
     }
 
     /* ==========================================================================
@@ -91,120 +76,193 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-      -webkit-tap-highlight-color: transparent;
-    }
-
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      line-height: 1.6;
-      transition: background-color var(--transition), color var(--transition);
+      line-height: 1.5;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow-x: hidden;
-    }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg-primary);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--border-strong);
-      border-radius: var(--radius-full);
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent);
     }
 
     /* ==========================================================================
-       3. TOP ANNOUNCEMENT & SMARTLINK TICKER
+       3. SCREEN 1: LANDING SCREEN (FULL SCREEN SUNSET VIDEO + LEFT-MIDDLE SELECTOR)
        ========================================================================== */
-    .top-ticker {
-      background: linear-gradient(90deg, #4f46e5, #2563eb, #4f46e5);
-      background-size: 200% 100%;
-      animation: gradientMove 8s infinite linear;
-      color: #ffffff;
-      padding: 0.45rem 1rem;
-      font-size: 0.78rem;
-      font-weight: 600;
+    #landingScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      text-align: center;
-      z-index: 1001;
+      background: #000;
+      overflow: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
     }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
+    #landingScreen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
 
-    .top-ticker a {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 0.15rem 0.6rem;
-      border-radius: var(--radius-full);
-      text-decoration: none;
+    .landing-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      filter: brightness(0.85);
+    }
+
+    .landing-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 50%, transparent 100%);
+      z-index: 2;
+    }
+
+    .landing-content {
+      position: relative;
+      z-index: 3;
+      padding: 0 4rem;
+      max-width: 650px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .landing-content {
+        padding: 0 1.5rem;
+      }
+    }
+
+    .landing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      transition: background var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.8rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 9999px;
+      color: #fff;
+      width: fit-content;
     }
 
-    .top-ticker a:hover {
-      background: rgba(255, 255, 255, 0.35);
+    .landing-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .landing-desc {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 500px;
+    }
+
+    .landing-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .landing-btn {
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .landing-btn:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .landing-btn.primary {
+      background: #10b981;
+      border-color: #10b981;
+      color: #fff;
+    }
+
+    .landing-btn.primary:hover {
+      background: #059669;
+      color: #fff;
     }
 
     /* ==========================================================================
-       4. STICKY HEADER & NAVIGATION
+       4. SCREEN 2: STUDY PORTAL UI
        ========================================================================== */
+    #studyApp {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease;
+    }
+
+    #studyApp.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
     header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: var(--bg-glass);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: var(--bg-secondary);
       border-bottom: 1px solid var(--border);
       padding: 0.85rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 1rem;
     }
 
-    .drawer-toggle {
-      background: var(--bg-secondary);
+    .home-back-btn {
+      background: var(--bg-card);
       border: 1px solid var(--border);
       color: var(--text-primary);
-      width: 38px;
-      height: 38px;
-      border-radius: var(--radius-sm);
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: all var(--transition);
+      gap: 0.35rem;
+      transition: all 0.2s ease;
     }
 
-    .drawer-toggle:hover {
+    .home-back-btn:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
@@ -212,444 +270,181 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 0.6rem;
       text-decoration: none;
+      color: var(--text-primary);
     }
 
     .brand-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), #3b82f6);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
       font-weight: 800;
-      font-size: 1.1rem;
-      box-shadow: 0 4px 10px var(--accent-glow);
     }
 
     .brand-text h1 {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      color: var(--text-primary);
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       line-height: 1.1;
     }
 
     .brand-text span {
-      display: block;
-      font-size: 0.7rem;
-      font-weight: 600;
+      font-size: 0.68rem;
       color: var(--text-secondary);
-      letter-spacing: 0.02em;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.55rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
     }
 
-    /* ==========================================================================
-       5. BUTTONS & INTERACTIVE CONTROLS
-       ========================================================================== */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
-      padding: 0.5rem 0.95rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.84rem;
+      gap: 0.4rem;
+      padding: 0.48rem 0.9rem;
+      border-radius: var(--radius);
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
       border: 1px solid var(--border);
       background: var(--bg-card);
       color: var(--text-primary);
       text-decoration: none;
-      transition: all var(--transition);
+      transition: all 0.2s ease;
       white-space: nowrap;
-      user-select: none;
     }
 
     .btn:hover {
       border-color: var(--accent);
       color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    .btn:active {
-      transform: translateY(0);
     }
 
     .btn-primary {
       background: var(--accent);
-      color: #ffffff;
+      color: #fff;
       border-color: var(--accent);
-      box-shadow: 0 2px 8px var(--accent-glow);
+    }
+
+    [data-theme="paper"] .btn-primary {
+      color: #fff;
     }
 
     .btn-primary:hover {
       background: var(--accent-hover);
-      border-color: var(--accent-hover);
-      color: #ffffff;
+      color: #fff;
     }
 
-    .btn-success {
-      background: var(--success-soft);
-      color: var(--success);
-      border-color: rgba(16, 185, 129, 0.3);
-    }
-
-    .btn-warning {
-      background: var(--warning-soft);
-      color: var(--warning);
-      border-color: rgba(245, 158, 11, 0.3);
-    }
-
-    .user-chip {
-      display: none;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.3rem 0.7rem 0.3rem 0.35rem;
-      border-radius: var(--radius-full);
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .user-chip img {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    /* ==========================================================================
-       6. SLIDE-OUT SIDEBAR DRAWER
-       ========================================================================== */
-    .drawer-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(9, 13, 22, 0.6);
-      backdrop-filter: blur(4px);
-      z-index: 2000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition);
-    }
-
-    .drawer-backdrop.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .sidebar-drawer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      width: 310px;
-      max-width: 85vw;
-      background: var(--bg-card);
-      border-right: 1px solid var(--border);
-      z-index: 2001;
-      transform: translateX(-100%);
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      padding: 1.25rem;
-      overflow-y: auto;
-    }
-
-    .sidebar-drawer.open {
-      transform: translateX(0);
-    }
-
-    .drawer-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1rem;
-    }
-
-    .drawer-section-title {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin: 1rem 0 0.5rem 0;
-    }
-
-    .drawer-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    .drawer-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.6rem 0.85rem;
-      border-radius: var(--radius-sm);
-      color: var(--text-primary);
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid transparent;
-      background: transparent;
-      text-align: left;
-      transition: all var(--transition);
-    }
-
-    .drawer-link:hover, .drawer-link.active {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border-color: rgba(99, 102, 241, 0.2);
-    }
-
-    /* ==========================================================================
-       7. MAIN LAYOUT & DASHBOARD ANALYTICS
-       ========================================================================== */
     .container {
       width: 100%;
-      max-width: 1260px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 1.5rem;
       flex: 1;
     }
 
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 1.15rem;
-      margin-bottom: 1.5rem;
-    }
-
-    @media (max-width: 980px) {
-      .dashboard-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      box-shadow: var(--shadow-md);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 0.85rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), #3b82f6);
-    }
-
-    .stat-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    .stat-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--text-primary);
-    }
-
-    .stat-subtitle {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      margin-top: 0.2rem;
-    }
-
-    .badge-pill {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.25rem 0.65rem;
-      border-radius: var(--radius-full);
-      background: var(--accent-soft);
-      color: var(--accent);
-      white-space: nowrap;
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 10px;
-      background: var(--bg-tertiary);
-      border-radius: var(--radius-full);
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--success));
-      width: 0%;
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .timer-display {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: -0.02em;
-    }
-
-    .timer-controls {
-      display: flex;
-      gap: 0.45rem;
-      flex-wrap: wrap;
-    }
-
-    /* ==========================================================================
-       8. CONTROLS BAR, CLASS TABS & UNIVERSAL SEARCH
-       ========================================================================== */
+    /* Controls Bar */
     .controls-bar {
-      background: var(--bg-card);
+      background: var(--bg-secondary);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1rem;
-      margin-bottom: 1.15rem;
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.25rem;
       display: flex;
       flex-wrap: wrap;
       gap: 0.85rem;
       align-items: center;
       justify-content: space-between;
-      box-shadow: var(--shadow-sm);
     }
 
     .class-tabs {
       display: flex;
-      gap: 0.45rem;
-      flex-wrap: wrap;
+      gap: 0.4rem;
     }
 
     .tab-btn {
-      padding: 0.55rem 1.05rem;
-      border-radius: var(--radius-sm);
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius);
       border: 1px solid var(--border);
-      background: var(--bg-secondary);
+      background: var(--bg-card);
       color: var(--text-secondary);
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       cursor: pointer;
-      transition: all var(--transition);
+      transition: all 0.2s ease;
     }
 
     .tab-btn:hover {
       color: var(--text-primary);
-      border-color: var(--border-strong);
     }
 
     .tab-btn.active {
       background: var(--accent);
-      color: #ffffff;
+      color: #fff;
       border-color: var(--accent);
-      box-shadow: 0 3px 10px var(--accent-glow);
+    }
+
+    [data-theme="paper"] .tab-btn.active {
+      color: #fff;
     }
 
     .search-group {
       flex: 1;
-      min-width: 260px;
+      min-width: 240px;
       display: flex;
       gap: 0.5rem;
       align-items: center;
     }
 
-    .search-wrapper {
-      flex: 1;
-      position: relative;
-    }
-
     .search-input {
       width: 100%;
-      padding: 0.62rem 1rem 0.62rem 2.35rem;
-      border-radius: var(--radius-sm);
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius);
       border: 1px solid var(--border);
-      background: var(--bg-secondary);
+      background: var(--bg-card);
       color: var(--text-primary);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-family: inherit;
-      transition: border-color var(--transition), box-shadow var(--transition);
     }
 
     .search-input:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-soft);
     }
 
-    .search-icon {
-      position: absolute;
-      left: 0.8rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-
-    .filter-select {
-      padding: 0.6rem 0.85rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      font-size: 0.84rem;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-    }
-
-    /* ==========================================================================
-       9. SUBJECT SELECTOR PILLS & DIRECT TEXTBOOK CALLOUT
-       ========================================================================== */
+    /* Subject Bar */
     .subject-bar {
       display: flex;
-      gap: 0.55rem;
+      gap: 0.5rem;
       overflow-x: auto;
-      padding-bottom: 0.45rem;
+      padding-bottom: 0.35rem;
       margin-bottom: 1.25rem;
       scrollbar-width: thin;
     }
 
     .subject-pill {
       white-space: nowrap;
-      padding: 0.55rem 1.05rem;
-      border-radius: var(--radius-sm);
-      background: var(--bg-card);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      background: var(--bg-secondary);
       color: var(--text-secondary);
       border: 1px solid var(--border);
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      transition: all var(--transition);
-      box-shadow: var(--shadow-sm);
+      gap: 0.4rem;
+      transition: all 0.2s ease;
     }
 
     .subject-pill:hover {
@@ -663,31 +458,23 @@
       background: var(--accent-soft);
     }
 
-    .pill-count {
-      font-size: 0.7rem;
-      padding: 0.1rem 0.4rem;
-      border-radius: var(--radius-full);
-      background: var(--bg-secondary);
-      color: var(--text-secondary);
-    }
-
+    /* Textbook Callout */
     .textbook-callout {
-      background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
+      background: var(--bg-secondary);
       border: 1px solid var(--border);
-      border-left: 5px solid var(--accent);
-      border-radius: var(--radius-md);
-      padding: 1.25rem 1.5rem;
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.15rem 1.35rem;
       margin-bottom: 1.5rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      box-shadow: var(--shadow-md);
     }
 
     .textbook-meta span {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -695,1050 +482,281 @@
     }
 
     .textbook-meta h2 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 800;
       color: var(--text-primary);
-      margin-top: 0.15rem;
+      margin-top: 0.1rem;
     }
 
     .textbook-meta p {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
-      margin-top: 0.15rem;
+      margin-top: 0.1rem;
     }
 
-    .textbook-actions {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-
-    /* ==========================================================================
-       10. CHAPTER CARDS GRID & STUDY TOOLS
-       ========================================================================== */
+    /* Chapter Grid */
     .chapter-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
-      gap: 1.2rem;
-    }
-
-    @media (max-width: 640px) {
-      .chapter-grid {
-        grid-template-columns: 1fr;
-      }
-      header {
-        padding: 0.75rem 1rem;
-      }
-      .container {
-        padding: 1rem;
-      }
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
     }
 
     .chapter-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
+      border-radius: var(--radius);
+      padding: 1.15rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 0.95rem;
-      box-shadow: var(--shadow-md);
-      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-      position: relative;
+      gap: 0.85rem;
+      transition: border-color 0.2s ease;
     }
 
     .chapter-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .chapter-card.completed {
-      border-color: var(--success);
-    }
-
-    .chapter-card.completed::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--success);
-      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      border-color: var(--border-strong);
     }
 
     .chapter-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 0.5rem;
-    }
-
-    .chapter-badges {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
     }
 
     .chapter-num {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       color: var(--accent);
       background: var(--accent-soft);
-      padding: 0.2rem 0.55rem;
-      border-radius: 6px;
-    }
-
-    .priority-tag {
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 0.15rem 0.5rem;
-      border-radius: 6px;
-      background: var(--warning-soft);
-      color: var(--warning);
-    }
-
-    .chapter-controls {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-    }
-
-    .icon-btn {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      width: 30px;
-      height: 30px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--transition);
-    }
-
-    .icon-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .icon-btn.bookmarked {
-      color: var(--warning);
-      border-color: var(--warning);
-      background: var(--warning-soft);
-    }
-
-    .done-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 0.25rem 0.6rem;
-      border-radius: 6px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .done-label input {
-      accent-color: var(--success);
-      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
     }
 
     .chapter-title {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--text-primary);
-      line-height: 1.4;
+      line-height: 1.35;
       margin-top: 0.2rem;
-    }
-
-    .notes-box {
-      margin-top: 0.25rem;
-    }
-
-    .notes-input {
-      width: 100%;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.8rem;
-      font-family: inherit;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      transition: border-color var(--transition);
-    }
-
-    .notes-input:focus {
-      outline: none;
-      border-color: var(--accent);
     }
 
     .chapter-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
-      padding-top: 0.75rem;
+      gap: 0.4rem;
+      padding-top: 0.65rem;
       border-top: 1px solid var(--border);
     }
 
     .chapter-actions .btn {
       flex: 1;
-      min-width: 95px;
+      min-width: 90px;
+      font-size: 0.78rem;
+      padding: 0.42rem 0.6rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 1.25rem;
+      text-align: center;
       font-size: 0.8rem;
-      padding: 0.48rem 0.65rem;
-    }
-
-    /* ==========================================================================
-       11. HELP / CONTACT ITZMAFIA & SINGLE-ACTIVE INTERVAL VIDEO PLAYER
-       ========================================================================== */
-    .floating-help-btn {
-      position: fixed;
-      bottom: 22px;
-      left: 22px;
-      z-index: 2500;
-      background: linear-gradient(135deg, var(--accent), #3b82f6);
-      color: #ffffff;
-      border: none;
-      border-radius: var(--radius-full);
-      padding: 0.65rem 1.15rem;
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 8px 20px var(--accent-glow);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .floating-help-btn:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 26px var(--accent-glow);
-    }
-
-    .appreciation-stage {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1rem;
-      margin: 1rem 0;
-      text-align: center;
-    }
-
-    .video-frame {
-      position: relative;
-      width: 100%;
-      max-width: 320px;
-      height: 320px;
-      margin: 0.65rem auto;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      background: #000;
-      border: 2px solid var(--accent);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .video-frame video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .video-status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.25rem 0.7rem;
-      border-radius: var(--radius-full);
-      background: var(--accent-soft);
-      color: var(--accent);
-      margin-bottom: 0.35rem;
-    }
-
-    .contact-box {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .contact-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-    }
-
-    /* ==========================================================================
-       12. ADSTERRA ANTI-ADBLOCKER & SMARTLINK SPONSOR SECTION
-       ========================================================================== */
-    .ad-section {
-      margin: 2.25rem 0 1rem 0;
-      padding: 1.35rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      text-align: center;
-      box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ad-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin-bottom: 0.65rem;
-    }
-
-    .smartlink-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 0.85rem;
-      margin-top: 0.85rem;
-    }
-
-    .smartlink-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.85rem 1.15rem;
-      background: linear-gradient(135deg, rgba(79, 70, 229, 0.14), rgba(37, 99, 235, 0.14));
-      border: 1px solid rgba(99, 102, 241, 0.35);
-      border-radius: var(--radius-sm);
-      color: var(--text-primary);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.86rem;
-      transition: all var(--transition);
-    }
-
-    .smartlink-card:hover {
-      background: var(--accent);
-      color: #ffffff;
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px var(--accent-glow);
-    }
-
-    /* ==========================================================================
-       13. MODAL & TOAST NOTIFICATION SYSTEM
-       ========================================================================== */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(9, 13, 22, 0.75);
-      backdrop-filter: blur(6px);
-      z-index: 3000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-
-    .modal-overlay.open {
-      display: flex;
-    }
-
-    .modal-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      max-width: 540px;
-      width: 100%;
-      padding: 1.4rem;
-      box-shadow: var(--shadow-lg);
-      max-height: 90vh;
-      overflow-y: auto;
+      color: var(--text-secondary);
+      margin-top: 2rem;
     }
 
     #toastContainer {
       position: fixed;
-      bottom: 22px;
-      right: 22px;
+      bottom: 20px;
+      right: 20px;
       z-index: 9999;
       display: flex;
       flex-direction: column;
-      gap: 0.55rem;
-      max-width: 340px;
+      gap: 0.5rem;
     }
 
     .toast {
       background: var(--bg-card);
       color: var(--text-primary);
       border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      padding: 0.8rem 1.15rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.84rem;
-      font-weight: 600;
-      box-shadow: var(--shadow-lg);
-      animation: toastSlideIn 0.22s ease forwards;
-    }
-
-    @keyframes toastSlideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      background: var(--bg-card);
-      padding: 1.5rem;
-      text-align: center;
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
       font-size: 0.82rem;
-      color: var(--text-secondary);
-      margin-top: 2rem;
+      font-weight: 600;
+      box-shadow: var(--shadow);
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Smartlink Study Bar -->
-  <div class="top-ticker">
-    <span>⚡ Maharashtra Board 2026-27 Exam Prep Resources & Model Question Papers</span>
-    <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer">
-      Access Now →
-    </a>
-  </div>
-
-  <!-- Toast Notification Container -->
   <div id="toastContainer"></div>
 
-  <!-- Floating Help & Appreciation Button (Bottom-Left) -->
-  <button class="floating-help-btn" onclick="openHelpModal()">
-    <span>💬 Help & Contact ItzMafia</span>
-  </button>
-
-  <!-- Sidebar Navigation Drawer -->
-  <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleDrawer(false)"></div>
-  <aside class="sidebar-drawer" id="sidebarDrawer">
-    <div class="drawer-header">
-      <div class="brand">
-        <div class="brand-logo">M</div>
-        <div class="brand-text">
-          <h1>Mybookshelf</h1>
-          <span>By ItzMafia</span>
-        </div>
+  <!-- ==========================================================================
+       SCREEN 1: LANDING SCREEN (SUNSET VIDEO + LEFT-MIDDLE CLASS SELECTOR)
+       ========================================================================== -->
+  <div id="landingScreen">
+    <video class="landing-video-bg" autoplay loop muted playsinline>
+      <source src="vecteezy_boy-listening-to-music-at-sunset-near-the-water-peaceful-scene_74470440.mp4" type="video/mp4">
+    </video>
+    <div class="landing-overlay"></div>
+    <div class="landing-content">
+      <span class="landing-badge">Maharashtra State Board</span>
+      <h1 class="landing-title">Mybookshelf</h1>
+      <p class="landing-desc">
+        Access direct Balbharati Textbook PDFs, chapter-wise exercise solutions, and board resources instantly. Select your standard below to begin.
+      </p>
+      <div class="landing-buttons">
+        <button class="landing-btn primary" onclick="enterPortal('12')">
+          🎓 Class 12th (HSC Science) →
+        </button>
+        <button class="landing-btn" onclick="enterPortal('11')">
+          📘 Class 11th (FYJC Science) →
+        </button>
       </div>
-      <button class="icon-btn" onclick="toggleDrawer(false)">✕</button>
     </div>
-
-    <div class="drawer-section-title">Select Standard</div>
-    <div class="drawer-nav">
-      <button class="drawer-link" onclick="selectClass('12'); toggleDrawer(false);">
-        <span>🎓 Class 12th (HSC Science)</span>
-        <span>→</span>
-      </button>
-      <button class="drawer-link" onclick="selectClass('11'); toggleDrawer(false);">
-        <span>📘 Class 11th (FYJC Science)</span>
-        <span>→</span>
-      </button>
-      <button class="drawer-link" onclick="selectClass('10'); toggleDrawer(false);">
-        <span>📗 Class 10th (SSC Board)</span>
-        <span>→</span>
-      </button>
-    </div>
-
-    <div class="drawer-section-title">Study Utilities & Support</div>
-    <div class="drawer-nav">
-      <button class="drawer-link" onclick="openHelpModal(); toggleDrawer(false);">
-        <span>💌 Help / Contact ItzMafia</span>
-        <span>Open</span>
-      </button>
-      <button class="drawer-link" onclick="toggleBookmarkView(); toggleDrawer(false);">
-        <span>⭐ Saved Bookmarks</span>
-        <span id="drawerBookmarkCount">0</span>
-      </button>
-      <button class="drawer-link" onclick="openModal('formulaModal'); toggleDrawer(false);">
-        <span>🧪 Quick Board Exam Checklist</span>
-        <span>Open</span>
-      </button>
-      <button class="drawer-link" onclick="resetCurrentSubjectProgress(); toggleDrawer(false);">
-        <span>🔄 Reset Current Subject Progress</span>
-        <span>Clear</span>
-      </button>
-    </div>
-
-    <div class="drawer-section-title">Official Board Links</div>
-    <div class="drawer-nav">
-      <a class="drawer-link" href="mailto:riteshmaurya810804@gmail.com">
-        <span>📧 Email (ItzMafia)</span>
-        <span>↗</span>
-      </a>
-      <a class="drawer-link" href="https://books.ebalbharati.in/" target="_blank" rel="noopener noreferrer">
-        <span>🏛️ eBalbharati Archive</span>
-        <span>↗</span>
-      </a>
-      <a class="drawer-link" href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer">
-        <span>🚀 Extra Practice Papers</span>
-        <span>↗</span>
-      </a>
-    </div>
-  </aside>
+  </div>
 
   <!-- ==========================================================================
-       HELP / CONTACT ITZMAFIA & SINGLE-ACTIVE INTERVAL APPRECIATION VIDEO MODAL
+       SCREEN 2: STUDY PORTAL
        ========================================================================== -->
-  <div class="modal-overlay" id="helpModal" onclick="if(event.target===this) closeHelpModal()">
-    <div class="modal-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-        <div>
-          <span style="font-size:0.7rem; font-weight:800; text-transform:uppercase; color:var(--accent);">Developer Support & Appreciation</span>
-          <h3 style="font-size:1.2rem; font-weight:800;">Contact ItzMafia 😜</h3>
-        </div>
-        <button class="icon-btn" onclick="closeHelpModal()">✕</button>
-      </div>
-
-      <!-- Single-Active Video Appreciation Stage (Switches automatically on interval) -->
-      <div class="appreciation-stage">
-        <div class="video-status-pill" id="vidStatusIndicator">
-          <span>🎬 Playing Appreciation Clip #1 (Auto-rotates every 10s)</span>
-        </div>
-
-        <div class="video-frame">
-          <!-- Strictly ONE video element in DOM so two videos can NEVER play at once -->
-          <video id="appreciationVideo" autoplay loop muted playsinline preload="auto"></video>
-        </div>
-
-        <div style="display:flex; justify-content:center; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="switchNextAppreciationVideo(true)">
-            ⏭️ Switch Next Clip Now
-          </button>
-          <button class="btn" id="muteToggleBtn" onclick="toggleVideoMute()">
-            🔇 Unmute Sound
-          </button>
-        </div>
-        <p style="font-size:0.74rem; color:var(--text-muted); margin-top:0.45rem;">
-          Only one clip runs at a time and automatically swaps every 10 seconds!
-        </p>
-      </div>
-
-      <!-- Contact Developer Details -->
-      <div class="contact-box">
-        <div class="contact-row">
-          <div>
-            <div style="font-weight:800; color:var(--text-primary);">👤 Creator: ItzMafia </div>
-            <div style="font-size:0.8rem; color:var(--text-secondary);">Found a broken link, missing PDF, or bug? Reach out directly:</div>
+  <div id="studyApp">
+    <header>
+      <div class="brand-group">
+        <button class="home-back-btn" onclick="returnToLanding()">← Home</button>
+        <a href="#" class="brand" onclick="returnToLanding(); return false;">
+          <div class="brand-logo">M</div>
+          <div class="brand-text">
+            <h1>Mybookshelf</h1>
+            <span>State Board Portal</span>
           </div>
-        </div>
-
-        <div class="contact-row" style="padding-top:0.4rem; border-top:1px solid var(--border);">
-          <span style="font-family:'JetBrains Mono', monospace; font-size:0.82rem; font-weight:700; color:var(--accent);">
-            riteshmaurya810804@gmail.com
-          </span>
-          <div style="display:flex; gap:0.4rem;">
-            <button class="btn" onclick="copyCreatorEmail()">📋 Copy</button>
-            <a href="mailto:riteshmaurya810804@gmail.com?subject=Mybookshelf%20Portal%20Feedback" class="btn btn-primary">
-              ✉️ Send Email
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Quick Exam Checklist Modal -->
-  <div class="modal-overlay" id="formulaModal" onclick="if(event.target===this) closeModal('formulaModal')">
-    <div class="modal-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-        <h3 style="font-size:1.15rem; font-weight:800;">⚡ High-Scoring Board Study Checklist</h3>
-        <button class="icon-btn" onclick="closeModal('formulaModal')">✕</button>
-      </div>
-      <div style="font-size:0.88rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:0.75rem;">
-        <p><strong>1. Direct Balbharati Reading:</strong> Always read the official textbook definitions and solved examples first—85%+ of HSC/SSC board papers come straight from Balbharati exercises.</p>
-        <p><strong>2. Chapter-Wise Important Questions:</strong> Use the <em>⚡ Imp Questions</em> button on Class 12 cards to practice repeated numericals, derivations, and IUPAC nomenclature questions.</p>
-        <p><strong>3. Active Recall Notes:</strong> Type formulas, reaction mechanisms, or page numbers directly into each chapter's quick note box. They save automatically to your browser.</p>
-        <p><strong>4. Need Help?</strong> Click the <strong>Help / Contact ItzMafia</strong> button anytime to email ItzMafia (`riteshmaurya810804@gmail.com`).</p>
-      </div>
-      <div style="margin-top:1.25rem; text-align:right;">
-        <button class="btn btn-primary" onclick="closeModal('formulaModal')">Got It, Let's Study</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sticky Navigation Header -->
-  <header>
-    <div class="brand-group">
-      <button class="drawer-toggle" onclick="toggleDrawer(true)" title="Open Menu">☰</button>
-      <a href="#" class="brand">
-        <div class="brand-logo">M</div>
-        <div class="brand-text">
-          <h1>Mybookshelf</h1>
-          <span>Maharashtra State Board Portal</span>
-        </div>
-      </a>
-    </div>
-
-    <div class="header-actions">
-      <div class="user-chip" id="userChip">
-        <img id="userAvatar" src="" alt="User" />
-        <span id="userNameChip">Scholar</span>
-      </div>
-      <button class="btn" id="bookmarkFilterBtn" onclick="toggleBookmarkView()">
-        ⭐ Bookmarks (<span id="bookmarkBadge">0</span>)
-      </button>
-      <button class="btn btn-warning" onclick="openHelpModal()">
-        💬 Help / ItzMafia
-      </button>
-      <button class="btn" id="themeToggleBtn" onclick="toggleTheme()" title="Switch Theme">☀️</button>
-      <button class="btn btn-primary" id="authBtn" onclick="handleAuthClick()">Sign In with Google</button>
-    </div>
-  </header>
-
-  <!-- Main Content Container -->
-  <main class="container">
-
-    <!-- 3-Column Analytics & Study Timer Dashboard -->
-    <section class="dashboard-grid">
-      <!-- Card 1: User Greeting & Recent Activity -->
-      <div class="stat-card">
-        <div class="stat-header">
-          <div>
-            <h2 class="stat-title" id="welcomeText">Welcome, Scholar 👋</h2>
-            <p class="stat-subtitle" id="recentActivityText">
-              Select any chapter below for direct Balbharati PDFs, solutions & Class 12 Imp Questions.
-            </p>
-          </div>
-          <span class="badge-pill" id="overallStatsPill">0 Total Done</span>
-        </div>
-        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.25rem;">
-          <button class="btn btn-primary" onclick="openHelpModal()">
-            😻 Appreciation & Contact ItzMafia
-          </button>
-          <button class="btn" onclick="pickRandomChapter()">🎲 Random Chapter</button>
-        </div>
+        </a>
       </div>
 
-      <!-- Card 2: Active Subject Progress Tracker -->
-      <div class="stat-card">
-        <div class="stat-header">
-          <div>
-            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--text-muted);">
-              Active Subject Mastery
-            </div>
-            <div class="stat-title" id="activeSubjectStatTitle" style="margin-top:0.15rem;">
-              Class 12 Biology
-            </div>
-          </div>
-          <span class="badge-pill" id="progressPercent">0% (0/0)</span>
-        </div>
-        <div>
-          <div class="progress-track">
-            <div class="progress-fill" id="progressBar"></div>
-          </div>
-          <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-secondary); margin-top:0.4rem;">
-            <span id="remainingCountText">0 chapters remaining</span>
-            <span id="bookmarkedSubjCount">0 bookmarked</span>
-          </div>
-        </div>
+      <div class="header-actions">
+        <!-- 3-Combo Theme Switcher -->
+        <button class="btn" id="themeSwitcherBtn" onclick="cycleTheme()" title="Switch Color Palette">
+          🎨 Theme: Green
+        </button>
+        <button class="btn btn-primary" onclick="openHelpModal()">
+          💬 Help / ItzMafia
+        </button>
       </div>
+    </header>
 
-      <!-- Card 3: Built-in Pomodoro Focus Timer -->
-      <div class="stat-card">
-        <div class="stat-header">
-          <div>
-            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--text-muted);">
-              Pomodoro Study Timer
-            </div>
-            <div class="timer-display" id="timerDisplay">25:00</div>
-          </div>
-          <span class="badge-pill" id="timerStateBadge">Ready</span>
+    <main class="container">
+      <!-- Controls Bar -->
+      <section class="controls-bar">
+        <div class="class-tabs" id="classTabs">
+          <button class="tab-btn active" onclick="switchClass('12')">Class 12th (HSC)</button>
+          <button class="tab-btn" onclick="switchClass('11')">Class 11th (FYJC)</button>
         </div>
-        <div class="timer-controls">
-          <button class="btn btn-primary" id="timerStartBtn" onclick="toggleTimer()" style="padding:0.4rem 0.8rem; font-size:0.78rem;">
-            ▶ Start
-          </button>
-          <button class="btn" onclick="resetTimer(25)" style="padding:0.4rem 0.7rem; font-size:0.78rem;">25m</button>
-          <button class="btn" onclick="resetTimer(50)" style="padding:0.4rem 0.7rem; font-size:0.78rem;">50m</button>
-          <button class="btn" onclick="resetTimer(5)" style="padding:0.4rem 0.7rem; font-size:0.78rem;">5m Break</button>
-        </div>
-      </div>
-    </section>
 
-    <!-- Class Switcher, Filter & Universal Search -->
-    <section class="controls-bar">
-      <div class="class-tabs" id="classTabs">
-        <button class="tab-btn active" onclick="selectClass('12')">Class 12th (HSC)</button>
-        <button class="tab-btn" onclick="selectClass('11')">Class 11th (FYJC)</button>
-        <button class="tab-btn" onclick="selectClass('10')">Class 10th (SSC)</button>
-      </div>
-
-      <div class="search-group">
-        <div class="search-wrapper">
-          <span class="search-icon">🔍</span>
+        <div class="search-group">
           <input
             type="search"
             id="searchInput"
             class="search-input"
-            placeholder="Search chapters (e.g. Thermodynamics, Matrices, Plant Water)... [Ctrl + K]"
+            placeholder="Search chapters (e.g. Rotational, Matrices, Limits)..."
             oninput="renderChapters()"
           />
         </div>
-        <select id="statusFilter" class="filter-select" onchange="renderChapters()">
-          <option value="all">All Chapters</option>
-          <option value="pending">Pending Only</option>
-          <option value="completed">Completed Only</option>
-          <option value="high">High Priority</option>
-        </select>
+      </section>
+
+      <!-- Subject Selector Pills -->
+      <nav class="subject-bar" id="subjectBar"></nav>
+
+      <!-- Textbook Callout Banner -->
+      <section class="textbook-callout" id="textbookBanner"></section>
+
+      <!-- Chapter Cards Grid -->
+      <section class="chapter-grid" id="chapterGrid"></section>
+    </main>
+
+    <footer>
+      <p><strong>Mybookshelf</strong> — Crafted by <strong>ItzMafia</strong> (riteshmaurya810804@gmail.com) for Maharashtra State Board Students.</p>
+    </footer>
+  </div>
+
+  <!-- Help / Contact Modal -->
+  <div id="helpModal" style="position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:6000; display:none; align-items:center; justify-content:center; padding:1rem;" onclick="if(event.target===this) closeHelpModal()">
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); max-width:440px; width:100%; padding:1.5rem; box-shadow:var(--shadow);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h3 style="font-size:1.1rem; font-weight:800;">Contact ItzMafia 😜</h3>
+        <button class="btn" onclick="closeHelpModal()">✕</button>
       </div>
-    </section>
-
-    <!-- Subject Selector Pills -->
-    <nav class="subject-bar" id="subjectBar"></nav>
-
-    <!-- Direct Official Balbharati Textbook Callout Banner -->
-    <section class="textbook-callout" id="textbookBanner"></section>
-
-    <!-- Dynamic Chapter Cards Grid -->
-    <section class="chapter-grid" id="chapterGrid"></section>
-
-    <!-- Adsterra Anti-Adblocker Native Banner + Smartlink Fallback Section -->
-    <section class="ad-section">
-      <div class="ad-label">Sponsored Academic Partner & Anti-Adblock Smart Resources</div>
-      <!-- Adsterra Native Banner Container -->
-      <div id="container-4a67b7095bdc2bc8b4f80f1f71031da2"></div>
-      <script async="async" data-cfasync="false" src="https://bauval.org/21/4a67b7095bdc2bc8b4f80f1f71031da2"></script>
-
-      <!-- Direct Adsterra Smartlinks -->
-      <div class="smartlink-grid">
-        <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer" class="smartlink-card">
-          <span>📘 Download HSC & SSC Previous Year Question Banks</span>
-          <span>Open ↗</span>
-        </a>
-        <a href="https://asiafilm.org/4/c23252ef556be44fc883e8933d7570b4" target="_blank" rel="noopener noreferrer" class="smartlink-card">
-          <span>⚡ Chapter-Wise Formula Sheets & Quick Revision Notes</span>
-          <span>View ↗</span>
-        </a>
+      <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1rem;">
+        Found a broken link or need help? Reach out directly to the creator:
+      </p>
+      <div style="background:var(--bg-secondary); padding:0.75rem; border-radius:var(--radius); font-family:'JetBrains Mono', monospace; font-size:0.8rem; font-weight:700; color:var(--accent); margin-bottom:1rem; text-align:center;">
+        riteshmaurya810804@gmail.com
       </div>
-    </section>
+      <div style="display:flex; gap:0.5rem; justify-content:flex-end;">
+        <button class="btn" onclick="copyEmail()">📋 Copy Email</button>
+        <a href="mailto:riteshmaurya810804@gmail.com" class="btn btn-primary">✉️ Send Mail</a>
+      </div>
+    </div>
+  </div>
 
-  </main>
-
-  <footer>
-    <p><strong>Mybookshelf</strong> — Crafted by <strong>ItzMafia</strong> (<a href="mailto:riteshmaurya810804@gmail.com" style="color:var(--accent); text-decoration:none;">riteshmaurya810804@gmail.com</a>) for Maharashtra State Board Students.</p>
-    <p style="margin-top:0.3rem; font-size:0.75rem;">Official textbooks are property of Maharashtra State Bureau of Textbook Production and Curriculum Research (Balbharati).</p>
-  </footer>
-
-  <!-- ==========================================================================
-       FIREBASE SDK v13.1.0 (WITH YOUR REAL API KEY, ANALYTICS & AUTH FALLBACK)
-       ========================================================================== -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-analytics.js";
-    import {
-      getAuth,
-      GoogleAuthProvider,
-      signInWithPopup,
-      signInWithRedirect,
-      getRedirectResult,
-      signOut,
-      onAuthStateChanged,
-      setPersistence,
-      browserLocalPersistence
-    } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyD5mHMMBeuBFHPwpkKVB1MtX5Zcsbd-pns",
-      authDomain: "mybookshelf-7da85.firebaseapp.com",
-      projectId: "mybookshelf-7da85",
-      storageBucket: "mybookshelf-7da85.firebasestorage.app",
-      messagingSenderId: "1009549531448",
-      appId: "1:1009549531448:web:206c914a2e26c1962d49cd",
-      measurementId: "G-4ZWJ1G4VZN"
-    };
-
-    let auth = null;
-    let currentUser = null;
-
-    try {
-      const app = initializeApp(firebaseConfig);
-      try {
-        getAnalytics(app);
-      } catch (analyticsErr) {
-        console.info("Analytics blocked by browser shield:", analyticsErr);
-      }
-
-      auth = getAuth(app);
-      setPersistence(auth, browserLocalPersistence).catch(() => {});
-
-      const provider = new GoogleAuthProvider();
-      provider.setCustomParameters({ prompt: "select_account" });
-
-      getRedirectResult(auth)
-        .then((result) => {
-          if (result && result.user) {
-            window.showToast(`Signed in as ${result.user.displayName || result.user.email}`);
-          }
-        })
-        .catch((err) => {
-          console.warn("Redirect login check:", err);
-        });
-
-      onAuthStateChanged(auth, (user) => {
-        currentUser = user;
-        const authBtn = document.getElementById("authBtn");
-        const welcomeText = document.getElementById("welcomeText");
-        const userChip = document.getElementById("userChip");
-        const userAvatar = document.getElementById("userAvatar");
-        const userNameChip = document.getElementById("userNameChip");
-
-        if (user) {
-          const firstName = user.displayName ? user.displayName.split(" ")[0] : "Scholar";
-          authBtn.textContent = "Sign Out";
-          welcomeText.textContent = `Welcome back, ${firstName} 👋`;
-          userChip.style.display = "inline-flex";
-          userNameChip.textContent = firstName;
-          userAvatar.src = user.photoURL || "https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png";
-        } else {
-          authBtn.textContent = "Sign In with Google";
-          welcomeText.textContent = "Welcome, Scholar 👋";
-          userChip.style.display = "none";
-        }
-      });
-
-      window.handleAuthClick = async () => {
-        if (!auth) {
-          window.showToast("Authentication service is initializing.");
-          return;
-        }
-
-        if (currentUser) {
-          try {
-            await signOut(auth);
-            window.showToast("Signed out successfully.");
-          } catch (signOutErr) {
-            window.showToast("Error signing out.");
-          }
-          return;
-        }
-
-        try {
-          window.showToast("Opening Google Sign-In...");
-          await signInWithPopup(auth, provider);
-          window.showToast("Signed in successfully!");
-        } catch (err) {
-          console.warn("Popup sign-in error, evaluating fallback:", err.code, err.message);
-          if (
-            err.code === "auth/popup-blocked" ||
-            err.code === "auth/cancelled-popup-request" ||
-            err.code === "auth/operation-not-supported-in-this-environment"
-          ) {
-            window.showToast("Redirecting to Google Sign-In...");
-            await signInWithRedirect(auth, provider);
-          } else if (err.code === "auth/popup-closed-by-user") {
-            window.showToast("Sign-in window closed.");
-          } else {
-            window.showToast("If using Brave, tap the Lion icon and toggle Shields Down to allow Google login.");
-          }
-        }
-      };
-    } catch (initErr) {
-      console.error("Firebase init error:", initErr);
-    }
-  </script>
-
-  <!-- ==========================================================================
-       COMPLETE CURRICULUM DATABASE, SINGLE-VIDEO INTERVAL CONTROLLER & LOGIC
-       ========================================================================== -->
   <script src="data.js"></script>
   <script>
-    /* ==========================================================================
-       SINGLE-ACTIVE APPRECIATION VIDEO ROTATOR (1 AT A TIME ON 10s INTERVAL)
-       ==========================================================================
-       Put your two cat videos in your GitHub repo root as:
-       1) "cat1.mp4" (Kitten dancing on Spider-Man blanket)
-       2) "cat2.mp4" (Black cat clapping / thumbs up)
-       If local files aren't uploaded yet, it safely falls back to online cat clips.
-    */
-    const APPRECIATION_VIDEOS = [
-      {
-        title: "Dancing Kitten Appreciation Vibe #1 🐾",
-        localSrc: "cat1.mp4",
-        fallbackSrc: "https://assets.mixkit.co/videos/preview/mixkit-kitten-playing-with-a-toy-mouse-45490-large.mp4"
-      },
-      {
-        title: "Black Cat Clapping & Thumbs-Up Vibe #2 😸👏",
-        localSrc: "cat2.mp4",
-        fallbackSrc: "https://assets.mixkit.co/videos/preview/mixkit-black-cat-looking-at-the-camera-45486-large.mp4"
-      }
-    ];
-
-    let currentVideoIdx = 0;
-    let videoRotationInterval = null;
-    const VIDEO_ROTATE_MS = 10000; // Swaps active video every 10 seconds
-
-    function loadSingleAppreciationVideo(index) {
-      const videoEl = document.getElementById("appreciationVideo");
-      const statusEl = document.getElementById("vidStatusIndicator");
-      if (!videoEl) return;
-
-      // Strictly stop & clear any playing stream before loading the next one
-      videoEl.pause();
-      videoEl.removeAttribute("src");
-      videoEl.load();
-
-      currentVideoIdx = index % APPRECIATION_VIDEOS.length;
-      const clip = APPRECIATION_VIDEOS[currentVideoIdx];
-
-      statusEl.innerHTML = `<span>🎬 Playing Clip #${currentVideoIdx + 1}: ${clip.title}</span>`;
-
-      // Try loading your repo file (cat1.mp4 / cat2.mp4) first, fallback if not uploaded yet
-      videoEl.src = clip.localSrc;
-      videoEl.onerror = () => {
-        videoEl.onerror = null;
-        videoEl.src = clip.fallbackSrc;
-        videoEl.play().catch(() => {});
-      };
-
-      videoEl.play().catch(() => {});
-    }
-
-    function switchNextAppreciationVideo(manualTrigger = false) {
-      const nextIdx = (currentVideoIdx + 1) % APPRECIATION_VIDEOS.length;
-      loadSingleAppreciationVideo(nextIdx);
-
-      // Reset the 10-second interval timer if clicked manually
-      if (manualTrigger && videoRotationInterval) {
-        clearInterval(videoRotationInterval);
-        videoRotationInterval = setInterval(() => {
-          switchNextAppreciationVideo(false);
-        }, VIDEO_ROTATE_MS);
-      }
-    }
-
-    function openHelpModal() {
-      const modal = document.getElementById("helpModal");
-      modal.classList.add("open");
-
-      // Start playing current clip and begin interval switcher (only 1 active at a time)
-      loadSingleAppreciationVideo(currentVideoIdx);
-      if (videoRotationInterval) clearInterval(videoRotationInterval);
-      videoRotationInterval = setInterval(() => {
-        switchNextAppreciationVideo(false);
-      }, VIDEO_ROTATE_MS);
-    }
-
-    function closeHelpModal() {
-      const modal = document.getElementById("helpModal");
-      modal.classList.remove("open");
-
-      // Stop interval & pause video when modal closes so nothing plays in background
-      if (videoRotationInterval) {
-        clearInterval(videoRotationInterval);
-        videoRotationInterval = null;
-      }
-      const videoEl = document.getElementById("appreciationVideo");
-      if (videoEl) {
-        videoEl.pause();
-      }
-    }
-
-    function toggleVideoMute() {
-      const videoEl = document.getElementById("appreciationVideo");
-      const btn = document.getElementById("muteToggleBtn");
-      if (!videoEl) return;
-      videoEl.muted = !videoEl.muted;
-      btn.textContent = videoEl.muted ? "🔇 Unmute Sound" : "🔊 Mute Sound";
-    }
-
-    function copyCreatorEmail() {
-      navigator.clipboard.writeText("riteshmaurya810804@gmail.com").then(() => {
-        window.showToast("📋 Copied riteshmaurya810804@gmail.com!");
-      }).catch(() => {
-        window.showToast("Email: riteshmaurya810804@gmail.com");
-      });
-    }
-
-    /* ==========================================================================
-       COMPLETE CURRICULUM DATABASE (CLASSES 12, 11 & 10)
-       ========================================================================== */
-    
-
-    /* ==========================================================================
-       STATE MANAGEMENT & PERSISTENCE
-       ========================================================================== */
     let activeClass = localStorage.getItem("mbs_activeClass") || "12";
-    let activeSubject = localStorage.getItem("mbs_activeSubject") || "Biology";
-    let completedChapters = JSON.parse(localStorage.getItem("mbs_completed") || "{}");
-    let bookmarkedChapters = JSON.parse(localStorage.getItem("mbs_bookmarks") || "{}");
-    let chapterNotes = JSON.parse(localStorage.getItem("mbs_notes") || "{}");
-    let showBookmarksOnly = false;
+    let activeSubject = localStorage.getItem("mbs_activeSubject") || "Physics";
+    let currentThemeIdx = 0;
+    const themes = ["dark-green", "monochrome", "paper"];
+    const themeNames = ["Green", "Monochrome", "Paper"];
 
-    let timerSeconds = 25 * 60;
-    let timerInterval = null;
-    let isTimerRunning = false;
-
-    function getChapterKey(cls, subj, index) {
-      return `${cls}_${subj}_${index + 1}`;
-    }
-
-    window.showToast = function(message) {
+    window.showToast = function(msg) {
       const container = document.getElementById("toastContainer");
       if (!container) return;
-      const toast = document.createElement("div");
-      toast.className = "toast";
-      toast.textContent = message;
-      container.appendChild(toast);
-      setTimeout(() => {
-        toast.style.opacity = "0";
-        toast.style.transition = "opacity 0.2s ease";
-        setTimeout(() => toast.remove(), 220);
-      }, 3200);
+      const t = document.createElement("div");
+      t.className = "toast";
+      t.textContent = msg;
+      container.appendChild(t);
+      setTimeout(() => t.remove(), 3000);
     };
 
-    function toggleDrawer(open) {
-      const drawer = document.getElementById("sidebarDrawer");
-      const backdrop = document.getElementById("drawerBackdrop");
-      drawer.classList.toggle("open", open);
-      backdrop.classList.toggle("open", open);
-    }
-
-    function openModal(id) {
-      document.getElementById(id).classList.add("open");
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).classList.remove("open");
-    }
-
-    function selectClass(cls) {
+    function enterPortal(cls) {
       activeClass = cls;
       localStorage.setItem("mbs_activeClass", cls);
-      const subjects = Object.keys(CURRICULUM[cls].subjects);
-      if (!subjects.includes(activeSubject)) {
-        activeSubject = subjects[0];
-        localStorage.setItem("mbs_activeSubject", activeSubject);
+      
+      // Pause landing video to save CPU/battery
+      const video = document.querySelector(".landing-video-bg");
+      if (video) video.pause();
+
+      document.getElementById("landingScreen").classList.add("hidden");
+      document.getElementById("studyApp").classList.add("active");
+      
+      const subs = Object.keys(CURRICULUM[cls].subjects);
+      if (!subs.includes(activeSubject)) {
+        activeSubject = subs[0];
       }
+      
       renderClassTabs();
       renderSubjectPills();
       renderChapters();
     }
 
-    function selectSubject(subj) {
+    function returnToLanding() {
+      document.getElementById("studyApp").classList.remove("active");
+      document.getElementById("landingScreen").classList.remove("hidden");
+      const video = document.querySelector(".landing-video-bg");
+      if (video) video.play().catch(() => {});
+    }
+
+    function switchClass(cls) {
+      activeClass = cls;
+      localStorage.setItem("mbs_activeClass", cls);
+      const subs = Object.keys(CURRICULUM[cls].subjects);
+      activeSubject = subs[0];
+      renderClassTabs();
+      renderSubjectPills();
+      renderChapters();
+    }
+
+    function switchSubject(subj) {
       activeSubject = subj;
       localStorage.setItem("mbs_activeSubject", subj);
       renderSubjectPills();
@@ -1746,143 +764,87 @@
     }
 
     function renderClassTabs() {
-      const buttons = document.querySelectorAll("#classTabs .tab-btn");
-      const map = ["12", "11", "10"];
-      buttons.forEach((btn, idx) => {
-        btn.classList.toggle("active", map[idx] === activeClass);
-      });
+      const tabs = document.querySelectorAll("#classTabs .tab-btn");
+      tabs[0].classList.toggle("active", activeClass === "12");
+      tabs[1].classList.toggle("active", activeClass === "11");
     }
 
     function renderSubjectPills() {
       const bar = document.getElementById("subjectBar");
       const subjects = Object.keys(CURRICULUM[activeClass].subjects);
-      bar.innerHTML = subjects.map(subj => {
-        const sData = CURRICULUM[activeClass].subjects[subj];
-        return `
-          <button class="subject-pill ${subj === activeSubject ? 'active' : ''}" onclick="selectSubject('${subj}')">
-            <span>${sData.icon || '📘'} ${subj}</span>
-            <span class="pill-count">${sData.chapters.length}</span>
-          </button>
-        `;
-      }).join("");
+      bar.innerHTML = subjects.map(s => `
+        <button class="subject-pill ${s === activeSubject ? 'active' : ''}" onclick="switchSubject('${s}')">
+          ${CURRICULUM[activeClass].subjects[s].icon || '📘'} ${s}
+        </button>
+      `).join("");
     }
 
     function renderTextbookBanner() {
       const banner = document.getElementById("textbookBanner");
-      const subjData = CURRICULUM[activeClass].subjects[activeSubject];
-      const hasImp = !!subjData.impSlug;
-
+      const sData = CURRICULUM[activeClass].subjects[activeSubject];
       banner.innerHTML = `
         <div class="textbook-meta">
-          <span>Official Direct eBalbharati PDF (${CURRICULUM[activeClass].label})</span>
-          <h2>${subjData.icon || '📘'} Class ${activeClass}th ${activeSubject} Full Textbook</h2>
-          <p>Verified direct PDF link (${subjData.chapters.length} Chapters) ${hasImp ? '• Includes Chapter-Wise Important Questions' : ''}</p>
+          <span>Official Balbharati PDF (${CURRICULUM[activeClass].label})</span>
+          <h2>${sData.icon || '📘'} Class ${activeClass}th ${activeSubject} Textbook</h2>
+          <p>Complete official textbook PDF containing ${sData.chapters.length} chapters.</p>
         </div>
-        <div class="textbook-actions">
-          <a href="${subjData.pdf}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="logActivity('Opened Class ${activeClass} ${activeSubject} Textbook PDF')">
-            📥 Download / Read Full Textbook PDF
+        <div>
+          <a href="${sData.pdf}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            📥 Download Textbook PDF
           </a>
         </div>
       `;
     }
 
-    function updateGlobalBadges() {
-      const totalDone = Object.values(completedChapters).filter(Boolean).length;
-      const totalBookmarked = Object.values(bookmarkedChapters).filter(Boolean).length;
-      document.getElementById("overallStatsPill").textContent = `${totalDone} Total Done`;
-      document.getElementById("bookmarkBadge").textContent = totalBookmarked;
-      document.getElementById("drawerBookmarkCount").textContent = totalBookmarked;
-    }
-
     function renderChapters() {
       renderTextbookBanner();
-      updateGlobalBadges();
-
       const grid = document.getElementById("chapterGrid");
       const query = document.getElementById("searchInput").value.trim().toLowerCase();
-      const statusFilter = document.getElementById("statusFilter").value;
-      const subjData = CURRICULUM[activeClass].subjects[activeSubject];
+      const sData = CURRICULUM[activeClass].subjects[activeSubject];
       const baseDomain = "https://maharashtraboardsolutions.guru/";
 
-      const totalCh = subjData.chapters.length;
-      let doneCount = 0;
-      let subjBookmarks = 0;
-
-      subjData.chapters.forEach((_, idx) => {
-        const key = getChapterKey(activeClass, activeSubject, idx);
-        if (completedChapters[key]) doneCount++;
-        if (bookmarkedChapters[key]) subjBookmarks++;
-      });
-
-      const pct = totalCh > 0 ? Math.round((doneCount / totalCh) * 100) : 0;
-      document.getElementById("activeSubjectStatTitle").textContent = `Class ${activeClass} ${activeSubject}`;
-      document.getElementById("progressPercent").textContent = `${pct}% (${doneCount}/${totalCh})`;
-      document.getElementById("progressBar").style.width = `${pct}%`;
-      document.getElementById("remainingCountText").textContent = `${totalCh - doneCount} chapters remaining`;
-      document.getElementById("bookmarkedSubjCount").textContent = `${subjBookmarks} bookmarked`;
-
-      const cardsHtml = subjData.chapters.map((title, idx) => {
+      const cards = sData.chapters.map((title, idx) => {
         const chNum = idx + 1;
-        const key = getChapterKey(activeClass, activeSubject, idx);
-        const isDone = !!completedChapters[key];
-        const isBookmarked = !!bookmarkedChapters[key];
-        const isHighYield = subjData.highYield && subjData.highYield.includes(chNum);
-        const currentNote = chapterNotes[key] || "";
-
-        if (query && !title.toLowerCase().includes(query) && !`chapter ${chNum}`.includes(query) && !currentNote.toLowerCase().includes(query)) {
+        if (query && !title.toLowerCase().includes(query) && !`chapter ${chNum}`.includes(query)) {
           return "";
         }
-        if (showBookmarksOnly && !isBookmarked) return "";
-        if (statusFilter === "pending" && isDone) return "";
-        if (statusFilter === "completed" && !isDone) return "";
-        if (statusFilter === "high" && !isHighYield) return "";
 
-        const solutionUrl = `${baseDomain}${subjData.solutionSlug}${chNum}/`;
-        const impUrl = subjData.impUrls ? subjData.impUrls[idx] : (subjData.impSlug ? `${baseDomain}${subjData.impSlug}${chNum}/` : null);
-        const safeTitle = title.replace(/'/g, "\\'");
+        const solutionUrl = `${baseDomain}${sData.solutionSlug}${chNum}/`;
+        
+        // Dynamic secondary button: Imp Questions for Class 12, Miscellaneous Questions for Class 11
+        let secUrl = null;
+        let secLabel = "";
+        let secClass = "";
+
+        if (activeClass === "12") {
+          secUrl = sData.impUrls ? sData.impUrls[idx] : (sData.impSlug ? `${baseDomain}${sData.impSlug}${chNum}/` : null);
+          secLabel = "⚡ Imp Questions";
+          secClass = "";
+        } else {
+          // Class 11 Miscellaneous Questions
+          secUrl = sData.impUrls ? sData.impUrls[idx] : null;
+          secLabel = "⚡ Misc Questions";
+          secClass = "";
+        }
 
         return `
-          <article class="chapter-card ${isDone ? 'completed' : ''}" id="ch-card-${chNum}">
+          <article class="chapter-card">
             <div>
               <div class="chapter-header">
-                <div class="chapter-badges">
-                  <span class="chapter-num">CH ${chNum < 10 ? '0' + chNum : chNum}</span>
-                  ${isHighYield ? `<span class="priority-tag" title="High Weightage Board Chapter">🔥 High Yield</span>` : ''}
-                </div>
-                <div class="chapter-controls">
-                  <button class="icon-btn ${isBookmarked ? 'bookmarked' : ''}" title="Bookmark Chapter" onclick="toggleBookmark('${key}')">
-                    ${isBookmarked ? '★' : '☆'}
-                  </button>
-                  <label class="done-label">
-                    <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleComplete('${key}', '${safeTitle}')" />
-                    <span>${isDone ? 'Completed' : 'Mark Done'}</span>
-                  </label>
-                </div>
+                <span class="chapter-num">CH ${chNum < 10 ? '0' + chNum : chNum}</span>
               </div>
-
               <h3 class="chapter-title">${title}</h3>
-
-              <div class="notes-box">
-                <input
-                  type="text"
-                  class="notes-input"
-                  placeholder="✏️ Add quick note, page no, or formula reminder..."
-                  value="${currentNote.replace(/"/g, '&quot;')}"
-                  oninput="saveNote('${key}', this.value)"
-                />
-              </div>
             </div>
-
             <div class="chapter-actions">
-              <a href="${solutionUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="logActivity('Studied Ch ${chNum}: ${safeTitle}')">
+              <a href="${solutionUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                 📖 Solutions
               </a>
-              ${impUrl ? `
-                <a href="${impUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-warning" onclick="logActivity('Practiced Imp Qs Ch ${chNum}: ${safeTitle}')">
-                  ⚡ Imp Questions
+              ${secUrl ? `
+                <a href="${secUrl}" target="_blank" rel="noopener noreferrer" class="btn ${secClass}">
+                  ${secLabel}
                 </a>
               ` : ''}
-              <a href="${subjData.pdf}" target="_blank" rel="noopener noreferrer" class="btn" onclick="logActivity('Opened PDF for Ch ${chNum}: ${safeTitle}')">
+              <a href="${sData.pdf}" target="_blank" rel="noopener noreferrer" class="btn">
                 📄 Textbook
               </a>
             </div>
@@ -1890,160 +852,40 @@
         `;
       }).join("");
 
-      grid.innerHTML = cardsHtml || `
-        <div style="grid-column: 1 / -1; text-align:center; padding:2.5rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md);">
-          <p style="font-size:1rem; font-weight:700;">No matching chapters found</p>
-          <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.25rem;">Try clearing your search filter or switching subjects.</p>
-        </div>
-      `;
+      grid.innerHTML = cards || `<div style="grid-column: 1/-1; text-align:center; padding:2rem; color:var(--text-secondary);">No chapters found matching your search.</div>`;
     }
 
-    function toggleComplete(key, title) {
-      completedChapters[key] = !completedChapters[key];
-      localStorage.setItem("mbs_completed", JSON.stringify(completedChapters));
-      if (completedChapters[key]) {
-        logActivity(`Completed: ${title}`);
-        window.showToast(`✅ Completed: ${title}`);
-      }
-      renderChapters();
+    function cycleTheme() {
+      currentThemeIdx = (currentThemeIdx + 1) % themes.length;
+      const theme = themes[currentThemeIdx];
+      document.documentElement.setAttribute("data-theme", theme);
+      document.getElementById("themeSwitcherBtn").textContent = `🎨 Theme: ${themeNames[currentThemeIdx]}`;
+      localStorage.setItem("mbs_theme", theme);
     }
 
-    function toggleBookmark(key) {
-      bookmarkedChapters[key] = !bookmarkedChapters[key];
-      localStorage.setItem("mbs_bookmarks", JSON.stringify(bookmarkedChapters));
-      renderChapters();
-      window.showToast(bookmarkedChapters[key] ? "⭐ Added to Bookmarks" : "Removed from Bookmarks");
+    function openHelpModal() {
+      document.getElementById("helpModal").style.display = "flex";
     }
 
-    function saveNote(key, val) {
-      chapterNotes[key] = val;
-      localStorage.setItem("mbs_notes", JSON.stringify(chapterNotes));
+    function closeHelpModal() {
+      document.getElementById("helpModal").style.display = "none";
     }
 
-    function toggleBookmarkView() {
-      showBookmarksOnly = !showBookmarksOnly;
-      const btn = document.getElementById("bookmarkFilterBtn");
-      btn.classList.toggle("btn-primary", showBookmarksOnly);
-      renderChapters();
+    function copyEmail() {
+      navigator.clipboard.writeText("riteshmaurya810804@gmail.com");
+      window.showToast("📋 Copied riteshmaurya810804@gmail.com");
     }
-
-    function resetCurrentSubjectProgress() {
-      const subjData = CURRICULUM[activeClass].subjects[activeSubject];
-      subjData.chapters.forEach((_, idx) => {
-        delete completedChapters[getChapterKey(activeClass, activeSubject, idx)];
-      });
-      localStorage.setItem("mbs_completed", JSON.stringify(completedChapters));
-      renderChapters();
-      window.showToast(`Reset progress for Class ${activeClass} ${activeSubject}`);
-    }
-
-    function pickRandomChapter() {
-      const subjData = CURRICULUM[activeClass].subjects[activeSubject];
-      const randomIdx = Math.floor(Math.random() * subjData.chapters.length);
-      const chNum = randomIdx + 1;
-      const title = subjData.chapters[randomIdx];
-      window.showToast(`🎲 Revise Ch ${chNum}: ${title}`);
-      const card = document.getElementById(`ch-card-${chNum}`);
-      if (card) {
-        card.scrollIntoView({ behavior: "smooth", block: "center" });
-        card.style.borderColor = "var(--warning)";
-        setTimeout(() => renderChapters(), 2200);
-      }
-    }
-
-    function logActivity(text) {
-      const stamp = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-      const msg = `Last activity (${stamp}): ${text}`;
-      localStorage.setItem("mbs_recent", msg);
-      document.getElementById("recentActivityText").textContent = msg;
-    }
-
-    function updateTimerDisplay() {
-      const mins = Math.floor(timerSeconds / 60);
-      const secs = timerSeconds % 60;
-      document.getElementById("timerDisplay").textContent =
-        `${mins < 10 ? "0" + mins : mins}:${secs < 10 ? "0" + secs : secs}`;
-    }
-
-    function toggleTimer() {
-      const btn = document.getElementById("timerStartBtn");
-      const badge = document.getElementById("timerStateBadge");
-      if (isTimerRunning) {
-        clearInterval(timerInterval);
-        isTimerRunning = false;
-        btn.textContent = "▶ Resume";
-        badge.textContent = "Paused";
-      } else {
-        isTimerRunning = true;
-        btn.textContent = "⏸ Pause";
-        badge.textContent = "Focusing 🔥";
-        timerInterval = setInterval(() => {
-          if (timerSeconds > 0) {
-            timerSeconds--;
-            updateTimerDisplay();
-          } else {
-            clearInterval(timerInterval);
-            isTimerRunning = false;
-            btn.textContent = "▶ Start";
-            badge.textContent = "Done!";
-            window.showToast("🎉 Focus session complete! Open the Appreciation clip for a break.");
-          }
-        }, 1000);
-      }
-    }
-
-    function resetTimer(minutes) {
-      clearInterval(timerInterval);
-      isTimerRunning = false;
-      timerSeconds = minutes * 60;
-      updateTimerDisplay();
-      document.getElementById("timerStartBtn").textContent = "▶ Start";
-      document.getElementById("timerStateBadge").textContent = `${minutes}m Set`;
-    }
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      html.setAttribute("data-theme", next);
-      localStorage.setItem("mbs_theme", next);
-      document.getElementById("themeToggleBtn").textContent = next === "dark" ? "☀️" : "🌙";
-    }
-
-    window.addEventListener("keydown", (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
-        e.preventDefault();
-        document.getElementById("searchInput").focus();
-      }
-      if (e.key === "Escape") {
-        closeModal("formulaModal");
-        closeHelpModal();
-        toggleDrawer(false);
-      }
-    });
 
     (function init() {
-      const savedTheme = localStorage.getItem("mbs_theme") || "dark";
-      document.documentElement.setAttribute("data-theme", savedTheme);
-      document.getElementById("themeToggleBtn").textContent = savedTheme === "dark" ? "☀️" : "🌙";
-
-      const savedRecent = localStorage.getItem("mbs_recent");
-      if (savedRecent) {
-        document.getElementById("recentActivityText").textContent = savedRecent;
+      const savedTheme = localStorage.getItem("mbs_theme") || "dark-green";
+      const idx = themes.indexOf(savedTheme);
+      if (idx !== -1) {
+        currentThemeIdx = idx;
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        document.getElementById("themeSwitcherBtn").textContent = `🎨 Theme: ${themeNames[idx]}`;
       }
-
-      updateTimerDisplay();
-      selectClass(activeClass);
     })();
-  </script>
-  <!-- Register PWA Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('pwabuilder-sw.js')
-          .then((reg) => console.log('Service Worker registered!', reg.scope))
-          .catch((err) => console.warn('Service Worker failed:', err));
-      });
-    }
   </script>
 </body>
 </html>
+
