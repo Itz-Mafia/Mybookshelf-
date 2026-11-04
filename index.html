@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>Mybookshelf — Maharashtra State Board Academic Portal (Class 11 & 12)</title>
-  <meta name="description" content="Free Maharashtra State Board HSC & FYJC Study Portal. Direct Balbharati Textbook PDF downloads and chapter-wise exercise solutions.">
+  <title>Mybookshelf 2.0 — Maharashtra State Board Academic Portal (Class 11 & 12)</title>
+  <meta name="description" content="Free Maharashtra State Board HSC & FYJC Study Portal. Direct Balbharati Textbook PDF downloads, chapter-wise exercise solutions, XP progression, and student rewards.">
   <link rel="canonical" href="https://itz-mafia.github.io/Mybookshelf-/">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#090d0b" />
@@ -16,7 +16,7 @@
 
   <style>
     /* ==========================================================================
-       1. THEME TOKENS (3 GORGEOUS BLACK PALETTES: FOREST GREEN, OLED TRUE BLACK, MIDNIGHT CARBON)
+       1. THEME TOKENS (3 CORE BLACK PALETTES + 3 SHOP UNLOCKABLE PALETTES)
        ========================================================================== */
     :root {
       /* Theme 0: Forest Terminal (Black & Emerald Green) */
@@ -65,6 +65,55 @@
       --border: #1e293b;
       --border-strong: #334155;
       --shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
+    }
+
+    /* --- Rewards Shop Unlockable Themes --- */
+    [data-theme="shop-blue"] {
+      /* Blue Dashboard Theme (100 Coins) */
+      --bg-primary: #040914;
+      --bg-secondary: #0a1326;
+      --bg-card: #0f1d38;
+      --text-primary: #f0f7ff;
+      --text-secondary: #7dd3fc;
+      --text-muted: #38bdf8;
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --accent-soft: rgba(2, 132, 199, 0.2);
+      --border: #1e3a5f;
+      --border-strong: #2563eb;
+      --shadow: 0 4px 25px rgba(2, 132, 199, 0.25);
+    }
+
+    [data-theme="shop-purple"] {
+      /* Purple Dashboard Theme (150 Coins) */
+      --bg-primary: #0b0514;
+      --bg-secondary: #140a24;
+      --bg-card: #1d1033;
+      --text-primary: #faf5ff;
+      --text-secondary: #d8b4fe;
+      --text-muted: #a855f7;
+      --accent: #a855f7;
+      --accent-hover: #9333ea;
+      --accent-soft: rgba(168, 85, 247, 0.2);
+      --border: #2e184d;
+      --border-strong: #6b21a8;
+      --shadow: 0 4px 25px rgba(168, 85, 247, 0.25);
+    }
+
+    [data-theme="shop-premium-dark"] {
+      /* Premium Dark Theme: Obsidian & Cyber Gold (500 Coins) */
+      --bg-primary: #050505;
+      --bg-secondary: #0c0a09;
+      --bg-card: #161311;
+      --text-primary: #fef3c7;
+      --text-secondary: #fcd34d;
+      --text-muted: #d97706;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --accent-soft: rgba(245, 158, 11, 0.16);
+      --border: #292218;
+      --border-strong: #78350f;
+      --shadow: 0 4px 30px rgba(245, 158, 11, 0.2);
     }
 
     /* ==========================================================================
@@ -239,6 +288,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      flex-wrap: wrap;
     }
 
     .brand-group {
@@ -306,25 +356,6 @@
       flex-wrap: wrap;
     }
 
-    .user-chip {
-      display: none;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.25rem 0.65rem 0.25rem 0.3rem;
-      border-radius: var(--radius);
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-
-    .user-chip img {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -341,6 +372,7 @@
       text-decoration: none;
       transition: all 0.2s ease;
       white-space: nowrap;
+      font-family: inherit;
     }
 
     .btn:hover {
@@ -367,7 +399,204 @@
       flex: 1;
     }
 
-    /* Controls Bar */
+    /* ==========================================================================
+       5. MYBOOKSHELF 2.0: TOP STUDENT PROFILE, XP & WALLET BAR
+       ========================================================================== */
+    .gamification-top-bar {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.15rem 1.35rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .student-identity {
+      display: flex;
+      align-items: center;
+      gap: 0.95rem;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    /* Unlockable Gold Profile Frame */
+    .avatar-wrapper.frame-gold {
+      border: 3px solid #fbbf24;
+      box-shadow: 0 0 14px rgba(251, 191, 36, 0.55);
+    }
+
+    /* Unlockable Animated Profile Effect */
+    @keyframes pulseAura {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6), 0 0 18px var(--accent); }
+      50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0), 0 0 26px var(--accent); }
+    }
+
+    .avatar-wrapper.effect-animated {
+      animation: pulseAura 2.2s infinite ease-in-out;
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .student-meta h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .special-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      color: #fff;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: none;
+    }
+
+    .special-badge.unlocked {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .level-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+      flex-wrap: wrap;
+    }
+
+    .level-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .streak-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fb923c;
+      background: rgba(251, 146, 60, 0.12);
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    /* XP Progress Section */
+    .xp-progress-box {
+      flex: 1;
+      min-width: 220px;
+      max-width: 360px;
+    }
+
+    .xp-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      color: var(--text-secondary);
+    }
+
+    .xp-track {
+      width: 100%;
+      height: 9px;
+      background: var(--bg-card);
+      border-radius: 9999px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .xp-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+
+    .xp-subtext {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      text-align: right;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Wallet & Gamification Nav */
+    .wallet-and-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .wallet-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      padding: 0.5rem 0.95rem;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+
+    .wallet-card:hover {
+      border-color: var(--accent);
+    }
+
+    .wallet-label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+    }
+
+    .wallet-amount {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ==========================================================================
+       6. CONTROLS, SUBJECTS & CHAPTER CARDS
+       ========================================================================== */
     .controls-bar {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
@@ -432,7 +661,6 @@
       border-color: var(--accent);
     }
 
-    /* Subject Bar */
     .subject-bar {
       display: flex;
       gap: 0.5rem;
@@ -469,7 +697,6 @@
       background: var(--accent-soft);
     }
 
-    /* Textbook Callout */
     .textbook-callout {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
@@ -505,7 +732,6 @@
       margin-top: 0.1rem;
     }
 
-    /* Chapter Grid */
     .chapter-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -532,6 +758,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 0.5rem;
     }
 
     .chapter-num {
@@ -543,6 +770,30 @@
       background: var(--accent-soft);
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
+    }
+
+    .chapter-xp-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 0.18rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      transition: all 0.2s ease;
+    }
+
+    .chapter-xp-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chapter-xp-tag.completed {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-soft);
     }
 
     .chapter-title {
@@ -566,6 +817,122 @@
       min-width: 90px;
       font-size: 0.78rem;
       padding: 0.42rem 0.6rem;
+    }
+
+    /* ==========================================================================
+       7. MODALS (SHOP, MISSIONS/ACHIEVEMENTS, LEADERBOARD, QUIZ, PYQ, HELP)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(4px);
+      z-index: 6500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      max-width: 680px;
+      width: 100%;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      max-height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .shop-grid, .mission-list, .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .shop-item, .mission-item, .badge-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .shop-item h4, .mission-item h4, .badge-item h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .shop-item p, .mission-item p, .badge-item p {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      margin-top: 0.2rem;
+    }
+
+    .price-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Leaderboard Table */
+    .lb-your-rank {
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 0.85rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .lb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+
+    .lb-table th, .lb-table td {
+      padding: 0.7rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .lb-table th {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+    }
+
+    .lb-row-you {
+      background: var(--accent-soft);
+      font-weight: 700;
     }
 
     footer {
@@ -614,10 +981,10 @@
     </video>
     <div class="landing-overlay"></div>
     <div class="landing-content">
-      <span class="landing-badge">Maharashtra State Board</span>
+      <span class="landing-badge">Maharashtra State Board • 2.0</span>
       <h1 class="landing-title">Mybookshelf</h1>
       <p class="landing-desc">
-        Access direct Balbharati Textbook PDFs, chapter-wise exercise solutions, and board resources instantly. Select your standard below to begin.
+        Access direct Balbharati Textbook PDFs, chapter-wise exercise solutions, and board resources instantly. Earn XP & Coins as you study. Select your standard below to begin.
       </p>
       <div class="landing-buttons">
         <button class="landing-btn primary" onclick="enterPortal('12')">
@@ -641,26 +1008,21 @@
           <div class="brand-logo">M</div>
           <div class="brand-text">
             <h1>Mybookshelf</h1>
-            <span>State Board Portal</span>
+            <span>State Board Portal 2.0</span>
           </div>
         </a>
       </div>
 
       <div class="header-actions">
-        <!-- User Profile Chip -->
-        <div class="user-chip" id="userChip">
-          <img id="userAvatar" src="" alt="User" />
-          <span id="userNameChip">Scholar</span>
-        </div>
-
-        <!-- 3-Combo Theme Switcher -->
+        <!-- Theme Switcher -->
         <button class="btn" id="themeSwitcherBtn" onclick="cycleTheme()" title="Switch Color Palette">
           🎨 Theme: Green
         </button>
 
-        <!-- 👉 Class 12 PYQ Preview Button Added Here -->
+        <!-- Class 12 PYQ Preview Button -->
         <button class="btn" onclick="openPyqModal()">📂 Class 12 PYQ Preview</button>
 
+        <!-- Help / Contact Button -->
         <button class="btn" onclick="openHelpModal()">
           💬 Help / ItzMafia
         </button>
@@ -671,6 +1033,56 @@
     </header>
 
     <main class="container">
+      <!-- ======================================================================
+           MYBOOKSHELF 2.0: TOP STUDENT PROFILE, LEVEL, XP & COIN WALLET BAR
+           ====================================================================== -->
+      <section class="gamification-top-bar" id="gamificationTopBar">
+        <!-- Left: Avatar + Student Name + Level + Streak -->
+        <div class="student-identity">
+          <div class="avatar-wrapper" id="avatarWrapper">
+            <img id="dashboardAvatar" src="https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png" alt="Student Avatar" />
+          </div>
+          <div class="student-meta">
+            <h3>
+              <span id="dashboardStudentName">Scholar (Guest)</span>
+              <span class="special-badge" id="specialStudentBadge">⚡ Star Scholar</span>
+              <button class="btn" style="padding:0.15rem 0.45rem; font-size:0.68rem;" onclick="promptCustomName()" title="Edit Display Name">✏️</button>
+            </h3>
+            <div class="level-row">
+              <span class="level-pill" id="dashboardLevelBadge">Level 1 — Novice</span>
+              <span class="streak-pill" id="dashboardStreakBadge">🔥 1-Day Streak</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle: XP Progress Bar -->
+        <div class="xp-progress-box">
+          <div class="xp-labels">
+            <span>XP Progression</span>
+            <span id="xpText">0 / 250 XP</span>
+          </div>
+          <div class="xp-track">
+            <div class="xp-fill" id="xpProgressBar" style="width: 0%;"></div>
+          </div>
+          <div class="xp-subtext" id="xpToNextText">250 XP to Level 2</div>
+        </div>
+
+        <!-- Right: Coin Wallet + Gamification Modals -->
+        <div class="wallet-and-nav">
+          <div class="wallet-card" onclick="openShopModal()" title="Open Rewards Shop">
+            <span style="font-size: 1.25rem;">🪙</span>
+            <div>
+              <div class="wallet-label">Mybookshelf Wallet</div>
+              <div class="wallet-amount" id="coinBalance">50 Coins</div>
+            </div>
+          </div>
+
+          <button class="btn" onclick="openMissionsModal()">🎯 Missions & Badges</button>
+          <button class="btn" onclick="openShopModal()">🛒 Shop</button>
+          <button class="btn" onclick="openLeaderboardModal()">🏆 Leaderboard</button>
+        </div>
+      </section>
+
       <!-- Controls Bar -->
       <section class="controls-bar">
         <div class="class-tabs" id="classTabs">
@@ -700,29 +1112,168 @@
     </main>
 
     <footer>
-      <p><strong>Mybookshelf</strong> — Crafted by <strong>ItzMafia</strong> (riteshmaurya810804@gmail.com) for Maharashtra State Board Students.</p>
+      <p><strong>Mybookshelf 2.0</strong> — Crafted by <strong>ItzMafia</strong> (riteshmaurya810804@gmail.com) for Maharashtra State Board Students.</p>
     </footer>
   </div>
 
-  <!-- Help / Contact Modal -->
-  <div id="helpModal" style="position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:6000; display:none; align-items:center; justify-content:center; padding:1rem;" onclick="if(event.target===this) closeHelpModal()">
-    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); max-width:440px; width:100%; padding:1.5rem; box-shadow:var(--shadow);">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-        <h3 style="font-size:1.1rem; font-weight:800;">Contact ItzMafia 😜</h3>
+  <!-- ==========================================================================
+       MODAL 1: MISSIONS & ACHIEVEMENTS
+       ========================================================================== -->
+  <div id="missionsModal" class="modal-backdrop" onclick="if(event.target===this) closeMissionsModal()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>🎯 Daily Missions & Achievements</h3>
+        <button class="btn" onclick="closeMissionsModal()">✕</button>
+      </div>
+
+      <div>
+        <h4 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:0.65rem;">
+          ⚡ Active Missions (Earn XP & Coins)
+        </h4>
+        <div class="mission-list" id="missionListContainer"></div>
+      </div>
+
+      <div>
+        <h4 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:0.65rem;">
+          🏅 Achievement Badges
+        </h4>
+        <div class="badge-grid" id="badgeGridContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: REWARDS SHOP (COSMETICS & THEMES)
+       ========================================================================== -->
+  <div id="shopModal" class="modal-backdrop" onclick="if(event.target===this) closeShopModal()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>🛒 Mybookshelf Rewards Shop</h3>
+        <div style="display:flex; align-items:center; gap:0.6rem;">
+          <span class="price-tag" id="shopModalWallet">🪙 50 Coins</span>
+          <button class="btn" onclick="closeShopModal()">✕</button>
+        </div>
+      </div>
+      <p style="font-size:0.82rem; color:var(--text-secondary);">
+        All study materials on Mybookshelf are 100% free! Spend the coins you earn from studying to unlock exclusive dashboard themes, profile frames, and badges.
+      </p>
+
+      <div class="shop-grid" id="shopGridContainer"></div>
+
+      <!-- Optional Supporter Top-Up via BTC -->
+      <div style="background:var(--bg-secondary); padding:1rem; border-radius:var(--radius); border:1px solid var(--border); text-align:center;">
+        <p style="font-size:0.82rem; font-weight:700; color:var(--text-primary); margin-bottom:0.3rem;">
+          💎 Want to support Mybookshelf & get +500 Bonus Supporter Coins?
+        </p>
+        <p style="font-size:0.74rem; color:var(--text-secondary); margin-bottom:0.6rem;">
+          Support ItzMafia via No-KYC Crypto (BTC) in the Help menu or enter a supporter code below:
+        </p>
+        <div style="display:flex; gap:0.5rem; justify-content:center; max-width:360px; margin:0 auto;">
+          <input type="text" id="promoCodeInput" class="search-input" placeholder="Enter supporter code..." style="font-size:0.78rem; padding:0.38rem 0.65rem;" />
+          <button class="btn btn-primary" onclick="redeemPromoCode()">Redeem</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 3: STUDENT LEADERBOARD (YOUR NAME ON TOP + RANKINGS)
+       ========================================================================== -->
+  <div id="leaderboardModal" class="modal-backdrop" onclick="if(event.target===this) closeLeaderboardModal()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>🏆 Maharashtra Board Scholars Leaderboard</h3>
+        <button class="btn" onclick="closeLeaderboardModal()">✕</button>
+      </div>
+
+      <!-- Your Pinned Top Standing Card -->
+      <div class="lb-your-rank" id="lbYourStanding"></div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+        <div class="class-tabs">
+          <button class="tab-btn active" id="lbTabWeekly" onclick="switchLeaderboardFilter('weekly')">Weekly XP</button>
+          <button class="tab-btn" id="lbTabClass12" onclick="switchLeaderboardFilter('12')">Class 12 (HSC)</button>
+          <button class="tab-btn" id="lbTabClass11" onclick="switchLeaderboardFilter('11')">Class 11 (FYJC)</button>
+        </div>
+        <button class="btn" onclick="promptCustomName()" style="font-size:0.75rem;">✏️ Change Leaderboard Name</button>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="lb-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Scholar Name</th>
+              <th>Class</th>
+              <th>Level</th>
+              <th>XP Earned</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboardTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 4: QUICK CHAPTER QUIZ / REVISION CHECK (+50 XP & +25 COINS)
+       ========================================================================== -->
+  <div id="quizModal" class="modal-backdrop" onclick="if(event.target===this) closeQuizModal()">
+    <div class="modal-box" style="max-width:520px;">
+      <div class="modal-header">
+        <h3 id="quizModalTitle">⚡ Chapter Revision Check</h3>
+        <button class="btn" onclick="closeQuizModal()">✕</button>
+      </div>
+      <div id="quizModalContent" style="display:flex; flex-direction:column; gap:0.9rem;"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 5: CLASS 12 PYQ PREVIEW MODAL (+30 XP & +15 COINS)
+       ========================================================================== -->
+  <div id="pyqModal" class="modal-backdrop" onclick="if(event.target===this) closePyqModal()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>📂 Class 12th Physics PYQ Preview (Pre-2020)</h3>
+        <button class="btn" onclick="closePyqModal()">✕</button>
+      </div>
+      <p style="font-size:0.82rem; color:var(--text-secondary);">
+        Exclusive previous year questions and advanced handwritten notes (Pre-2020 archive). Preview or download directly below (+30 XP & +15 Coins daily study reward!).
+      </p>
+      <div style="flex:1; background:var(--bg-secondary); border:1px solid var(--border); border-radius:var(--radius); min-height:240px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; padding:1.5rem; text-align:center;">
+        <span style="font-size:2.5rem;">📄</span>
+        <div>
+          <h4 style="font-size:0.95rem; font-weight:700; margin-bottom:0.2rem;">XII Physics PYQ.pdf</h4>
+          <p style="font-size:0.78rem; color:var(--text-secondary);">Archive notes prior to 2020.</p>
+        </div>
+        <a href="XII Physics PYQ.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="rewardPyqCompletion()">
+          📥 Download / Open PYQ PDF (+30 XP · +15 🪙)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 6: HELP / CONTACT & NO-KYC CRYPTO (BTC) MODAL
+       ========================================================================== -->
+  <div id="helpModal" class="modal-backdrop" onclick="if(event.target===this) closeHelpModal()">
+    <div class="modal-box" style="max-width:440px;">
+      <div class="modal-header">
+        <h3>Contact ItzMafia 😜</h3>
         <button class="btn" onclick="closeHelpModal()">✕</button>
       </div>
-      <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1rem;">
+      <p style="font-size:0.85rem; color:var(--text-secondary);">
         Found a broken link or need help? Reach out directly to the creator:
       </p>
-      <div style="background:var(--bg-secondary); padding:0.75rem; border-radius:var(--radius); font-family:'JetBrains Mono', monospace; font-size:0.80rem; font-weight:700; color:var(--accent); margin-bottom:1rem; text-align:center;">
+      <div style="background:var(--bg-secondary); padding:0.75rem; border-radius:var(--radius); font-family:'JetBrains Mono', monospace; font-size:0.80rem; font-weight:700; color:var(--accent); text-align:center;">
         riteshmaurya810804@gmail.com
       </div>
 
-      <!-- 👉 BTC Crypto Support Box Added Here -->
-      <div class="crypto-box" style="background:var(--bg-secondary); padding:0.85rem; border-radius:var(--radius); border:1px solid var(--border); text-align:center; margin-bottom:1rem;">
+      <!-- BTC Crypto Support Box -->
+      <div class="crypto-box" style="background:var(--bg-secondary); padding:0.85rem; border-radius:var(--radius); border:1px solid var(--border); text-align:center;">
         <p style="font-size:0.80rem; font-weight:700; color:var(--text-primary); margin-bottom:0.3rem;">⚡ Support via No-KYC Crypto (BTC)</p>
         <p style="font-size:0.72rem; font-family:'JetBrains Mono', monospace; color:var(--accent); word-break:break-all;">
-          <strong>[YOUR_BTC_WALLET_ADDRESS_HERE]</strong>
+          <strong id="btcWalletText">[YOUR_BTC_WALLET_ADDRESS_HERE]</strong>
         </p>
         <p style="font-size:0.68rem; color:var(--text-secondary); margin-top:0.3rem;">Send Bitcoin directly to support the creator.</p>
       </div>
@@ -734,30 +1285,9 @@
     </div>
   </div>
 
-  <!-- 👉 Class 12 PYQ Preview Modal Added Here -->
-  <div id="pyqModal" style="position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:7000; display:none; align-items:center; justify-content:center; padding:1rem;" onclick="if(event.target===this) closePyqModal()">
-    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); max-width:700px; width:100%; padding:1.5rem; box-shadow:var(--shadow); max-height:90vh; display:flex; flex-direction:column; gap:1rem;">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <h3 style="font-size:1.1rem; font-weight:800;">📂 Class 12th Physics PYQ Preview (Pre-2020)</h3>
-        <button class="btn" onclick="closePyqModal()">✕</button>
-      </div>
-      <p style="font-size:0.82rem; color:var(--text-secondary);">
-        Exclusive previous year questions and advanced handwritten notes (Pre-2020 archive). Preview or download directly below.
-      </p>
-      <div style="flex:1; background:var(--bg-secondary); border:1px solid var(--border); border-radius:var(--radius); min-height:250px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; padding:1.5rem; text-align:center;">
-        <span style="font-size:2.5rem;">📄</span>
-        <div>
-          <h4 style="font-size:0.95rem; font-weight:700; margin-bottom:0.2rem;">XII Physics PYQ.pdf</h4>
-          <p style="font-size:0.78rem; color:var(--text-secondary);">Archive notes prior to 2020.</p>
-        </div>
-        <a href="XII Physics PYQ.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          📥 Download / Open PYQ PDF
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Firebase SDK v13.1.0 with Google Auth -->
+  <!-- ==========================================================================
+       FIREBASE SDK v13.1.0 WITH GOOGLE AUTHENTICATION
+       ========================================================================== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-analytics.js";
@@ -805,19 +1335,18 @@
       onAuthStateChanged(auth, (user) => {
         currentUser = user;
         const authBtn = document.getElementById("authBtn");
-        const userChip = document.getElementById("userChip");
-        const userAvatar = document.getElementById("userAvatar");
-        const userNameChip = document.getElementById("userNameChip");
+        const dashboardAvatar = document.getElementById("dashboardAvatar");
 
         if (user) {
-          const firstName = user.displayName ? user.displayName.split(" ")[0] : "Scholar";
           authBtn.textContent = "Sign Out";
-          userChip.style.display = "inline-flex";
-          userNameChip.textContent = firstName;
-          userAvatar.src = user.photoURL || "https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png";
+          if (user.photoURL) {
+            dashboardAvatar.src = user.photoURL;
+          }
+          window.syncUserWithGamification(user);
         } else {
           authBtn.textContent = "Sign In with Google";
-          userChip.style.display = "none";
+          dashboardAvatar.src = "https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png";
+          window.syncUserWithGamification(null);
         }
       });
 
@@ -857,14 +1386,621 @@
     }
   </script>
 
+  <!-- ==========================================================================
+       CORE CURRICULUM DATA & MYBOOKSHELF 2.0 GAMIFICATION ENGINE
+       ========================================================================== -->
   <script src="data.js"></script>
   <script>
     let activeClass = localStorage.getItem("mbs_activeClass") || "12";
     let activeSubject = localStorage.getItem("mbs_activeSubject") || "Physics";
-    let currentThemeIdx = 0;
-    const themes = ["dark-green", "oled-black", "midnight-carbon"];
-    const themeNames = ["Green", "OLED Black", "Midnight Carbon"];
+    let currentLeaderboardFilter = "weekly";
 
+    // Core Free Themes + Unlockable Shop Themes
+    const coreThemes = [
+      { id: "dark-green", name: "Green" },
+      { id: "oled-black", name: "OLED Black" },
+      { id: "midnight-carbon", name: "Midnight Carbon" }
+    ];
+
+    const shopItemsCatalog = [
+      {
+        id: "shop-blue",
+        type: "theme",
+        title: "🌊 Blue Dashboard Theme",
+        desc: "Deep ocean midnight blue palette with electric sky accents.",
+        price: 100
+      },
+      {
+        id: "shop-purple",
+        type: "theme",
+        title: "🔮 Purple Dashboard Theme",
+        desc: "Royal amethyst dark mode crafted for late-night revision.",
+        price: 150
+      },
+      {
+        id: "frame-gold",
+        type: "frame",
+        title: "👑 Gold Profile Frame",
+        desc: "Gleaming golden border around your top scholar avatar.",
+        price: 200
+      },
+      {
+        id: "badge-star",
+        type: "badge",
+        title: "⚡ Special Student Badge",
+        desc: "Displays the exclusive 'Star Scholar' badge next to your name.",
+        price: 250
+      },
+      {
+        id: "effect-animated",
+        type: "effect",
+        title: "✨ Animated Profile Effect",
+        desc: "Dynamic glowing aura pulse effect on your dashboard avatar.",
+        price: 400
+      },
+      {
+        id: "shop-premium-dark",
+        type: "theme",
+        title: "🔥 Premium Dark Theme",
+        desc: "Luxury obsidian black & cyber gold/amber sovereign theme.",
+        price: 500
+      }
+    ];
+
+    const levelTitles = [
+      "Novice", "Apprentice", "Learner", "Scholar", "Adept",
+      "Specialist", "Master", "Grandmaster", "Board Titan", "HSC Legend"
+    ];
+
+    // Load or Initialize Student Profile State
+    let currentUserId = "guest";
+    let gState = loadGamificationState("guest");
+
+    function getDefaultState() {
+      return {
+        customName: "",
+        xp: 0,
+        coins: 50, // Welcome starter bonus!
+        streak: 1,
+        lastLoginDate: "",
+        dailyEarningsDate: "",
+        dailyXpEarned: 0,
+        completedChapters: {},
+        dailyStudyCount: 0,
+        pyqCompletedToday: false,
+        quizzesCompleted: 0,
+        perfectQuizzes: 0,
+        weeklyChaptersCount: 0,
+        weeklyMissionClaimed: false,
+        inventory: [],
+        equippedFrame: false,
+        equippedBadge: false,
+        equippedEffect: false,
+        redeemedCodes: []
+      };
+    }
+
+    function loadGamificationState(uid) {
+      const raw = localStorage.getItem(`mbs2_state_${uid}`);
+      if (!raw) return getDefaultState();
+      try {
+        return { ...getDefaultState(), ...JSON.parse(raw) };
+      } catch (e) {
+        return getDefaultState();
+      }
+    }
+
+    function saveGamificationState() {
+      localStorage.setItem(`mbs2_state_${currentUserId}`, JSON.stringify(gState));
+      updateGamificationUI();
+    }
+
+    window.syncUserWithGamification = function(user) {
+      if (user && user.uid) {
+        currentUserId = user.uid;
+        gState = loadGamificationState(user.uid);
+        if (!gState.customName && user.displayName) {
+          gState.customName = user.displayName.split(" ")[0];
+        }
+      } else {
+        currentUserId = "guest";
+        gState = loadGamificationState("guest");
+      }
+      checkDailyLoginAndStreak();
+      saveGamificationState();
+    };
+
+    function getTodayString() {
+      const d = new Date();
+      return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+    }
+
+    function checkDailyLoginAndStreak() {
+      const today = getTodayString();
+      if (gState.dailyEarningsDate !== today) {
+        gState.dailyEarningsDate = today;
+        gState.dailyXpEarned = 0;
+        gState.dailyStudyCount = 0;
+        gState.pyqCompletedToday = false;
+      }
+
+      if (gState.lastLoginDate !== today) {
+        if (gState.lastLoginDate) {
+          const last = new Date(gState.lastLoginDate);
+          const now = new Date(today);
+          const diffDays = Math.round((now - last) / (1000 * 60 * 60 * 24));
+          if (diffDays === 1) {
+            gState.streak += 1;
+          } else if (diffDays > 1) {
+            gState.streak = 1;
+          }
+        } else {
+          gState.streak = 1;
+        }
+        gState.lastLoginDate = today;
+        awardRewards(5, 2, "🔥 Daily Login Bonus!");
+      }
+    }
+
+    function calculateLevel(xp) {
+      const level = Math.floor(xp / 250) + 1;
+      const title = levelTitles[Math.min(level - 1, levelTitles.length - 1)];
+      const currentLevelBaseXp = (level - 1) * 250;
+      const nextLevelXp = level * 250;
+      const progressPct = Math.min(100, Math.round(((xp - currentLevelBaseXp) / 250) * 100));
+      return { level, title, nextLevelXp, remainingXp: nextLevelXp - xp, progressPct };
+    }
+
+    function awardRewards(xpAmount, coinAmount, reasonText) {
+      const today = getTodayString();
+      if (gState.dailyEarningsDate !== today) {
+        gState.dailyEarningsDate = today;
+        gState.dailyXpEarned = 0;
+      }
+      if (gState.dailyXpEarned >= 600) {
+        window.showToast("Daily XP limit reached! Come back tomorrow for more rewards.");
+        return false;
+      }
+
+      const oldLevel = calculateLevel(gState.xp).level;
+      gState.xp += xpAmount;
+      gState.coins += coinAmount;
+      gState.dailyXpEarned += xpAmount;
+
+      const newLevelObj = calculateLevel(gState.xp);
+      saveGamificationState();
+
+      window.showToast(`${reasonText} (+${xpAmount} XP · +${coinAmount} 🪙)`);
+      if (newLevelObj.level > oldLevel) {
+        setTimeout(() => {
+          window.showToast(`🎉 LEVEL UP! You are now Level ${newLevelObj.level} — ${newLevelObj.title}!`);
+        }, 700);
+      }
+      return true;
+    }
+
+    function updateGamificationUI() {
+      const nameEl = document.getElementById("dashboardStudentName");
+      const levelEl = document.getElementById("dashboardLevelBadge");
+      const streakEl = document.getElementById("dashboardStreakBadge");
+      const xpTextEl = document.getElementById("xpText");
+      const xpBarEl = document.getElementById("xpProgressBar");
+      const xpNextEl = document.getElementById("xpToNextText");
+      const coinEl = document.getElementById("coinBalance");
+      const shopWalletEl = document.getElementById("shopModalWallet");
+      const avatarWrapper = document.getElementById("avatarWrapper");
+      const specialBadge = document.getElementById("specialStudentBadge");
+
+      const displayName = gState.customName || "Scholar";
+      nameEl.textContent = displayName;
+
+      const lvl = calculateLevel(gState.xp);
+      levelEl.textContent = `Level ${lvl.level} — ${lvl.title}`;
+      streakEl.textContent = `🔥 ${gState.streak}-Day Streak`;
+      xpTextEl.textContent = `${gState.xp} / ${lvl.nextLevelXp} XP`;
+      xpBarEl.style.width = `${lvl.progressPct}%`;
+      xpNextEl.textContent = `${lvl.remainingXp} XP to Level ${lvl.level + 1}`;
+      coinEl.textContent = `${gState.coins.toLocaleString()} Coins`;
+      if (shopWalletEl) shopWalletEl.textContent = `🪙 ${gState.coins.toLocaleString()} Coins`;
+
+      avatarWrapper.classList.toggle("frame-gold", !!gState.equippedFrame);
+      avatarWrapper.classList.toggle("effect-animated", !!gState.equippedEffect);
+      specialBadge.classList.toggle("unlocked", !!gState.equippedBadge);
+    }
+
+    window.promptCustomName = function() {
+      const current = gState.customName || "Scholar";
+      const input = prompt("Enter your display name / pseudonym for your Top Bar & Leaderboard:", current);
+      if (input !== null && input.trim().length > 0) {
+        gState.customName = input.trim().slice(0, 22);
+        saveGamificationState();
+        renderLeaderboard();
+        window.showToast(`Name updated to ${gState.customName}!`);
+      }
+    };
+
+    window.handleResourceStudy = function(chKey) {
+      const today = getTodayString();
+      const lastStudied = gState.completedChapters[`study_${chKey}`];
+      if (lastStudied !== today) {
+        gState.completedChapters[`study_${chKey}`] = today;
+        gState.dailyStudyCount = (gState.dailyStudyCount || 0) + 1;
+        gState.weeklyChaptersCount = (gState.weeklyChaptersCount || 0) + 1;
+        awardRewards(20, 10, "📖 Daily Chapter Revision");
+        renderChapters();
+      }
+    };
+
+    window.openChapterQuiz = function(chNum, chTitle) {
+      const chKey = `${activeClass}_${activeSubject}_${chNum}`;
+      const today = getTodayString();
+      if (gState.completedChapters[`quiz_${chKey}`] === today) {
+        window.showToast("✅ You already completed this chapter's quiz today! Try another chapter.");
+        return;
+      }
+
+      const modal = document.getElementById("quizModal");
+      const titleEl = document.getElementById("quizModalTitle");
+      const contentEl = document.getElementById("quizModalContent");
+
+      titleEl.textContent = `⚡ CH ${chNum}: ${chTitle}`;
+      contentEl.innerHTML = `
+        <p style="font-size:0.84rem; color:var(--text-secondary);">
+          Verify your revision of <strong>${chTitle}</strong> (${activeSubject}) to earn <strong>+50 XP & +25 Coins</strong>!
+        </p>
+        <div style="background:var(--bg-secondary); padding:1rem; border-radius:var(--radius); border:1px solid var(--border); display:flex; flex-direction:column; gap:0.65rem;">
+          <div style="font-size:0.85rem; font-weight:700;">Quick Self-Check:</div>
+          <label style="font-size:0.8rem; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+            <input type="checkbox" id="qCheck1" /> I have reviewed the key concepts & formulas in this chapter.
+          </label>
+          <label style="font-size:0.8rem; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+            <input type="checkbox" id="qCheck2" /> I practiced the Balbharati textbook exercise solutions.
+          </label>
+          <label style="font-size:0.8rem; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+            <input type="checkbox" id="qCheck3" /> I am ready to answer board exam questions from this topic.
+          </label>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+          <button class="btn" onclick="closeQuizModal()">Cancel</button>
+          <button class="btn btn-primary" onclick="submitChapterQuiz('${chKey}')">✅ Complete & Claim +50 XP · +25 🪙</button>
+        </div>
+      `;
+      modal.style.display = "flex";
+    };
+
+    window.submitChapterQuiz = function(chKey) {
+      const c1 = document.getElementById("qCheck1").checked;
+      const c2 = document.getElementById("qCheck2").checked;
+      const c3 = document.getElementById("qCheck3").checked;
+
+      if (!c1 || !c2 || !c3) {
+        window.showToast("Please check all 3 revision boxes to verify completion!");
+        return;
+      }
+
+      const today = getTodayString();
+      gState.completedChapters[`quiz_${chKey}`] = today;
+      gState.quizzesCompleted = (gState.quizzesCompleted || 0) + 1;
+      gState.perfectQuizzes = (gState.perfectQuizzes || 0) + 1;
+      gState.weeklyChaptersCount = (gState.weeklyChaptersCount || 0) + 1;
+
+      closeQuizModal();
+      awardRewards(50, 25, "🎯 Chapter Quiz Completed!");
+      renderChapters();
+    };
+
+    window.closeQuizModal = function() {
+      document.getElementById("quizModal").style.display = "none";
+    };
+
+    window.rewardPyqCompletion = function() {
+      if (!gState.pyqCompletedToday) {
+        gState.pyqCompletedToday = true;
+        awardRewards(30, 15, "📂 Completed PYQ Archive Set!");
+      }
+    };
+
+    // ==========================================================================
+    // MISSIONS & ACHIEVEMENTS RENDERER
+    // ==========================================================================
+    window.openMissionsModal = function() {
+      renderMissionsAndBadges();
+      document.getElementById("missionsModal").style.display = "flex";
+    };
+
+    window.closeMissionsModal = function() {
+      document.getElementById("missionsModal").style.display = "none";
+    };
+
+    function renderMissionsAndBadges() {
+      const missionContainer = document.getElementById("missionListContainer");
+      const badgeContainer = document.getElementById("badgeGridContainer");
+
+      const missions = [
+        {
+          title: "🔥 Daily Login",
+          desc: "Open Mybookshelf today to keep your study streak alive.",
+          reward: "+5 XP · +2 🪙",
+          done: true
+        },
+        {
+          title: "📖 Daily Revision",
+          desc: `Open & revise at least 1 chapter solution today (${Math.min(1, gState.dailyStudyCount || 0)}/1).`,
+          reward: "+20 XP · +10 🪙",
+          done: (gState.dailyStudyCount || 0) >= 1
+        },
+        {
+          title: "⚡ Complete a Chapter Quiz",
+          desc: "Complete any chapter revision verification check.",
+          reward: "+50 XP · +25 🪙",
+          done: (gState.quizzesCompleted || 0) >= 1
+        },
+        {
+          title: "📂 Complete a PYQ Set",
+          desc: "Open the Class 12 Physics Pre-2020 PYQ archive today.",
+          reward: "+30 XP · +15 🪙",
+          done: !!gState.pyqCompletedToday
+        },
+        {
+          title: "🏆 Weekly Mission: 5 Chapters",
+          desc: `Complete 5 chapter revisions or quizzes (${Math.min(5, gState.weeklyChaptersCount || 0)}/5).`,
+          reward: "+100 XP · +50 🪙",
+          done: (gState.weeklyChaptersCount || 0) >= 5,
+          claimable: (gState.weeklyChaptersCount || 0) >= 5 && !gState.weeklyMissionClaimed
+        }
+      ];
+
+      missionContainer.innerHTML = missions.map(m => `
+        <div class="mission-item">
+          <div>
+            <h4>${m.title}</h4>
+            <p>${m.desc}</p>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding-top:0.5rem; border-top:1px solid var(--border);">
+            <span class="price-tag">${m.reward}</span>
+            ${m.claimable ? `<button class="btn btn-primary" style="font-size:0.75rem; padding:0.3rem 0.65rem;" onclick="claimWeeklyMission()">Claim Bonus</button>` : `
+              <span style="font-size:0.75rem; font-weight:700; color:${m.done ? 'var(--accent)' : 'var(--text-muted)'};">
+                ${m.done ? '✅ Completed' : '⏳ In Progress'}
+              </span>
+            `}
+          </div>
+        </div>
+      `).join("");
+
+      const badges = [
+        {
+          icon: "🔥",
+          title: "7-Day Streak",
+          desc: "Study consistently for a full week.",
+          unlocked: gState.streak >= 7
+        },
+        {
+          icon: "📘",
+          title: "Chapter Master",
+          desc: "Complete your first chapter revision check.",
+          unlocked: (gState.quizzesCompleted || 0) >= 1
+        },
+        {
+          icon: "🏆",
+          title: "Test Champion",
+          desc: "Complete 5 chapter practice checks.",
+          unlocked: (gState.quizzesCompleted || 0) >= 5
+        },
+        {
+          icon: "💯",
+          title: "Perfect Score",
+          desc: "Get 100% completion on a chapter check.",
+          unlocked: (gState.perfectQuizzes || 0) >= 1
+        }
+      ];
+
+      badgeContainer.innerHTML = badges.map(b => `
+        <div class="badge-item" style="opacity:${b.unlocked ? '1' : '0.55'}; border-color:${b.unlocked ? 'var(--accent)' : 'var(--border)'};">
+          <div style="display:flex; align-items:center; gap:0.65rem;">
+            <span style="font-size:1.75rem;">${b.icon}</span>
+            <div>
+              <h4>${b.title}</h4>
+              <p>${b.desc}</p>
+            </div>
+          </div>
+          <div style="font-size:0.72rem; font-weight:700; color:${b.unlocked ? 'var(--accent)' : 'var(--text-muted)'};">
+            ${b.unlocked ? '🔓 UNLOCKED' : '🔒 Locked'}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    window.claimWeeklyMission = function() {
+      if ((gState.weeklyChaptersCount || 0) >= 5 && !gState.weeklyMissionClaimed) {
+        gState.weeklyMissionClaimed = true;
+        awardRewards(100, 50, "🏆 Weekly Mission Completed!");
+        renderMissionsAndBadges();
+      }
+    };
+
+    // ==========================================================================
+    // REWARDS SHOP RENDERER & PURCHASING
+    // ==========================================================================
+    window.openShopModal = function() {
+      renderShopItems();
+      document.getElementById("shopModal").style.display = "flex";
+    };
+
+    window.closeShopModal = function() {
+      document.getElementById("shopModal").style.display = "none";
+    };
+
+    function renderShopItems() {
+      const container = document.getElementById("shopGridContainer");
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+
+      container.innerHTML = shopItemsCatalog.map(item => {
+        const owned = gState.inventory.includes(item.id);
+        let isEquipped = false;
+        if (item.type === "theme") isEquipped = (currentTheme === item.id);
+        if (item.type === "frame") isEquipped = !!gState.equippedFrame;
+        if (item.type === "badge") isEquipped = !!gState.equippedBadge;
+        if (item.type === "effect") isEquipped = !!gState.equippedEffect;
+
+        return `
+          <div class="shop-item">
+            <div>
+              <h4>${item.title}</h4>
+              <p>${item.desc}</p>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:0.5rem; border-top:1px solid var(--border);">
+              <span class="price-tag">${owned ? '✅ Owned' : `🪙 ${item.price} Coins`}</span>
+              ${owned ? `
+                <button class="btn ${isEquipped ? 'btn-primary' : ''}" style="font-size:0.76rem; padding:0.35rem 0.75rem;" onclick="toggleEquipShopItem('${item.id}', '${item.type}')">
+                  ${isEquipped ? '✨ Equipped' : 'Equip'}
+                </button>
+              ` : `
+                <button class="btn btn-primary" style="font-size:0.76rem; padding:0.35rem 0.75rem;" onclick="buyShopItem('${item.id}')">
+                  Unlock
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    window.buyShopItem = function(itemId) {
+      const item = shopItemsCatalog.find(i => i.id === itemId);
+      if (!item) return;
+      if (gState.inventory.includes(itemId)) return;
+
+      if (gState.coins < item.price) {
+        window.showToast(`Not enough coins! You need ${item.price - gState.coins} more coins. Study chapters or complete quizzes to earn more!`);
+        return;
+      }
+
+      gState.coins -= item.price;
+      gState.inventory.push(itemId);
+      saveGamificationState();
+      window.showToast(`🎉 Unlocked ${item.title}!`);
+      toggleEquipShopItem(itemId, item.type);
+    };
+
+    window.toggleEquipShopItem = function(itemId, type) {
+      if (type === "theme") {
+        document.documentElement.setAttribute("data-theme", itemId);
+        localStorage.setItem("mbs_theme", itemId);
+        const item = shopItemsCatalog.find(i => i.id === itemId);
+        document.getElementById("themeSwitcherBtn").textContent = `🎨 Theme: ${item ? item.title.replace(/^[^\s]+\s/, '') : 'Custom'}`;
+      } else if (type === "frame") {
+        gState.equippedFrame = !gState.equippedFrame;
+      } else if (type === "badge") {
+        gState.equippedBadge = !gState.equippedBadge;
+      } else if (type === "effect") {
+        gState.equippedEffect = !gState.equippedEffect;
+      }
+      saveGamificationState();
+      renderShopItems();
+    };
+
+    window.redeemPromoCode = function() {
+      const input = document.getElementById("promoCodeInput");
+      const code = (input.value || "").trim().toUpperCase();
+      if (!code) return;
+
+      if (gState.redeemedCodes.includes(code)) {
+        window.showToast("This code has already been redeemed!");
+        return;
+      }
+
+      if (code === "ITZMAFIA" || code === "HSC2027" || code === "MYBOOKSHELF") {
+        gState.redeemedCodes.push(code);
+        gState.coins += 500;
+        gState.xp += 250;
+        saveGamificationState();
+        renderShopItems();
+        input.value = "";
+        window.showToast("🎉 Supporter Code Redeemed! +500 Coins & +250 XP added!");
+      } else {
+        window.showToast("Invalid code. Tip: Try 'ITZMAFIA' for a starter boost!");
+      }
+    };
+
+    // ==========================================================================
+    // LEADERBOARD MODAL (STUDENT ALWAYS PINNED AT TOP + LIVE RANKING)
+    // ==========================================================================
+    const sampleScholars = [
+      { name: "Aarav_HSC", cls: "12", xp: 1450 },
+      { name: "Sneha_Physics", cls: "12", xp: 1120 },
+      { name: "Rohan_IIT", cls: "11", xp: 980 },
+      { name: "Priya_Bio", cls: "12", xp: 840 },
+      { name: "Omkar_MHTCET", cls: "12", xp: 690 },
+      { name: "Tanvi_FYJC", cls: "11", xp: 520 },
+      { name: "Aditya_99", cls: "11", xp: 310 }
+    ];
+
+    window.openLeaderboardModal = function() {
+      renderLeaderboard();
+      document.getElementById("leaderboardModal").style.display = "flex";
+    };
+
+    window.closeLeaderboardModal = function() {
+      document.getElementById("leaderboardModal").style.display = "none";
+    };
+
+    window.switchLeaderboardFilter = function(filter) {
+      currentLeaderboardFilter = filter;
+      document.getElementById("lbTabWeekly").classList.toggle("active", filter === "weekly");
+      document.getElementById("lbTabClass12").classList.toggle("active", filter === "12");
+      document.getElementById("lbTabClass11").classList.toggle("active", filter === "11");
+      renderLeaderboard();
+    };
+
+    function renderLeaderboard() {
+      const yourName = gState.customName || "Scholar (You)";
+      const yourLvl = calculateLevel(gState.xp);
+
+      const allEntries = [
+        ...sampleScholars,
+        { name: yourName, cls: activeClass, xp: gState.xp, isYou: true }
+      ];
+
+      const filtered = allEntries
+        .filter(e => currentLeaderboardFilter === "weekly" ? true : e.cls === currentLeaderboardFilter)
+        .sort((a, b) => b.xp - a.xp);
+
+      const yourRankIndex = filtered.findIndex(e => e.isYou);
+      const yourRank = yourRankIndex !== -1 ? yourRankIndex + 1 : 1;
+
+      document.getElementById("lbYourStanding").innerHTML = `
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <span style="font-size:1.4rem; font-weight:800; color:var(--accent); font-family:'JetBrains Mono', monospace;">#${yourRank}</span>
+          <div>
+            <div style="font-size:0.95rem; font-weight:800; color:var(--text-primary);">👑 ${yourName} (Your Standing)</div>
+            <div style="font-size:0.75rem; color:var(--text-secondary);">Class ${activeClass}th • Level ${yourLvl.level} (${yourLvl.title})</div>
+          </div>
+        </div>
+        <div style="font-family:'JetBrains Mono', monospace; font-size:0.95rem; font-weight:800; color:var(--accent);">
+          ${gState.xp} XP · 🪙 ${gState.coins}
+        </div>
+      `;
+
+      const tbody = document.getElementById("leaderboardTableBody");
+      tbody.innerHTML = filtered.map((entry, idx) => {
+        const rank = idx + 1;
+        const lvl = calculateLevel(entry.xp);
+        const medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : `#${rank}`;
+        return `
+          <tr class="${entry.isYou ? 'lb-row-you' : ''}">
+            <td style="font-family:'JetBrains Mono', monospace; font-weight:700;">${medal}</td>
+            <td>${entry.name} ${entry.isYou ? '<span style="font-size:0.68rem; color:var(--accent);">(YOU)</span>' : ''}</td>
+            <td>Class ${entry.cls}th</td>
+            <td>Lvl ${lvl.level} (${lvl.title})</td>
+            <td style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--accent);">${entry.xp} XP</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    // ==========================================================================
+    // PORTAL NAVIGATION & CHAPTER RENDERER (100% PRESERVED LINKS)
+    // ==========================================================================
     window.showToast = function(msg) {
       const container = document.getElementById("toastContainer");
       if (!container) return;
@@ -872,27 +2008,28 @@
       t.className = "toast";
       t.textContent = msg;
       container.appendChild(t);
-      setTimeout(() => t.remove(), 3000);
+      setTimeout(() => t.remove(), 3200);
     };
 
     function enterPortal(cls) {
       activeClass = cls;
       localStorage.setItem("mbs_activeClass", cls);
-      
+
       const video = document.querySelector(".landing-video-bg");
       if (video) video.pause();
 
       document.getElementById("landingScreen").classList.add("hidden");
       document.getElementById("studyApp").classList.add("active");
-      
+
       const subs = Object.keys(CURRICULUM[cls].subjects);
       if (!subs.includes(activeSubject)) {
         activeSubject = subs[0];
       }
-      
+
       renderClassTabs();
       renderSubjectPills();
       renderChapters();
+      updateGamificationUI();
     }
 
     function returnToLanding() {
@@ -958,6 +2095,7 @@
       const query = document.getElementById("searchInput").value.trim().toLowerCase();
       const sData = CURRICULUM[activeClass].subjects[activeSubject];
       const baseDomain = "https://maharashtraboardsolutions.guru/";
+      const today = getTodayString();
 
       const cards = sData.chapters.map((title, idx) => {
         const chNum = idx + 1;
@@ -965,8 +2103,10 @@
           return "";
         }
 
+        const chKey = `${activeClass}_${activeSubject}_${chNum}`;
+        const quizDoneToday = gState.completedChapters[`quiz_${chKey}`] === today;
         const solutionUrl = `${baseDomain}${sData.solutionSlug}${chNum}/`;
-        
+
         let secUrl = null;
         let secLabel = "";
         if (activeClass === "12") {
@@ -977,20 +2117,25 @@
           secLabel = "⚡ Misc Questions";
         }
 
+        const safeTitle = title.replace(/'/g, "\\'");
+
         return `
           <article class="chapter-card">
             <div>
               <div class="chapter-header">
                 <span class="chapter-num">CH ${chNum < 10 ? '0' + chNum : chNum}</span>
+                <button class="chapter-xp-tag ${quizDoneToday ? 'completed' : ''}" onclick="openChapterQuiz(${chNum}, '${safeTitle}')" title="Complete Chapter Revision Check for +50 XP & +25 Coins">
+                  ${quizDoneToday ? '✅ Quiz Done (+50 XP)' : '🎯 Verify Revision (+50 XP · +25 🪙)'}
+                </button>
               </div>
               <h3 class="chapter-title">${title}</h3>
             </div>
             <div class="chapter-actions">
-              <a href="${solutionUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <a href="${solutionUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="handleResourceStudy('${chKey}')">
                 📖 Solutions
               </a>
               ${secUrl ? `
-                <a href="${secUrl}" target="_blank" rel="noopener noreferrer" class="btn">
+                <a href="${secUrl}" target="_blank" rel="noopener noreferrer" class="btn" onclick="handleResourceStudy('${chKey}_imp')">
                   ${secLabel}
                 </a>
               ` : ''}
@@ -1005,12 +2150,22 @@
       grid.innerHTML = cards || `<div style="grid-column: 1/-1; text-align:center; padding:2rem; color:var(--text-secondary);">No chapters found matching your search.</div>`;
     }
 
+    function getAvailableThemes() {
+      const unlockedShopThemes = shopItemsCatalog
+        .filter(item => item.type === "theme" && gState.inventory.includes(item.id))
+        .map(item => ({ id: item.id, name: item.title.replace(/^[^\s]+\s/, '').replace(' Dashboard Theme', '').replace(' Theme', '') }));
+      return [...coreThemes, ...unlockedShopThemes];
+    }
+
     function cycleTheme() {
-      currentThemeIdx = (currentThemeIdx + 1) % themes.length;
-      const theme = themes[currentThemeIdx];
-      document.documentElement.setAttribute("data-theme", theme);
-      document.getElementById("themeSwitcherBtn").textContent = `🎨 Theme: ${themeNames[currentThemeIdx]}`;
-      localStorage.setItem("mbs_theme", theme);
+      const available = getAvailableThemes();
+      const current = document.documentElement.getAttribute("data-theme") || "dark-green";
+      const idx = available.findIndex(t => t.id === current);
+      const next = available[(idx + 1) % available.length];
+
+      document.documentElement.setAttribute("data-theme", next.id);
+      document.getElementById("themeSwitcherBtn").textContent = `🎨 Theme: ${next.name}`;
+      localStorage.setItem("mbs_theme", next.id);
     }
 
     function openHelpModal() {
@@ -1035,12 +2190,15 @@
     }
 
     (function init() {
+      checkDailyLoginAndStreak();
+      updateGamificationUI();
+
       const savedTheme = localStorage.getItem("mbs_theme") || "dark-green";
-      const idx = themes.indexOf(savedTheme);
-      if (idx !== -1) {
-        currentThemeIdx = idx;
-        document.documentElement.setAttribute("data-theme", savedTheme);
-        document.getElementById("themeSwitcherBtn").textContent = `🎨 Theme: ${themeNames[idx]}`;
+      const available = getAvailableThemes();
+      const match = available.find(t => t.id === savedTheme);
+      if (match) {
+        document.documentElement.setAttribute("data-theme", match.id);
+        document.getElementById("themeSwitcherBtn").textContent = `🎨 Theme: ${match.name}`;
       }
     })();
   </script>
