@@ -3,11 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>Mybookshelf 2.0 — Maharashtra State Board Academic Portal (Class 11 & 12)</title>
-  <meta name="description" content="Free Maharashtra State Board HSC & FYJC Study Portal. Direct Balbharati Textbook PDF downloads, chapter-wise exercise solutions, XP progression, and student rewards.">
+  <title>Mybookshelf 2.0 — Maharashtra State Board HSC & FYJC Study Portal (Class 11 & 12)</title>
+  <meta name="description" content="Free Maharashtra State Board Class 11 & 12 Science Study Portal. Direct Balbharati Textbook PDFs, Exercise Solutions, Chapter-wise 10-MCQ Board Quizzes, PYQs, and Live Scholar Leaderboard.">
+  <meta name="keywords" content="Maharashtra State Board, HSC Class 12 Science, FYJC Class 11 Science, Balbharati Textbook PDF, Maharashtra Board Solutions, Class 12 Physics MCQs, Class 12 Chemistry MCQs, Class 12 Maths MCQs, HSC PYQ PDF, Mybookshelf, ItzMafia">
+  <meta name="author" content="ItzMafia (Ritesh Maurya)">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://itz-mafia.github.io/Mybookshelf-/">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#090d0b" />
+
+  <!-- Open Graph / Social Discovery -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://itz-mafia.github.io/Mybookshelf-/">
+  <meta property="og:title" content="Mybookshelf 2.0 — Maharashtra State Board Study Portal (Class 11 & 12)">
+  <meta property="og:description" content="100% Free Balbharati Textbooks, Chapter Solutions, Timed HSC MCQ Quizzes, and Live Student Leaderboard.">
+
+  <!-- Structured Data for Google Search Indexing -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Mybookshelf 2.0",
+    "url": "https://itz-mafia.github.io/Mybookshelf-/",
+    "description": "Interactive Maharashtra State Board Class 11 & 12 Science study portal with Balbharati PDFs, solutions, and chapter-wise board MCQ quizzes."
+  }
+  </script>
 
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +51,9 @@
       --accent-soft: rgba(16, 185, 129, 0.12);
       --border: #1e2e24;
       --border-strong: #2d4436;
+      --danger: #ef4444;
+      --danger-soft: rgba(239, 68, 68, 0.15);
+      --warning: #f59e0b;
       --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
       --radius: 8px;
     }
@@ -69,7 +92,6 @@
 
     /* --- Rewards Shop Unlockable Themes --- */
     [data-theme="shop-blue"] {
-      /* Blue Dashboard Theme (100 Coins) */
       --bg-primary: #040914;
       --bg-secondary: #0a1326;
       --bg-card: #0f1d38;
@@ -85,7 +107,6 @@
     }
 
     [data-theme="shop-purple"] {
-      /* Purple Dashboard Theme (150 Coins) */
       --bg-primary: #0b0514;
       --bg-secondary: #140a24;
       --bg-card: #1d1033;
@@ -101,7 +122,6 @@
     }
 
     [data-theme="shop-premium-dark"] {
-      /* Premium Dark Theme: Obsidian & Cyber Gold (500 Coins) */
       --bg-primary: #050505;
       --bg-secondary: #0c0a09;
       --bg-card: #161311;
@@ -214,8 +234,8 @@
 
     .landing-desc {
       font-size: 1rem;
-      color: rgba(255, 255, 255, 0.8);
-      max-width: 500px;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 520px;
     }
 
     .landing-buttons {
@@ -391,6 +411,17 @@
       color: #fff;
     }
 
+    .btn-locked {
+      border-style: dashed;
+      border-color: var(--border-strong);
+      color: var(--text-secondary);
+    }
+
+    .btn-locked:hover {
+      border-color: var(--warning);
+      color: var(--warning);
+    }
+
     .container {
       width: 100%;
       max-width: 1200px;
@@ -436,13 +467,11 @@
       transition: all 0.3s ease;
     }
 
-    /* Unlockable Gold Profile Frame */
     .avatar-wrapper.frame-gold {
       border: 3px solid #fbbf24;
       box-shadow: 0 0 14px rgba(251, 191, 36, 0.55);
     }
 
-    /* Unlockable Animated Profile Effect */
     @keyframes pulseAura {
       0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6), 0 0 18px var(--accent); }
       50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0), 0 0 26px var(--accent); }
@@ -460,7 +489,7 @@
     }
 
     .student-meta h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 800;
       color: var(--text-primary);
       display: flex;
@@ -515,7 +544,6 @@
       border-radius: 4px;
     }
 
-    /* XP Progress Section */
     .xp-progress-box {
       flex: 1;
       min-width: 220px;
@@ -555,7 +583,6 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Wallet & Gamification Nav */
     .wallet-and-nav {
       display: flex;
       align-items: center;
@@ -759,6 +786,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .chapter-num {
@@ -776,24 +804,30 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.68rem;
       font-weight: 700;
-      color: var(--text-secondary);
+      color: var(--text-primary);
       cursor: pointer;
-      padding: 0.18rem 0.5rem;
+      padding: 0.22rem 0.55rem;
       border-radius: 4px;
-      border: 1px solid var(--border);
-      background: var(--bg-secondary);
+      border: 1px solid var(--accent);
+      background: var(--accent-soft);
       transition: all 0.2s ease;
     }
 
     .chapter-xp-tag:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      background: var(--accent);
+      color: #fff;
     }
 
     .chapter-xp-tag.completed {
-      color: var(--accent);
+      color: #fff;
       border-color: var(--accent);
-      background: var(--accent-soft);
+      background: var(--accent);
+    }
+
+    .chapter-xp-tag.soon {
+      border-color: var(--border);
+      background: var(--bg-secondary);
+      color: var(--text-muted);
     }
 
     .chapter-title {
@@ -801,7 +835,7 @@
       font-weight: 700;
       color: var(--text-primary);
       line-height: 1.35;
-      margin-top: 0.2rem;
+      margin-top: 0.25rem;
     }
 
     .chapter-actions {
@@ -820,12 +854,12 @@
     }
 
     /* ==========================================================================
-       7. MODALS (SHOP, MISSIONS/ACHIEVEMENTS, LEADERBOARD, QUIZ, PYQ, HELP)
+       7. MODALS & REAL INTERACTIVE MCQ QUIZ ENGINE STYLES
        ========================================================================== */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.78);
+      background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(4px);
       z-index: 6500;
       display: none;
@@ -855,10 +889,11 @@
       align-items: center;
       border-bottom: 1px solid var(--border);
       padding-bottom: 0.75rem;
+      gap: 0.75rem;
     }
 
     .modal-header h3 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 800;
     }
 
@@ -898,6 +933,110 @@
       color: var(--accent);
     }
 
+    /* Interactive MCQ Options */
+    .quiz-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      background: var(--bg-secondary);
+      padding: 0.6rem 0.9rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+    }
+
+    .quiz-timer {
+      font-weight: 700;
+      color: var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      background: var(--accent-soft);
+    }
+
+    .quiz-timer.urgent {
+      color: var(--danger);
+      background: var(--danger-soft);
+    }
+
+    .quiz-question-text {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.45;
+    }
+
+    .quiz-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .quiz-opt-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-strong);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.18s ease;
+      font-family: inherit;
+    }
+
+    .quiz-opt-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .quiz-opt-btn:disabled {
+      cursor: default;
+    }
+
+    .quiz-opt-btn.correct {
+      border-color: #10b981 !important;
+      background: rgba(16, 185, 129, 0.2) !important;
+      color: #fff !important;
+    }
+
+    .quiz-opt-btn.wrong {
+      border-color: #ef4444 !important;
+      background: rgba(239, 68, 68, 0.2) !important;
+      color: #fca5a5 !important;
+    }
+
+    .quiz-opt-letter {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .quiz-explanation-box {
+      background: var(--bg-secondary);
+      border-left: 3px solid var(--accent);
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
     /* Leaderboard Table */
     .lb-your-rank {
       background: var(--accent-soft);
@@ -933,6 +1072,16 @@
     .lb-row-you {
       background: var(--accent-soft);
       font-weight: 700;
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      margin-right: 4px;
     }
 
     footer {
@@ -984,7 +1133,7 @@
       <span class="landing-badge">Maharashtra State Board • 2.0</span>
       <h1 class="landing-title">Mybookshelf</h1>
       <p class="landing-desc">
-        Access direct Balbharati Textbook PDFs, chapter-wise exercise solutions, and board resources instantly. Earn XP & Coins as you study. Select your standard below to begin.
+        Access direct Balbharati Textbook PDFs, chapter-wise exercise solutions, and real timed HSC MCQ quizzes. Test your knowledge to earn XP & Coins. Select your standard below to begin.
       </p>
       <div class="landing-buttons">
         <button class="landing-btn primary" onclick="enterPortal('12')">
@@ -1019,8 +1168,10 @@
           🎨 Theme: Green
         </button>
 
-        <!-- Class 12 PYQ Preview Button -->
-        <button class="btn" onclick="openPyqModal()">📂 Class 12 PYQ Preview</button>
+        <!-- Class 12 PYQ Preview Button (Gated Behind Google Sign-In) -->
+        <button class="btn" id="headerPyqBtn" onclick="openPyqModal()">
+          🔒 Class 12 PYQ Preview
+        </button>
 
         <!-- Help / Contact Button -->
         <button class="btn" onclick="openHelpModal()">
@@ -1058,7 +1209,7 @@
         <!-- Middle: XP Progress Bar -->
         <div class="xp-progress-box">
           <div class="xp-labels">
-            <span>XP Progression</span>
+            <span>XP Progression (Earned via Quizzes)</span>
             <span id="xpText">0 / 250 XP</span>
           </div>
           <div class="xp-track">
@@ -1073,13 +1224,13 @@
             <span style="font-size: 1.25rem;">🪙</span>
             <div>
               <div class="wallet-label">Mybookshelf Wallet</div>
-              <div class="wallet-amount" id="coinBalance">50 Coins</div>
+              <div class="wallet-amount" id="coinBalance">0 Coins</div>
             </div>
           </div>
 
           <button class="btn" onclick="openMissionsModal()">🎯 Missions & Badges</button>
           <button class="btn" onclick="openShopModal()">🛒 Shop</button>
-          <button class="btn" onclick="openLeaderboardModal()">🏆 Leaderboard</button>
+          <button class="btn" onclick="openLeaderboardModal()">🏆 Live Leaderboard</button>
         </div>
       </section>
 
@@ -1095,7 +1246,7 @@
             type="search"
             id="searchInput"
             class="search-input"
-            placeholder="Search chapters (e.g. Rotational, Matrices, Limits)..."
+            placeholder="Search chapters (e.g. Rotational, Solid State, Matrices, Differentiation)..."
             oninput="renderChapters()"
           />
         </div>
@@ -1117,18 +1268,41 @@
   </div>
 
   <!-- ==========================================================================
+       MODAL 0: LOGIN REQUIRED GATE MODAL (FOR PYQs & IMPORTANT QUESTIONS)
+       ========================================================================== -->
+  <div id="loginGateModal" class="modal-backdrop" onclick="if(event.target===this) closeLoginGateModal()">
+    <div class="modal-box" style="max-width:460px; text-align:center;">
+      <div class="modal-header">
+        <h3>🔒 Exclusive Board Resource</h3>
+        <button class="btn" onclick="closeLoginGateModal()">✕</button>
+      </div>
+      <div style="font-size:2.6rem; margin-top:0.2rem;">🎓</div>
+      <h4 id="loginGateTitle" style="font-size:1.05rem; font-weight:800;">Sign In Required to Unlock PYQs & Imp Questions</h4>
+      <p style="font-size:0.84rem; color:var(--text-secondary);">
+        All textbooks and solutions are open to everyone! To access <strong>Class 12th PYQ Archives</strong>, <strong>Important Board Questions</strong>, and sync your <strong>Live Leaderboard Rank</strong>, please sign in with your Google Account (100% Free).
+      </p>
+      <div style="display:flex; gap:0.6rem; justify-content:center; margin-top:0.4rem;">
+        <button class="btn" onclick="closeLoginGateModal()">Maybe Later</button>
+        <button class="btn btn-primary" onclick="closeLoginGateModal(); handleAuthClick();">
+          🔑 Sign In with Google
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
        MODAL 1: MISSIONS & ACHIEVEMENTS
        ========================================================================== -->
   <div id="missionsModal" class="modal-backdrop" onclick="if(event.target===this) closeMissionsModal()">
     <div class="modal-box">
       <div class="modal-header">
-        <h3>🎯 Daily Missions & Achievements</h3>
+        <h3>🎯 Real Study Missions & Badges</h3>
         <button class="btn" onclick="closeMissionsModal()">✕</button>
       </div>
 
       <div>
         <h4 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:0.65rem;">
-          ⚡ Active Missions (Earn XP & Coins)
+          ⚡ Active Missions (Verified via Real MCQ Quizzes)
         </h4>
         <div class="mission-list" id="missionListContainer"></div>
       </div>
@@ -1150,12 +1324,12 @@
       <div class="modal-header">
         <h3>🛒 Mybookshelf Rewards Shop</h3>
         <div style="display:flex; align-items:center; gap:0.6rem;">
-          <span class="price-tag" id="shopModalWallet">🪙 50 Coins</span>
+          <span class="price-tag" id="shopModalWallet">🪙 0 Coins</span>
           <button class="btn" onclick="closeShopModal()">✕</button>
         </div>
       </div>
       <p style="font-size:0.82rem; color:var(--text-secondary);">
-        All study materials on Mybookshelf are 100% free! Spend the coins you earn from studying to unlock exclusive dashboard themes, profile frames, and badges.
+        All study materials on Mybookshelf are 100% free! Spend the coins you earn from passing real chapter MCQ quizzes to unlock exclusive dashboard themes, profile frames, and badges.
       </p>
 
       <div class="shop-grid" id="shopGridContainer"></div>
@@ -1163,26 +1337,22 @@
       <!-- Optional Supporter Top-Up via BTC -->
       <div style="background:var(--bg-secondary); padding:1rem; border-radius:var(--radius); border:1px solid var(--border); text-align:center;">
         <p style="font-size:0.82rem; font-weight:700; color:var(--text-primary); margin-bottom:0.3rem;">
-          💎 Want to support Mybookshelf & get +500 Bonus Supporter Coins?
+          💎 Want to support Mybookshelf?
         </p>
-        <p style="font-size:0.74rem; color:var(--text-secondary); margin-bottom:0.6rem;">
-          Support ItzMafia via No-KYC Crypto (BTC) in the Help menu or enter a supporter code below:
+        <p style="font-size:0.74rem; color:var(--text-secondary);">
+          Support ItzMafia via No-KYC Crypto (BTC) in the Help menu!
         </p>
-        <div style="display:flex; gap:0.5rem; justify-content:center; max-width:360px; margin:0 auto;">
-          <input type="text" id="promoCodeInput" class="search-input" placeholder="Enter supporter code..." style="font-size:0.78rem; padding:0.38rem 0.65rem;" />
-          <button class="btn btn-primary" onclick="redeemPromoCode()">Redeem</button>
-        </div>
       </div>
     </div>
   </div>
 
   <!-- ==========================================================================
-       MODAL 3: STUDENT LEADERBOARD (YOUR NAME ON TOP + RANKINGS)
+       MODAL 3: LIVE STUDENT LEADERBOARD (REAL PLAYERS ONLY — NO FAKE BOTS)
        ========================================================================== -->
   <div id="leaderboardModal" class="modal-backdrop" onclick="if(event.target===this) closeLeaderboardModal()">
     <div class="modal-box">
       <div class="modal-header">
-        <h3>🏆 Maharashtra Board Scholars Leaderboard</h3>
+        <h3><span class="live-dot"></span> 🏆 Live Scholars Leaderboard</h3>
         <button class="btn" onclick="closeLeaderboardModal()">✕</button>
       </div>
 
@@ -1191,12 +1361,19 @@
 
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
         <div class="class-tabs">
-          <button class="tab-btn active" id="lbTabWeekly" onclick="switchLeaderboardFilter('weekly')">Weekly XP</button>
+          <button class="tab-btn active" id="lbTabAll" onclick="switchLeaderboardFilter('all')">All Scholars</button>
           <button class="tab-btn" id="lbTabClass12" onclick="switchLeaderboardFilter('12')">Class 12 (HSC)</button>
           <button class="tab-btn" id="lbTabClass11" onclick="switchLeaderboardFilter('11')">Class 11 (FYJC)</button>
         </div>
-        <button class="btn" onclick="promptCustomName()" style="font-size:0.75rem;">✏️ Change Leaderboard Name</button>
+        <div style="display:flex; gap:0.4rem;">
+          <button class="btn" onclick="fetchLiveLeaderboard()" style="font-size:0.75rem;">🔄 Refresh Live</button>
+          <button class="btn" onclick="promptCustomName()" style="font-size:0.75rem;">✏️ Edit Name</button>
+        </div>
       </div>
+
+      <p id="lbStatusNote" style="font-size:0.75rem; color:var(--text-secondary);">
+        Showing real verified student profiles ranked by quiz XP. Sign in with Google to sync your score globally!
+      </p>
 
       <div style="overflow-x:auto;">
         <table class="lb-table">
@@ -1205,8 +1382,9 @@
               <th>Rank</th>
               <th>Scholar Name</th>
               <th>Class</th>
+              <th>Quizzes Passed</th>
               <th>Level</th>
-              <th>XP Earned</th>
+              <th>Real XP</th>
             </tr>
           </thead>
           <tbody id="leaderboardTableBody"></tbody>
@@ -1216,20 +1394,20 @@
   </div>
 
   <!-- ==========================================================================
-       MODAL 4: QUICK CHAPTER QUIZ / REVISION CHECK (+50 XP & +25 COINS)
+       MODAL 4: REAL INTERACTIVE 10-MCQ CHAPTER QUIZ ENGINE (60s TIMER)
        ========================================================================== -->
-  <div id="quizModal" class="modal-backdrop" onclick="if(event.target===this) closeQuizModal()">
-    <div class="modal-box" style="max-width:520px;">
+  <div id="quizModal" class="modal-backdrop">
+    <div class="modal-box" style="max-width:640px;">
       <div class="modal-header">
-        <h3 id="quizModalTitle">⚡ Chapter Revision Check</h3>
-        <button class="btn" onclick="closeQuizModal()">✕</button>
+        <h3 id="quizModalTitle">⚡ Chapter MCQ Assessment</h3>
+        <button class="btn" onclick="closeQuizModal()">✕ Quit</button>
       </div>
-      <div id="quizModalContent" style="display:flex; flex-direction:column; gap:0.9rem;"></div>
+      <div id="quizModalContent" style="display:flex; flex-direction:column; gap:1rem;"></div>
     </div>
   </div>
 
   <!-- ==========================================================================
-       MODAL 5: CLASS 12 PYQ PREVIEW MODAL (+30 XP & +15 COINS)
+       MODAL 5: CLASS 12 PYQ PREVIEW MODAL (GATED BEHIND GOOGLE SIGN-IN)
        ========================================================================== -->
   <div id="pyqModal" class="modal-backdrop" onclick="if(event.target===this) closePyqModal()">
     <div class="modal-box">
@@ -1238,16 +1416,16 @@
         <button class="btn" onclick="closePyqModal()">✕</button>
       </div>
       <p style="font-size:0.82rem; color:var(--text-secondary);">
-        Exclusive previous year questions and advanced handwritten notes (Pre-2020 archive). Preview or download directly below (+30 XP & +15 Coins daily study reward!).
+        Exclusive previous year questions and advanced handwritten notes (Pre-2020 archive). Unlocked via your Google Scholar account!
       </p>
-      <div style="flex:1; background:var(--bg-secondary); border:1px solid var(--border); border-radius:var(--radius); min-height:240px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; padding:1.5rem; text-align:center;">
+      <div style="flex:1; background:var(--bg-secondary); border:1px solid var(--border); border-radius:var(--radius); min-height:220px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; padding:1.5rem; text-align:center;">
         <span style="font-size:2.5rem;">📄</span>
         <div>
           <h4 style="font-size:0.95rem; font-weight:700; margin-bottom:0.2rem;">XII Physics PYQ.pdf</h4>
-          <p style="font-size:0.78rem; color:var(--text-secondary);">Archive notes prior to 2020.</p>
+          <p style="font-size:0.78rem; color:var(--text-secondary);">Official Pre-2020 Physics Archive Notes.</p>
         </div>
-        <a href="XII Physics PYQ.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="rewardPyqCompletion()">
-          📥 Download / Open PYQ PDF (+30 XP · +15 🪙)
+        <a href="XII Physics PYQ.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="markPyqViewed()">
+          📥 Download / Open PYQ PDF
         </a>
       </div>
     </div>
@@ -1286,7 +1464,7 @@
   </div>
 
   <!-- ==========================================================================
-       FIREBASE SDK v13.1.0 WITH GOOGLE AUTHENTICATION
+       FIREBASE SDK v13.1.0 (GOOGLE AUTH + FIRESTORE LIVE LEADERBOARD)
        ========================================================================== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
@@ -1302,6 +1480,16 @@
       setPersistence,
       browserLocalPersistence
     } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+    import {
+      getFirestore,
+      collection,
+      doc,
+      setDoc,
+      getDocs,
+      query,
+      orderBy,
+      limit
+    } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyD5mHMMBeuBFHPwpkKVB1MtX5Zcsbd-pns",
@@ -1314,11 +1502,13 @@
     };
 
     let auth = null;
-    let currentUser = null;
+    let db = null;
+    window.currentUser = null;
 
     try {
       const app = initializeApp(firebaseConfig);
       try { getAnalytics(app); } catch (e) {}
+      try { db = getFirestore(app); } catch (e) {}
 
       auth = getAuth(app);
       setPersistence(auth, browserLocalPersistence).catch(() => {});
@@ -1333,22 +1523,69 @@
       }).catch(() => {});
 
       onAuthStateChanged(auth, (user) => {
-        currentUser = user;
+        window.currentUser = user;
         const authBtn = document.getElementById("authBtn");
         const dashboardAvatar = document.getElementById("dashboardAvatar");
+        const headerPyqBtn = document.getElementById("headerPyqBtn");
 
         if (user) {
           authBtn.textContent = "Sign Out";
+          if (headerPyqBtn) headerPyqBtn.innerHTML = "📂 Class 12 PYQ Preview";
           if (user.photoURL) {
             dashboardAvatar.src = user.photoURL;
           }
           window.syncUserWithGamification(user);
+          window.pushLiveScoreToCloud();
         } else {
           authBtn.textContent = "Sign In with Google";
+          if (headerPyqBtn) headerPyqBtn.innerHTML = "🔒 Class 12 PYQ Preview";
           dashboardAvatar.src = "https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png";
           window.syncUserWithGamification(null);
         }
+        if (typeof window.renderChapters === "function") {
+          window.renderChapters();
+        }
       });
+
+      // Push current user's real score to Firestore + local live registry
+      window.pushLiveScoreToCloud = async () => {
+        const entry = window.getCurrentScholarEntry();
+        if (!entry) return;
+        window.saveToLocalLiveRegistry(entry);
+        if (!db || !window.currentUser) return;
+        try {
+          await setDoc(doc(db, "mbs_leaderboard", window.currentUser.uid), {
+            uid: window.currentUser.uid,
+            name: entry.name,
+            cls: entry.cls,
+            xp: entry.xp,
+            coins: entry.coins,
+            quizzesPassed: entry.quizzesPassed,
+            updatedAt: Date.now()
+          }, { merge: true });
+        } catch (e) {
+          // Graceful fallback if Firestore rules are restricted
+        }
+      };
+
+      // Fetch live leaderboard from Firestore (zero fake bots!)
+      window.fetchCloudLeaderboard = async () => {
+        if (!db) return null;
+        try {
+          const q = query(collection(db, "mbs_leaderboard"), orderBy("xp", "desc"), limit(50));
+          const snap = await getDocs(q);
+          const list = [];
+          snap.forEach((docSnap) => {
+            const d = docSnap.data();
+            if (d && d.name && typeof d.xp === "number") {
+              list.push(d);
+            }
+          });
+          return list;
+        } catch (e) {
+          return null;
+        }
+      };
 
       window.handleAuthClick = async () => {
         if (!auth) {
@@ -1356,7 +1593,7 @@
           return;
         }
 
-        if (currentUser) {
+        if (window.currentUser) {
           try {
             await signOut(auth);
             window.showToast("Signed out successfully.");
@@ -1369,7 +1606,7 @@
         try {
           window.showToast("Opening Google Sign-In...");
           await signInWithPopup(auth, provider);
-          window.showToast("Signed in successfully!");
+          window.showToast("Signed in! PYQs, Imp Questions & Live Leaderboard unlocked.");
         } catch (err) {
           if (err.code === "auth/popup-blocked" || err.code === "auth/cancelled-popup-request") {
             window.showToast("Redirecting to Google Sign-In...");
@@ -1387,13 +1624,60 @@
   </script>
 
   <!-- ==========================================================================
-       CORE CURRICULUM DATA & MYBOOKSHELF 2.0 GAMIFICATION ENGINE
+       EXTERNAL CURRICULUM DATA + EMBEDDED 470-QUESTION HSC MCQ BANK
        ========================================================================== -->
   <script src="data.js"></script>
   <script>
+    // Complete Class 12 MCQ Bank: Physics (160 MCQs), Chemistry (160 MCQs), Mathematics (150 MCQs)
+    const MCQ_BANK = {"Physics":{"1":{"num":1,"title":"Rotational Dynamics","questions":[{"q":"A ceiling fan experiences a constant torque of 2 N m while rotating at an angular speed of 2π rad s⁻¹. Its mechanical power is:","opts":["π W","2π W","3π W","4π W"],"ans":3,"exp":"4π W. Power in rotational motion is τω = 2 × 2π = 4π W.","tag":"PYQ 2025 – rephrased"},{"q":"The moment of inertia of a rigid body about a given axis depends on:","opts":["Only its angular speed","The distribution of mass about the axis","Only its angular acceleration","Only its total volume"],"ans":1,"exp":"The distribution of mass about the axis. Moment of inertia is Σmr², so the positions of the mass elements relative to the axis matter.","tag":"PYQ-pattern practice"},{"q":"The SI unit of torque is:","opts":["N m","N m⁻¹","kg m s⁻¹","J s"],"ans":0,"exp":"N m. Torque is force multiplied by perpendicular distance, giving N m.","tag":"PYQ-pattern practice"},{"q":"The angular momentum of a particle moving in a circle of radius r with tangential momentum p is:","opts":["p/r","pr","p/r²","p²r"],"ans":1,"exp":"pr. For perpendicular radius and momentum, L = rp.","tag":"PYQ-pattern practice"},{"q":"The moment of inertia of a thin ring of mass M and radius R about its central axis perpendicular to its plane is:","opts":["½MR²","MR²","2MR²","⅖MR²"],"ans":1,"exp":"MR². All elements of the ring lie at distance R from the axis, so I = MR².","tag":"PYQ-pattern practice"},{"q":"For a body rolling without slipping, the relation between the speed of its centre v and angular speed ω is:","opts":["v = ω/R","v = Rω","v = R²ω","v = 2Rω"],"ans":1,"exp":"v = Rω. The no-slip condition is v = Rω.","tag":"PYQ-pattern practice"},{"q":"If the net external torque on a system is zero, which quantity is conserved?","opts":["Linear acceleration","Angular momentum","Angular velocity in every case","Moment of inertia in every case"],"ans":1,"exp":"Angular momentum. Zero external torque means total angular momentum remains constant.","tag":"PYQ-pattern practice"},{"q":"The centripetal acceleration of a particle moving with speed v in a circle of radius r is:","opts":["vr","v/r","v²/r","r/v²"],"ans":2,"exp":"v²/r. Centripetal acceleration is directed towards the centre and has magnitude v²/r.","tag":"PYQ-pattern practice"},{"q":"For a vehicle moving on a level circular road, the centripetal force is mainly provided by:","opts":["Normal reaction","Static friction","Weight","Air pressure"],"ans":1,"exp":"Static friction. Static friction between the tyres and road supplies the required horizontal centripetal force.","tag":"PYQ-pattern practice"},{"q":"The rotational kinetic energy of a rigid body rotating with angular speed ω and moment of inertia I is:","opts":["Iω","Iω²","½Iω²","2Iω²"],"ans":2,"exp":"½Iω². Rotational kinetic energy is one-half moment of inertia multiplied by angular speed squared.","tag":"PYQ-pattern practice"}]},"2":{"num":2,"title":"Mechanical Properties of Fluids","questions":[{"q":"According to Bernoulli's principle, which quantity remains constant along a streamline for ideal steady flow?","opts":["Total mechanical energy per unit volume","Linear momentum of each fluid particle","Density multiplied by speed","Viscosity multiplied by pressure"],"ans":0,"exp":"Total mechanical energy per unit volume. The sum of pressure, kinetic-energy and potential-energy terms per unit volume is constant.","tag":"PYQ 2025 – rephrased"},{"q":"The pressure at a depth h below the free surface of a liquid of density ρ is:","opts":["ρg/h","ρgh","gh/ρ","ρh/g"],"ans":1,"exp":"ρgh. Gauge pressure in a liquid column is p = ρgh.","tag":"PYQ-pattern practice"},{"q":"The SI unit of surface tension is:","opts":["N m","N m⁻¹","J m","Pa m²"],"ans":1,"exp":"N m⁻¹. Surface tension is force per unit length, measured in N m⁻¹.","tag":"PYQ-pattern practice"},{"q":"The excess pressure inside a spherical liquid drop of radius r and surface tension T is:","opts":["T/r","2T/r","4T/r","8T/r"],"ans":1,"exp":"2T/r. A liquid drop has one surface, so its excess pressure is 2T/r.","tag":"PYQ-pattern practice"},{"q":"For a capillary tube, the height of liquid rise is inversely proportional to:","opts":["The tube radius","The liquid density only","The gravitational acceleration only","The contact angle"],"ans":0,"exp":"The tube radius. Capillary rise h = 2T cosθ/(ρgr), so h varies as 1/r.","tag":"PYQ-pattern practice"},{"q":"The equation of continuity for an incompressible fluid flowing through a tube is:","opts":["A₁/v₁ = A₂/v₂","A₁v₁ = A₂v₂","A₁v₂ = A₂v₁","A₁ + v₁ = A₂ + v₂"],"ans":1,"exp":"A₁v₁ = A₂v₂. Conservation of mass gives constant volume flow rate A v.","tag":"PYQ-pattern practice"},{"q":"The viscous force on a small sphere moving slowly through a fluid is described by:","opts":["Coulomb's law","Stokes' law","Hooke's law","Pascal's law"],"ans":1,"exp":"Stokes' law. Stokes' law gives F = 6πηrv for slow laminar motion of a small sphere.","tag":"PYQ-pattern practice"},{"q":"The SI unit of coefficient of viscosity is:","opts":["Pa s","N m","kg m s⁻¹","N m⁻¹"],"ans":0,"exp":"Pa s. Dynamic viscosity is measured in pascal-second (Pa s).","tag":"PYQ-pattern practice"},{"q":"A hydraulic lift works on the principle of:","opts":["Archimedes' principle","Pascal's law","Bernoulli's principle","Boyle's law"],"ans":1,"exp":"Pascal's law. Pressure applied to an enclosed fluid is transmitted throughout the fluid.","tag":"PYQ-pattern practice"},{"q":"For a soap bubble of radius r, the excess pressure inside it is:","opts":["T/r","2T/r","4T/r","8T/r"],"ans":2,"exp":"4T/r. A soap bubble has two liquid surfaces, giving Δp = 4T/r.","tag":"PYQ-pattern practice"}]},"3":{"num":3,"title":"Kinetic Theory of Gases and Radiation","questions":[{"q":"For an ideal gas, the root-mean-square speed of molecules is:","opts":["√(RT/M)","√(2RT/M)","√(3RT/M)","3RT/M"],"ans":2,"exp":"√(3RT/M). The rms speed is cᵣₘₛ = √(3RT/M), where M is molar mass.","tag":"PYQ-pattern practice"},{"q":"The average translational kinetic energy per molecule of an ideal gas at absolute temperature T is:","opts":["kT","3kT/2","5kT/2","3kT"],"ans":1,"exp":"3kT/2. Equipartition gives average translational kinetic energy = 3kT/2.","tag":"PYQ-pattern practice"},{"q":"The SI unit of the Stefan–Boltzmann constant is:","opts":["W m⁻² K⁻⁴","W m⁻² K⁻¹","J K⁻¹","W K⁴"],"ans":0,"exp":"W m⁻² K⁻⁴. From j* = σT⁴, σ has units W m⁻² K⁻⁴.","tag":"PYQ-pattern practice"},{"q":"According to Wien's displacement law, the wavelength of maximum emission is:","opts":["Directly proportional to temperature","Inversely proportional to temperature","Independent of temperature","Proportional to temperature squared"],"ans":1,"exp":"Inversely proportional to temperature. Wien's law states λmax T = constant.","tag":"PYQ-pattern practice"},{"q":"A perfect black body is an ideal body that:","opts":["Reflects all incident radiation","Transmits all incident radiation","Absorbs all incident radiation","Emits no radiation"],"ans":2,"exp":"Absorbs all incident radiation. A black body absorbs all incident radiation and is also an ideal emitter.","tag":"PYQ-pattern practice"},{"q":"At thermal equilibrium, the ratio of emissive power to absorptive power is:","opts":["Different for every wavelength","The same for all bodies at a given temperature and wavelength","Always zero","Always equal to one"],"ans":1,"exp":"The same for all bodies at a given temperature and wavelength. Kirchhoff's law states that the ratio is universal at the same temperature and wavelength.","tag":"PYQ-pattern practice"},{"q":"The pressure of an ideal gas according to kinetic theory is related to mean square speed by:","opts":["p = ρ⟨c²⟩/3","p = 3ρ⟨c²⟩","p = ρ⟨c⟩/3","p = ρ/⟨c²⟩"],"ans":0,"exp":"p = ρ⟨c²⟩/3. Kinetic theory gives p = (1/3)ρcᵣₘₛ² = (1/3)ρ⟨c²⟩.","tag":"PYQ-pattern practice"},{"q":"The mean free path of gas molecules is the:","opts":["Total distance travelled by a molecule","Average distance between successive collisions","Radius of a gas molecule","Distance travelled in one second"],"ans":1,"exp":"Average distance between successive collisions. Mean free path is the average distance a molecule travels between collisions.","tag":"PYQ-pattern practice"},{"q":"For a fixed amount of ideal gas at constant volume, pressure is directly proportional to:","opts":["Celsius temperature","Absolute temperature","Square of absolute temperature","Inverse absolute temperature"],"ans":1,"exp":"Absolute temperature. At constant volume, the ideal-gas law gives p ∝ T in kelvin.","tag":"PYQ-pattern practice"},{"q":"The energy radiated per unit area per unit time by a black body is proportional to:","opts":["T","T²","T³","T⁴"],"ans":3,"exp":"T⁴. Stefan's law states that the emissive power is proportional to the fourth power of absolute temperature.","tag":"PYQ-pattern practice"}]},"4":{"num":4,"title":"Thermodynamics","questions":[{"q":"If two systems are separately in thermal equilibrium with a third system, they are in thermal equilibrium with each other. This is the:","opts":["First law","Second law","Zeroth law","Third law"],"ans":2,"exp":"Zeroth law. This is the statement of the zeroth law of thermodynamics.","tag":"PYQ 2025 – rephrased"},{"q":"The first law of thermodynamics is a statement of conservation of:","opts":["Charge","Energy","Momentum","Mass number"],"ans":1,"exp":"Energy. The first law expresses conservation of energy for a thermodynamic system.","tag":"PYQ-pattern practice"},{"q":"During an isochoric process, the work done by a gas is:","opts":["Maximum","Zero","Positive always","Negative always"],"ans":1,"exp":"Zero. At constant volume, ΔV = 0, so W = ∫p dV = 0.","tag":"PYQ-pattern practice"},{"q":"For an ideal gas undergoing an isothermal process, the change in internal energy is:","opts":["Positive","Negative","Zero","Equal to the work in every case"],"ans":2,"exp":"Zero. Internal energy of an ideal gas depends only on temperature, which remains constant.","tag":"PYQ-pattern practice"},{"q":"In an adiabatic process, the heat exchanged with the surroundings is:","opts":["Zero","Maximum","Equal to the work","Always positive"],"ans":0,"exp":"Zero. Adiabatic means no heat transfer, so Q = 0.","tag":"PYQ-pattern practice"},{"q":"The efficiency of a reversible Carnot engine operating between Th and Tc is:","opts":["Tc/Th","1 − Tc/Th","1 + Tc/Th","Th/Tc"],"ans":1,"exp":"1 − Tc/Th. Carnot efficiency is η = 1 − Tc/Th, with temperatures in kelvin.","tag":"PYQ-pattern practice"},{"q":"For one mole of an ideal gas, the relation between molar specific heats is:","opts":["Cp + Cv = R","Cp − Cv = R","Cv − Cp = R","Cp/Cv = R"],"ans":1,"exp":"Cp − Cv = R. Mayer's relation for an ideal gas is Cp − Cv = R.","tag":"PYQ-pattern practice"},{"q":"In an isobaric process, which quantity remains constant?","opts":["Pressure","Volume","Temperature","Internal energy"],"ans":0,"exp":"Pressure. Isobaric means pressure remains constant.","tag":"PYQ-pattern practice"},{"q":"A refrigerator removes heat Qc from a cold space by using work W. Its coefficient of performance is:","opts":["W/Qc","Qc/W","(Qc + W)/W","W/(Qc + W)"],"ans":1,"exp":"Qc/W. The refrigerator COP is the heat removed from the cold space divided by work input.","tag":"PYQ-pattern practice"},{"q":"The second law of thermodynamics implies that heat cannot, by itself, flow from:","opts":["A hot body to a cold body","A cold body to a hot body","A body to its surroundings","A gas to a colder gas"],"ans":1,"exp":"A cold body to a hot body. The Clausius statement forbids spontaneous heat flow from cold to hot without external work.","tag":"PYQ-pattern practice"}]},"5":{"num":5,"title":"Oscillations","questions":[{"q":"In simple harmonic motion, acceleration a is related to displacement x by:","opts":["a = ωx","a = −ω²x","a = ω²/x","a = −ωx²"],"ans":1,"exp":"a = −ω²x. SHM acceleration is proportional to displacement and directed towards the mean position.","tag":"PYQ-pattern practice"},{"q":"The time period of a mass m attached to a spring of force constant k is:","opts":["2π√(k/m)","2π√(m/k)","2πmk","√(m/k)/2π"],"ans":1,"exp":"2π√(m/k). The angular frequency is √(k/m), so T = 2π√(m/k).","tag":"PYQ-pattern practice"},{"q":"The time period of a simple pendulum for small oscillations is:","opts":["2π√(g/l)","2π√(l/g)","2πlg","√(lg)"],"ans":1,"exp":"2π√(l/g). For small oscillations, T = 2π√(l/g).","tag":"PYQ-pattern practice"},{"q":"At the mean position of an ideal SHM oscillator, its speed is:","opts":["Zero","Maximum","Minimum but non-zero","Equal to its acceleration"],"ans":1,"exp":"Maximum. All the mechanical energy is kinetic at the mean position, so speed is maximum.","tag":"PYQ-pattern practice"},{"q":"At an extreme position in SHM, the acceleration magnitude is:","opts":["Zero","Maximum","Half its maximum","Independent of amplitude"],"ans":1,"exp":"Maximum. Since |a| = ω²|x|, it is maximum when |x| = A.","tag":"PYQ-pattern practice"},{"q":"The frequency of an oscillator having time period 0.2 s is:","opts":["0.2 Hz","2 Hz","5 Hz","10 Hz"],"ans":2,"exp":"5 Hz. Frequency f = 1/T = 1/0.2 = 5 Hz.","tag":"PYQ-pattern practice"},{"q":"In SHM, kinetic energy equals potential energy when the displacement magnitude is:","opts":["A","A/2","A/√2","A/√3"],"ans":2,"exp":"A/√2. Setting ½k(A² − x²) = ½kx² gives |x| = A/√2.","tag":"PYQ-pattern practice"},{"q":"The total mechanical energy of an ideal spring-mass oscillator is proportional to:","opts":["Amplitude","Amplitude squared","Frequency only","Inverse amplitude"],"ans":1,"exp":"Amplitude squared. Total energy is ½kA², proportional to A².","tag":"PYQ-pattern practice"},{"q":"Resonance occurs when the driving frequency is:","opts":["Zero","Equal to the natural frequency","Twice the damping coefficient","Always lower than the natural frequency"],"ans":1,"exp":"Equal to the natural frequency. At resonance the driving frequency matches the natural frequency (for the ideal definition).","tag":"PYQ-pattern practice"},{"q":"For small oscillations, the time period of a simple pendulum depends on:","opts":["Mass of the bob","Amplitude only","Length and gravitational acceleration","Material of the bob"],"ans":2,"exp":"Length and gravitational acceleration. T = 2π√(l/g); mass and bob material do not appear.","tag":"PYQ-pattern practice"}]},"6":{"num":6,"title":"Superposition of Waves","questions":[{"q":"A stretched string of length 2 m vibrates in a mode with two loops. The distance from a node to its adjacent antinode is:","opts":["0.25 m","0.50 m","1.0 m","2.0 m"],"ans":1,"exp":"0.50 m. Two loops mean L = 2(λ/2), so λ = 2 m; node-to-neighbouring-antinode distance is λ/4 = 0.5 m.","tag":"PYQ 2025 – rephrased"},{"q":"The number of beats per second produced by two close frequencies f₁ and f₂ is:","opts":["f₁ + f₂","|f₁ − f₂|","f₁f₂","(f₁ − f₂)²"],"ans":1,"exp":"|f₁ − f₂|. Beat frequency is the absolute difference between the two frequencies.","tag":"PYQ-pattern practice"},{"q":"In a stationary wave, a point of zero displacement at all times is called a:","opts":["Antinode","Node","Crest","Rarefaction"],"ans":1,"exp":"Node. A node is a point where the displacement amplitude is zero.","tag":"PYQ-pattern practice"},{"q":"The distance between two consecutive nodes in a stationary wave is:","opts":["λ/4","λ/2","λ","2λ"],"ans":1,"exp":"λ/2. Successive nodes are separated by half a wavelength.","tag":"PYQ-pattern practice"},{"q":"The fundamental frequency of a stretched string fixed at both ends is:","opts":["v/L","v/2L","2v/L","v/4L"],"ans":1,"exp":"v/2L. For the fundamental mode, L = λ/2, so f = v/λ = v/(2L).","tag":"PYQ-pattern practice"},{"q":"The fundamental frequency of an air column closed at one end and open at the other is:","opts":["v/2L","v/4L","v/L","2v/L"],"ans":1,"exp":"v/4L. The fundamental mode has λ = 4L, hence f = v/(4L).","tag":"PYQ-pattern practice"},{"q":"Two sound waves of equal frequency and constant phase difference are described as:","opts":["Incoherent","Coherent","Transverse","Stationary"],"ans":1,"exp":"Coherent. Coherent sources maintain a constant phase difference.","tag":"PYQ-pattern practice"},{"q":"The phenomenon of beats is an example of:","opts":["Diffraction","Superposition","Polarisation","Refraction"],"ans":1,"exp":"Superposition. Beats arise from superposition of waves with slightly different frequencies.","tag":"PYQ-pattern practice"},{"q":"At an antinode of a stationary wave, the displacement amplitude is:","opts":["Zero","Minimum","Maximum","Equal to wavelength"],"ans":2,"exp":"Maximum. An antinode is a point of maximum vibration amplitude.","tag":"PYQ-pattern practice"},{"q":"If two tuning forks have frequencies 256 Hz and 260 Hz, the beat frequency is:","opts":["2 Hz","4 Hz","256 Hz","516 Hz"],"ans":1,"exp":"4 Hz. Beat frequency = |260 − 256| = 4 Hz.","tag":"PYQ-pattern practice"}]},"7":{"num":7,"title":"Wave Optics","questions":[{"q":"According to Brewster's law, the refractive index of a medium for light incident at the polarising angle iₚ is:","opts":["sin iₚ","cos iₚ","tan iₚ","cot iₚ"],"ans":2,"exp":"tan iₚ. Brewster's law gives μ = tan iₚ for light incident from air.","tag":"PYQ-pattern practice"},{"q":"In Young's double-slit experiment, fringe width is:","opts":["dD/λ","λD/d","λd/D","D/(λd)"],"ans":1,"exp":"λD/d. Fringe width β = λD/d, where D is screen distance and d is slit separation.","tag":"PYQ-pattern practice"},{"q":"Polarisation of light establishes that light waves are:","opts":["Longitudinal","Transverse","Always mechanical","Stationary"],"ans":1,"exp":"Transverse. Only transverse waves can be polarised.","tag":"PYQ-pattern practice"},{"q":"For sustained interference, the two sources should be:","opts":["Of different frequencies","Coherent","At right angles only","Of unrelated phases"],"ans":1,"exp":"Coherent. Coherent sources have the same frequency and a constant phase difference.","tag":"PYQ-pattern practice"},{"q":"For a single slit of width a, the condition for a minimum in diffraction is:","opts":["a sinθ = mλ","a cosθ = mλ","d sinθ = λ/4","a tanθ = 2mλ"],"ans":0,"exp":"a sinθ = mλ. Diffraction minima occur at a sinθ = mλ for non-zero integer m.","tag":"PYQ-pattern practice"},{"q":"If the wavelength is doubled while D and d remain unchanged in Young's experiment, fringe width becomes:","opts":["Half","Double","Four times","Unchanged"],"ans":1,"exp":"Double. Since β is directly proportional to wavelength, it doubles.","tag":"PYQ-pattern practice"},{"q":"The central maximum in single-slit diffraction is:","opts":["Narrower than the other maxima","Twice as wide as the secondary maxima spacing","Absent","Always dark"],"ans":1,"exp":"Twice as wide as the secondary maxima spacing. The central bright maximum extends between the first minima on both sides and is twice the width of the secondary maxima.","tag":"PYQ-pattern practice"},{"q":"When unpolarised light passes through an ideal polariser, its transmitted intensity is:","opts":["I₀","I₀/2","2I₀","Zero"],"ans":1,"exp":"I₀/2. An ideal polariser transmits half the intensity of unpolarised incident light.","tag":"PYQ-pattern practice"},{"q":"The phenomenon that causes bending of light around the edge of an obstacle is:","opts":["Interference","Diffraction","Polarisation","Dispersion"],"ans":1,"exp":"Diffraction. Diffraction is the spreading or bending of waves around obstacles and apertures.","tag":"PYQ-pattern practice"},{"q":"If the distance between the slits is increased in Young's experiment, fringe width:","opts":["Increases","Decreases","Remains constant","Becomes zero for every value"],"ans":1,"exp":"Decreases. Since β = λD/d, increasing d decreases fringe width.","tag":"PYQ-pattern practice"}]},"8":{"num":8,"title":"Electrostatics","questions":[{"q":"The electric potential at distance r from an isolated point charge varies as:","opts":["r","r²","1/r","1/r²"],"ans":2,"exp":"1/r. For a point charge, V = kq/r.","tag":"PYQ 2025 – rephrased"},{"q":"The magnitude of the electric field just outside a large uniformly charged non-conducting plane sheet is:","opts":["σ/ε₀","σ/(2ε₀)","2σ/ε₀","ε₀σ/2"],"ans":1,"exp":"σ/(2ε₀). Gauss's law gives E = σ/(2ε₀) on either side of an infinite sheet.","tag":"PYQ-pattern practice"},{"q":"The SI unit of electric flux is:","opts":["N m² C⁻¹","N C⁻¹","C m⁻²","V m⁻¹"],"ans":0,"exp":"N m² C⁻¹. Electric flux is electric field multiplied by area, giving N m² C⁻¹.","tag":"PYQ-pattern practice"},{"q":"The capacitance of a parallel-plate capacitor in vacuum is:","opts":["ε₀d/A","ε₀A/d","A/(ε₀d)","ε₀Ad"],"ans":1,"exp":"ε₀A/d. For parallel plates, C = ε₀A/d.","tag":"PYQ-pattern practice"},{"q":"The electric field due to a point charge q at distance r in vacuum has magnitude:","opts":["kq/r","kq/r²","kqr","kr²/q"],"ans":1,"exp":"kq/r². Coulomb's field is E = k|q|/r².","tag":"PYQ-pattern practice"},{"q":"The SI unit of electric dipole moment is:","opts":["C m","C m⁻¹","N C⁻¹","V m⁻¹"],"ans":0,"exp":"C m. Dipole moment is charge multiplied by separation, measured in coulomb-metre.","tag":"PYQ-pattern practice"},{"q":"The electric potential inside a charged conductor in electrostatic equilibrium is:","opts":["Different at every point","Constant throughout","Always zero","Infinite"],"ans":1,"exp":"Constant throughout. The electrostatic field inside a conductor is zero, so potential is constant throughout it.","tag":"PYQ-pattern practice"},{"q":"If a dielectric of relative permittivity K completely fills a capacitor, its capacitance becomes:","opts":["C₀/K","KC₀","C₀ + K","C₀ − K"],"ans":1,"exp":"KC₀. The dielectric increases capacitance by the factor K.","tag":"PYQ-pattern practice"},{"q":"The electric field is related to electric potential V along a radial direction by:","opts":["E = dV/dr","E = −dV/dr","E = V/r²","E = −rV"],"ans":1,"exp":"E = −dV/dr. Electric field points in the direction of decreasing potential: E = −dV/dr.","tag":"PYQ-pattern practice"},{"q":"For two capacitors connected in parallel, the equivalent capacitance is:","opts":["C₁C₂/(C₁ + C₂)","C₁ + C₂","(C₁ + C₂)/(C₁C₂)","|C₁ − C₂|"],"ans":1,"exp":"C₁ + C₂. In parallel, capacitances add directly.","tag":"PYQ-pattern practice"}]},"9":{"num":9,"title":"Current Electricity","questions":[{"q":"In a potentiometer experiment, the internal resistance r of a cell is related to external resistance R, emf E and terminal voltage V by:","opts":["r = R(V/E − 1)","r = R(1 − E/V)","r = R(1 − V/E)","r = R(E/V − 1)"],"ans":3,"exp":"r = R(E/V − 1). Since E/V = (R + r)/R, rearranging gives r = R(E/V − 1).","tag":"PYQ 2025 – rephrased"},{"q":"The resistance of a uniform wire is given by:","opts":["R = ρA/L","R = ρL/A","R = LA/ρ","R = ρ/(LA)"],"ans":1,"exp":"R = ρL/A. Resistance is proportional to length and inversely proportional to cross-sectional area.","tag":"PYQ-pattern practice"},{"q":"The SI unit of resistivity is:","opts":["Ω","Ω m","Ω m⁻¹","S m"],"ans":1,"exp":"Ω m. From R = ρL/A, resistivity has unit ohm-metre.","tag":"PYQ-pattern practice"},{"q":"Kirchhoff's junction rule is based on conservation of:","opts":["Energy","Charge","Mass","Angular momentum"],"ans":1,"exp":"Charge. The sum of currents entering a junction equals the sum leaving it because charge is conserved.","tag":"PYQ-pattern practice"},{"q":"For a balanced Wheatstone bridge, the relation between its four arms P, Q, R and S is:","opts":["P + Q = R + S","P/Q = R/S","PQ = R + S","P/S = Q + R"],"ans":1,"exp":"P/Q = R/S. At balance, the ratio of resistances in one pair of arms equals that in the other pair.","tag":"PYQ-pattern practice"},{"q":"The terminal voltage of a cell delivering current I, with emf E and internal resistance r, is:","opts":["E + Ir","E − Ir","Ir − E","E/I r"],"ans":1,"exp":"E − Ir. While supplying current, terminal voltage is V = E − Ir.","tag":"PYQ-pattern practice"},{"q":"Two resistors R₁ and R₂ connected in series have equivalent resistance:","opts":["R₁R₂/(R₁ + R₂)","R₁ + R₂","R₁ − R₂","(R₁ + R₂)/(R₁R₂)"],"ans":1,"exp":"R₁ + R₂. Series resistances add.","tag":"PYQ-pattern practice"},{"q":"The equivalent resistance of two resistors R₁ and R₂ in parallel is:","opts":["R₁ + R₂","R₁R₂/(R₁ + R₂)","R₁ − R₂","R₁R₂"],"ans":1,"exp":"R₁R₂/(R₁ + R₂). For parallel resistors, 1/R = 1/R₁ + 1/R₂.","tag":"PYQ-pattern practice"},{"q":"The drift velocity of electrons in a metallic conductor is proportional to:","opts":["Electric field","Square of electric field","Inverse of electric field","Temperature only"],"ans":0,"exp":"Electric field. For a given material, drift velocity v_d = eEτ/m, so it is proportional to E.","tag":"PYQ-pattern practice"},{"q":"A potentiometer is preferred over a voltmeter for measuring emf because at balance it:","opts":["Draws a large current from the cell","Draws no current from the test cell","Has zero resistance","Works only with alternating current"],"ans":1,"exp":"Draws no current from the test cell. At the null point, no current is drawn from the cell being measured, avoiding loading error.","tag":"PYQ-pattern practice"}]},"10":{"num":10,"title":"Magnetic Fields due to Electric Current","questions":[{"q":"The magnetic field at the centre of a single circular current loop of radius R is:","opts":["μ₀I/R","μ₀I/(2R)","μ₀I/(4πR)","2μ₀I/R"],"ans":1,"exp":"μ₀I/(2R). Biot–Savart law gives B = μ₀I/(2R) at the centre of a circular loop.","tag":"PYQ-pattern practice"},{"q":"The magnetic field at perpendicular distance r from a long straight wire carrying current I is:","opts":["μ₀I/(2πr)","μ₀Ir/(2π)","μ₀I/(4πr²)","2πr/(μ₀I)"],"ans":0,"exp":"μ₀I/(2πr). Ampere's law gives B = μ₀I/(2πr).","tag":"PYQ-pattern practice"},{"q":"The magnetic force on a charge q moving with velocity v perpendicular to a magnetic field B is:","opts":["qv/B","qvB","qB/v","qv²B"],"ans":1,"exp":"qvB. The magnetic force magnitude is qvB sinθ; for 90°, it is qvB.","tag":"PYQ-pattern practice"},{"q":"A charged particle enters a uniform magnetic field with velocity perpendicular to the field. Its path is:","opts":["Straight line","Circular","Parabolic","Hyperbolic"],"ans":1,"exp":"Circular. The magnetic force is always perpendicular to velocity and acts as centripetal force.","tag":"PYQ-pattern practice"},{"q":"The radius of the circular path of a charge q moving perpendicular to B with speed v is:","opts":["qB/(mv)","mv/(qB)","mB/(qv)","qv/(mB²)"],"ans":1,"exp":"mv/(qB). Equating qvB to mv²/r gives r = mv/(|q|B).","tag":"PYQ-pattern practice"},{"q":"The magnetic force on a current-carrying straight conductor of length L perpendicular to B is:","opts":["BIL","BI/L","BIL²","IL/B"],"ans":0,"exp":"BIL. The force is F = BIL sinθ; at 90°, F = BIL.","tag":"PYQ-pattern practice"},{"q":"The torque on a coil of N turns, area A and current I in a uniform magnetic field B is maximum when the angle between the coil's normal and B is:","opts":["0°","30°","60°","90°"],"ans":3,"exp":"90°. τ = NIAB sinθ, where θ is the angle between magnetic moment (normal) and B.","tag":"PYQ-pattern practice"},{"q":"The magnetic field inside a long ideal solenoid is approximately:","opts":["Zero everywhere","Uniform and parallel to its axis","Radial","Inversely proportional to current"],"ans":1,"exp":"Uniform and parallel to its axis. A long solenoid produces a nearly uniform axial field inside it.","tag":"PYQ-pattern practice"},{"q":"The cyclotron frequency of a non-relativistic charged particle in a uniform magnetic field is:","opts":["qB/(2πm)","2πm/(qB)","q/(2πmB)","mB/(2πq)"],"ans":0,"exp":"qB/(2πm). The cyclotron frequency is f = |q|B/(2πm), independent of speed in the non-relativistic limit.","tag":"PYQ-pattern practice"},{"q":"The magnetic field direction around a straight current-carrying wire is determined by:","opts":["Fleming's left-hand rule","Right-hand thumb rule","Lenz's law","Snell's law"],"ans":1,"exp":"Right-hand thumb rule. Curling the right-hand fingers in the magnetic field direction leaves the thumb pointing along conventional current.","tag":"PYQ-pattern practice"}]},"11":{"num":11,"title":"Magnetic Materials","questions":[{"q":"A material that is weakly repelled by an external magnetic field is:","opts":["Ferromagnetic","Paramagnetic","Diamagnetic","Ferrimagnetic"],"ans":2,"exp":"Diamagnetic. Diamagnetic materials develop magnetisation opposite to the applied field and are weakly repelled.","tag":"PYQ-pattern practice"},{"q":"The magnetic susceptibility of a diamagnetic material is generally:","opts":["Small and negative","Large and positive","Zero in all cases","Infinite"],"ans":0,"exp":"Small and negative. Diamagnetic susceptibility is small and negative.","tag":"PYQ-pattern practice"},{"q":"A paramagnetic material is generally:","opts":["Weakly attracted by a magnetic field","Strongly repelled by a magnetic field","Unaffected by every magnetic field","Permanently magnetised without a field"],"ans":0,"exp":"Weakly attracted by a magnetic field. Paramagnetic materials have small positive susceptibility and are weakly attracted.","tag":"PYQ-pattern practice"},{"q":"Above the Curie temperature, a ferromagnetic material becomes:","opts":["Diamagnetic","Paramagnetic","A perfect conductor","A superconductor"],"ans":1,"exp":"Paramagnetic. Thermal agitation destroys spontaneous ferromagnetic order above the Curie temperature.","tag":"PYQ-pattern practice"},{"q":"The area enclosed by a magnetic hysteresis loop represents energy loss per unit volume in:","opts":["One magnetisation cycle","One second only","A complete mechanical revolution","One atomic collision"],"ans":0,"exp":"One magnetisation cycle. The hysteresis-loop area gives energy dissipated per unit volume per cycle.","tag":"PYQ-pattern practice"},{"q":"The ability of a magnetic material to retain magnetisation after the external field is removed is called:","opts":["Permeability","Retentivity","Susceptibility","Coercivity"],"ans":1,"exp":"Retentivity. Retentivity measures residual magnetisation or flux density after removing the magnetising field.","tag":"PYQ-pattern practice"},{"q":"The ratio of magnetisation M to magnetic field intensity H is called:","opts":["Magnetic susceptibility","Magnetic flux","Reluctance","Retentivity"],"ans":0,"exp":"Magnetic susceptibility. Magnetic susceptibility χm = M/H in the linear region.","tag":"PYQ-pattern practice"},{"q":"For a linear isotropic material, relative permeability μr and susceptibility χm are related by:","opts":["μr = 1 − χm","μr = 1 + χm","μr = χm²","μr = 1/χm"],"ans":1,"exp":"μr = 1 + χm. In SI, μr = 1 + χm.","tag":"PYQ-pattern practice"},{"q":"A material suitable for making a transformer core should generally have:","opts":["A narrow hysteresis loop","High coercivity","High hysteresis loss","Very high retentivity only"],"ans":0,"exp":"A narrow hysteresis loop. A soft magnetic material with a narrow loop has low hysteresis energy loss.","tag":"PYQ-pattern practice"},{"q":"Which type of magnetic material is commonly used for making a permanent magnet?","opts":["Soft iron with low retentivity","Hard magnetic material with high retentivity","Diamagnetic material","A material with zero coercivity"],"ans":1,"exp":"Hard magnetic material with high retentivity. Permanent magnets require high retentivity and suitable coercivity to retain magnetisation.","tag":"PYQ-pattern practice"}]},"12":{"num":12,"title":"Electromagnetic Induction","questions":[{"q":"An ideal transformer raises an alternating voltage from 220 V to 880 V. If its primary coil has 1000 turns, the secondary coil has:","opts":["1000 turns","2000 turns","3000 turns","4000 turns"],"ans":3,"exp":"4000 turns. For an ideal transformer, Ns/Np = Vs/Vp = 880/220 = 4; Ns = 4000 turns.","tag":"PYQ 2025 – rephrased"},{"q":"Faraday's law states that the magnitude of induced emf is proportional to the rate of change of:","opts":["Resistance","Magnetic flux linkage","Electric charge","Capacitance"],"ans":1,"exp":"Magnetic flux linkage. Induced emf is proportional to the rate of change of magnetic flux linkage.","tag":"PYQ-pattern practice"},{"q":"The negative sign in the expression ε = −dΦB/dt represents:","opts":["Ohm's law","Lenz's law","Coulomb's law","Gauss's law"],"ans":1,"exp":"Lenz's law. The negative sign indicates that the induced emf opposes the change in magnetic flux producing it.","tag":"PYQ-pattern practice"},{"q":"The SI unit of magnetic flux is:","opts":["Tesla","Weber","Henry","Ampere"],"ans":1,"exp":"Weber. Magnetic flux is measured in weber (Wb).","tag":"PYQ-pattern practice"},{"q":"The energy stored in an inductor of inductance L carrying current I is:","opts":["LI²","½LI²","L/I²","2LI²"],"ans":1,"exp":"½LI². Energy stored in the magnetic field of an inductor is ½LI².","tag":"PYQ-pattern practice"},{"q":"Self-inductance is the property by which a changing current in a coil induces emf in:","opts":["A nearby resistor only","The same coil","Any insulator","A stationary permanent magnet only"],"ans":1,"exp":"The same coil. A changing current changes the coil's own magnetic flux and induces emf in that coil.","tag":"PYQ-pattern practice"},{"q":"The SI unit of self-inductance is:","opts":["Weber","Henry","Tesla","Farad"],"ans":1,"exp":"Henry. Inductance is measured in henry (H).","tag":"PYQ-pattern practice"},{"q":"Eddy currents are reduced in transformer cores by:","opts":["Using a solid thick core","Laminating the core","Increasing the core conductivity","Removing insulation between laminations"],"ans":1,"exp":"Laminating the core. Thin insulated laminations increase resistance to circulating eddy-current paths.","tag":"PYQ-pattern practice"},{"q":"An AC generator converts:","opts":["Electrical energy into chemical energy","Mechanical energy into electrical energy","Heat into nuclear energy","Electrical energy into mechanical energy only"],"ans":1,"exp":"Mechanical energy into electrical energy. Electromagnetic induction converts mechanical input into alternating electrical output.","tag":"PYQ-pattern practice"},{"q":"The mutual inductance of two coils depends on:","opts":["Their relative position and geometry","Only the current in one coil","Only the resistance of the coils","Only the temperature of the room"],"ans":0,"exp":"Their relative position and geometry. Mutual inductance depends on coil geometry, turns, separation, orientation and core material.","tag":"PYQ-pattern practice"}]},"13":{"num":13,"title":"AC Circuits","questions":[{"q":"In a series LCR circuit, R = 3 Ω, XL = 8 Ω and XC = 4 Ω. The phase angle φ satisfies:","opts":["tanφ = 4/3","tanφ = 3/4","tanφ = 8/3","tanφ = 4/8"],"ans":0,"exp":"tanφ = 4/3. tanφ = (XL − XC)/R = (8 − 4)/3 = 4/3; the circuit is inductive.","tag":"PYQ-pattern practice"},{"q":"The rms value of a sinusoidal alternating current with peak value I₀ is:","opts":["I₀","I₀/2","I₀/√2","√2 I₀"],"ans":2,"exp":"I₀/√2. For a sine wave, Irms = I₀/√2.","tag":"PYQ-pattern practice"},{"q":"The inductive reactance of an inductor is:","opts":["ωL","1/(ωL)","ωC","1/(ωC)"],"ans":0,"exp":"ωL. Inductive reactance XL = ωL.","tag":"PYQ-pattern practice"},{"q":"The capacitive reactance of a capacitor is:","opts":["ωC","1/(ωC)","ωL","L/C"],"ans":1,"exp":"1/(ωC). Capacitive reactance XC = 1/(ωC).","tag":"PYQ-pattern practice"},{"q":"At series resonance in an LCR circuit:","opts":["XL > XC","XC > XL","XL = XC","R = 0"],"ans":2,"exp":"XL = XC. Resonance occurs when inductive and capacitive reactances are equal.","tag":"PYQ-pattern practice"},{"q":"The resonant frequency of an ideal LC circuit is:","opts":["1/(2π√LC)","2π√LC","√(LC)/(2π)","1/(LC)"],"ans":0,"exp":"1/(2π√LC). The natural resonant frequency is f₀ = 1/(2π√LC).","tag":"PYQ-pattern practice"},{"q":"The average power consumed in an AC circuit is:","opts":["Vrms Irms","Vrms Irms cosφ","Vrms Irms sinφ","V₀I₀/2 sinφ"],"ans":1,"exp":"Vrms Irms cosφ. Real average power is Vrms Irms cosφ.","tag":"PYQ-pattern practice"},{"q":"In a purely inductive AC circuit, current:","opts":["Leads voltage by 90°","Lags voltage by 90°","Is in phase with voltage","Lags voltage by 180°"],"ans":1,"exp":"Lags voltage by 90°. For an ideal inductor, current lags voltage by π/2.","tag":"PYQ-pattern practice"},{"q":"The power factor of a series LCR circuit is:","opts":["R/Z","Z/R","XL/R","XC/R"],"ans":0,"exp":"R/Z. Power factor cosφ = R/Z for a series LCR circuit.","tag":"PYQ-pattern practice"},{"q":"An ideal capacitor in an AC circuit consumes average power equal to:","opts":["VI","VI/2","Zero","Maximum possible power"],"ans":2,"exp":"Zero. Current leads voltage by 90°, so cosφ = 0 and average power is zero.","tag":"PYQ-pattern practice"}]},"14":{"num":14,"title":"Dual Nature of Radiation and Matter","questions":[{"q":"For particles having the same kinetic energy, the de Broglie wavelength is greatest for the particle with the:","opts":["Greatest mass","Smallest mass","Greatest charge","Greatest speed"],"ans":1,"exp":"Smallest mass. At the same kinetic energy, λ = h/√(2mK), so the smallest mass gives the largest wavelength.","tag":"PYQ 2025 – rephrased"},{"q":"The energy of a photon of frequency f is:","opts":["hf","h/f","hf²","f/h"],"ans":0,"exp":"hf. Planck's relation gives photon energy E = hf.","tag":"PYQ-pattern practice"},{"q":"The minimum frequency needed to produce photoelectric emission from a metal is called:","opts":["Resonant frequency","Threshold frequency","Beat frequency","Cyclotron frequency"],"ans":1,"exp":"Threshold frequency. Threshold frequency is the minimum incident frequency for photoemission.","tag":"PYQ-pattern practice"},{"q":"Einstein's photoelectric equation is:","opts":["hf = φ + Kmax","hf = φ − Kmax","φ = hf + Kmax","Kmax = h/φ"],"ans":0,"exp":"hf = φ + Kmax. Photon energy is used to overcome work function and provide maximum electron kinetic energy.","tag":"PYQ-pattern practice"},{"q":"If the intensity of incident light is increased while its frequency remains above threshold, the photoelectric current generally:","opts":["Increases","Decreases to zero","Remains exactly zero","Becomes independent of the number of photons"],"ans":0,"exp":"Increases. Greater intensity means more incident photons per second and hence more emitted electrons per second.","tag":"PYQ-pattern practice"},{"q":"The maximum kinetic energy of photoelectrons depends primarily on the:","opts":["Intensity of incident light","Frequency of incident light","Area of the metal surface","Distance of the source"],"ans":1,"exp":"Frequency of incident light. For a given metal, Kmax = hf − φ, so it depends on frequency.","tag":"PYQ-pattern practice"},{"q":"The de Broglie wavelength of a particle of momentum p is:","opts":["hp","h/p","p/h","h/p²"],"ans":1,"exp":"h/p. The matter-wave relation is λ = h/p.","tag":"PYQ-pattern practice"},{"q":"The work function of a metal is commonly expressed in:","opts":["Electron volt","Ampere","Tesla","Ohm"],"ans":0,"exp":"Electron volt. Work function is an energy and is commonly stated in electron volts.","tag":"PYQ-pattern practice"},{"q":"If the stopping potential is Vs, the maximum kinetic energy of photoelectrons is:","opts":["eVs","Vs/e","hVs","e/Vs"],"ans":0,"exp":"eVs. The stopping potential removes the maximum kinetic energy, so Kmax = eVs.","tag":"PYQ-pattern practice"},{"q":"The wave nature of electrons is demonstrated by:","opts":["Photoelectric emission","Electron diffraction","Thermionic emission","Radioactive decay"],"ans":1,"exp":"Electron diffraction. Electron diffraction is evidence of the wave nature of matter.","tag":"PYQ-pattern practice"}]},"15":{"num":15,"title":"Structure of Atoms and Nuclei","questions":[{"q":"According to Bohr's model, the radius of the nth orbit of a hydrogen-like atom is proportional to:","opts":["n","n²","1/n","1/n²"],"ans":1,"exp":"n². For a fixed nuclear charge, Bohr orbit radius varies as n².","tag":"PYQ-pattern practice"},{"q":"The energy of an electron in the nth orbit of a hydrogen atom is:","opts":["−13.6n² eV","−13.6/n² eV","13.6/n eV","−13.6n eV"],"ans":1,"exp":"−13.6/n² eV. The Bohr energy levels of hydrogen are En = −13.6/n² eV.","tag":"PYQ-pattern practice"},{"q":"When an electron in a hydrogen atom moves from a higher energy level to a lower one, it:","opts":["Absorbs a photon","Emits a photon","Emits an alpha particle","Remains unchanged in energy"],"ans":1,"exp":"Emits a photon. The energy difference is released as a photon.","tag":"PYQ-pattern practice"},{"q":"The half-life T½ of a radioactive substance is related to decay constant λ by:","opts":["T½ = λ/0.693","T½ = 0.693/λ","T½ = 1/λ²","T½ = 2λ"],"ans":1,"exp":"T½ = 0.693/λ. The half-life relation is T½ = ln2/λ ≈ 0.693/λ.","tag":"PYQ-pattern practice"},{"q":"The radioactive decay law is expressed as:","opts":["N = N₀e⁻λt","N = N₀eλt","N = N₀λt","N = N₀/t²"],"ans":0,"exp":"N = N₀e⁻λt. The number of undecayed nuclei decreases exponentially with time.","tag":"PYQ-pattern practice"},{"q":"The binding energy of a nucleus is related to its mass defect Δm by:","opts":["Δm/c²","Δmc²","Δm c","c/Δm"],"ans":1,"exp":"Δmc². Einstein's mass-energy relation gives binding energy = Δm c².","tag":"PYQ-pattern practice"},{"q":"In alpha decay, the mass number of the daughter nucleus decreases by:","opts":["1","2","3","4"],"ans":3,"exp":"4. An alpha particle contains two protons and two neutrons, so A decreases by four.","tag":"PYQ-pattern practice"},{"q":"In beta-minus decay, the atomic number of the daughter nucleus:","opts":["Decreases by 1","Increases by 1","Decreases by 2","Remains unchanged"],"ans":1,"exp":"Increases by 1. A neutron changes into a proton, electron and antineutrino, increasing Z by one.","tag":"PYQ-pattern practice"},{"q":"The nuclear radius R is approximately related to mass number A by:","opts":["R = R₀A","R = R₀A¹ᐟ³","R = R₀/A","R = R₀A²"],"ans":1,"exp":"R = R₀A¹ᐟ³. Nuclear radius follows R = R₀A^(1/3).","tag":"PYQ-pattern practice"},{"q":"The energy released in nuclear fission is mainly due to:","opts":["An increase in total rest mass","A decrease in total mass converted into energy","Creation of electric charge","A decrease in the speed of light"],"ans":1,"exp":"A decrease in total mass converted into energy. The products have greater total binding energy and lower total rest mass; the mass defect appears as released energy.","tag":"PYQ-pattern practice"}]},"16":{"num":16,"title":"Semiconductor Devices","questions":[{"q":"Which logic gate gives a HIGH output only when both its inputs are HIGH?","opts":["XOR","AND","NAND","NOR"],"ans":1,"exp":"AND. An AND gate outputs 1 only for the input combination 1,1.","tag":"PYQ 2025 – rephrased"},{"q":"A pure semiconductor at room temperature is called:","opts":["Extrinsic semiconductor","Intrinsic semiconductor","Insulator with no carriers","Superconductor"],"ans":1,"exp":"Intrinsic semiconductor. An intrinsic semiconductor is chemically pure and has equal electron and hole concentrations.","tag":"PYQ-pattern practice"},{"q":"A pentavalent impurity added to pure silicon produces:","opts":["p-type semiconductor","n-type semiconductor","An insulator","A p-n junction by itself"],"ans":1,"exp":"n-type semiconductor. Pentavalent donor atoms contribute extra electrons, producing n-type material.","tag":"PYQ-pattern practice"},{"q":"In a p-type semiconductor, the majority charge carriers are:","opts":["Electrons","Holes","Protons","Neutrons"],"ans":1,"exp":"Holes. Trivalent acceptor doping creates holes as majority carriers.","tag":"PYQ-pattern practice"},{"q":"When a p-n junction diode is forward biased, its depletion layer width generally:","opts":["Increases","Decreases","Becomes infinite","Does not change"],"ans":1,"exp":"Decreases. Forward bias reduces the potential barrier and narrows the depletion region.","tag":"PYQ-pattern practice"},{"q":"A full-wave rectifier converts:","opts":["DC into AC","Both half-cycles of AC into pulsating DC","DC into light","AC into constant-frequency AC"],"ans":1,"exp":"Both half-cycles of AC into pulsating DC. A full-wave rectifier uses both input half-cycles to produce a unidirectional output.","tag":"PYQ-pattern practice"},{"q":"A Zener diode is commonly used as a:","opts":["Voltage regulator","Transformer","Current amplifier only","Light source only"],"ans":0,"exp":"Voltage regulator. In reverse breakdown, a Zener diode maintains an approximately constant voltage.","tag":"PYQ-pattern practice"},{"q":"A light-emitting diode (LED) normally emits light when it is:","opts":["Reverse biased","Forward biased","Unbiased only","Connected to an open circuit"],"ans":1,"exp":"Forward biased. Forward bias injects carriers that recombine and emit photons in an LED.","tag":"PYQ-pattern practice"},{"q":"A photodiode is commonly operated in:","opts":["Forward bias","Reverse bias","Zero resistance mode","Breakdown as a normal operating mode"],"ans":1,"exp":"Reverse bias. Reverse bias widens the depletion region and makes photocurrent responsive to incident light.","tag":"PYQ-pattern practice"},{"q":"For a transistor, the relation between emitter, base and collector currents is:","opts":["IE = IB − IC","IE = IB + IC","IB = IE + IC","IC = IE + IB"],"ans":1,"exp":"IE = IB + IC. By current conservation, emitter current equals the sum of base and collector currents.","tag":"PYQ-pattern practice"}]}},"Chemistry":{"1":{"num":1,"title":"Solid State","questions":[{"q":"Which type of solid has a definite geometrical shape and a sharp melting point?","opts":["Amorphous solid","Crystalline solid","Liquid crystal","Gel"],"ans":1,"exp":"Crystalline solids have long-range order and a sharp melting point.","tag":""},{"q":"The coordination number of a face-centred cubic (fcc) lattice is:","opts":["4","6","8","12"],"ans":3,"exp":"Each atom in an fcc structure has 12 nearest neighbours.","tag":""},{"q":"The number of atoms per unit cell in a body-centred cubic (bcc) structure is:","opts":["1","2","4","8"],"ans":1,"exp":"Eight corner atoms contribute 1 atom and the body-centre atom contributes 1, giving 2.","tag":""},{"q":"Which defect decreases the density of an ionic crystal?","opts":["Frenkel defect","Schottky defect","Interstitial defect","Metal excess defect"],"ans":1,"exp":"Schottky defect involves equal numbers of cations and anions missing from lattice sites.","tag":""},{"q":"The packing efficiency of a simple cubic unit cell is approximately:","opts":["52.4%","68%","74%","90%"],"ans":0,"exp":"The simple cubic structure has a packing efficiency of about 52.4%.","tag":""},{"q":"Which of the following is an amorphous solid?","opts":["Sodium chloride","Diamond","Glass","Quartz"],"ans":2,"exp":"Glass lacks long-range periodic arrangement and is amorphous.","tag":""},{"q":"In a cubic unit cell, the relation between edge length a and radius r for bcc is:","opts":["a = 2r","√2a = 4r","√3a = 4r","a = 4r"],"ans":2,"exp":"In bcc, atoms touch along the body diagonal: √3a = 4r.","tag":""},{"q":"A substance that conducts electricity in the solid state due to mobile electrons is generally a:","opts":["Molecular solid","Metallic solid","Ionic solid","Covalent network solid"],"ans":1,"exp":"Metallic solids contain delocalised electrons that can move through the lattice.","tag":""},{"q":"The number of octahedral voids in a close-packed arrangement of N particles is:","opts":["N/2","N","2N","4N"],"ans":1,"exp":"A close-packed structure contains N octahedral voids for N particles.","tag":""},{"q":"Which point defect is commonly associated with AgCl?","opts":["Frenkel defect","Schottky defect only","Metal vacancy only","No defect"],"ans":0,"exp":"Ag+ ions can leave normal lattice sites and occupy interstitial sites, producing Frenkel defects.","tag":""}]},"2":{"num":2,"title":"Solutions","questions":[{"q":"The concentration expressed as moles of solute per kilogram of solvent is:","opts":["Molarity","Molality","Mole fraction","Normality"],"ans":1,"exp":"Molality is moles of solute per kilogram of solvent.","tag":""},{"q":"Which concentration term is independent of temperature?","opts":["Molarity","Volume percentage","Molality","Mass per litre"],"ans":2,"exp":"Molality depends on masses, which do not change with temperature.","tag":""},{"q":"Raoult's law for a volatile component states that its partial vapour pressure equals:","opts":["Its mole fraction × vapour pressure of pure component","Its molarity × total pressure","Its mass fraction × osmotic pressure","Its molality × vapour pressure"],"ans":0,"exp":"For an ideal solution, pᵢ = xᵢpᵢ°.","tag":""},{"q":"The relative lowering of vapour pressure of a solution containing a non-volatile solute is equal to:","opts":["Mole fraction of solvent","Mole fraction of solute","Molarity of solute","Molality of solvent"],"ans":1,"exp":"For a dilute ideal solution, Δp/p° = xsolute.","tag":""},{"q":"Which colligative property is used to determine molar masses of polymers most suitably?","opts":["Elevation in boiling point","Depression in freezing point","Osmotic pressure","Lowering of vapour pressure"],"ans":2,"exp":"Osmotic pressure can be measured at room temperature and is useful for large molar masses.","tag":""},{"q":"For an ideal solution, the enthalpy of mixing is:","opts":["Positive","Negative","Zero","Infinite"],"ans":2,"exp":"Ideal solutions have no heat absorbed or evolved on mixing.","tag":""},{"q":"A solution that obeys Raoult's law over the entire range of composition is:","opts":["Ideal solution","Non-ideal solution","Suspension","Colloid"],"ans":0,"exp":"An ideal solution obeys Raoult's law at all compositions.","tag":""},{"q":"The van't Hoff factor for complete dissociation of CaCl₂ in dilute solution is ideally:","opts":["1","2","3","4"],"ans":2,"exp":"CaCl₂ produces one Ca²⁺ and two Cl⁻ ions, giving three particles.","tag":""},{"q":"Osmotic pressure is given by:","opts":["π = CRT","π = C/RT","π = RT/C","π = C + RT"],"ans":0,"exp":"For dilute solutions, osmotic pressure π = CRT.","tag":""},{"q":"A positive deviation from Raoult's law occurs when A–B interactions are:","opts":["Stronger than A–A and B–B","Weaker than A–A and B–B","Exactly equal to like interactions","Absent"],"ans":1,"exp":"Weaker unlike interactions allow molecules to escape more readily, raising vapour pressure.","tag":""}]},"3":{"num":3,"title":"Ionic Equilibria","questions":[{"q":"The pH of a neutral aqueous solution at 25°C is:","opts":["0","5","7","14"],"ans":2,"exp":"At 25°C, neutral water has [H⁺] = 10⁻⁷ mol L⁻¹ and pH 7.","tag":""},{"q":"The conjugate base of H₂CO₃ after loss of one proton is:","opts":["CO₃²⁻","HCO₃⁻","H₃CO₃⁺","OH⁻"],"ans":1,"exp":"Removal of one proton from H₂CO₃ forms HCO₃⁻.","tag":""},{"q":"A buffer solution resists changes in:","opts":["Temperature","Pressure","pH","Volume"],"ans":2,"exp":"A buffer minimises pH changes when small amounts of acid or base are added.","tag":""},{"q":"For a weak acid HA, its ionisation constant is:","opts":["Ka = [HA]/[H⁺][A⁻]","Ka = [H⁺][A⁻]/[HA]","Ka = [H⁺]/[A⁻]","Ka = [HA][A⁻]"],"ans":1,"exp":"The acid dissociation constant is the product of equilibrium ion concentrations divided by unionised acid concentration.","tag":""},{"q":"At 25°C, the ionic product of water Kw is:","opts":["10⁻⁷","10⁻¹⁴","10⁷","14"],"ans":1,"exp":"Kw = [H⁺][OH⁻] = 1.0 × 10⁻¹⁴ at 25°C.","tag":""},{"q":"Which salt gives an acidic aqueous solution?","opts":["NaCl","KNO₃","NH₄Cl","CH₃COONa"],"ans":2,"exp":"NH₄⁺ is the conjugate acid of the weak base NH₃ and hydrolyses to produce H₃O⁺.","tag":""},{"q":"The common ion effect generally:","opts":["Increases ionisation of a weak electrolyte","Suppresses ionisation of a weak electrolyte","Has no effect on equilibrium","Always increases solubility"],"ans":1,"exp":"Adding a common ion shifts the equilibrium towards the unionised electrolyte.","tag":""},{"q":"The solubility product expression for AgCl is:","opts":["[Ag⁺] + [Cl⁻]","[Ag⁺][Cl⁻]","[Ag⁺]²[Cl⁻]","[AgCl]/[Ag⁺]"],"ans":1,"exp":"AgCl(s) ⇌ Ag⁺ + Cl⁻, so Ksp = [Ag⁺][Cl⁻].","tag":""},{"q":"A Lewis acid is an electron-pair:","opts":["Donor","Acceptor","Proton donor only","Hydroxide donor"],"ans":1,"exp":"A Lewis acid accepts an electron pair to form a coordinate bond.","tag":""},{"q":"If [H⁺] = 1 × 10⁻³ mol L⁻¹, the pH is:","opts":["3","7","11","−3"],"ans":0,"exp":"pH = −log₁₀[H⁺] = 3.","tag":""}]},"4":{"num":4,"title":"Chemical Thermodynamics","questions":[{"q":"A system that can exchange energy but not matter with its surroundings is:","opts":["Open","Closed","Isolated","Adiabatic only"],"ans":1,"exp":"A closed system exchanges energy but not matter.","tag":""},{"q":"The SI unit of enthalpy is:","opts":["J mol⁻¹","mol J⁻¹","K mol⁻¹","Pa s"],"ans":0,"exp":"Molar enthalpy is expressed in joules per mole.","tag":""},{"q":"At constant pressure, the heat exchanged by a system is equal to change in:","opts":["Internal energy","Enthalpy","Entropy only","Gibbs energy"],"ans":1,"exp":"At constant pressure, qₚ = ΔH.","tag":""},{"q":"For an exothermic reaction, the enthalpy change is:","opts":["Positive","Negative","Zero","Always infinite"],"ans":1,"exp":"Heat is released, so products have lower enthalpy than reactants.","tag":""},{"q":"Which is a state function?","opts":["Heat","Work","Enthalpy","Path length"],"ans":2,"exp":"Enthalpy depends only on the state, not on the path taken.","tag":""},{"q":"The first law of thermodynamics is based on conservation of:","opts":["Mass only","Energy","Charge","Momentum"],"ans":1,"exp":"Energy can neither be created nor destroyed; it changes form.","tag":""},{"q":"For an ideal gas, internal energy depends only on:","opts":["Pressure","Volume","Temperature","Container shape"],"ans":2,"exp":"The internal energy of an ideal gas is a function of temperature alone.","tag":""},{"q":"Entropy is commonly associated with the degree of:","opts":["Order only","Energy dispersal or disorder","Mass","Electrical conductivity"],"ans":1,"exp":"Entropy measures the dispersal of energy and the number of accessible microscopic arrangements.","tag":""},{"q":"A process is spontaneous at constant temperature and pressure when ΔG is:","opts":["Positive","Negative","Zero only","Infinite"],"ans":1,"exp":"A negative Gibbs energy change indicates a spontaneous process under these conditions.","tag":""},{"q":"At equilibrium, the Gibbs energy of a system at constant temperature and pressure is:","opts":["At a minimum","At a maximum","Always zero","Increasing continuously"],"ans":0,"exp":"Equilibrium corresponds to minimum Gibbs energy under constant T and P.","tag":""}]},"5":{"num":5,"title":"Electrochemistry","questions":[{"q":"The electrode at which oxidation occurs is called the:","opts":["Cathode","Anode","Salt bridge","Electrolyte"],"ans":1,"exp":"Oxidation always occurs at the anode.","tag":""},{"q":"In a galvanic cell, electrons flow through the external circuit from:","opts":["Cathode to anode","Anode to cathode","Salt bridge to cathode","Electrolyte to anode"],"ans":1,"exp":"Electrons are released at the anode and travel to the cathode.","tag":""},{"q":"The standard electrode potential of the standard hydrogen electrode is assigned:","opts":["+1.00 V","−1.00 V","0.00 V","+0.76 V"],"ans":2,"exp":"The standard hydrogen electrode is the reference electrode with E° = 0.00 V.","tag":""},{"q":"The SI unit of conductivity is:","opts":["S m⁻¹","S m","Ω m","Ω m⁻¹"],"ans":0,"exp":"Conductivity is measured in siemens per metre in SI.","tag":""},{"q":"The Nernst equation relates electrode potential to:","opts":["Only electrode mass","Concentrations and temperature","Only pressure","Only current"],"ans":1,"exp":"The Nernst equation accounts for non-standard concentrations and temperature.","tag":""},{"q":"A salt bridge is used primarily to:","opts":["Increase electrode mass","Maintain electrical neutrality and complete the circuit","Supply electrons","Stop ion movement"],"ans":1,"exp":"Ions migrate through the salt bridge to maintain charge balance and complete the circuit.","tag":""},{"q":"During electrolysis, cations move towards the:","opts":["Anode","Cathode","Salt bridge","Positive terminal only"],"ans":1,"exp":"Cations are positively charged and migrate to the cathode.","tag":""},{"q":"Faraday's first law states that the amount of substance deposited is proportional to:","opts":["Resistance","Quantity of electricity passed","Electrode area only","Temperature only"],"ans":1,"exp":"The mass deposited is proportional to charge passed through the electrolyte.","tag":""},{"q":"The standard EMF of a cell is calculated as:","opts":["E°anode − E°cathode","E°cathode − E°anode","E°anode + E°cathode always","Zero for every cell"],"ans":1,"exp":"Cell potential is the cathode reduction potential minus the anode reduction potential.","tag":""},{"q":"A fuel cell converts chemical energy directly into:","opts":["Sound energy","Electrical energy","Nuclear energy","Only heat"],"ans":1,"exp":"Fuel cells generate electrical energy from redox reactions.","tag":""}]},"6":{"num":6,"title":"Chemical Kinetics","questions":[{"q":"The rate of a chemical reaction is generally expressed as change in concentration per unit:","opts":["Mass","Time","Volume only","Temperature"],"ans":1,"exp":"Reaction rate measures concentration change with time.","tag":""},{"q":"The unit of rate constant for a first-order reaction is:","opts":["mol L⁻¹ s⁻¹","s⁻¹","L mol⁻¹ s⁻¹","mol² L⁻² s⁻¹"],"ans":1,"exp":"For a first-order reaction, k has dimensions of inverse time.","tag":""},{"q":"The half-life of a first-order reaction is:","opts":["Proportional to initial concentration","Inversely proportional to initial concentration","Independent of initial concentration","Always zero"],"ans":2,"exp":"t½ = 0.693/k for a first-order reaction.","tag":""},{"q":"A catalyst increases reaction rate by:","opts":["Increasing enthalpy change","Lowering activation energy through an alternate pathway","Changing equilibrium constant","Increasing product energy"],"ans":1,"exp":"A catalyst provides an alternate pathway with lower activation energy.","tag":""},{"q":"The order of a reaction is determined experimentally from:","opts":["Balanced equation coefficients only","Rate law","Molecular formula","Product colour only"],"ans":1,"exp":"Reaction order is obtained from the experimentally determined rate law.","tag":""},{"q":"For a zero-order reaction, the rate is:","opts":["Proportional to concentration","Independent of reactant concentration","Proportional to square of concentration","Always increasing"],"ans":1,"exp":"The rate law for a zero-order reaction is rate = k.","tag":""},{"q":"The Arrhenius equation relates rate constant to:","opts":["Pressure and volume","Temperature and activation energy","Density and mass","pH only"],"ans":1,"exp":"The Arrhenius equation describes the temperature dependence of the rate constant.","tag":""},{"q":"A molecularity of an elementary reaction is always:","opts":["Zero or negative","A positive integer","Any fraction","Always equal to reaction order"],"ans":1,"exp":"Molecularity counts the number of reacting species in an elementary step.","tag":""},{"q":"The slope of a plot of ln k versus 1/T is:","opts":["Ea/R","−Ea/R","R/Ea","−R/Ea"],"ans":1,"exp":"From ln k = ln A − Ea/(RT), the slope is −Ea/R.","tag":""},{"q":"A pseudo-first-order reaction is actually of higher order but appears first order because:","opts":["Temperature is zero","One reactant is present in large excess","No catalyst is present","Products are removed"],"ans":1,"exp":"The concentration of the excess reactant remains nearly constant.","tag":""}]},"7":{"num":7,"title":"Elements of Groups 16, 17 and 18","questions":[{"q":"The most electronegative element is:","opts":["Oxygen","Chlorine","Fluorine","Nitrogen"],"ans":2,"exp":"Fluorine has the highest electronegativity.","tag":""},{"q":"The hydride of oxygen is:","opts":["NH₃","H₂O","H₂S","HF"],"ans":1,"exp":"Water is the hydride of oxygen.","tag":""},{"q":"Which halogen is liquid at room temperature?","opts":["Fluorine","Chlorine","Bromine","Iodine"],"ans":2,"exp":"Bromine is a reddish-brown liquid at room temperature.","tag":""},{"q":"The noble gas commonly used in electric bulbs is:","opts":["Helium","Neon","Argon","Radon"],"ans":2,"exp":"Argon is chemically inert and is commonly used in incandescent bulbs.","tag":""},{"q":"The acidic strength of hydrogen halides generally increases in the order:","opts":["HI < HBr < HCl < HF","HF < HCl < HBr < HI","HCl < HF < HI < HBr","HF < HI < HCl < HBr"],"ans":1,"exp":"The H–X bond weakens down the group, making proton release easier.","tag":""},{"q":"Ozone is an allotrope of:","opts":["Sulphur","Oxygen","Chlorine","Nitrogen"],"ans":1,"exp":"Ozone (O₃) is an allotrope of oxygen.","tag":""},{"q":"Which oxide of sulphur is a major contributor to acid rain?","opts":["SO₂","CO","N₂O","NO"],"ans":0,"exp":"Sulphur dioxide can oxidise and form acids in atmospheric moisture.","tag":""},{"q":"The shape of XeF₂ is:","opts":["Bent","Linear","Trigonal planar","Tetrahedral"],"ans":1,"exp":"XeF₂ has three lone pairs on xenon arranged equatorially, leaving a linear molecular shape.","tag":""},{"q":"The bleaching action of chlorine in moist conditions is mainly due to:","opts":["Reduction","Oxidation","Neutralisation","Hydrogenation"],"ans":1,"exp":"Hypochlorous acid formed in water releases active oxygen that oxidises coloured substances.","tag":""},{"q":"Which noble gas is used in advertising sign tubes?","opts":["Neon","Krypton","Xenon","Radon"],"ans":0,"exp":"Neon produces a characteristic glow in discharge tubes.","tag":""}]},"8":{"num":8,"title":"Transition and Inner Transition Elements","questions":[{"q":"Transition elements generally have partially filled:","opts":["s orbitals only","d orbitals in atoms or common ions","p orbitals only","f orbitals only"],"ans":1,"exp":"Transition elements have incompletely filled d subshells in atoms or common ions.","tag":""},{"q":"The characteristic colour of many transition-metal ions is due to:","opts":["Nuclear fission","d–d electronic transitions","Only ionic size","Absence of electrons"],"ans":1,"exp":"Partially filled d orbitals permit electronic transitions that absorb visible light.","tag":""},{"q":"Which element is a typical transition metal?","opts":["Sodium","Calcium","Iron","Aluminium"],"ans":2,"exp":"Iron has an incompletely filled d subshell in its atom and common ions.","tag":""},{"q":"The oxidation state shown by manganese in KMnO₄ is:","opts":["+2","+4","+6","+7"],"ans":3,"exp":"K is +1 and four oxygen atoms contribute −8, so Mn is +7.","tag":""},{"q":"Lanthanoid contraction is due to:","opts":["Increasing nuclear charge poorly shielded by 4f electrons","Increasing atomic mass only","Loss of all 5d electrons","Decreasing proton number"],"ans":0,"exp":"Poor shielding by 4f electrons causes a gradual decrease in lanthanoid ionic radii.","tag":""},{"q":"Which of the following is a lanthanoid?","opts":["Actinium","Cerium","Thorium","Uranium"],"ans":1,"exp":"Cerium belongs to the lanthanoid series.","tag":""},{"q":"Transition metals often act as catalysts because they:","opts":["Have no variable oxidation states","Can show variable oxidation states and adsorb reactants","Are always gases","Have completely filled d orbitals in every state"],"ans":1,"exp":"Variable oxidation states and surface adsorption can facilitate reaction pathways.","tag":""},{"q":"The colour of potassium dichromate crystals is:","opts":["Purple","Orange","Green","Blue"],"ans":1,"exp":"Potassium dichromate is characteristically orange.","tag":""},{"q":"Actinoids show a wider range of oxidation states than lanthanoids mainly because:","opts":["5f, 6d and 7s orbitals have comparable energies","They have no f electrons","Their atoms are smaller than hydrogen","They are all non-metals"],"ans":0,"exp":"The energies of 5f, 6d and 7s orbitals are close, allowing varied participation in bonding.","tag":""},{"q":"Which ion is generally colourless due to a d⁰ configuration?","opts":["Ti⁴⁺","Cu²⁺","Ni²⁺","Co²⁺"],"ans":0,"exp":"Ti⁴⁺ has a d⁰ configuration and cannot undergo d–d transitions.","tag":""}]},"9":{"num":9,"title":"Coordination Compounds","questions":[{"q":"A ligand is a species that donates:","opts":["A proton","An electron pair to a central metal atom or ion","A neutron","A metal ion"],"ans":1,"exp":"A ligand donates one or more lone pairs to form coordinate bonds.","tag":""},{"q":"The coordination number of cobalt in [Co(NH₃)₆]³⁺ is:","opts":["3","4","6","9"],"ans":2,"exp":"Six monodentate ammonia ligands are attached to cobalt.","tag":""},{"q":"The ligand NH₃ is named:","opts":["Aqua","Ammine","Carbonyl","Chloro"],"ans":1,"exp":"NH₃ is called ammine when used as a ligand.","tag":""},{"q":"The oxidation state of iron in [Fe(CN)₆]⁴⁻ is:","opts":["+2","+3","+4","+6"],"ans":0,"exp":"Six CN⁻ ligands contribute −6; the complex charge is −4, so Fe is +2.","tag":""},{"q":"A bidentate ligand has:","opts":["One donor atom","Two donor atoms","Three donor atoms","Six donor atoms"],"ans":1,"exp":"A bidentate ligand coordinates through two donor atoms.","tag":""},{"q":"Which is a neutral ligand?","opts":["Cl⁻","CN⁻","H₂O","OH⁻"],"ans":2,"exp":"Water is a neutral molecule and acts as a neutral ligand.","tag":""},{"q":"The geometry of [Ni(CO)₄] is:","opts":["Square planar","Tetrahedral","Octahedral","Linear"],"ans":1,"exp":"[Ni(CO)₄] has a tetrahedral geometry.","tag":""},{"q":"The IUPAC name of [Co(NH₃)₆]Cl₃ is:","opts":["Hexaamminecobalt(III) chloride","Cobalt hexachloride","Hexachlorocobaltate(III)","Triamminecobalt chloride"],"ans":0,"exp":"The complex cation is hexaamminecobalt(III), with three chloride counter-ions.","tag":""},{"q":"A chelate complex forms when a ligand:","opts":["Binds through multiple donor atoms to the same metal","Does not bind to a metal","Acts only as a counter-ion","Removes the central metal"],"ans":0,"exp":"Multidentate ligands form ring structures by coordinating through multiple donor atoms.","tag":""},{"q":"Geometrical isomerism is commonly shown by:","opts":["[Pt(NH₃)₂Cl₂]","[Ag(NH₃)₂]⁺","[Zn(NH₃)₄]²⁺ only","[Ni(CO)₄]"],"ans":0,"exp":"Square-planar [Pt(NH₃)₂Cl₂] has cis and trans geometrical isomers.","tag":""}]},"10":{"num":10,"title":"Halogen Derivatives","questions":[{"q":"The functional group in haloalkanes is:","opts":["−OH","−X","−CHO","−COOH"],"ans":1,"exp":"Haloalkanes contain a carbon–halogen bond, where X is a halogen.","tag":""},{"q":"Which substrate generally undergoes an SN1 reaction most readily?","opts":["Methyl chloride","Primary alkyl halide","Tertiary alkyl halide","Vinyl chloride"],"ans":2,"exp":"Tertiary alkyl halides form relatively stable carbocations, favouring SN1.","tag":""},{"q":"The major product of hydrolysis of bromoethane with aqueous KOH is:","opts":["Ethene","Ethanol","Ethanal","Ethanoic acid"],"ans":1,"exp":"Aqueous hydroxide substitutes bromide to form ethanol.","tag":""},{"q":"Chlorobenzene is less reactive towards nucleophilic substitution than chloroethane mainly because:","opts":["C–Cl bond has partial double-bond character","Chlorobenzene is ionic","Benzene ring is saturated","Chlorine is absent"],"ans":0,"exp":"Resonance gives the aryl C–Cl bond partial double-bond character and makes it stronger.","tag":""},{"q":"Wurtz reaction involves treatment of alkyl halides with:","opts":["Sodium in dry ether","Aqueous acid","Alcoholic ammonia","Hydrogen peroxide"],"ans":0,"exp":"Wurtz coupling uses sodium metal in dry ether to join alkyl groups.","tag":""},{"q":"The IUPAC name of CH₃CH₂Cl is:","opts":["Chloromethane","Chloroethane","1-chloropropane","Ethyl chloride oxide"],"ans":1,"exp":"The two-carbon parent chain is ethane with a chloro substituent.","tag":""},{"q":"Which reagent converts an alcohol into an alkyl chloride?","opts":["SOCl₂","NaOH","H₂O₂","Na₂CO₃"],"ans":0,"exp":"Thionyl chloride (SOCl₂) converts alcohols into alkyl chlorides.","tag":""},{"q":"The order of leaving-group ability among halides is generally:","opts":["F⁻ > Cl⁻ > Br⁻ > I⁻","I⁻ > Br⁻ > Cl⁻ > F⁻","Cl⁻ > F⁻ > I⁻ > Br⁻","Br⁻ > I⁻ > F⁻ > Cl⁻"],"ans":1,"exp":"Iodide is the best leaving group among common halides because the C–I bond is weaker and I⁻ is stable.","tag":""},{"q":"The product formed when ethyl bromide reacts with alcoholic KOH is mainly:","opts":["Ethanol","Ethene","Ethane","Ethanal"],"ans":1,"exp":"Alcoholic KOH favours elimination of HBr, forming ethene.","tag":""},{"q":"Which compound is commonly used as a refrigerant and aerosol propellant historically?","opts":["Chlorofluorocarbons","Glucose","Ethanol","Sodium chloride"],"ans":0,"exp":"CFCs were widely used as refrigerants and aerosol propellants, though many uses were phased out due to ozone depletion.","tag":""}]},"11":{"num":11,"title":"Alcohols, Phenols and Ethers","questions":[{"q":"The functional group of alcohols is:","opts":["−CHO","−OH","−COOH","−NH₂"],"ans":1,"exp":"Alcohols contain a hydroxyl group bonded to a saturated carbon.","tag":""},{"q":"Phenol is more acidic than ethanol because:","opts":["Phenoxide ion is resonance stabilised","Ethanol has no oxygen","Phenol is ionic","Ethanol is aromatic"],"ans":0,"exp":"The negative charge in phenoxide ion is delocalised over the aromatic ring.","tag":""},{"q":"The IUPAC name of CH₃OCH₃ is:","opts":["Methanol","Methoxy methane","Ethanal","Ethoxy ethane"],"ans":1,"exp":"The ether is named as methoxy methane.","tag":""},{"q":"Lucas reagent is a mixture of:","opts":["Conc. HCl and anhydrous ZnCl₂","Dilute H₂SO₄ and CuSO₄","NaOH and iodine","HNO₃ and HCl"],"ans":0,"exp":"Lucas reagent is concentrated hydrochloric acid with anhydrous zinc chloride.","tag":""},{"q":"Oxidation of a primary alcohol under controlled conditions gives:","opts":["Aldehyde","Ketone","Ether only","Alkane"],"ans":0,"exp":"A primary alcohol can be oxidised to an aldehyde under controlled conditions.","tag":""},{"q":"Which alcohol gives a ketone on oxidation?","opts":["Primary alcohol","Secondary alcohol","Tertiary alcohol","Methanol only"],"ans":1,"exp":"Oxidation of a secondary alcohol gives a ketone.","tag":""},{"q":"Anisole is the common name of:","opts":["Methoxybenzene","Hydroxybenzene","Benzaldehyde","Benzoic acid"],"ans":0,"exp":"Anisole has a methoxy group attached to a benzene ring.","tag":""},{"q":"Dehydration of ethanol with concentrated H₂SO₄ at about 443 K produces:","opts":["Ethane","Ethene","Ethanal","Ethanoic acid"],"ans":1,"exp":"Intramolecular dehydration of ethanol gives ethene.","tag":""},{"q":"Which test gives a violet or purple colour with phenol?","opts":["Ferric chloride test","Tollens' test","Biuret test","Iodoform test"],"ans":0,"exp":"Phenol forms a coloured complex with neutral ferric chloride solution.","tag":""},{"q":"Ethers are comparatively less reactive than alcohols because:","opts":["They lack an O–H bond","They contain no oxygen","They are always ionic","They have a carbonyl group"],"ans":0,"exp":"Ethers have no hydroxyl hydrogen and do not show the same reactions involving O–H cleavage.","tag":""}]},"12":{"num":12,"title":"Aldehydes, Ketones and Carboxylic Acids","questions":[{"q":"The functional group of aldehydes is:","opts":["−COOH","−CHO","−CO−","−OH"],"ans":1,"exp":"Aldehydes contain a terminal −CHO group.","tag":""},{"q":"Which reagent gives a silver mirror with many aldehydes?","opts":["Tollens' reagent","Lucas reagent","Benedict's reagent only","Neutral FeCl₃"],"ans":0,"exp":"Aldehydes reduce Tollens' reagent to metallic silver.","tag":""},{"q":"The IUPAC name of CH₃COCH₃ is:","opts":["Propanal","Propanone","Propanol","Propanoic acid"],"ans":1,"exp":"The three-carbon ketone is propanone.","tag":""},{"q":"Which compound gives a positive iodoform test?","opts":["Methanal","Ethanal","Benzaldehyde","Methanoic acid"],"ans":1,"exp":"Ethanal contains the required CH₃CO− equivalent structure for the iodoform reaction.","tag":""},{"q":"Carboxylic acids are acidic because they form:","opts":["Unstable carbocations","Resonance-stabilised carboxylate ions","Free radicals only","Alkanes"],"ans":1,"exp":"The carboxylate conjugate base is stabilised by resonance.","tag":""},{"q":"Oxidation of a primary alcohol generally produces a carboxylic acid through:","opts":["An aldehyde intermediate","An ether intermediate","An alkene intermediate","An amine intermediate"],"ans":0,"exp":"A primary alcohol is oxidised first to an aldehyde and then further to a carboxylic acid.","tag":""},{"q":"Which reagent is commonly used to distinguish aldehydes from most ketones?","opts":["Tollens' reagent","NaCl solution","Dilute NaOH only","Ethanol"],"ans":0,"exp":"Aldehydes generally reduce Tollens' reagent, while ordinary ketones do not.","tag":""},{"q":"The product of reduction of propanone is:","opts":["Propan-1-ol","Propan-2-ol","Propanal","Propanoic acid"],"ans":1,"exp":"Reduction of a ketone gives a secondary alcohol.","tag":""},{"q":"The reaction of a carboxylic acid with an alcohol in presence of an acid catalyst forms:","opts":["Ester and water","Alkene and hydrogen","Aldehyde and oxygen","Amide and nitrogen"],"ans":0,"exp":"Fischer esterification forms an ester and water.","tag":""},{"q":"Which acid is present in vinegar?","opts":["Methanoic acid","Ethanoic acid","Benzoic acid","Oxalic acid"],"ans":1,"exp":"Vinegar contains dilute ethanoic (acetic) acid.","tag":""}]},"13":{"num":13,"title":"Amines","questions":[{"q":"The functional group of primary amines is:","opts":["−OH","−NH₂","−CHO","−COOH"],"ans":1,"exp":"Primary amines contain an −NH₂ group attached to carbon.","tag":""},{"q":"Aniline is:","opts":["Phenylamine","Benzyl alcohol","Nitrobenzene","Benzamide"],"ans":0,"exp":"Aniline is the common name for aminobenzene or phenylamine.","tag":""},{"q":"Which is generally more basic in aqueous solution?","opts":["Aniline","Methylamine","Nitrobenzene","Acetamide"],"ans":1,"exp":"The alkyl group increases electron density on nitrogen, making methylamine more basic than aniline.","tag":""},{"q":"Carbylamine test is given by:","opts":["Primary amines","Secondary amines only","Tertiary amines only","Amides only"],"ans":0,"exp":"Primary amines form foul-smelling isocyanides with chloroform and alcoholic KOH.","tag":""},{"q":"The reagent used in diazotisation of aniline is:","opts":["NaNO₂ and HCl at 273–278 K","NaOH and heat","Br₂ water only","H₂/Ni"],"ans":0,"exp":"Nitrous acid generated in situ from sodium nitrite and hydrochloric acid diazotises aniline at low temperature.","tag":""},{"q":"The product formed by coupling benzene diazonium chloride with phenol is generally:","opts":["Azo dye","Alkane","Carboxylic acid","Ether"],"ans":0,"exp":"Azo coupling forms coloured compounds containing the −N=N− linkage.","tag":""},{"q":"Which compound is a secondary amine?","opts":["CH₃NH₂","(CH₃)₂NH","(CH₃)₃N","C₆H₅NH₂"],"ans":1,"exp":"Dimethylamine has two carbon groups attached to nitrogen.","tag":""},{"q":"Hinsberg reagent is:","opts":["Benzenesulphonyl chloride","Acetyl chloride","Benzoyl peroxide","Sodium nitrite"],"ans":0,"exp":"Benzenesulphonyl chloride is used to distinguish classes of amines.","tag":""},{"q":"Reduction of nitrobenzene produces:","opts":["Aniline","Phenol","Benzaldehyde","Benzoic acid"],"ans":0,"exp":"Reduction of the nitro group gives the amino group, producing aniline.","tag":""},{"q":"The basic character of aniline is reduced by resonance because:","opts":["The nitrogen lone pair is delocalised into the benzene ring","The N–H bond is ionic","The ring is saturated","Aniline contains no lone pair"],"ans":0,"exp":"Delocalisation makes the nitrogen lone pair less available to accept a proton.","tag":""}]},"14":{"num":14,"title":"Biomolecules","questions":[{"q":"The basic structural units of proteins are:","opts":["Monosaccharides","Amino acids","Nucleotides","Fatty acids"],"ans":1,"exp":"Proteins are polymers of amino acids linked by peptide bonds.","tag":""},{"q":"Glucose is classified as a:","opts":["Disaccharide","Monosaccharide","Polysaccharide","Amino acid"],"ans":1,"exp":"Glucose is a single-unit carbohydrate.","tag":""},{"q":"The bond joining amino acids in proteins is called:","opts":["Glycosidic bond","Peptide bond","Phosphodiester bond","Ester bond"],"ans":1,"exp":"A peptide bond forms between the amino group of one amino acid and the carboxyl group of another.","tag":""},{"q":"Which of the following is a reducing sugar?","opts":["Sucrose","Glucose","Starch","Cellulose"],"ans":1,"exp":"Glucose has a free anomeric carbon and can act as a reducing sugar.","tag":""},{"q":"DNA contains which sugar?","opts":["Ribose","2-deoxyribose","Glucose","Fructose"],"ans":1,"exp":"DNA contains 2-deoxyribose, whereas RNA contains ribose.","tag":""},{"q":"Which nitrogenous base is present in RNA but not normally in DNA?","opts":["Thymine","Uracil","Guanine","Cytosine"],"ans":1,"exp":"RNA uses uracil in place of thymine.","tag":""},{"q":"The secondary structure of proteins includes:","opts":["Only amino acid sequence","Alpha helix and beta-pleated sheet","Only peptide hydrolysis","Only disulphide cleavage"],"ans":1,"exp":"Alpha helices and beta sheets are common secondary structures stabilised by hydrogen bonding.","tag":""},{"q":"Which vitamin is water-soluble?","opts":["Vitamin A","Vitamin D","Vitamin C","Vitamin E"],"ans":2,"exp":"Vitamin C is water-soluble.","tag":""},{"q":"Enzymes are biological catalysts that are mostly:","opts":["Proteins","Lipids","Mineral salts","Simple sugars"],"ans":0,"exp":"Most enzymes are proteins, although some RNA molecules also have catalytic activity.","tag":""},{"q":"The linkage between monosaccharide units in disaccharides is:","opts":["Peptide linkage","Glycosidic linkage","Phosphodiester linkage","Metallic bond"],"ans":1,"exp":"A glycosidic bond joins sugar units.","tag":""}]},"15":{"num":15,"title":"Introduction to Polymer Chemistry","questions":[{"q":"A polymer is a large molecule formed by joining many:","opts":["Monomers","Neutrons","Ions only","Solvents"],"ans":0,"exp":"Polymers consist of repeating units derived from monomers.","tag":""},{"q":"Polyethene is formed by polymerisation of:","opts":["Ethene","Ethane","Ethyne","Ethanol"],"ans":0,"exp":"Ethene undergoes addition polymerisation to form polyethene.","tag":""},{"q":"Nylon-6,6 is an example of:","opts":["Addition polymer","Condensation polymer","Natural rubber","Inorganic glass"],"ans":1,"exp":"Nylon-6,6 forms by condensation of a diamine and a dicarboxylic acid.","tag":""},{"q":"Which polymer is a natural polymer?","opts":["PVC","Teflon","Cellulose","Bakelite"],"ans":2,"exp":"Cellulose occurs naturally in plant cell walls.","tag":""},{"q":"The monomer of PVC is:","opts":["Vinyl chloride","Styrene","Ethene","Tetrafluoroethene"],"ans":0,"exp":"PVC is polyvinyl chloride, formed from vinyl chloride.","tag":""},{"q":"Bakelite is a:","opts":["Thermoplastic","Thermosetting polymer","Elastomer only","Natural fibre"],"ans":1,"exp":"Bakelite forms a cross-linked network and cannot be remoulded by heating.","tag":""},{"q":"The monomer used to prepare Teflon is:","opts":["Chloroethene","Tetrafluoroethene","Propene","Styrene"],"ans":1,"exp":"Tetrafluoroethene polymerises to form polytetrafluoroethene (PTFE).","tag":""},{"q":"Natural rubber is mainly a polymer of:","opts":["Isoprene","Ethene","Vinyl chloride","Glucose"],"ans":0,"exp":"Natural rubber is cis-1,4-polyisoprene.","tag":""},{"q":"A polymer that can be softened on heating and reshaped repeatedly is:","opts":["Thermoplastic","Thermosetting polymer","Cross-linked resin","Vulcanised network only"],"ans":0,"exp":"Thermoplastics soften on heating and can be remoulded.","tag":""},{"q":"Vulcanisation of rubber involves heating rubber with:","opts":["Sulphur","Sodium chloride","Glucose","Nitrogen"],"ans":0,"exp":"Sulphur forms cross-links between polymer chains, improving strength and elasticity.","tag":""}]},"16":{"num":16,"title":"Green Chemistry and Nanochemistry","questions":[{"q":"The main aim of green chemistry is to:","opts":["Increase hazardous waste","Reduce or eliminate hazardous substances and waste","Use more toxic solvents","Maximise energy consumption"],"ans":1,"exp":"Green chemistry designs chemical products and processes that reduce hazardous substances and waste.","tag":""},{"q":"Atom economy measures the proportion of reactant atoms that are:","opts":["Lost as waste","Incorporated into the desired product","Converted to solvent","Released as heat"],"ans":1,"exp":"High atom economy means more reactant atoms appear in the desired product.","tag":""},{"q":"Which is a renewable feedstock?","opts":["Petroleum","Coal","Biomass","Natural gas"],"ans":2,"exp":"Biomass can be replenished over relatively short timescales.","tag":""},{"q":"A catalyst is considered a green chemistry tool because it can:","opts":["Increase waste formation","Improve selectivity and reduce energy requirements","Always make reactions slower","Replace all reactants"],"ans":1,"exp":"Catalysts can improve efficiency, selectivity and energy use.","tag":""},{"q":"Nanomaterials generally have at least one dimension in the approximate range:","opts":["1–100 nm","1–100 mm","1–100 cm","1–100 m"],"ans":0,"exp":"Nanomaterials are commonly defined by dimensions in the nanoscale range of about 1–100 nm.","tag":""},{"q":"A major reason nanoparticles can show properties different from bulk materials is their:","opts":["Very low surface-area-to-volume ratio","High surface-area-to-volume ratio and size effects","Absence of atoms","Always larger density"],"ans":1,"exp":"A high fraction of surface atoms and quantum-size effects can alter material properties.","tag":""},{"q":"Which method is a bottom-up approach for nanomaterial synthesis?","opts":["Building structures from atoms or molecules","Cutting a bulk solid into pieces only","Grinding a large block only","Mechanical polishing only"],"ans":0,"exp":"Bottom-up methods assemble nanostructures from smaller building blocks.","tag":""},{"q":"Which of the following is an example of a green solvent often preferred over many volatile organic solvents?","opts":["Water","Benzene","Carbon tetrachloride","Chloroform"],"ans":0,"exp":"Water is non-flammable and can replace more hazardous solvents in suitable processes.","tag":""},{"q":"The use of biodegradable materials helps to:","opts":["Increase persistent waste","Reduce long-term environmental accumulation","Increase heavy-metal pollution","Prevent decomposition"],"ans":1,"exp":"Biodegradable materials can be broken down by biological processes under suitable conditions.","tag":""},{"q":"Which is an application of nanotechnology?","opts":["Targeted drug delivery research","Only coal combustion","Increasing plastic litter","Producing ozone-depleting CFCs"],"ans":0,"exp":"Nanomaterials are researched for controlled and targeted delivery of therapeutic agents.","tag":""}]}},"Maths":{"1":{"num":1,"part":"I","part_ch":1,"title":"Mathematical Logic","questions":[{"q":"The negation of “7 is a prime number” is","opts":["7 is not a prime number","7 is an even number","7 is composite","7 is odd"],"ans":0,"exp":"Negation asserts that the original statement is false."},{"q":"The truth value of a true proposition is","opts":["0","1","−1","Undefined"],"ans":1,"exp":"The standard convention assigns 1 to true and 0 to false."},{"q":"The connective in “p and q” is","opts":["Disjunction","Conjunction","Implication","Biconditional"],"ans":1,"exp":"The word “and” denotes conjunction."},{"q":"The implication p → q is false only when","opts":["p is true and q is false","p is false and q is true","both are true","both are false"],"ans":0,"exp":"An implication fails only for a true antecedent and a false consequent."},{"q":"The converse of p → q is","opts":["¬p → ¬q","q → p","¬q → ¬p","p ↔ q"],"ans":1,"exp":"The converse interchanges the antecedent and consequent."},{"q":"A proposition that is true for every truth-value assignment is a","opts":["Contradiction","Contingency","Tautology","Converse"],"ans":2,"exp":"A tautology is always true."},{"q":"The negation of p ∧ q is equivalent to","opts":["¬p ∧ ¬q","¬p ∨ ¬q","p ∨ q","p ∧ ¬q"],"ans":1,"exp":"By De Morgan’s law, ¬(p ∧ q) ≡ ¬p ∨ ¬q."},{"q":"The biconditional p ↔ q is true when","opts":["p and q differ","p is false only","p and q have the same truth value","q is true only"],"ans":2,"exp":"A biconditional is true when both propositions agree."},{"q":"The symbol for universal quantification is","opts":["∃","∀","∈","⊂"],"ans":1,"exp":"The symbol ∀ means “for all”."},{"q":"The negation of “All students are present” is","opts":["No student is present","All students are absent","At least one student is not present","Some students are present"],"ans":2,"exp":"The negation of a universal statement gives an existential counterexample."}]},"2":{"num":2,"part":"I","part_ch":2,"title":"Matrices","questions":[{"q":"A matrix of order 2 × 3 contains","opts":["5 entries","6 entries","8 entries","9 entries"],"ans":1,"exp":"The number of entries is 2 × 3 = 6."},{"q":"A matrix whose every entry is zero is a","opts":["Identity matrix","Scalar matrix","Zero matrix","Diagonal matrix"],"ans":2,"exp":"All entries of a zero matrix are zero."},{"q":"The transpose of a 2 × 3 matrix has order","opts":["2 × 3","3 × 2","2 × 2","3 × 3"],"ans":1,"exp":"Transpose interchanges rows and columns."},{"q":"For any matrix A of suitable order, A + O equals","opts":["O","I","A","Aᵀ"],"ans":2,"exp":"The zero matrix is the additive identity."},{"q":"The determinant of [[a,b],[c,d]] is","opts":["ab − cd","ad − bc","ac − bd","a + d"],"ans":1,"exp":"The 2 × 2 determinant is ad − bc."},{"q":"A square matrix A is singular if","opts":["|A| = 0","|A| = 1","A = I","Aᵀ = A"],"ans":0,"exp":"A matrix is singular exactly when its determinant is zero."},{"q":"If I is an identity matrix, then I² is","opts":["O","I","2I","Iᵀ + I"],"ans":1,"exp":"Multiplying the identity matrix by itself gives I."},{"q":"For compatible matrices, (AB)ᵀ equals","opts":["AᵀBᵀ","BᵀAᵀ","AB","BA"],"ans":1,"exp":"The transpose of a product reverses the order."},{"q":"If A is invertible, then AA⁻¹ equals","opts":["A","O","I","A²"],"ans":2,"exp":"A matrix multiplied by its inverse gives the identity."},{"q":"A square matrix with 4 rows has order","opts":["4 × 1","1 × 4","4 × 4","4 × 0"],"ans":2,"exp":"A square matrix has equal numbers of rows and columns."}]},"3":{"num":3,"part":"I","part_ch":3,"title":"Trigonometric Functions","questions":[{"q":"The value of sin²θ + cos²θ is","opts":["0","1","tan²θ","sec²θ"],"ans":1,"exp":"This is the fundamental Pythagorean identity."},{"q":"The period of sin x is","opts":["π","2π","π/2","4π"],"ans":1,"exp":"Sine repeats after 2π."},{"q":"The value of tan(π/4) is","opts":["0","1","√3","1/√3"],"ans":1,"exp":"tan 45° = 1."},{"q":"The principal value of sin⁻¹(1) is","opts":["0","π/2","π","−π/2"],"ans":1,"exp":"The principal range of inverse sine is [−π/2, π/2]."},{"q":"The value of cos π is","opts":["1","0","−1","1/2"],"ans":2,"exp":"On the unit circle, cos π = −1."},{"q":"The expression 1 + tan²θ equals","opts":["cosec²θ","sec²θ","cot²θ","sin²θ"],"ans":1,"exp":"The identity is 1 + tan²θ = sec²θ."},{"q":"The formula for sin(A + B) is","opts":["sin A cos B + cos A sin B","sin A cos B − cos A sin B","cos A cos B − sin A sin B","cos A sin B"],"ans":0,"exp":"This is the sine addition formula."},{"q":"The general solution of sin x = 0 is","opts":["x = nπ","x = 2nπ + π/2","x = nπ + π/2","x = 2nπ + π"],"ans":0,"exp":"Sine is zero at every integer multiple of π."},{"q":"One identity for cos 2θ is","opts":["cos²θ + sin²θ","cos²θ − sin²θ","2 sin θ cos θ","1 + 2 tan²θ"],"ans":1,"exp":"The double-angle identity includes cos 2θ = cos²θ − sin²θ."},{"q":"The principal value range of cos⁻¹x is","opts":["[0, π]","[−π/2, π/2]","[−π, π]","[0, 2π]"],"ans":0,"exp":"The principal range of inverse cosine is [0, π]."}]},"4":{"num":4,"part":"I","part_ch":4,"title":"Pair of Straight Lines","questions":[{"q":"The combined equation of the coordinate axes is","opts":["x + y = 0","xy = 0","x² + y² = 0","x − y = 0"],"ans":1,"exp":"The axes are x = 0 and y = 0, so their combined equation is xy = 0."},{"q":"A homogeneous quadratic equation in x and y represents a pair of","opts":["Circles","Straight lines through the origin","Parabolas","Ellipses only"],"ans":1,"exp":"A homogeneous quadratic represents two lines through the origin, possibly coincident or non-real."},{"q":"The equation ax² + 2hxy + by² = 0 represents real distinct lines when","opts":["h² − ab > 0","h² − ab = 0","h² − ab < 0","a = b = 0 only"],"ans":0,"exp":"The discriminant condition for real distinct lines is h² − ab > 0."},{"q":"The pair ax² + 2hxy + by² = 0 represents perpendicular lines when","opts":["a + b = 0","a − b = 0","h = 0","ab = 0"],"ans":0,"exp":"The condition for perpendicular lines is a + b = 0."},{"q":"The equation x² − y² = 0 factors as","opts":["(x − y)(x + y) = 0","(x − y)² = 0","(x + y)² = 0","x(x − y) = 0"],"ans":0,"exp":"Use the difference of two squares."},{"q":"The combined equation of x = 2 and y = 3 is","opts":["xy = 6","(x − 2)(y − 3) = 0","x + y = 5","x − y = 1"],"ans":1,"exp":"The product of the two line equations gives the combined equation."},{"q":"The condition for coincident lines in ax² + 2hxy + by² = 0 is","opts":["h² − ab = 0","h² − ab > 0","h² − ab < 0","a + b = 0"],"ans":0,"exp":"A repeated line occurs when the discriminant is zero."},{"q":"The equation x² + 2xy + y² = 0 represents","opts":["Two perpendicular lines","Two coincident lines","Two parallel distinct lines","A circle"],"ans":1,"exp":"It is (x + y)² = 0, representing a repeated line."},{"q":"For real x and y, x² + y² = 0 implies","opts":["x = 1, y = 1","x = y","x = 0 and y = 0","x = −y ≠ 0"],"ans":2,"exp":"A sum of two real squares is zero only when both are zero."},{"q":"The slopes of the lines represented by y² − x² = 0 are","opts":["0 and 1","1 and −1","2 and −2","Both vertical"],"ans":1,"exp":"It factors as (y − x)(y + x) = 0, giving slopes 1 and −1."}]},"5":{"num":5,"part":"I","part_ch":5,"title":"Vectors","questions":[{"q":"A quantity having magnitude and direction is a","opts":["Scalar","Vector","Constant","Matrix"],"ans":1,"exp":"A vector has both magnitude and direction."},{"q":"The magnitude of 3i + 4j is","opts":["3","4","5","7"],"ans":2,"exp":"Magnitude = √(3² + 4²) = 5."},{"q":"The dot product of perpendicular vectors is","opts":["1","−1","0","The product of magnitudes"],"ans":2,"exp":"a · b = |a||b|cos 90° = 0."},{"q":"The unit vector in the direction of non-zero vector a is","opts":["|a|a","a/|a|","|a|/a","a²"],"ans":1,"exp":"Divide the vector by its magnitude."},{"q":"The value of i · i is","opts":["0","1","−1","i"],"ans":1,"exp":"The dot product of a unit vector with itself is 1."},{"q":"The cross product of parallel vectors is","opts":["A unit vector","Zero vector","Their sum","A scalar"],"ans":1,"exp":"The sine of the angle between parallel vectors is zero."},{"q":"If a = 2i + j and b = i − 3j, then a · b is","opts":["−1","1","5","−5"],"ans":0,"exp":"The dot product is 2(1) + 1(−3) = −1."},{"q":"The magnitude of i × j is","opts":["0","1","2","√2"],"ans":1,"exp":"i × j = k, and |k| = 1."},{"q":"Two vectors are equal if they have the same","opts":["Magnitude only","Direction only","Magnitude and direction","Initial point only"],"ans":2,"exp":"Vector equality requires equal magnitude and direction."},{"q":"The scalar projection of a on non-zero b is","opts":["(a · b)/|b|","|a × b|","|a||b|","a + b"],"ans":0,"exp":"Scalar projection is (a · b)/|b|."}]},"6":{"num":6,"part":"I","part_ch":6,"title":"Line and Plane","questions":[{"q":"Direction ratios of a line parallel to the x-axis are","opts":["(0,1,0)","(1,0,0)","(0,0,1)","(1,1,1)"],"ans":1,"exp":"A direction vector parallel to the x-axis is proportional to (1,0,0)."},{"q":"The distance of (x₁,y₁,z₁) from the origin is","opts":["x₁ + y₁ + z₁","√(x₁² + y₁² + z₁²)","x₁² + y₁² + z₁²","|x₁y₁z₁|"],"ans":1,"exp":"Apply the three-dimensional distance formula."},{"q":"The equation of the xy-plane is","opts":["x = 0","y = 0","z = 0","x + y = 0"],"ans":2,"exp":"Every point in the xy-plane has z-coordinate zero."},{"q":"A normal vector to ax + by + cz + d = 0 is","opts":["(a,b,c)","(x,y,z)","(b,c,d)","(1,1,1)"],"ans":0,"exp":"The coefficients of x, y and z form a normal vector."},{"q":"The distance between parallel planes ax + by + cz + d₁ = 0 and ax + by + cz + d₂ = 0 is","opts":["|d₁ − d₂|","|d₁ − d₂|/√(a²+b²+c²)","√(a²+b²+c²)","|d₁+d₂|"],"ans":1,"exp":"Divide the difference of constants by the magnitude of the common normal vector."},{"q":"Direction cosines l, m, n satisfy","opts":["l + m + n = 1","l² + m² + n² = 1","lm + mn + nl = 1","lmn = 1"],"ans":1,"exp":"Direction cosines are components of a unit direction vector."},{"q":"The angle between two planes is the angle between their","opts":["Traces","Normal vectors","Intercepts","Constants"],"ans":1,"exp":"The angle between planes is measured using their normal vectors."},{"q":"The symmetric equation of a line through (x₁,y₁,z₁) with direction ratios (a,b,c) is","opts":["(x−x₁)/a = (y−y₁)/b = (z−z₁)/c","ax + by + cz = 0","x/a + y/b + z/c = 0","x+y+z=0"],"ans":0,"exp":"This is the standard symmetric form of a line in three dimensions."},{"q":"Two planes are parallel when their normal vectors are","opts":["Perpendicular","Parallel","Zero","Unit vectors only"],"ans":1,"exp":"Parallel planes have proportional normal vectors."},{"q":"The perpendicular distance of (x₁,y₁,z₁) from ax+by+cz+d=0 is","opts":["|ax₁+by₁+cz₁+d|/√(a²+b²+c²)","ax₁+by₁+cz₁+d","√(a²+b²+c²)","|d|"],"ans":0,"exp":"This is the point-to-plane distance formula."}]},"7":{"num":7,"part":"I","part_ch":7,"title":"Linear Programming","questions":[{"q":"A linear programming problem has","opts":["A quadratic objective only","A linear objective and linear constraints","Only exponential functions","Nonlinear constraints only"],"ans":1,"exp":"An LPP optimizes a linear objective subject to linear constraints."},{"q":"The feasible region is the set of points satisfying","opts":["Only the objective function","All constraints simultaneously","At least one constraint","No constraints"],"ans":1,"exp":"A feasible point must satisfy every constraint."},{"q":"The objective function is the function to be","opts":["Maximized or minimized","Differentiated only","Factored","Ignored"],"ans":0,"exp":"It represents the quantity to optimize."},{"q":"A two-variable LPP is represented graphically in the","opts":["xy-plane","yz-plane only","Three-dimensional space","Complex plane"],"ans":0,"exp":"Two decision variables are plotted on coordinate axes."},{"q":"For a bounded feasible polygon, an optimum occurs at","opts":["Every interior point","At least one corner point","Only the origin","A point outside the region"],"ans":1,"exp":"A linear objective reaches an optimum at a vertex of a bounded feasible polygon."},{"q":"The constraints x ≥ 0 and y ≥ 0 restrict the solution to","opts":["Second quadrant","Third quadrant","First quadrant including axes","Fourth quadrant"],"ans":2,"exp":"Both variables must be non-negative."},{"q":"A point satisfying all constraints is called a","opts":["Feasible solution","Infeasible solution","Objective function","Critical root"],"ans":0,"exp":"A feasible solution satisfies all restrictions."},{"q":"If no point satisfies all constraints, the LPP is","opts":["Unbounded","Infeasible","Optimal","Redundant"],"ans":1,"exp":"An empty feasible region makes the LPP infeasible."},{"q":"A redundant constraint is one that","opts":["Changes the feasible region","Does not affect the feasible region","Makes the objective nonlinear","Always excludes the origin"],"ans":1,"exp":"Removing a redundant constraint does not change the feasible set."},{"q":"If the objective can increase without limit over the feasible region, the LPP is","opts":["Infeasible","Unbounded","Unique","Degenerate"],"ans":1,"exp":"An unbounded objective has no finite maximum in that direction."}]},"8":{"num":8,"part":"II","part_ch":1,"title":"Differentiation","questions":[{"q":"The derivative of a constant is","opts":["1","0","The constant itself","Undefined"],"ans":1,"exp":"A constant function has zero rate of change."},{"q":"The derivative of xⁿ with respect to x is","opts":["nxⁿ","nxⁿ⁻¹","xⁿ⁻¹","n x"],"ans":1,"exp":"By the power rule, d(xⁿ)/dx = nxⁿ⁻¹."},{"q":"The derivative of sin x is","opts":["−sin x","cos x","−cos x","tan x"],"ans":1,"exp":"The derivative of sine is cosine."},{"q":"The derivative of cos x is","opts":["sin x","−sin x","−cos x","sec²x"],"ans":1,"exp":"The derivative of cosine is negative sine."},{"q":"The derivative of eˣ is","opts":["xeˣ","eˣ","ln x","1/x"],"ans":1,"exp":"The exponential function is its own derivative."},{"q":"If y = ln x, then dy/dx is","opts":["x","1/x","ln x","eˣ"],"ans":1,"exp":"The derivative of ln x is 1/x for x > 0."},{"q":"The derivative of tan x is","opts":["sec²x","cosec²x","sec x tan x","−sec²x"],"ans":0,"exp":"d(tan x)/dx = sec²x."},{"q":"The product rule is","opts":["(uv)' = u'v + uv'","(uv)' = u'v'","(uv)' = u/v","(uv)' = u' + v'"],"ans":0,"exp":"Differentiate the first factor times the second, plus the first times the derivative of the second."},{"q":"The chain rule is used for differentiating","opts":["Composite functions","Only constants","Only sums","Matrices"],"ans":0,"exp":"The chain rule handles a function of another function."},{"q":"If f'(a) = 0, then a is a candidate for a","opts":["Stationary point","Vertical asymptote","Discontinuity always","Root of f always"],"ans":0,"exp":"A zero derivative identifies a stationary-point candidate."}]},"9":{"num":9,"part":"II","part_ch":2,"title":"Applications of Derivatives","questions":[{"q":"The slope of the tangent to y = f(x) at x = a is","opts":["f(a)","f'(a)","1/f(a)","−f(a)"],"ans":1,"exp":"The derivative gives the tangent slope."},{"q":"A differentiable function is increasing where its derivative is","opts":["Negative","Positive","Always zero","Undefined"],"ans":1,"exp":"A positive derivative indicates increasing behaviour."},{"q":"A differentiable function is decreasing where its derivative is","opts":["Positive","Negative","Always one","Infinite"],"ans":1,"exp":"A negative derivative indicates decreasing behaviour."},{"q":"At an interior local extremum where f is differentiable, the derivative is","opts":["Zero","Always positive","Always negative","Equal to f"],"ans":0,"exp":"Fermat’s theorem gives f'(a) = 0 at a differentiable interior extremum."},{"q":"The tangent to y = f(x) at x = a is","opts":["y − f(a) = f'(a)(x − a)","y = f'(a)x","y + f(a) = x − a","y = f(a)"],"ans":0,"exp":"Use point-slope form with slope f'(a) through (a, f(a))."},{"q":"The derivative of displacement with respect to time is","opts":["Acceleration","Velocity","Force","Momentum"],"ans":1,"exp":"Velocity is the rate of change of displacement."},{"q":"The derivative of velocity with respect to time is","opts":["Displacement","Speed","Acceleration","Work"],"ans":2,"exp":"Acceleration is the rate of change of velocity."},{"q":"If f'(a)=0 and f''(a)>0, the second derivative test indicates a","opts":["Local maximum","Local minimum","Discontinuity","Vertical tangent"],"ans":1,"exp":"A positive second derivative at a stationary point indicates a local minimum."},{"q":"For a small change Δx, the approximate change in f is","opts":["f'(x)Δx","f(x)Δx","f''(x)","Δx/f'(x)"],"ans":0,"exp":"For small increments, Δf is approximately f'(x)Δx."},{"q":"A normal to a curve at a point is","opts":["Parallel to tangent","Perpendicular to tangent","Always horizontal","Always vertical"],"ans":1,"exp":"The normal is perpendicular to the tangent."}]},"10":{"num":10,"part":"II","part_ch":3,"title":"Indefinite Integration","questions":[{"q":"Integration is the inverse process of","opts":["Differentiation","Addition","Matrix multiplication","Factorisation"],"ans":0,"exp":"Indefinite integration reverses differentiation up to a constant."},{"q":"For n ≠ −1, ∫xⁿ dx equals","opts":["xⁿ⁺¹/(n+1) + C","nxⁿ⁻¹ + C","ln|x| + C","xⁿ + C"],"ans":0,"exp":"Apply the power rule for integration."},{"q":"∫(1/x) dx equals","opts":["x²/2 + C","ln|x| + C","eˣ + C","1/x² + C"],"ans":1,"exp":"The antiderivative of 1/x is ln|x|."},{"q":"∫cos x dx equals","opts":["−sin x + C","sin x + C","−cos x + C","tan x + C"],"ans":1,"exp":"The derivative of sin x is cos x."},{"q":"∫eˣ dx equals","opts":["eˣ + C","xeˣ + C","ln x + C","eˣ/x + C"],"ans":0,"exp":"The derivative of eˣ is eˣ."},{"q":"The constant C in an indefinite integral is","opts":["A fixed universal number","An arbitrary constant of integration","The upper limit","The integrand"],"ans":1,"exp":"Antiderivatives differ by an arbitrary constant."},{"q":"∫sec²x dx equals","opts":["sec x + C","tan x + C","cot x + C","−tan x + C"],"ans":1,"exp":"The derivative of tan x is sec²x."},{"q":"Substitution is useful when an integrand contains","opts":["A composite expression and its derivative factor","Only a constant","No variable","Only a matrix"],"ans":0,"exp":"Substitution simplifies composite expressions."},{"q":"∫0 dx equals","opts":["0","x + C","C","1 + C"],"ans":2,"exp":"Every constant differentiates to zero, so an antiderivative is an arbitrary constant."},{"q":"∫2x dx equals","opts":["x² + C","2x² + C","x + C","ln|x| + C"],"ans":0,"exp":"The derivative of x² is 2x."}]},"11":{"num":11,"part":"II","part_ch":4,"title":"Definite Integration","questions":[{"q":"A definite integral gives","opts":["A family of antiderivatives","A signed accumulation over an interval","Only a derivative","A determinant"],"ans":1,"exp":"A definite integral gives a signed accumulated value between limits."},{"q":"The value of ∫₀¹ 1 dx is","opts":["0","1","2","1/2"],"ans":1,"exp":"The integral is the interval length, 1."},{"q":"The identity ∫ₐᵇ f(x)dx = −∫ᵦᵃ f(x)dx is the","opts":["Reversal of limits property","Product rule","Chain rule","Mean value theorem"],"ans":0,"exp":"Reversing the limits changes the sign."},{"q":"The value of ∫ₐᵃ f(x)dx is","opts":["1","a","0","f(a)"],"ans":2,"exp":"An interval with equal limits has integral zero."},{"q":"If f is odd, then ∫₋ₐᵃ f(x)dx equals","opts":["2∫₀ᵃf(x)dx","0","a","1"],"ans":1,"exp":"Odd-function contributions cancel over symmetric limits."},{"q":"If f is even, then ∫₋ₐᵃ f(x)dx equals","opts":["0","∫₀ᵃf(x)dx","2∫₀ᵃf(x)dx","−2∫₀ᵃf(x)dx"],"ans":2,"exp":"The two halves contribute equally."},{"q":"If F' = f, then ∫ₐᵇ f(x)dx equals","opts":["F(a)+F(b)","F(b)−F(a)","F(a)−F(b)","F'(b)"],"ans":1,"exp":"Evaluate an antiderivative at the upper limit minus the lower limit."},{"q":"The value of ∫₀π sin x dx is","opts":["0","1","2","π"],"ans":2,"exp":"Using −cos x as the antiderivative gives 2."},{"q":"The value of ∫₀¹ 2x dx is","opts":["0","1","2","4"],"ans":1,"exp":"The antiderivative is x²; its change from 0 to 1 is 1."},{"q":"For a continuous function, a definite integral can be evaluated using","opts":["An antiderivative","Only f(a)","Only f(b)","The derivative of f"],"ans":0,"exp":"This follows from the fundamental theorem of calculus."}]},"12":{"num":12,"part":"II","part_ch":5,"title":"Application of Definite Integration","questions":[{"q":"If f(x) ≥ 0 on [a,b], the area under y=f(x) and above the x-axis is","opts":["∫ₐᵇ f(x)dx","f'(b)−f'(a)","∫ₐᵇ f'(x)dx always","ab"],"ans":0,"exp":"For a non-negative function, the definite integral gives the area."},{"q":"The geometric area between a curve and the x-axis is generally found using","opts":["∫ f(x)dx without limits","∫ |f(x)|dx over the interval","f'(x)","A determinant"],"ans":1,"exp":"Geometric area is non-negative, so use the absolute value if the curve crosses the axis."},{"q":"The area of a rectangle of length l and breadth b is","opts":["l + b","2(l+b)","lb","l/b"],"ans":2,"exp":"Area equals length multiplied by breadth."},{"q":"The area bounded by y=x, the x-axis, x=0 and x=2 is","opts":["1","2","3","4"],"ans":1,"exp":"Area = ∫₀² x dx = 2."},{"q":"If f(x) is above g(x) on [a,b], the area between them is","opts":["∫ₐᵇ[f(x)+g(x)]dx","∫ₐᵇ[f(x)−g(x)]dx","∫ₐᵇg(x)dx only","f(b)−g(a)"],"ans":1,"exp":"Area is upper curve minus lower curve."},{"q":"The area of a circle of radius r is","opts":["πr","2πr","πr²","4πr²"],"ans":2,"exp":"The standard formula is πr²."},{"q":"The area under y=2 from x=1 to x=4 is","opts":["3","6","8","10"],"ans":1,"exp":"Area = height × width = 2 × 3 = 6."},{"q":"If a curve lies below the x-axis throughout an interval, its definite integral is","opts":["Positive","Negative","Always zero","Undefined"],"ans":1,"exp":"A signed integral is negative when the function is negative."},{"q":"Area is measured in","opts":["Square units","Cubic units","Linear units","No units"],"ans":0,"exp":"Area is a two-dimensional measure."},{"q":"The area bounded by y=x², x-axis, x=0 and x=1 is","opts":["1/2","1/3","1","2/3"],"ans":1,"exp":"Area = ∫₀¹ x² dx = 1/3."}]},"13":{"num":13,"part":"II","part_ch":6,"title":"Differential Equations","questions":[{"q":"An equation involving derivatives of an unknown function is a","opts":["Polynomial equation","Differential equation","Matrix equation","Trigonometric identity"],"ans":1,"exp":"A differential equation contains derivatives of an unknown function."},{"q":"The order of a differential equation is the order of its","opts":["Lowest power","Highest-order derivative","Independent variable","Constant term"],"ans":1,"exp":"Order is determined by the highest derivative present."},{"q":"The degree is defined when the equation is polynomial in","opts":["The dependent variable","Its derivatives","The independent variable","All constants"],"ans":1,"exp":"Degree is the power of the highest-order derivative after clearing radicals/fractions in derivatives."},{"q":"The differential equation dy/dx = 0 has general solution","opts":["y = C","x = C","y = x","y = eˣ"],"ans":0,"exp":"A function with zero derivative is constant."},{"q":"The order of d²y/dx² + 3dy/dx + y = 0 is","opts":["1","2","3","0"],"ans":1,"exp":"The highest derivative is the second derivative."},{"q":"The solution of dy/dx = 2x is","opts":["y = x² + C","y = 2x² + C","y = 2 + C","y = ln x + C"],"ans":0,"exp":"Integrating 2x gives x² + C."},{"q":"The equation dy/dx = f(x) is solved by","opts":["Differentiating f(x)","Integrating f(x) with respect to x","Taking a determinant","Squaring both sides"],"ans":1,"exp":"Integrate both sides with respect to x."},{"q":"The general solution of a first-order differential equation usually contains","opts":["No arbitrary constant","One arbitrary constant","Two arbitrary constants","Three arbitrary constants"],"ans":1,"exp":"A first-order general solution typically contains one arbitrary constant."},{"q":"The general solution of dy/dx = y is","opts":["y = Cx","y = Ceˣ","y = C + x","y = eˣ + x"],"ans":1,"exp":"Separating variables gives ln|y| = x + constant."},{"q":"A particular solution is obtained from the general solution by using","opts":["No variables","Given initial or boundary conditions","Two differentiations","Zero for every constant"],"ans":1,"exp":"The supplied conditions determine the arbitrary constant."}]},"14":{"num":14,"part":"II","part_ch":7,"title":"Probability Distributions","questions":[{"q":"A random variable assigns","opts":["A real number to each outcome","A colour to each event","A matrix to each sample space","A derivative to each outcome"],"ans":0,"exp":"A random variable maps outcomes to real numbers."},{"q":"The sum of probabilities over all values of a discrete random variable is","opts":["0","1","2","Variable"],"ans":1,"exp":"A complete probability distribution has total probability one."},{"q":"The expected value E(X) of a discrete random variable is","opts":["ΣxP(X=x)","ΣP(X=x)","Σx²","Maximum x"],"ans":0,"exp":"The mean is the probability-weighted sum of values."},{"q":"The variance of X is","opts":["E(X)","E(X²) − [E(X)]²","[E(X)]² − E(X²)","1 − E(X)"],"ans":1,"exp":"Variance equals the second moment minus the square of the mean."},{"q":"If X is a constant c, then Var(X) is","opts":["c","c²","0","1"],"ans":2,"exp":"A constant variable has no spread."},{"q":"For a fair coin tossed once, the probability of a head is","opts":["0","1/4","1/2","1"],"ans":2,"exp":"The two outcomes are equally likely."},{"q":"The standard deviation is the","opts":["Square of variance","Positive square root of variance","Reciprocal of variance","Mean"],"ans":1,"exp":"Standard deviation is √Var(X)."},{"q":"If P(X=xᵢ)=pᵢ, then Σpᵢ equals","opts":["0","1","xᵢ","Σxᵢ"],"ans":1,"exp":"All probabilities in a complete distribution sum to one."},{"q":"If E(X)=4 and E(X²)=20, then Var(X) is","opts":["2","4","16","36"],"ans":1,"exp":"Variance = 20 − 4² = 4."},{"q":"For any event A, P(A) lies in","opts":["[−1,1]","[0,1]","[1,∞)","(−∞,∞)"],"ans":1,"exp":"Probability is always between zero and one inclusive."}]},"15":{"num":15,"part":"II","part_ch":8,"title":"Binomial Distribution","questions":[{"q":"A binomial experiment consists of a fixed number of","opts":["Different outcomes per trial","Independent trials","Dependent trials","Continuous outcomes"],"ans":1,"exp":"A binomial experiment has a fixed number of independent trials."},{"q":"Each trial in a binomial experiment has","opts":["Three outcomes","Two outcomes: success or failure","Unlimited outcomes","No outcomes"],"ans":1,"exp":"Each trial is classified as success or failure."},{"q":"For X~B(n,p), P(X=r) is","opts":["ⁿCᵣ pʳ qⁿ⁻ʳ","pⁿ + qⁿ","ⁿPᵣpq","pʳ + qʳ"],"ans":0,"exp":"The binomial formula uses q = 1 − p."},{"q":"In a binomial distribution, p + q equals","opts":["0","1","n","p"],"ans":1,"exp":"q is the probability of failure, equal to 1 − p."},{"q":"The mean of a binomial distribution is","opts":["np","nq","npq","√npq"],"ans":0,"exp":"For X~B(n,p), mean = np."},{"q":"The variance of a binomial distribution is","opts":["np","nq","npq","n²p"],"ans":2,"exp":"The binomial variance is npq."},{"q":"If n=5 and p=0.2, the mean is","opts":["0.2","1","2","5"],"ans":1,"exp":"Mean = np = 5 × 0.2 = 1."},{"q":"A fair coin is tossed 3 times. The probability of exactly 2 heads is","opts":["1/8","3/8","1/2","3/4"],"ans":1,"exp":"There are 3 arrangements, each with probability 1/8; total = 3/8."},{"q":"If p=0.7, the probability of failure q is","opts":["0.7","0.3","1.7","−0.7"],"ans":1,"exp":"q = 1 − p = 0.3."},{"q":"The standard deviation of a binomial distribution is","opts":["npq","√(npq)","np","√n"],"ans":1,"exp":"Standard deviation is the square root of variance."}]}}};
+
+    // Built-in fallback curriculum in case data.js is ever delayed
+    const FALLBACK_CURRICULUM = {
+      "12": {
+        label: "HSC Class 12 Science",
+        subjects: {
+          "Physics": {
+            icon: "⚛️",
+            pdf: "https://books.ebalbharati.in/",
+            solutionSlug: "maharashtra-board-class-12-physics-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-physics-important-questions-chapter-",
+            chapters: Object.values(MCQ_BANK.Physics).map(c => c.title)
+          },
+          "Chemistry": {
+            icon: "🧪",
+            pdf: "https://books.ebalbharati.in/",
+            solutionSlug: "maharashtra-board-class-12-chemistry-solutions-chapter-",
+            impSlug: "maharashtra-board-class-12-chemistry-important-questions-chapter-",
+            chapters: Object.values(MCQ_BANK.Chemistry).map(c => c.title)
+          },
+          "Mathematics": {
+            icon: "📐",
+            pdf: "https://books.ebalbharati.in/",
+            solutionSlug: "maharashtra-board-class-12-maths-solutions-chapter-",
+            chapters: Object.values(MCQ_BANK.Maths).map(c => c.title)
+          }
+        }
+      },
+      "11": {
+        label: "FYJC Class 11 Science",
+        subjects: {
+          "Physics": {
+            icon: "⚛️",
+            pdf: "https://books.ebalbharati.in/",
+            solutionSlug: "maharashtra-board-class-11-physics-solutions-chapter-",
+            chapters: ["Units and Measurements", "Mathematical Methods", "Motion in a Plane", "Laws of Motion", "Gravitation", "Mechanical Properties of Solids", "Thermal Properties of Matter", "Sound", "Optics", "Electrostatics", "Electric Current Through Conductors", "Magnetism", "Electromagnetic Waves and Communication System", "Semiconductors"]
+          }
+        }
+      }
+    };
+
+    function getCurriculum() {
+      return (typeof CURRICULUM !== "undefined" && CURRICULUM) ? CURRICULUM : FALLBACK_CURRICULUM;
+    }
+
     let activeClass = localStorage.getItem("mbs_activeClass") || "12";
     let activeSubject = localStorage.getItem("mbs_activeSubject") || "Physics";
-    let currentLeaderboardFilter = "weekly";
+    let currentLeaderboardFilter = "all";
 
     // Core Free Themes + Unlockable Shop Themes
     const coreThemes = [
@@ -1452,7 +1736,9 @@
       "Specialist", "Master", "Grandmaster", "Board Titan", "HSC Legend"
     ];
 
-    // Load or Initialize Student Profile State
+    // ==========================================================================
+    // STUDENT STATE & REAL GAMIFICATION ENGINE (NO FAKE CHECKBOX REWARDS!)
+    // ==========================================================================
     let currentUserId = "guest";
     let gState = loadGamificationState("guest");
 
@@ -1460,28 +1746,26 @@
       return {
         customName: "",
         xp: 0,
-        coins: 50, // Welcome starter bonus!
+        coins: 0, // 100% Real Economy: Coins are earned only by daily login & real MCQ quizzes!
         streak: 1,
         lastLoginDate: "",
         dailyEarningsDate: "",
         dailyXpEarned: 0,
-        completedChapters: {},
-        dailyStudyCount: 0,
-        pyqCompletedToday: false,
-        quizzesCompleted: 0,
-        perfectQuizzes: 0,
-        weeklyChaptersCount: 0,
+        quizScores: {},       // chKey -> best score out of 10 (e.g. 8)
+        quizMasteryBonus: {}, // chKey -> true if >=6/10 bonus claimed
+        pyqViewed: false,
+        quizzesPassedCount: 0,
+        perfectQuizzesCount: 0,
         weeklyMissionClaimed: false,
         inventory: [],
         equippedFrame: false,
         equippedBadge: false,
-        equippedEffect: false,
-        redeemedCodes: []
+        equippedEffect: false
       };
     }
 
     function loadGamificationState(uid) {
-      const raw = localStorage.getItem(`mbs2_state_${uid}`);
+      const raw = localStorage.getItem(`mbs2_real_state_${uid}`);
       if (!raw) return getDefaultState();
       try {
         return { ...getDefaultState(), ...JSON.parse(raw) };
@@ -1491,8 +1775,13 @@
     }
 
     function saveGamificationState() {
-      localStorage.setItem(`mbs2_state_${currentUserId}`, JSON.stringify(gState));
+      localStorage.setItem(`mbs2_real_state_${currentUserId}`, JSON.stringify(gState));
       updateGamificationUI();
+      if (typeof window.pushLiveScoreToCloud === "function") {
+        window.pushLiveScoreToCloud();
+      } else {
+        window.saveToLocalLiveRegistry(window.getCurrentScholarEntry());
+      }
     }
 
     window.syncUserWithGamification = function(user) {
@@ -1520,8 +1809,6 @@
       if (gState.dailyEarningsDate !== today) {
         gState.dailyEarningsDate = today;
         gState.dailyXpEarned = 0;
-        gState.dailyStudyCount = 0;
-        gState.pyqCompletedToday = false;
       }
 
       if (gState.lastLoginDate !== today) {
@@ -1538,7 +1825,7 @@
           gState.streak = 1;
         }
         gState.lastLoginDate = today;
-        awardRewards(5, 2, "🔥 Daily Login Bonus!");
+        awardRewards(5, 2, "🔥 Daily Study Streak Bonus!");
       }
     }
 
@@ -1552,20 +1839,11 @@
     }
 
     function awardRewards(xpAmount, coinAmount, reasonText) {
-      const today = getTodayString();
-      if (gState.dailyEarningsDate !== today) {
-        gState.dailyEarningsDate = today;
-        gState.dailyXpEarned = 0;
-      }
-      if (gState.dailyXpEarned >= 600) {
-        window.showToast("Daily XP limit reached! Come back tomorrow for more rewards.");
-        return false;
-      }
-
+      if (xpAmount <= 0 && coinAmount <= 0) return false;
       const oldLevel = calculateLevel(gState.xp).level;
       gState.xp += xpAmount;
       gState.coins += coinAmount;
-      gState.dailyXpEarned += xpAmount;
+      gState.dailyXpEarned = (gState.dailyXpEarned || 0) + xpAmount;
 
       const newLevelObj = calculateLevel(gState.xp);
       saveGamificationState();
@@ -1591,7 +1869,7 @@
       const avatarWrapper = document.getElementById("avatarWrapper");
       const specialBadge = document.getElementById("specialStudentBadge");
 
-      const displayName = gState.customName || "Scholar";
+      const displayName = gState.customName || (window.currentUser ? (window.currentUser.displayName || "Scholar").split(" ")[0] : "Scholar (Guest)");
       nameEl.textContent = displayName;
 
       const lvl = calculateLevel(gState.xp);
@@ -1610,7 +1888,7 @@
 
     window.promptCustomName = function() {
       const current = gState.customName || "Scholar";
-      const input = prompt("Enter your display name / pseudonym for your Top Bar & Leaderboard:", current);
+      const input = prompt("Enter your display name for your Top Bar & Live Leaderboard:", current);
       if (input !== null && input.trim().length > 0) {
         gState.customName = input.trim().slice(0, 22);
         saveGamificationState();
@@ -1619,84 +1897,342 @@
       }
     };
 
-    window.handleResourceStudy = function(chKey) {
-      const today = getTodayString();
-      const lastStudied = gState.completedChapters[`study_${chKey}`];
-      if (lastStudied !== today) {
-        gState.completedChapters[`study_${chKey}`] = today;
-        gState.dailyStudyCount = (gState.dailyStudyCount || 0) + 1;
-        gState.weeklyChaptersCount = (gState.weeklyChaptersCount || 0) + 1;
-        awardRewards(20, 10, "📖 Daily Chapter Revision");
-        renderChapters();
+    // ==========================================================================
+    // SMART CHAPTER MCQ LOOKUP & REAL 60-SECOND INTERACTIVE QUIZ ENGINE
+    // ==========================================================================
+    function normalizeStr(s) {
+      return (s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    }
+
+    function getChapterQuestions(cls, subj, chNum, chTitle) {
+      if (String(cls) !== "12") return null;
+      const normSubj = normalizeStr(subj);
+      const normTitle = normalizeStr(chTitle);
+
+      let targetBanks = [];
+      if (normSubj.includes("phys")) {
+        targetBanks = [MCQ_BANK.Physics];
+      } else if (normSubj.includes("chem")) {
+        targetBanks = [MCQ_BANK.Chemistry];
+      } else if (normSubj.includes("math") || normSubj.includes("stat")) {
+        targetBanks = [MCQ_BANK.Maths];
+      } else {
+        targetBanks = [MCQ_BANK.Physics, MCQ_BANK.Chemistry, MCQ_BANK.Maths];
       }
-    };
+
+      // 1. Exact or substring title match first (handles Maths Part 1 & Part 2 seamlessly!)
+      for (const bank of targetBanks) {
+        if (!bank) continue;
+        for (const key of Object.keys(bank)) {
+          const item = bank[key];
+          const bankTitle = normalizeStr(item.title);
+          if (bankTitle === normTitle || normTitle.includes(bankTitle) || bankTitle.includes(normTitle)) {
+            return item.questions;
+          }
+        }
+      }
+
+      // 2. Fallback to chapter number within matched subject bank
+      if (targetBanks.length === 1 && targetBanks[0]) {
+        const bank = targetBanks[0];
+        if (normSubj.includes("math") && (normSubj.includes("2") || normSubj.includes("ii"))) {
+          if (bank[String(chNum + 7)]) return bank[String(chNum + 7)].questions;
+        }
+        if (bank[String(chNum)]) {
+          return bank[String(chNum)].questions;
+        }
+      }
+      return null;
+    }
+
+    // Active Quiz Session State
+    let activeQuiz = null;
+    let quizTimerInterval = null;
+
+    function stopQuizTimer() {
+      if (quizTimerInterval) {
+        clearInterval(quizTimerInterval);
+        quizTimerInterval = null;
+      }
+    }
 
     window.openChapterQuiz = function(chNum, chTitle) {
-      const chKey = `${activeClass}_${activeSubject}_${chNum}`;
-      const today = getTodayString();
-      if (gState.completedChapters[`quiz_${chKey}`] === today) {
-        window.showToast("✅ You already completed this chapter's quiz today! Try another chapter.");
+      const questions = getChapterQuestions(activeClass, activeSubject, chNum, chTitle);
+      if (!questions || questions.length === 0) {
+        window.showToast(`📚 10-MCQ Board Bank for ${activeSubject} (${chTitle}) will be added in the next update! Switch to Class 12 Physics, Chemistry, or Maths to play.`);
         return;
       }
 
-      const modal = document.getElementById("quizModal");
-      const titleEl = document.getElementById("quizModalTitle");
-      const contentEl = document.getElementById("quizModalContent");
+      const chKey = `${activeClass}_${activeSubject}_${chNum}`;
+      activeQuiz = {
+        chKey,
+        chNum,
+        chTitle,
+        subject: activeSubject,
+        questions,
+        currentIndex: 0,
+        score: 0,
+        answered: false,
+        timeLeft: 60
+      };
 
-      titleEl.textContent = `⚡ CH ${chNum}: ${chTitle}`;
+      document.getElementById("quizModalTitle").textContent = `⚡ CH ${chNum < 10 ? '0' + chNum : chNum}: ${chTitle}`;
+      document.getElementById("quizModal").style.display = "flex";
+      renderCurrentQuizQuestion();
+    };
+
+    function startQuestionTimer() {
+      stopQuizTimer();
+      if (!activeQuiz) return;
+      activeQuiz.timeLeft = 60;
+      updateTimerDisplay();
+
+      quizTimerInterval = setInterval(() => {
+        if (!activeQuiz || activeQuiz.answered) {
+          stopQuizTimer();
+          return;
+        }
+        activeQuiz.timeLeft -= 1;
+        updateTimerDisplay();
+        if (activeQuiz.timeLeft <= 0) {
+          stopQuizTimer();
+          handleQuizOptionSelect(-1); // Time expired!
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const el = document.getElementById("quizTimerBadge");
+      if (!el || !activeQuiz) return;
+      el.textContent = `⏱️ ${activeQuiz.timeLeft}s`;
+      el.classList.toggle("urgent", activeQuiz.timeLeft <= 12);
+    }
+
+    function renderCurrentQuizQuestion() {
+      if (!activeQuiz) return;
+      const qObj = activeQuiz.questions[activeQuiz.currentIndex];
+      const total = activeQuiz.questions.length;
+      const qNum = activeQuiz.currentIndex + 1;
+      activeQuiz.answered = false;
+
+      const letters = ["A", "B", "C", "D"];
+      const tagBadge = qObj.tag
+        ? `<span style="color:var(--accent); font-weight:700;">[${qObj.tag}]</span>`
+        : `<span style="color:var(--text-secondary);">[HSC Board Pattern]</span>`;
+
+      const contentEl = document.getElementById("quizModalContent");
       contentEl.innerHTML = `
-        <p style="font-size:0.84rem; color:var(--text-secondary);">
-          Verify your revision of <strong>${chTitle}</strong> (${activeSubject}) to earn <strong>+50 XP & +25 Coins</strong>!
-        </p>
-        <div style="background:var(--bg-secondary); padding:1rem; border-radius:var(--radius); border:1px solid var(--border); display:flex; flex-direction:column; gap:0.65rem;">
-          <div style="font-size:0.85rem; font-weight:700;">Quick Self-Check:</div>
-          <label style="font-size:0.8rem; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-            <input type="checkbox" id="qCheck1" /> I have reviewed the key concepts & formulas in this chapter.
-          </label>
-          <label style="font-size:0.8rem; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-            <input type="checkbox" id="qCheck2" /> I practiced the Balbharati textbook exercise solutions.
-          </label>
-          <label style="font-size:0.8rem; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-            <input type="checkbox" id="qCheck3" /> I am ready to answer board exam questions from this topic.
-          </label>
+        <div class="quiz-meta-bar">
+          <span>Question ${qNum} of ${total} • Score: ${activeQuiz.score}/${qNum - 1}</span>
+          ${tagBadge}
+          <span class="quiz-timer" id="quizTimerBadge">⏱️ 60s</span>
         </div>
-        <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
-          <button class="btn" onclick="closeQuizModal()">Cancel</button>
-          <button class="btn btn-primary" onclick="submitChapterQuiz('${chKey}')">✅ Complete & Claim +50 XP · +25 🪙</button>
+
+        <div class="quiz-question-text">
+          Q${qNum}. ${qObj.q}
+        </div>
+
+        <div class="quiz-options-list" id="quizOptionsList">
+          ${qObj.opts.map((optText, idx) => `
+            <button class="quiz-opt-btn" id="quizOptBtn_${idx}" onclick="handleQuizOptionSelect(${idx})">
+              <span class="quiz-opt-letter">${letters[idx]}</span>
+              <span>${optText}</span>
+            </button>
+          `).join("")}
+        </div>
+
+        <div id="quizFeedbackArea" style="display:none; flex-direction:column; gap:0.75rem;"></div>
+      `;
+
+      startQuestionTimer();
+    }
+
+    window.handleQuizOptionSelect = function(selectedIndex) {
+      if (!activeQuiz || activeQuiz.answered) return;
+      activeQuiz.answered = true;
+      stopQuizTimer();
+
+      const qObj = activeQuiz.questions[activeQuiz.currentIndex];
+      const correctIndex = qObj.ans;
+      const isCorrect = (selectedIndex === correctIndex);
+      if (isCorrect) {
+        activeQuiz.score += 1;
+      }
+
+      const letters = ["A", "B", "C", "D"];
+      qObj.opts.forEach((_, idx) => {
+        const btn = document.getElementById(`quizOptBtn_${idx}`);
+        if (!btn) return;
+        btn.disabled = true;
+        if (idx === correctIndex) {
+          btn.classList.add("correct");
+        } else if (idx === selectedIndex && !isCorrect) {
+          btn.classList.add("wrong");
+        }
+      });
+
+      const feedbackEl = document.getElementById("quizFeedbackArea");
+      const isLast = (activeQuiz.currentIndex === activeQuiz.questions.length - 1);
+
+      let statusHeader = "";
+      if (selectedIndex === -1) {
+        statusHeader = `<div style="color:var(--danger); font-weight:800; font-size:0.9rem;">⏰ Time's Up! Correct Answer: Option ${letters[correctIndex]}</div>`;
+      } else if (isCorrect) {
+        statusHeader = `<div style="color:#10b981; font-weight:800; font-size:0.9rem;">✅ Correct! (+5 XP · +2 🪙)</div>`;
+      } else {
+        statusHeader = `<div style="color:var(--danger); font-weight:800; font-size:0.9rem;">❌ Incorrect — Correct Answer: Option ${letters[correctIndex]}</div>`;
+      }
+
+      feedbackEl.style.display = "flex";
+      feedbackEl.innerHTML = `
+        <div class="quiz-explanation-box">
+          ${statusHeader}
+          <div style="margin-top:0.35rem;"><strong>Explanation:</strong> ${qObj.exp}</div>
+        </div>
+        <div style="display:flex; justify-content:flex-end;">
+          <button class="btn btn-primary" onclick="nextQuizStep()">
+            ${isLast ? '🏆 View Final Results →' : 'Next Question →'}
+          </button>
         </div>
       `;
-      modal.style.display = "flex";
     };
 
-    window.submitChapterQuiz = function(chKey) {
-      const c1 = document.getElementById("qCheck1").checked;
-      const c2 = document.getElementById("qCheck2").checked;
-      const c3 = document.getElementById("qCheck3").checked;
+    window.nextQuizStep = function() {
+      if (!activeQuiz) return;
+      if (activeQuiz.currentIndex < activeQuiz.questions.length - 1) {
+        activeQuiz.currentIndex += 1;
+        renderCurrentQuizQuestion();
+      } else {
+        finishChapterQuiz();
+      }
+    };
 
-      if (!c1 || !c2 || !c3) {
-        window.showToast("Please check all 3 revision boxes to verify completion!");
-        return;
+    function finishChapterQuiz() {
+      stopQuizTimer();
+      if (!activeQuiz) return;
+
+      const score = activeQuiz.score;
+      const total = activeQuiz.questions.length;
+      const pct = Math.round((score / total) * 100);
+      const chKey = activeQuiz.chKey;
+
+      const prevBest = gState.quizScores[chKey] || 0;
+      const improvedCorrect = Math.max(0, score - prevBest);
+
+      // Real XP & Coins only for newly improved correct answers + first-time 60%+ Mastery Bonus
+      let earnedXp = improvedCorrect * 5;
+      let earnedCoins = improvedCorrect * 2;
+      let masteryBonusCoins = 0;
+
+      if (score >= 6 && !gState.quizMasteryBonus[chKey]) {
+        gState.quizMasteryBonus[chKey] = true;
+        masteryBonusCoins = 5;
+        earnedCoins += masteryBonusCoins;
+        gState.quizzesPassedCount = Object.keys(gState.quizMasteryBonus).length;
       }
 
-      const today = getTodayString();
-      gState.completedChapters[`quiz_${chKey}`] = today;
-      gState.quizzesCompleted = (gState.quizzesCompleted || 0) + 1;
-      gState.perfectQuizzes = (gState.perfectQuizzes || 0) + 1;
-      gState.weeklyChaptersCount = (gState.weeklyChaptersCount || 0) + 1;
+      if (score > prevBest) {
+        gState.quizScores[chKey] = score;
+      }
 
-      closeQuizModal();
-      awardRewards(50, 25, "🎯 Chapter Quiz Completed!");
+      if (score === total) {
+        const perfectCount = Object.values(gState.quizScores).filter(s => s === 10).length;
+        gState.perfectQuizzesCount = perfectCount;
+      }
+
+      if (earnedXp > 0 || earnedCoins > 0) {
+        awardRewards(earnedXp, earnedCoins, `🎯 Scored ${score}/${total} on ${activeQuiz.chTitle}`);
+      } else {
+        saveGamificationState();
+      }
+
       renderChapters();
-    };
+
+      const passed = score >= 6;
+      const contentEl = document.getElementById("quizModalContent");
+      contentEl.innerHTML = `
+        <div style="text-align:center; padding:1rem 0.5rem; display:flex; flex-direction:column; gap:0.85rem; align-items:center;">
+          <div style="font-size:3rem;">${score === 10 ? '🏆' : passed ? '🎉' : '📘'}</div>
+          <h4 style="font-size:1.35rem; font-weight:800;">
+            You Scored ${score} / ${total} (${pct}%)
+          </h4>
+          <p style="font-size:0.86rem; color:var(--text-secondary); max-width:440px;">
+            ${score === 10
+              ? 'PERFECT SCORE! You have completely mastered this chapter!'
+              : passed
+              ? 'Great job! You passed the board-level assessment for this chapter.'
+              : 'Score at least 6/10 (60%) to pass and unlock the Chapter Mastery Bonus. Review the solutions and try again!'}
+          </p>
+
+          <div style="background:var(--bg-secondary); border:1px solid var(--border-strong); border-radius:var(--radius); padding:1rem 1.25rem; width:100%; max-width:420px; display:flex; flex-direction:column; gap:0.4rem; font-family:'JetBrains Mono', monospace; font-size:0.82rem;">
+            <div style="display:flex; justify-content:space-between;">
+              <span>Previous Best:</span>
+              <strong>${prevBest} / ${total}</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; color:var(--accent);">
+              <span>New XP Earned:</span>
+              <strong>+${earnedXp} XP</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; color:var(--accent);">
+              <span>New Coins Earned:</span>
+              <strong>+${earnedCoins} 🪙 ${masteryBonusCoins ? '(incl. +5 Mastery Bonus)' : ''}</strong>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:0.65rem; margin-top:0.5rem;">
+            <button class="btn" onclick="openChapterQuiz(${activeQuiz.chNum}, '${activeQuiz.chTitle.replace(/'/g, "\'")}')">🔄 Retake Quiz</button>
+            <button class="btn btn-primary" onclick="closeQuizModal()">Done</button>
+          </div>
+        </div>
+      `;
+    }
 
     window.closeQuizModal = function() {
+      stopQuizTimer();
+      activeQuiz = null;
       document.getElementById("quizModal").style.display = "none";
     };
 
-    window.rewardPyqCompletion = function() {
-      if (!gState.pyqCompletedToday) {
-        gState.pyqCompletedToday = true;
-        awardRewards(30, 15, "📂 Completed PYQ Archive Set!");
+    // ==========================================================================
+    // LOGIN GATE FOR CLASS 12 PYQ PREVIEW & IMPORTANT QUESTIONS
+    // ==========================================================================
+    window.openLoginGateModal = function(resourceName) {
+      const titleEl = document.getElementById("loginGateTitle");
+      if (titleEl && resourceName) {
+        titleEl.textContent = `Sign In to Unlock ${resourceName}`;
+      }
+      document.getElementById("loginGateModal").style.display = "flex";
+    };
+
+    window.closeLoginGateModal = function() {
+      document.getElementById("loginGateModal").style.display = "none";
+    };
+
+    window.openPyqModal = function() {
+      if (!window.currentUser) {
+        openLoginGateModal("Class 12th Physics PYQ Archive");
+        return;
+      }
+      document.getElementById("pyqModal").style.display = "flex";
+    };
+
+    window.closePyqModal = function() {
+      document.getElementById("pyqModal").style.display = "none";
+    };
+
+    window.handleImpQuestionClick = function(event, url, label) {
+      if (!window.currentUser) {
+        event.preventDefault();
+        openLoginGateModal(label || "Important Board Questions");
+        return false;
+      }
+      return true;
+    };
+
+    window.markPyqViewed = function() {
+      if (!gState.pyqViewed) {
+        gState.pyqViewed = true;
+        awardRewards(15, 5, "📂 Unlocked PYQ Archive!");
       }
     };
 
@@ -1715,38 +2251,35 @@
     function renderMissionsAndBadges() {
       const missionContainer = document.getElementById("missionListContainer");
       const badgeContainer = document.getElementById("badgeGridContainer");
+      const passedCount = Object.keys(gState.quizMasteryBonus || {}).length;
+      const attemptedCount = Object.keys(gState.quizScores || {}).length;
+      const perfectCount = Object.values(gState.quizScores || {}).filter(s => s === 10).length;
 
       const missions = [
         {
-          title: "🔥 Daily Login",
-          desc: "Open Mybookshelf today to keep your study streak alive.",
+          title: "🔥 Daily Study Login",
+          desc: "Open Mybookshelf today to keep your daily study streak alive.",
           reward: "+5 XP · +2 🪙",
           done: true
         },
         {
-          title: "📖 Daily Revision",
-          desc: `Open & revise at least 1 chapter solution today (${Math.min(1, gState.dailyStudyCount || 0)}/1).`,
-          reward: "+20 XP · +10 🪙",
-          done: (gState.dailyStudyCount || 0) >= 1
+          title: "⚡ Pass Your First 10-MCQ Quiz",
+          desc: `Score at least 6/10 on any chapter MCQ quiz (${Math.min(1, passedCount)}/1).`,
+          reward: "Up to +50 XP · +25 🪙",
+          done: passedCount >= 1
         },
         {
-          title: "⚡ Complete a Chapter Quiz",
-          desc: "Complete any chapter revision verification check.",
+          title: "💯 Achieve a 10/10 Perfect Score",
+          desc: `Answer all 10 MCQs right in any chapter quiz (${Math.min(1, perfectCount)}/1).`,
           reward: "+50 XP · +25 🪙",
-          done: (gState.quizzesCompleted || 0) >= 1
+          done: perfectCount >= 1
         },
         {
-          title: "📂 Complete a PYQ Set",
-          desc: "Open the Class 12 Physics Pre-2020 PYQ archive today.",
-          reward: "+30 XP · +15 🪙",
-          done: !!gState.pyqCompletedToday
-        },
-        {
-          title: "🏆 Weekly Mission: 5 Chapters",
-          desc: `Complete 5 chapter revisions or quizzes (${Math.min(5, gState.weeklyChaptersCount || 0)}/5).`,
+          title: "🏆 Weekly Mission: Pass 5 Chapter Quizzes",
+          desc: `Pass 5 distinct chapter MCQ assessments with 6/10+ (${Math.min(5, passedCount)}/5).`,
           reward: "+100 XP · +50 🪙",
-          done: (gState.weeklyChaptersCount || 0) >= 5,
-          claimable: (gState.weeklyChaptersCount || 0) >= 5 && !gState.weeklyMissionClaimed
+          done: passedCount >= 5,
+          claimable: passedCount >= 5 && !gState.weeklyMissionClaimed
         }
       ];
 
@@ -1777,20 +2310,20 @@
         {
           icon: "📘",
           title: "Chapter Master",
-          desc: "Complete your first chapter revision check.",
-          unlocked: (gState.quizzesCompleted || 0) >= 1
+          desc: "Pass your first 10-MCQ chapter quiz (6/10+).",
+          unlocked: passedCount >= 1
         },
         {
           icon: "🏆",
           title: "Test Champion",
-          desc: "Complete 5 chapter practice checks.",
-          unlocked: (gState.quizzesCompleted || 0) >= 5
+          desc: "Pass 5 different chapter MCQ quizzes.",
+          unlocked: passedCount >= 5
         },
         {
           icon: "💯",
           title: "Perfect Score",
-          desc: "Get 100% completion on a chapter check.",
-          unlocked: (gState.perfectQuizzes || 0) >= 1
+          desc: "Score 10/10 on a Maharashtra Board MCQ chapter quiz.",
+          unlocked: perfectCount >= 1
         }
       ];
 
@@ -1811,9 +2344,10 @@
     }
 
     window.claimWeeklyMission = function() {
-      if ((gState.weeklyChaptersCount || 0) >= 5 && !gState.weeklyMissionClaimed) {
+      const passedCount = Object.keys(gState.quizMasteryBonus || {}).length;
+      if (passedCount >= 5 && !gState.weeklyMissionClaimed) {
         gState.weeklyMissionClaimed = true;
-        awardRewards(100, 50, "🏆 Weekly Mission Completed!");
+        awardRewards(100, 50, "🏆 Weekly 5-Quiz Mission Completed!");
         renderMissionsAndBadges();
       }
     };
@@ -1871,7 +2405,7 @@
       if (gState.inventory.includes(itemId)) return;
 
       if (gState.coins < item.price) {
-        window.showToast(`Not enough coins! You need ${item.price - gState.coins} more coins. Study chapters or complete quizzes to earn more!`);
+        window.showToast(`Need ${item.price - gState.coins} more coins! Take 10-MCQ chapter quizzes to earn real coins.`);
         return;
       }
 
@@ -1899,45 +2433,56 @@
       renderShopItems();
     };
 
-    window.redeemPromoCode = function() {
-      const input = document.getElementById("promoCodeInput");
-      const code = (input.value || "").trim().toUpperCase();
-      if (!code) return;
+    // ==========================================================================
+    // LIVE LEADERBOARD (REAL USERS ONLY — ZERO FAKE BOTS)
+    // ==========================================================================
+    let cachedLiveScholars = [];
 
-      if (gState.redeemedCodes.includes(code)) {
-        window.showToast("This code has already been redeemed!");
-        return;
-      }
-
-      if (code === "ITZMAFIA" || code === "HSC2027" || code === "MYBOOKSHELF") {
-        gState.redeemedCodes.push(code);
-        gState.coins += 500;
-        gState.xp += 250;
-        saveGamificationState();
-        renderShopItems();
-        input.value = "";
-        window.showToast("🎉 Supporter Code Redeemed! +500 Coins & +250 XP added!");
-      } else {
-        window.showToast("Invalid code. Tip: Try 'ITZMAFIA' for a starter boost!");
-      }
+    window.getCurrentScholarEntry = function() {
+      const displayName = gState.customName || (window.currentUser ? (window.currentUser.displayName || "Scholar").split(" ")[0] : "Scholar (You)");
+      const passedCount = Object.keys(gState.quizMasteryBonus || {}).length;
+      return {
+        uid: window.currentUser ? window.currentUser.uid : "local_user",
+        name: displayName,
+        cls: activeClass,
+        xp: gState.xp,
+        coins: gState.coins,
+        quizzesPassed: passedCount,
+        isYou: true
+      };
     };
 
-    // ==========================================================================
-    // LEADERBOARD MODAL (STUDENT ALWAYS PINNED AT TOP + LIVE RANKING)
-    // ==========================================================================
-    const sampleScholars = [
-      { name: "Aarav_HSC", cls: "12", xp: 1450 },
-      { name: "Sneha_Physics", cls: "12", xp: 1120 },
-      { name: "Rohan_IIT", cls: "11", xp: 980 },
-      { name: "Priya_Bio", cls: "12", xp: 840 },
-      { name: "Omkar_MHTCET", cls: "12", xp: 690 },
-      { name: "Tanvi_FYJC", cls: "11", xp: 520 },
-      { name: "Aditya_99", cls: "11", xp: 310 }
-    ];
+    window.saveToLocalLiveRegistry = function(entry) {
+      if (!entry) return;
+      try {
+        const raw = localStorage.getItem("mbs2_live_registry");
+        const reg = raw ? JSON.parse(raw) : {};
+        reg[entry.uid] = {
+          uid: entry.uid,
+          name: entry.name,
+          cls: entry.cls,
+          xp: entry.xp,
+          coins: entry.coins,
+          quizzesPassed: entry.quizzesPassed,
+          updatedAt: Date.now()
+        };
+        localStorage.setItem("mbs2_live_registry", JSON.stringify(reg));
+      } catch (e) {}
+    };
+
+    function getLocalLiveRegistryList() {
+      try {
+        const raw = localStorage.getItem("mbs2_live_registry");
+        if (!raw) return [];
+        return Object.values(JSON.parse(raw));
+      } catch (e) {
+        return [];
+      }
+    }
 
     window.openLeaderboardModal = function() {
-      renderLeaderboard();
       document.getElementById("leaderboardModal").style.display = "flex";
+      fetchLiveLeaderboard();
     };
 
     window.closeLeaderboardModal = function() {
@@ -1946,24 +2491,60 @@
 
     window.switchLeaderboardFilter = function(filter) {
       currentLeaderboardFilter = filter;
-      document.getElementById("lbTabWeekly").classList.toggle("active", filter === "weekly");
+      document.getElementById("lbTabAll").classList.toggle("active", filter === "all");
       document.getElementById("lbTabClass12").classList.toggle("active", filter === "12");
       document.getElementById("lbTabClass11").classList.toggle("active", filter === "11");
       renderLeaderboard();
     };
 
+    window.fetchLiveLeaderboard = async function() {
+      const noteEl = document.getElementById("lbStatusNote");
+      if (noteEl) noteEl.textContent = "🔄 Syncing live scholar standings...";
+
+      if (typeof window.pushLiveScoreToCloud === "function") {
+        await window.pushLiveScoreToCloud();
+      }
+
+      let cloudList = null;
+      if (typeof window.fetchCloudLeaderboard === "function") {
+        cloudList = await window.fetchCloudLeaderboard();
+      }
+
+      const mapByUid = {};
+      // Merge real local accounts on this device + real Firestore accounts
+      for (const item of getLocalLiveRegistryList()) {
+        if (item && item.uid) mapByUid[item.uid] = item;
+      }
+      if (Array.isArray(cloudList)) {
+        for (const item of cloudList) {
+          if (item && item.uid) mapByUid[item.uid] = item;
+        }
+      }
+
+      const me = window.getCurrentScholarEntry();
+      mapByUid[me.uid] = me;
+
+      cachedLiveScholars = Object.values(mapByUid).map(item => ({
+        ...item,
+        isYou: item.uid === me.uid
+      }));
+
+      if (noteEl) {
+        noteEl.textContent = window.currentUser
+          ? `🟢 Live Cloud Leaderboard synced (${cachedLiveScholars.length} real scholar${cachedLiveScholars.length === 1 ? '' : 's'} active).`
+          : `🟢 Live Mode: Showing real scholars only. Sign in with Google to publish your rank globally!`;
+      }
+      renderLeaderboard();
+    };
+
     function renderLeaderboard() {
-      const yourName = gState.customName || "Scholar (You)";
-      const yourLvl = calculateLevel(gState.xp);
+      const me = window.getCurrentScholarEntry();
+      const yourLvl = calculateLevel(me.xp);
 
-      const allEntries = [
-        ...sampleScholars,
-        { name: yourName, cls: activeClass, xp: gState.xp, isYou: true }
-      ];
-
-      const filtered = allEntries
-        .filter(e => currentLeaderboardFilter === "weekly" ? true : e.cls === currentLeaderboardFilter)
-        .sort((a, b) => b.xp - a.xp);
+      const list = cachedLiveScholars.length > 0 ? cachedLiveScholars : [me];
+      const filtered = list
+        .filter(e => currentLeaderboardFilter === "all" ? true : String(e.cls) === String(currentLeaderboardFilter))
+        .sort((a, b) => (b.xp || 0) - (a.xp || 0));
 
       const yourRankIndex = filtered.findIndex(e => e.isYou);
       const yourRank = yourRankIndex !== -1 ? yourRankIndex + 1 : 1;
@@ -1972,34 +2553,40 @@
         <div style="display:flex; align-items:center; gap:0.75rem;">
           <span style="font-size:1.4rem; font-weight:800; color:var(--accent); font-family:'JetBrains Mono', monospace;">#${yourRank}</span>
           <div>
-            <div style="font-size:0.95rem; font-weight:800; color:var(--text-primary);">👑 ${yourName} (Your Standing)</div>
-            <div style="font-size:0.75rem; color:var(--text-secondary);">Class ${activeClass}th • Level ${yourLvl.level} (${yourLvl.title})</div>
+            <div style="font-size:0.95rem; font-weight:800; color:var(--text-primary);">👑 ${me.name} (Your Live Standing)</div>
+            <div style="font-size:0.75rem; color:var(--text-secondary);">Class ${activeClass}th • Level ${yourLvl.level} (${yourLvl.title}) • ${me.quizzesPassed} Quizzes Passed</div>
           </div>
         </div>
         <div style="font-family:'JetBrains Mono', monospace; font-size:0.95rem; font-weight:800; color:var(--accent);">
-          ${gState.xp} XP · 🪙 ${gState.coins}
+          ${me.xp} XP · 🪙 ${me.coins}
         </div>
       `;
 
       const tbody = document.getElementById("leaderboardTableBody");
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:1.5rem; color:var(--text-secondary);">No scholars in Class ${currentLeaderboardFilter}th yet. Be the first!</td></tr>`;
+        return;
+      }
+
       tbody.innerHTML = filtered.map((entry, idx) => {
         const rank = idx + 1;
-        const lvl = calculateLevel(entry.xp);
+        const lvl = calculateLevel(entry.xp || 0);
         const medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : `#${rank}`;
         return `
           <tr class="${entry.isYou ? 'lb-row-you' : ''}">
             <td style="font-family:'JetBrains Mono', monospace; font-weight:700;">${medal}</td>
             <td>${entry.name} ${entry.isYou ? '<span style="font-size:0.68rem; color:var(--accent);">(YOU)</span>' : ''}</td>
-            <td>Class ${entry.cls}th</td>
+            <td>Class ${entry.cls || '12'}th</td>
+            <td style="font-family:'JetBrains Mono', monospace;">${entry.quizzesPassed || 0} ✅</td>
             <td>Lvl ${lvl.level} (${lvl.title})</td>
-            <td style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--accent);">${entry.xp} XP</td>
+            <td style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--accent);">${entry.xp || 0} XP</td>
           </tr>
         `;
       }).join("");
     }
 
     // ==========================================================================
-    // PORTAL NAVIGATION & CHAPTER RENDERER (100% PRESERVED LINKS)
+    // PORTAL NAVIGATION & CHAPTER RENDERER (100% PRESERVED LINKS + LOGIN GATING)
     // ==========================================================================
     window.showToast = function(msg) {
       const container = document.getElementById("toastContainer");
@@ -2008,10 +2595,11 @@
       t.className = "toast";
       t.textContent = msg;
       container.appendChild(t);
-      setTimeout(() => t.remove(), 3200);
+      setTimeout(() => t.remove(), 3400);
     };
 
     function enterPortal(cls) {
+      const curr = getCurriculum();
       activeClass = cls;
       localStorage.setItem("mbs_activeClass", cls);
 
@@ -2021,7 +2609,7 @@
       document.getElementById("landingScreen").classList.add("hidden");
       document.getElementById("studyApp").classList.add("active");
 
-      const subs = Object.keys(CURRICULUM[cls].subjects);
+      const subs = Object.keys(curr[cls].subjects);
       if (!subs.includes(activeSubject)) {
         activeSubject = subs[0];
       }
@@ -2040,9 +2628,10 @@
     }
 
     function switchClass(cls) {
+      const curr = getCurriculum();
       activeClass = cls;
       localStorage.setItem("mbs_activeClass", cls);
-      const subs = Object.keys(CURRICULUM[cls].subjects);
+      const subs = Object.keys(curr[cls].subjects);
       activeSubject = subs[0];
       renderClassTabs();
       renderSubjectPills();
@@ -2063,21 +2652,23 @@
     }
 
     function renderSubjectPills() {
+      const curr = getCurriculum();
       const bar = document.getElementById("subjectBar");
-      const subjects = Object.keys(CURRICULUM[activeClass].subjects);
+      const subjects = Object.keys(curr[activeClass].subjects);
       bar.innerHTML = subjects.map(s => `
         <button class="subject-pill ${s === activeSubject ? 'active' : ''}" onclick="switchSubject('${s}')">
-          ${CURRICULUM[activeClass].subjects[s].icon || '📘'} ${s}
+          ${curr[activeClass].subjects[s].icon || '📘'} ${s}
         </button>
       `).join("");
     }
 
     function renderTextbookBanner() {
+      const curr = getCurriculum();
       const banner = document.getElementById("textbookBanner");
-      const sData = CURRICULUM[activeClass].subjects[activeSubject];
+      const sData = curr[activeClass].subjects[activeSubject];
       banner.innerHTML = `
         <div class="textbook-meta">
-          <span>Official Balbharati PDF (${CURRICULUM[activeClass].label})</span>
+          <span>Official Balbharati PDF (${curr[activeClass].label})</span>
           <h2>${sData.icon || '📘'} Class ${activeClass}th ${activeSubject} Textbook</h2>
           <p>Complete official textbook PDF containing ${sData.chapters.length} chapters.</p>
         </div>
@@ -2089,13 +2680,14 @@
       `;
     }
 
-    function renderChapters() {
+    window.renderChapters = function() {
+      const curr = getCurriculum();
       renderTextbookBanner();
       const grid = document.getElementById("chapterGrid");
       const query = document.getElementById("searchInput").value.trim().toLowerCase();
-      const sData = CURRICULUM[activeClass].subjects[activeSubject];
+      const sData = curr[activeClass].subjects[activeSubject];
       const baseDomain = "https://maharashtraboardsolutions.guru/";
-      const today = getTodayString();
+      const isLoggedIn = !!window.currentUser;
 
       const cards = sData.chapters.map((title, idx) => {
         const chNum = idx + 1;
@@ -2104,38 +2696,63 @@
         }
 
         const chKey = `${activeClass}_${activeSubject}_${chNum}`;
-        const quizDoneToday = gState.completedChapters[`quiz_${chKey}`] === today;
+        const hasMcqs = !!getChapterQuestions(activeClass, activeSubject, chNum, title);
+        const bestScore = gState.quizScores[chKey];
         const solutionUrl = `${baseDomain}${sData.solutionSlug}${chNum}/`;
 
         let secUrl = null;
         let secLabel = "";
+        let requiresLoginForSec = false;
+
         if (activeClass === "12") {
           secUrl = sData.impUrls ? sData.impUrls[idx] : (sData.impSlug ? `${baseDomain}${sData.impSlug}${chNum}/` : null);
-          secLabel = "⚡ Imp Questions";
+          secLabel = isLoggedIn ? "⚡ Imp Questions" : "🔒 Imp Questions";
+          requiresLoginForSec = true;
         } else {
           secUrl = sData.impUrls ? sData.impUrls[idx] : null;
           secLabel = "⚡ Misc Questions";
         }
 
-        const safeTitle = title.replace(/'/g, "\\'");
+        const safeTitle = title.replace(/'/g, "\'");
+
+        let quizBtnHtml = "";
+        if (hasMcqs) {
+          if (typeof bestScore === "number") {
+            quizBtnHtml = `
+              <button class="chapter-xp-tag ${bestScore >= 6 ? 'completed' : ''}" onclick="openChapterQuiz(${chNum}, '${safeTitle}')" title="Retake 10-MCQ Board Quiz">
+                ${bestScore >= 6 ? '✅' : '🎯'} Best: ${bestScore}/10 (Retake)
+              </button>
+            `;
+          } else {
+            quizBtnHtml = `
+              <button class="chapter-xp-tag" onclick="openChapterQuiz(${chNum}, '${safeTitle}')" title="Take Real 10-MCQ Chapter Assessment">
+                ⚡ 10-MCQ Quiz (+50 XP · +25 🪙)
+              </button>
+            `;
+          }
+        } else {
+          quizBtnHtml = `
+            <button class="chapter-xp-tag soon" onclick="openChapterQuiz(${chNum}, '${safeTitle}')">
+              📚 Quiz Soon
+            </button>
+          `;
+        }
 
         return `
           <article class="chapter-card">
             <div>
               <div class="chapter-header">
                 <span class="chapter-num">CH ${chNum < 10 ? '0' + chNum : chNum}</span>
-                <button class="chapter-xp-tag ${quizDoneToday ? 'completed' : ''}" onclick="openChapterQuiz(${chNum}, '${safeTitle}')" title="Complete Chapter Revision Check for +50 XP & +25 Coins">
-                  ${quizDoneToday ? '✅ Quiz Done (+50 XP)' : '🎯 Verify Revision (+50 XP · +25 🪙)'}
-                </button>
+                ${quizBtnHtml}
               </div>
               <h3 class="chapter-title">${title}</h3>
             </div>
             <div class="chapter-actions">
-              <a href="${solutionUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="handleResourceStudy('${chKey}')">
+              <a href="${solutionUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                 📖 Solutions
               </a>
               ${secUrl ? `
-                <a href="${secUrl}" target="_blank" rel="noopener noreferrer" class="btn" onclick="handleResourceStudy('${chKey}_imp')">
+                <a href="${secUrl}" target="_blank" rel="noopener noreferrer" class="btn ${requiresLoginForSec && !isLoggedIn ? 'btn-locked' : ''}" onclick="return handleImpQuestionClick(event, '${secUrl}', 'Class 12 ${activeSubject} Important Questions')">
                   ${secLabel}
                 </a>
               ` : ''}
@@ -2148,8 +2765,9 @@
       }).join("");
 
       grid.innerHTML = cards || `<div style="grid-column: 1/-1; text-align:center; padding:2rem; color:var(--text-secondary);">No chapters found matching your search.</div>`;
-    }
+    };
 
+    // Theme Switcher (cycles through core themes + any unlocked shop themes)
     function getAvailableThemes() {
       const unlockedShopThemes = shopItemsCatalog
         .filter(item => item.type === "theme" && gState.inventory.includes(item.id))
@@ -2174,14 +2792,6 @@
 
     function closeHelpModal() {
       document.getElementById("helpModal").style.display = "none";
-    }
-
-    function openPyqModal() {
-      document.getElementById("pyqModal").style.display = "flex";
-    }
-
-    function closePyqModal() {
-      document.getElementById("pyqModal").style.display = "none";
     }
 
     function copyEmail() {
